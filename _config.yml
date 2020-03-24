@@ -14,8 +14,8 @@
 # You can create any custom variable you would like, and they will be accessible
 # in the templates via {{ site.myvariable }}.
 #theme: "just-the-docs"
-title: DVtalk
-description: Something to talk about
+title: dvtalk
+description: My note as a design verification engineer
 #baseurl: "/just-the-docs" # the subpath of your site, e.g. /blog
 url: "https://dvtalk.github.io" # the base hostname & protocol for your site, e.g. http://example.com
 
