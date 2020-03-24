@@ -23,7 +23,7 @@ permalink: pretty
 exclude: ["node_modules/", "*.gemspec", "*.gem", "Gemfile", "Gemfile.lock", "package.json", "package-lock.json",  "script/", "LICENSE.txt", "lib/", "bin/", "README.md", "Rakefile"]
 
 # Set a path/url to a logo that will be displayed instead of the title
-#logo: "/assets/images/just-the-docs.png"
+logo: "https://avatars1.githubusercontent.com/u/62177280?s=460&u=b0d699ef8f151384cd8d7e0ef27c390e7a3f37a4&v=4"
 
 # Enable or disable the site search
 search_enabled: true
