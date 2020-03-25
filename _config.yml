@@ -37,9 +37,9 @@ search_tokenizer_separator: /[\s/]+/
 heading_anchors: true
 
 # Aux links for the upper right navigation
-aux_links:
-  "dvtalk":
-    - "https://dvtalk.github.io"
+#aux_links:
+#  "dvtalk":
+#    - "https://dvtalk.github.io"
 
 # Footer content appears at the bottom of every page's main content
 footer_content: "DVTALK"
