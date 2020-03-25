@@ -25,7 +25,7 @@ exclude: ["node_modules/", "*.gemspec", "*.gem", "Gemfile", "Gemfile.lock", "pac
 # Set a path/url to a logo that will be displayed instead of the title
 #logo: "https://avatars1.githubusercontent.com/u/62177280?s=460&u=b0d699ef8f151384cd8d7e0ef27c390e7a3f37a4&v=4"
 #logo: "https://nmruba.bn.files.1drv.com/y4mCS_9bWASjbljnK59TgPUdjZmjVdT0skSWMD7atk9nx1e8J2aKgQmQVyZ5olpSd87_AVHgZTxgg2UA_T155DOSIoeI_hOrOxGxdxb8H-X3t5j0PMNCF9O0nrZl6ILpIpHBp1OUHssJIytzaAb4mYqUKTTCAinUkNEvSy8GUX-KEAODUH4hXKjVItHPuw7y3ghTtJF8w9NTAUnJCq-lukfHw?"
-logo: "https://osruba.bn.files.1drv.com/y4pE-IpowyX0_O6q0_amR5YDOabW3rgMunx0OZSI58416d9uRz7S52LMCdgFqr2ZvGUXxr56qBZbd1mQMITSVjuRhGUX4WnCZERMF1LwDmoKpzIAX8GoQIp4wHRJGIReGDeEsmblAoFQdYfyoPHl3yDUeTby0KGMSRRRejZGLFCLPOrhQPzJjYPspP6PhF-QfDnTVFC-ZScTpjOsj-Fna9Lzhw-zcjJMvSCYZRHwxSDXUE/dvtalk.png?psid=1"
+logo: "https://osruba.bn.files.1drv.com/y4msIQWvAxu45YHDjtod_w6Uj57FEr6AHHnkLhWB25aZTXZ0OjeqoxibF4Ic5Jfb8Mz93_altiDANCDYUgDEoPbLrJsesW8hjBK0ECKmZ-dnURYQ63wjC5ksksvhzWH316OW6FLOSDjWQZsd7GT47sH5em9B6gYc53BAIjZjUyewhLTr8T1h6n6krizJwN_RLP6sgYGgEXX7x3U62X7qS9RRA?"
 #logo: "https://1drv.ms/u/s!AqrXwR1Iv85XpVipLFCPgEmHwYz0?e=wDE1ZR"
 # Enable or disable the site search
 search_enabled: true
