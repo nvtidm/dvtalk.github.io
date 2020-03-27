@@ -14,23 +14,21 @@ This is where I keep my notes, my thoughts, my experiences or anything interesti
 
 ---
 
-## Getting started
-
-### Who I am
+## Who am I
 Well, you know I'm a design verification engineer and I've been in this industry for quite a while. It's long enough to make me feel that I should share what I know, but also not enough to say that everything on this site are 100 percent correctly. I work with Systemverilog, uvm everyday and these are what I know the most. However, now and then, I also find myself struggling with formal verification, design, STA timing, =)) and the list goes on with synthesis, ECO logic, and also scripting. Talking about scripting, I have been using csh and perl for a long time before switching to zsh/bash and python recently. And I love vim, gosh, it is the best.
 
 
-### What you'll find here
+## What you'll find here
 
 
-#### 1. You find my notes :)
-#####   The first reason makes me 
+### 1. You find my notes :)
+####   The first reason makes me 
 
 
-#### 2.You find my thoughts
+### 2.You find my thoughts
 
 
-#### 3.And you find my random
+### 3.And you find my random
 
 ---
 
