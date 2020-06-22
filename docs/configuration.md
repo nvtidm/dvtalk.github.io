@@ -1,6 +1,6 @@
 ---
 layout: default
-title: Configuration
+title: Notes
 nav_order: 2
 ---
 
