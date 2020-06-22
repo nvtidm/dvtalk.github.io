@@ -1,5 +1,5 @@
 ---
-layout: default
+layout: custom
 title: Search
 nav_order: 7
 ---
