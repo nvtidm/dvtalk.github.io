@@ -1,5 +1,5 @@
 ---
-layout: default
+layout: post
 title: Hey there
 nav_order: 1
 description: "My life as a design verification engineer"
@@ -11,6 +11,9 @@ permalink: /
 
 This is where I keep my notes, my thoughts, my experiences or anything interesting which I think should belong here. :D
 {: .fs-6 .fw-300 }
+
+{% gist c08ee0f2726fd0e3909d %}
+
 
 ---
 ## Who am I
