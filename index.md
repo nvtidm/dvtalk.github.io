@@ -42,4 +42,3 @@ Use the search box if you need anything.
 And if you cannot find what you need, well, later then. :D
 {: .fs-5 .fw-600}
 
-{% gist 8b1429b6cb38fad3a3d05ca83faebcc2 %}
