@@ -23,20 +23,17 @@ Well, I'm a design verification engineer and I've been in this industry for quit
 
 
 ### 1. You'll find my how to
-{: .lh-0.5}
-{: .mx-5}
+{: .lh-1}
 
 ### 2. You'll also find my thoughts
-{: .lh-0.5}
-{: .mx-5}
+{: .lh-1}
 
 ### 3. And you'll find my randoms
-{: .lh-0.5}
+{: .lh-1}
 Let's just say my randoms are just a bit better organized piece of my notes.
 They might be about Systemverilog or uvm or even vim.
 The only first and now the main reason for me to be on this is for keeping notes. 
 I usually take notes to keep tracks of things. Things that I feel interested in, things that I wanna try or spend some time.
-{: .mx-5}
 
 
 ---
