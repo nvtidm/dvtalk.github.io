@@ -54,6 +54,9 @@ ga_tracking: UA-2709176-10
 plugins:
   - jekyll-seo-tag
   - jekyll-gist
+  - jekyll-seo-tag
+
+
 
 
 compress_html:
