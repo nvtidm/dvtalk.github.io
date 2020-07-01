@@ -3,7 +3,7 @@ layout: default
 title: Hey there
 nav_order: 1
 description: "My life as a design verification engineer"
-permalink: /
+permalink: /hellothere
 ---
 
 # Hey there
