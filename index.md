@@ -1,7 +1,7 @@
 ---
 layout: default
 title: Hey there
-nav_order: 1
+nav_order: 0
 description: "My life as a design verification engineer"
 permalink: /
 ---
@@ -22,18 +22,19 @@ Well, I'm a design verification engineer and I've been in this industry for quit
 ## What you'll find here
 
 
-### 1. You'll find my how to
-{: .lh-1}
+You'll find my how to
+{: .fs-5 .ls-6 }
 
-### 2. You'll also find my thoughts
-{: .lh-1}
+You'll also find my thoughts
+{: .fs-5 .ls-6 }
 
-### 3. And you'll find my randoms
-{: .lh-1}
+And you'll find my randoms <br>
+{: .fs-5 .ls-6 }
 Let's just say my randoms are just a bit better organized piece of my notes.
 They might be about Systemverilog or uvm or even vim.
 The only first and now the main reason for me to be on this is for keeping notes. 
 I usually take notes to keep tracks of things. Things that I feel interested in, things that I wanna try or spend some time.
+
 
 
 ---
