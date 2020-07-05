@@ -1,5 +1,5 @@
 ---
-layout: custom
+layout: default
 title: Hey There
 nav_order: 0
 description: "My life as a design verification engineer"
