@@ -6,7 +6,7 @@ has_children: true
 permalink: /docs/randoms
 ---
 
-# My Randoms
+# My randoms
 
 It has random notes about random things.
 

@@ -7,6 +7,26 @@ layout: table_wrappers
 <html lang="{{ site.lang | default: 'en-US' }}">
 {% include head.html %}
 <body>
+  <style>
+    ::-webkit-scrollbar {
+    width: 9px;
+    height: 12px;
+    }
+
+    ::-webkit-scrollbar-track {
+    width: 2px;
+    border: 1px dashed goldenrod;
+    }
+
+    ::-webkit-scrollbar-thumb {
+    background: #7253ed;
+    }
+
+    ::-webkit-scrollbar-thumb:hover {
+    background: darkgoldenrod;
+    }
+  </style>
+
   <svg xmlns="http://www.w3.org/2000/svg" style="display: none;">
     <symbol id="svg-link" viewBox="0 0 24 24">
       <title>Link</title>
@@ -14,21 +34,13 @@ layout: table_wrappers
         <path d="M10 13a5 5 0 0 0 7.54.54l3-3a5 5 0 0 0-7.07-7.07l-1.72 1.71"></path><path d="M14 11a5 5 0 0 0-7.54-.54l-3 3a5 5 0 0 0 7.07 7.07l1.71-1.71"></path>
       </svg>
     </symbol>
+
     <symbol id="svg-search" viewBox="0 0 24 24">
       <title>Search</title>
       <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="feather feather-search">
         <circle cx="11" cy="11" r="8"></circle><line x1="21" y1="21" x2="16.65" y2="16.65"></line>
       </svg>
     </symbol>
-
-
-    <!-- <symbol id="svg-dvtalkcustom" viewBox="0 0 24 24"> -->
-    <!--   <title>Dvtalkcustom</title> -->
-    <!--   <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" > -->
-    <!--     <circle cx="11" cy="11" r="8"></circle><line x1="21" y1="21" x2="16.65" y2="16.65"></line> -->
-    <!--   </svg> -->
-    <!-- </symbol> -->
-
 
     <symbol id="svg-menu" viewBox="0 0 24 24">
       <title>Menu</title>

@@ -54,7 +54,7 @@ $red-300: #dd2e2e !default;
 
 
 $lightgreen-000: #f0fff9 !default;
-$lightgreen-100: #b8f2d8 !default;
+$lightgreen-100: #dbfffa !default;
 $lightgreen-200: #009c7b !default;
 $lightgreen-300: #026e57 !default;
 
@@ -66,8 +66,9 @@ $lightgreen-300: #026e57 !default;
 //hungvn $feedback-color: darken($sidebar-color, 3%) !default;
 
 $body-background-color: $white !default;
-$sidebar-color: $lightgreen-000 !default;
-$search-background-color: $white !default;
+// $sidebar-color: $lightgreen-000 !default;
+$sidebar-color: $grey-lt-000 !default;
+$search-background-color: $lightgreen-100 !default;
 $table-background-color: $white !default;
 $code-background-color: $grey-lt-000 !default;
 $feedback-color: darken($sidebar-color, 15%) !default;
