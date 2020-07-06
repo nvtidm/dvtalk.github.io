@@ -8,6 +8,8 @@
   flex-wrap: wrap;
   background-color: $sidebar-color;
 
+
+
   @include mq(md) {
     flex-wrap: nowrap;
     position: fixed;
@@ -51,6 +53,7 @@
   @include container;
   padding-top: $gutter-spacing-sm;
   padding-bottom: $gutter-spacing-sm;
+
 
   @include mq(md) {
     padding-top: $gutter-spacing;

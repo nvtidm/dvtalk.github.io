@@ -9,21 +9,23 @@ layout: table_wrappers
 <body>
   <style>
     ::-webkit-scrollbar {
-    width: 9px;
-    height: 12px;
+    width: 8px;
+    height: 10px;
     }
 
     ::-webkit-scrollbar-track {
-    width: 2px;
-    border: 1px dashed goldenrod;
+    width: 3px;
+    <!-- border: 1px dashed goldenrod; -->
+    border: 1px dashed #c3bfff;
     }
 
     ::-webkit-scrollbar-thumb {
-    background: #7253ed;
+    background:  #d4d1ff;
     }
 
     ::-webkit-scrollbar-thumb:hover {
-    background: darkgoldenrod;
+    <!-- background: darkgoldenrod; -->
+    background: #7253ed;
     }
   </style>
 
@@ -64,7 +66,7 @@ layout: table_wrappers
 
   <div class="side-bar">
     <div class="site-header">
-      <a href="{{ '/' | absolute_url }}" class="site-title lh-tight">{% include title.html %}</a>
+      <a href="{{ '/' | absolute_url }}" title="My life as a design verification engineer" class="site-title lh-tight">{% include title.html %}</a>
       <a href="#" id="menu-button" class="site-button">
         <svg viewBox="0 0 24 24" class="icon"><use xlink:href="#svg-menu"></use></svg>
       </a>
@@ -142,6 +144,21 @@ layout: table_wrappers
             {% endfor %}
           </ul>
         {% endif %}
+
+        <!-- <div class="related"> -->
+        <!--   <h2>Related Posts</h2> -->
+        <!--   <ul> -->
+        <!--     {% for post in site.related_posts limit:3 %} -->
+        <!--       <a href="{{ post.url }}"> -->
+        <!--           <li> -->
+        <!--           <h3>{{ post.title }}&nbsp;&nbsp;{{ post.date | date_to_string }}</h3> -->
+        <!--           </li> -->
+        <!--       </a> -->
+        <!--     {% endfor %} -->
+        <!--   </ul> -->
+        <!-- </div> -->
+
+
 
         {% if site.footer_content != nil or site.last_edit_timestamp or site.gh_edit_link %}
           <!-- <hr> -->
