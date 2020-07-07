@@ -1,0 +1,11 @@
+---
+layout: form
+title: Email me
+nav_order: 99
+permalink: /docs/emailme
+---
+
+# Email me
+If you feel like telling me anything, please do.
+
+{: .fs-6 .fw-300 }
