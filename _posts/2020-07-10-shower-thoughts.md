@@ -1,9 +1,10 @@
 ---
-layout: default
+layout: post
 title: Shower Thoughts
 nav_order: 4
+comments: true
 has_children: true
-permalink: /docs/showerthoughts
+permalink: /showerthoughts
 ---
 
 # There's always a place for some shower thoughts

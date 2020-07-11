@@ -1,9 +1,10 @@
 ---
-layout: default
+layout: post
 title: My Randoms
 nav_order: 2
+comments: true
 has_children: true
-permalink: /docs/randoms
+permalink: /randoms
 ---
 
 # My randoms

@@ -62,7 +62,7 @@ heading_anchors: true
 #     - "//github.com/pmarsceill/just-the-docs"
 
 # # Makes Aux links open in a new tab. Default is false
-# aux_links_new_tab: false
+aux_links_new_tab: true
 
 # Sort order for navigation links
 nav_sort: case_insensitive # default, equivalent to nil
@@ -101,13 +101,12 @@ ga_tracking: UA-2709176-10
 ga_tracking_anonymize_ip: true # Use GDPR compliant Google Analytics settings (true/nil by default)
 
 
-url: "https://dvtalk.github.io" # the base hostname & protocol for your site
+# url: "https://dvtalk.github.io" # the base hostname & protocol for your site
 
 plugins:
   - jekyll-seo-tag
   - jekyll-gist
   - jekyll-sitemap
-
 
 
 compress_html:

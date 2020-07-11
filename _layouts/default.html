@@ -8,7 +8,6 @@ layout: table_wrappers
 {% include head.html %}
 <link rel="canonical" href="{{ page.url | prepend: site.url }}">
 
-
 <body>
   <style>
     ::-webkit-scrollbar {
@@ -142,13 +141,14 @@ layout: table_wrappers
           </ul>
         {% endif %}
 
-        {% if page.comments %}
+        {% if page.comments != false %}
            {% include disqus.html %}
         {% endif %}
 
         {% if site.footer_content != nil or site.last_edit_timestamp or site.gh_edit_link %}
           <hr>
           <footer>
+            {% if page.tags.size > 0 %}
             <span>[Tags
               {% for tag in page.tags %}
               {% if tag != "" %}
@@ -157,6 +157,7 @@ layout: table_wrappers
               {% endif %}
               {% endfor %}
             ]</span>
+            {% endif %}
 
             {% if site.back_to_top %}
               <p><a href="#top" id="back-to-top">{{ site.back_to_top_text }}</a></p>
@@ -203,4 +204,5 @@ layout: table_wrappers
     {% endif %}
   </div>
 </body>
+<script id="dsq-count-scr" src="//dvtalk.disqus.com/count.js" async></script>
 </html>
