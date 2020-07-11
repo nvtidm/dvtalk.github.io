@@ -5,6 +5,7 @@
      this.page.url = "{{ page.url | absolute_url }}";
      this.page.identifier = "{{ page.url | absolute_url }}"; // Replace PAGE_IDENTIFIER with your page's unique identifier variable
    };
+console.log(disqus_config);
 
    (function() { // DON'T EDIT BELOW THIS LINE
      var d = document, s = d.createElement('script');
@@ -15,7 +16,8 @@
 </script>
 
 
-<!-- {{ page.url | prepend: site.url }} -->
+<!-- {{ page.url | absolute_url }} -->
+<!-- {{ page.id }} -->
 <!-- {{ site.url }} -->
 
 <!-- <noscript> -->
