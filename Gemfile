@@ -4,4 +4,6 @@ group :jekyll_plugins do
   gem 'jekyll-gist'
   gem 'jekyll-relative-links'
   gem 'jekyll-seo-tag'
+  gem 'jekyll-admin'
+  gem 'jekyll-sitemap'
 end

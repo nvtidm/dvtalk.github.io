@@ -6,6 +6,9 @@ layout: table_wrappers
 
 <html lang="{{ site.lang | default: 'en-US' }}">
 {% include head.html %}
+<link rel="canonical" href="{{ page.url | prepend: site.url }}">
+
+
 <body>
   <style>
     ::-webkit-scrollbar {
@@ -34,14 +37,12 @@ layout: table_wrappers
         <path d="M10 13a5 5 0 0 0 7.54.54l3-3a5 5 0 0 0-7.07-7.07l-1.72 1.71"></path><path d="M14 11a5 5 0 0 0-7.54-.54l-3 3a5 5 0 0 0 7.07 7.07l1.71-1.71"></path>
       </svg>
     </symbol>
-
     <symbol id="svg-search" viewBox="0 0 24 24">
       <title>Search</title>
       <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="feather feather-search">
         <circle cx="11" cy="11" r="8"></circle><line x1="21" y1="21" x2="16.65" y2="16.65"></line>
       </svg>
     </symbol>
-
     <symbol id="svg-menu" viewBox="0 0 24 24">
       <title>Menu</title>
       <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="feather feather-menu">
@@ -74,7 +75,6 @@ layout: table_wrappers
     </nav>
     <footer class="site-footer">
       <a href="https://github.com/pmarsceill/just-the-docs">Just the Docs</a>
-      <!-- This site uses <a href="https://github.com/pmarsceill/just-the-docs">Just the Docs</a>, a documentation theme for Jekyll. -->
     </footer>
   </div>
   <div class="main" id="top">
@@ -93,7 +93,6 @@ layout: table_wrappers
           <ul class="aux-nav-list">
             {% for link in site.aux_links %}
               <li class="aux-nav-list-item">
-                <!--hungvn  <a href="{{ link.last }}" class="site-button" -->
                 <a href="{{ link.last }}" class="site-button"
                   {% if site.aux_links_new_tab %}
                   target="_blank" rel="noopener noreferrer"
@@ -143,24 +142,22 @@ layout: table_wrappers
           </ul>
         {% endif %}
 
-        <!-- <div class="related"> -->
-        <!--   <h2>Related Posts</h2> -->
-        <!--   <ul> -->
-        <!--     {% for post in site.related_posts limit:3 %} -->
-        <!--       <a href="{{ post.url }}"> -->
-        <!--           <li> -->
-        <!--           <h3>{{ post.title }}&nbsp;&nbsp;{{ post.date | date_to_string }}</h3> -->
-        <!--           </li> -->
-        <!--       </a> -->
-        <!--     {% endfor %} -->
-        <!--   </ul> -->
-        <!-- </div> -->
-
-
+        {% if page.comments %}
+           {% include disqus.html %}
+        {% endif %}
 
         {% if site.footer_content != nil or site.last_edit_timestamp or site.gh_edit_link %}
-          <!-- <hr> -->
+          <hr>
           <footer>
+            <span>[Tags
+              {% for tag in page.tags %}
+              {% if tag != "" %}
+              {% capture tag_name %}{{ tag }}{% endcapture %}
+              <a href="/tag/{{ tag_name }}"><code class="highligher-rouge"><nobr>{{ tag_name }}</nobr></code>&nbsp;</a>
+              {% endif %}
+              {% endfor %}
+            ]</span>
+
             {% if site.back_to_top %}
               <p><a href="#top" id="back-to-top">{{ site.back_to_top_text }}</a></p>
             {% endif %}
@@ -190,9 +187,10 @@ layout: table_wrappers
             {% endif %}
           </footer>
         {% endif %}
-
       </div>
     </div>
+
+
 
     {% if site.search_enabled != false %}
       {% if site.search.button %}
