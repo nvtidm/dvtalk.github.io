@@ -29,68 +29,54 @@ layout: table_wrappers
     }
   </style>
 
-  <svg xmlns="http://www.w3.org/2000/svg" style="display: none;">
-    <symbol id="svg-link" viewBox="0 0 24 24">
-      <title>Link</title>
-      <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="feather feather-link">
-        <path d="M10 13a5 5 0 0 0 7.54.54l3-3a5 5 0 0 0-7.07-7.07l-1.72 1.71"></path><path d="M14 11a5 5 0 0 0-7.54-.54l-3 3a5 5 0 0 0 7.07 7.07l1.71-1.71"></path>
-      </svg>
-    </symbol>
-    <symbol id="svg-search" viewBox="0 0 24 24">
-      <title>Search</title>
-      <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="feather feather-search">
-        <circle cx="11" cy="11" r="8"></circle><line x1="21" y1="21" x2="16.65" y2="16.65"></line>
-      </svg>
-    </symbol>
-
-    <symbol id="svg-search2" viewBox="0 0 24 24">
-      <title>Search2</title>
-      <svg version="1.1" id="Capa_1" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" x="0px" y="0px" viewBox="0 0 512 512" fill="currentColor" style="enable-background:new 0 0 512 512;" xml:space="preserve">
-        <g> <path d="M141.367,116.518c-7.384-7.39-19.364-7.39-26.748,0c-27.416,27.416-40.891,65.608-36.975,104.79
-                     c0.977,9.761,9.2,17.037,18.803,17.037c0.631,0,1.267-0.032,1.898-0.095c10.398-1.04,17.983-10.316,16.943-20.707
-                     c-2.787-27.845,6.722-54.92,26.079-74.278C148.757,135.882,148.757,123.901,141.367,116.518z"/> </g>
-        <g> <path d="M216.276,0C97.021,0,0,97.021,0,216.276s97.021,216.276,216.276,216.276s216.276-97.021,216.276-216.276
-                     S335.53,0,216.276,0z M216.276,394.719c-98.396,0-178.443-80.047-178.443-178.443S117.88,37.833,216.276,37.833
-                     c98.39,0,178.443,80.047,178.443,178.443S314.672,394.719,216.276,394.719z"/> </g>
-        <g> <path d="M506.458,479.71L368.999,342.252c-7.39-7.39-19.358-7.39-26.748,0c-7.39,7.384-7.39,19.364,0,26.748L479.71,506.458
-                     c3.695,3.695,8.531,5.542,13.374,5.542c4.843,0,9.679-1.847,13.374-5.542C513.847,499.074,513.847,487.094,506.458,479.71z"/> </g>
-      </svg>
-    </symbol>
-
-    <symbol id="svg-menu" viewBox="0 0 24 24">
-      <title>Menu</title>
-      <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="feather feather-menu">
-        <line x1="3" y1="12" x2="21" y2="12"></line><line x1="3" y1="6" x2="21" y2="6"></line><line x1="3" y1="18" x2="21" y2="18"></line>
-      </svg>
-    </symbol>
-    <symbol id="svg-arrow-right" viewBox="0 0 24 24">
-      <title>Expand</title>
-      <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="feather feather-chevron-right">
-        <polyline points="10 18 15 12 9 6"></polyline>
-      </svg>
-    </symbol>
-    <symbol id="svg-doc" viewBox="0 0 24 24">
-      <title>Document</title>
-      <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="feather feather-file">
-        <path d="M13 2H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V9z"></path><polyline points="13 2 13 9 20 9"></polyline>
-      </svg>
-    </symbol>
-  </svg>
+  {% include svg.html %}
 
   <div class="side-bar">
     <div class="site-header">
-      <a href="{{ '/' | absolute_url }}" title="My life as a design verification engineer" class="site-title lh-tight">{% include title.html %}</a>
+      <a href="{{ '/' | absolute_url }}" title="{{ site.description }}" class="site-title lh-tight">{% include title.html %}</a>
       <a href="#" id="menu-button" class="site-button">
         <svg viewBox="0 0 24 24" class="icon"><use xlink:href="#svg-menu"></use></svg>
       </a>
     </div>
+
     <nav role="navigation" aria-label="Main" id="site-nav" class="site-nav">
       {% include nav.html %}
     </nav>
+
     <footer class="site-footer">
-      <a href="https://github.com/pmarsceill/just-the-docs">Just the Docs</a>
+      <a href="{{ '/emailme' | absolute_url }}" title="Email me"> 
+        <svg width="25" height="25" viewBox="0 0 1 1" class="search-icon">
+          <use xlink:href="#svg-email"></use>
+        </svg>
+      </a>
+      <a href="https://gist.github.com/dvtalk" title="My Gist">
+        <svg width="25" height="25" viewBox="0 0 1 1" class="search-icon2">
+          <use xlink:href="#svg-github"></use>
+        </svg>
+      </a>
+
+      <a href="https://www.edaplayground.com" title="EDA Playground">
+        <svg width="25" height="25" viewBox="0 0 1 1" class="search-icon">
+          <use xlink:href="#svg-edaplay"></use>
+        </svg>
+      </a>
+
+      <a href="https://dvtalk.github.io" title="DVTALK">
+        <svg width="25" height="25" viewBox="0 0 1 1" class="search-icon">
+          <use xlink:href="#svg-dvtalk"></use>
+        </svg>
+      </a>
+
+      <a href="https://github.com/pmarsceill/just-the-docs" title="Just the Docs theme">
+        <svg width="25" height="25" viewBox="0 0 1 1" class="search-icon">
+          <use xlink:href="#svg-justthedocs"></use>
+        </svg>
+      </a>
+
+
     </footer>
   </div>
+
   <div class="main" id="top">
     <div id="main-header" class="main-header">
       {% if site.search_enabled != false %}

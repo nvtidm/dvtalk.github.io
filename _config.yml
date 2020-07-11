@@ -16,7 +16,7 @@
 #theme: "just-the-docs"
 
 title: dvtalk
-description: My note as a design verification engineer
+description: My life as a design verification engineer
 # baseurl: "/xxc-the-docs" # the subpath of your site, e.g. /blog
 url: "https://dvtalk.github.io" # the base hostname & protocol for your site, e.g. http://example.com
 
@@ -56,13 +56,13 @@ search:
 # Enable or disable heading anchors
 heading_anchors: true
 
-# Aux links for the upper right navigation
+# # Aux links for the upper right navigation
 # aux_links:
 #   "Just the Docs on GitHub":
 #     - "//github.com/pmarsceill/just-the-docs"
 
-# # Makes Aux links open in a new tab. Default is false
-aux_links_new_tab: true
+# # # Makes Aux links open in a new tab. Default is false
+# aux_links_new_tab: true
 
 # Sort order for navigation links
 nav_sort: case_insensitive # default, equivalent to nil
