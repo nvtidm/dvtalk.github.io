@@ -24,7 +24,8 @@ permalink: pretty
 exclude: ["node_modules/", "*.gemspec", "*.gem", "Gemfile", "Gemfile.lock", "package.json", "package-lock.json",  "script/", "LICENSE.txt", "lib/", "bin/", "README.md", "Rakefile"]
 
 # Set a path/url to a logo that will be displayed instead of the title
-logo: "https://osruba.bn.files.1drv.com/y4msIQWvAxu45YHDjtod_w6Uj57FEr6AHHnkLhWB25aZTXZ0OjeqoxibF4Ic5Jfb8Mz93_altiDANCDYUgDEoPbLrJsesW8hjBK0ECKmZ-dnURYQ63wjC5ksksvhzWH316OW6FLOSDjWQZsd7GT47sH5em9B6gYc53BAIjZjUyewhLTr8T1h6n6krizJwN_RLP6sgYGgEXX7x3U62X7qS9RRA?"
+# logo: "https://osruba.bn.files.1drv.com/y4msIQWvAxu45YHDjtod_w6Uj57FEr6AHHnkLhWB25aZTXZ0OjeqoxibF4Ic5Jfb8Mz93_altiDANCDYUgDEoPbLrJsesW8hjBK0ECKmZ-dnURYQ63wjC5ksksvhzWH316OW6FLOSDjWQZsd7GT47sH5em9B6gYc53BAIjZjUyewhLTr8T1h6n6krizJwN_RLP6sgYGgEXX7x3U62X7qS9RRA?"
+logo: "/assets/images/dvtalk.png"
 # Enable or disable the site search
 search_enabled: true
 
