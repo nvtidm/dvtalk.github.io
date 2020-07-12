@@ -35,6 +35,17 @@
   }
 }
 
+.customsvg {
+  fill: currentColor;
+}
+.customsvg:hover {
+  width:28pt;
+  height:28pt;
+}
+
+
+
+
 .main {
   @include mq(md) {
     position: relative;
@@ -150,6 +161,11 @@
     // background-position: center;
     background-position: left;
     background-size: contain;
+  }
+}
+@if variable-exists(logo_inv) {
+  .site-logo:hover {
+    background-image: url($logo_inv);
   }
 }
 
