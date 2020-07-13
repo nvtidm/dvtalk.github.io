@@ -1,5 +1,7 @@
 <ul class="nav-list">
   {%- assign ordered_pages_list = site.posts | where_exp:"item", "item.nav_order != nil" -%}
+  {%- assign ordered_htmlpages_list = site.html_pages | where_exp:"item", "item.nav_order != nil" -%}
+  {%- assign ordered_pages_list = ordered_pages_list | push: ordered_htmlpages_list %}
   {%- assign unordered_pages_list = site.posts | where_exp:"item", "item.nav_order == nil" -%}
 
 

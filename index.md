@@ -4,7 +4,6 @@ title: Hey There
 nav_order: 0
 description: "My life as a design verification engineer"
 comments: true
-tags: uvm
 permalink: /
 ---
 
