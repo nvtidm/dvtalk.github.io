@@ -124,6 +124,10 @@ $sp-10: map-get($spacers, sp-10) !default; // 4  rem == 64px
 $border: 0px solid !default;
 $border-radius: 5px !default;
 $border-color: $grey-lt-100 !default;
+
+$border_table: 1.5px solid !default;
+
+
 //
 // Grid system
 //
