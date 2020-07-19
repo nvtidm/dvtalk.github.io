@@ -164,11 +164,11 @@
     background-size: contain;
   }
 }
-@if variable-exists(logo_inv) {
-  .site-logo:hover {
-    background-image: url($logo_inv);
-  }
-}
+// @if variable-exists(logo_inv) {
+//   .site-logo:hover {
+//     background-image: url($logo_inv);
+//   }
+// }
 
 .site-button {
   display: flex;
