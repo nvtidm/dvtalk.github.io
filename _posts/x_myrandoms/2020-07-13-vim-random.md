@@ -4,7 +4,7 @@ title: Vim Randoms
 parent: My Randoms
 has_children: true
 nav_order: 1
-permalink: /docs/randoms/vim_randoms
+permalink: /docs/randoms/vim_random
 ---
 
 # Vim Randoms
