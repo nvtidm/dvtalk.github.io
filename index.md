@@ -29,7 +29,7 @@ You'll find my how to
 You'll also find my thoughts
 {: .fs-5 .ls-6 }
 
-And you'll find my randoms <br>
+And you'll find my randoms
 {: .fs-5 .ls-6 }
 Let's just say my randoms are just a bit better organized piece of my notes.
 They might be about Systemverilog or uvm or even vim.

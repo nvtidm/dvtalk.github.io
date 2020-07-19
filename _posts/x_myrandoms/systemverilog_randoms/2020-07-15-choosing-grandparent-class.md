@@ -1,7 +1,7 @@
 ---
 layout: default
 title: Choosing grandparent class
-parent: Systemverilog Random
+parent: Systemverilog Randoms
 grand_parent: My Randoms
 description: Using parameterized class to select parent of our parent class
 tags: [systemverilog,uvm]
@@ -62,7 +62,7 @@ It is now come to our abstract thinking level to take the most advantages of thi
 
 In the [Paper](http://events.dvcon.org/2016/proceedings/papers/05_1.pdf), the author used this to have a based class which create all the methods of interfaces classes implemented.
 
-We can also used this to add another class between our class and legacy base class (sometimes we just don't feel like to modify the legacy class or use the uvm overrides).
+We can also use this to add another class between our class and legacy base class (sometimes we just don't feel like to modify the legacy class or use the uvm overrides).
 <div markdown="1" >
 {% highlight verilog %}
      typedef test_class #( new_class #( legacy_test_base_class )  )

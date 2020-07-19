@@ -1,12 +1,12 @@
 ---
 layout: default
-title: Systemverilog Random
+title: Systemverilog Randoms
 parent: My Randoms
 has_children: true
 nav_order: 3
 description: List of systemverilog randoms posts
 tag: systemverilog
-permalink: /docs/randoms/systemverilog_random
+permalink: /docs/randoms/systemverilog_randoms
 ---
 
 # Systemverilog Random
