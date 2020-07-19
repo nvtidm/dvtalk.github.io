@@ -17,14 +17,12 @@
 
 title: dvtalk
 description: My life as a design verification engineer
-# baseurl: "/xxc-the-docs" # the subpath of your site, e.g. /blog
-url: "https://dvtalk.github.io" # the base hostname & protocol for your site, e.g. http://example.com
+url:         "https://dvtalk.github.io" # the base hostname & protocol for your site, e.g. http://example.com
 
 permalink: pretty
 exclude: ["node_modules/", "*.gemspec", "*.gem", "Gemfile", "Gemfile.lock", "package.json", "package-lock.json",  "script/", "LICENSE.txt", "lib/", "bin/", "README.md", "Rakefile"]
 
 # Set a path/url to a logo that will be displayed instead of the title
-# logo: "https://osruba.bn.files.1drv.com/y4msIQWvAxu45YHDjtod_w6Uj57FEr6AHHnkLhWB25aZTXZ0OjeqoxibF4Ic5Jfb8Mz93_altiDANCDYUgDEoPbLrJsesW8hjBK0ECKmZ-dnURYQ63wjC5ksksvhzWH316OW6FLOSDjWQZsd7GT47sH5em9B6gYc53BAIjZjUyewhLTr8T1h6n6krizJwN_RLP6sgYGgEXX7x3U62X7qS9RRA?"
 logo: "/assets/images/dvtalk.png"
 logo_inv: "/assets/images/dvtalk_inv.png"
 # Enable or disable the site search
@@ -102,8 +100,6 @@ color_scheme: nil
 ga_tracking: UA-2709176-10
 ga_tracking_anonymize_ip: true # Use GDPR compliant Google Analytics settings (true/nil by default)
 
-
-# url: "https://dvtalk.github.io" # the base hostname & protocol for your site
 
 plugins:
   - jekyll-seo-tag

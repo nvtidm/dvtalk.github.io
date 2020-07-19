@@ -32,18 +32,18 @@ Have you got the idea yet? The parameter type T class will be the class the comp
 Now if we has some of those classes as below:
 
 <div markdown="1" >
-```verilog
+{% highlight verilog %}
      class component_a (type T = uvm_component) extends T;
      class component_b (type T = uvm_component) extends T;
      class component_c (type T = uvm_component) extends T;
-```
+{% endhighlight %}
 </div>
 
 We can use `typedef` to create new class type with full control of which is parent class of which.
 <div markdown="1" >
-```verilog
+{% highlight verilog %}
      typedef component_a #( component_b #(component_c) ) customized_component;
-```
+{% endhighlight %}
 </div>
 
 This literally means that type class customized_component is component_a extends from component_b extends from component_c extends from uvm_component.
@@ -64,9 +64,9 @@ In the [Paper](http://events.dvcon.org/2016/proceedings/papers/05_1.pdf), the au
 
 We can also used this to add another class between our class and legacy base class (sometimes we just don't feel like to modify the legacy class or use the uvm overrides).
 <div markdown="1" >
-```verilog
+{% highlight verilog %}
      typedef test_class #( new_class #( legacy_test_base_class )  )
-```
+{% endhighlight %}
 </div>
 
 
