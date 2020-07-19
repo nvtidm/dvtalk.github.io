@@ -44,3 +44,19 @@ Use the search box if you need anything.
 And if you cannot find what you need, well, later then. :D
 {: .fs-5 .fw-600}
 
+---
+Tag lists:
+{% capture temptags %}
+  {% for tag in site.tags %}
+    {{ tag[1].size | plus: 1000 }}#{{ tag[0] }}#{{ tag[1].size }}
+  {% endfor %}
+{% endcapture %}
+{% assign sortedtemptags = temptags | split:' ' | sort | reverse %}
+<nobr>
+{% for temptag in sortedtemptags %}
+  {% assign tagitems = temptag | split: '#' %}
+  {% capture tagname %}{{ tagitems[1] }}{% endcapture %}
+  <a href="/tag/{{ tagname }}"><code class="highligher-rouge">{{ tagname }}</code></a>
+{% endfor %}
+</nobr>
+
