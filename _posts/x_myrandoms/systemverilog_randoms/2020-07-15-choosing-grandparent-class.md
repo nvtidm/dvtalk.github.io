@@ -3,6 +3,7 @@ layout: default
 title: Choosing grandparent class
 parent: Systemverilog Random
 grand_parent: My Randoms
+description: Using parameterized class to select parent of our parent class
 tags: [systemverilog,uvm]
 nav_order: 1
 ---
