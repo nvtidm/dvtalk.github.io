@@ -27,9 +27,10 @@ td {
   padding-right: $sp-3;
   padding-bottom: $sp-2;
   padding-left: $sp-3;
-  background-color: $table-background-color;
-  border-bottom: $border rgba($border-color, 0.5);
-  border-left: $border $border-color;
+  // background-color: $table-background-color;
+  background-color: #faf7ff;
+  border-bottom: $border_table rgba($border-color, 0.5);
+  border-left: $border_table $border-color;
 
   &:first-of-type {
     border-left: 0;
@@ -53,6 +54,6 @@ tbody {
 
 thead {
   th {
-    border-bottom: $border $border-color;
+    border-bottom: $border_table $border-color;
   }
 }
