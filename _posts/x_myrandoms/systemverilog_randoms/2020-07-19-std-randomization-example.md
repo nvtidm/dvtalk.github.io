@@ -22,11 +22,12 @@ This post is to store some of std::randomization examples that I created/collect
       <th> Link </th>
    </tr>
    <tr>
-      <td> unique element, size(), sum, element value constrains </td>
+      <td> array randomization with constrains on unique element, size(), sum, element value constrains </td>
       <td> {% highlight verilog %}
   int d_array[i] < 100;
 
-  std::randomize(d_array) with {unique {d_array};
+  std::randomize(d_array) with {                                
+    unique {d_array};
     d_array.size() == 10;
     d_array.sum    == 150;
     foreach (d_array[i]) {
@@ -36,7 +37,7 @@ This post is to store some of std::randomization examples that I created/collect
     } };
   {% endhighlight %} </td>
       <td>
-      <a href="https://www.edaplayground.com/x/5nYm" title="std::randomization">
+      <a href="https://www.edaplayground.com/x/5nYm" title="std::randomization example for array">
       <svg width="25" height="25" viewBox="0 -0.1 2 2" class="customsvg"> <use xlink:href="#svg-edaplay"></use></svg></a>
       </td>
    </tr>
