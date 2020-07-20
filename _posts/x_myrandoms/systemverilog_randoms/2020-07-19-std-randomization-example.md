@@ -23,7 +23,9 @@ This post is to store some of std::randomization examples that I created/collect
    </tr>
    <tr>
       <td> array randomization with constrains on unique element, size(), sum, element value constrains </td>
-      <td> {% highlight verilog %}
+      <td>
+      <div class="code">
+      {% highlight verilog %}
   int d_array[i] < 100;
 
   std::randomize(d_array) with {                                
@@ -35,7 +37,9 @@ This post is to store some of std::randomization examples that I created/collect
       d_array[i] > 1;
       d_array[i] != i;
     } };
-  {% endhighlight %} </td>
+      {% endhighlight %}
+      </div>
+      </td>
       <td>
       <a href="https://www.edaplayground.com/x/5nYm" title="std::randomization example for array">
       <svg width="25" height="25" viewBox="0 -0.1 2 2" class="customsvg"> <use xlink:href="#svg-edaplay"></use></svg></a>

@@ -20,7 +20,7 @@ Recently, I go through this wonderful paper of DVCon 2016 [Paper_link](http://ev
 
 This paper talked about using Interface Classes, but when skimming through this paper, I noticed the author used a very interesting technique to decide which classes to extends from.
 It simply take advantages of parameterized class as below.
-<div markdown="1" >
+<div class ="code" markdown="1" >
 {% highlight verilog %}
      class component_a (type T = uvm_component) extends T;
 {% endhighlight %}
@@ -31,7 +31,7 @@ It simply take advantages of parameterized class as below.
 Have you got the idea yet? The parameter type T class will be the class the component_a extends from.
 Now if we has some of those classes as below:
 
-<div markdown="1" >
+<div class ="code" markdown="1" >
 {% highlight verilog %}
      class component_a (type T = uvm_component) extends T;
      class component_b (type T = uvm_component) extends T;
@@ -40,7 +40,7 @@ Now if we has some of those classes as below:
 </div>
 
 We can use `typedef` to create new class type with full control of which is parent class of which.
-<div markdown="1" >
+<div class ="code" markdown="1" >
 {% highlight verilog %}
      typedef component_a #( component_b #(component_c) ) customized_component;
 {% endhighlight %}
@@ -63,7 +63,7 @@ It is now come to our abstract thinking level to take the most advantages of thi
 In the [Paper](http://events.dvcon.org/2016/proceedings/papers/05_1.pdf), the author used this to have a based class which create all the methods of interfaces classes implemented.
 
 We can also use this to add another class between our class and legacy base class (sometimes we just don't feel like to modify the legacy class or use the uvm overrides).
-<div markdown="1" >
+<div class ="code" markdown="1" >
 {% highlight verilog %}
      typedef test_class #( new_class #( legacy_test_base_class )  )
 {% endhighlight %}
