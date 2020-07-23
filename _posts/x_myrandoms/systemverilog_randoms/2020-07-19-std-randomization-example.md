@@ -10,7 +10,7 @@ nav_order: 1
 # std::randomization examples
 Sometimes an example is just enough.
 Honestly, I do search and copy a lot. It is simply because I cannot remember everything.
-Sometimes I pay a lot of time to understand and get the code run perfectly and then completely forgot about it after 1 year.
+Sometimes I pay a lot of time to understand and get the code run perfectly and then completely forget about it after 1 year.
 This post is to store some of std::randomization examples that I created/collected, just for me to copy later. :D
 {: .fs-5 .fw-500 }
 ---
