@@ -16,9 +16,9 @@ No Internet access in 2020?? Well, if you're working in this industry then you w
 ## What do we need first
 You should download these source files below to your local laptop and then copy them to your home dir in the linux server. 
 <div  markdown="1" >
-   * libevent: https://github.com/libevent/libevent/releases/download/release-2.1.12-stable/libevent-2.1.12-stable.tar.gz
-   * ncurses: ftp://ftp.gnu.org/gnu/ncurses/ncurses-5.9.tar.gz
-   * tmux: https://github.com/tmux/tmux/releases/download/3.2-rc/tmux-3.2-rc.tar.gz
+   * libevent: [https://github.com/libevent/libevent/releases/download/release-2.1.12-stable/libevent-2.1.12-stable.tar.gz](https://github.com/libevent/libevent/releases/download/release-2.1.12-stable/libevent-2.1.12-stable.tar.gz)
+   * ncurses: [ftp://ftp.gnu.org/gnu/ncurses/ncurses-5.9.tar.gz](ftp://ftp.gnu.org/gnu/ncurses/ncurses-5.9.tar.gz)
+   * tmux: [https://github.com/tmux/tmux/releases/download/3.2-rc/tmux-3.2-rc.tar.gz](https://github.com/tmux/tmux/releases/download/3.2-rc/tmux-3.2-rc.tar.gz)
 </div>
 libevent and ncurses are two libraries that required for tmux. Your linux env might has these 2 libraries already, but there is high possibility that those libs are too old and incompatible.
 
@@ -69,5 +69,5 @@ Copy this code below to a bash script (not tcsh or csh script), for example ```c
  CPPFLAGS="-I$HOME/local/include -I$HOME/local/include/ncurses" LDFLAGS="-static -L$HOME/local/include -L$HOME/local/include/ncurses -L$HOME/local/lib" make
 {% endhighlight %}
 </div>
-Then run this new script ```compiletmux.sh```, you'll see a tmux binary file in current directory. 
-Finally, copy this tmux to $HOME/local/bin and enjoy your new life with tmux.
+Then run this new script ```compiletmux.sh```, you'll see a ```tmux``` binary file in current directory. 
+Finally, copy this tmux to ```$HOME/local/bin``` and enjoy your new life with tmux.
