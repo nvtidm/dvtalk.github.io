@@ -31,7 +31,9 @@ img{max-width:100%;}
 /*end reset*/
 body{
   font-family: 'Strait', sans-serif;
-  background: #340030;
+  /* background: #340030; */
+  /* background: #263238; */
+    background-image: linear-gradient(#263238,#90A4AE)
 }
 .wrap{
   height:750px;
