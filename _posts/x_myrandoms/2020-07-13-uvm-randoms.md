@@ -8,6 +8,6 @@ permalink: /docs/randoms/uvm_randoms
 ---
 
 # UVM Randoms
-It's randoms of vim
-{: .fs-6 .fw-300 }
+Random posts about uvm
+{: .fs-5 .fw-500 }
 

@@ -8,6 +8,7 @@ permalink: /docs/randoms/linux_env_randoms
 ---
 
 
-# Random posts about linux env
+# Linux Env Randoms
+Random posts about linux env
 {: .fs-5 .fw-500 }
 
