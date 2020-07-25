@@ -9,8 +9,8 @@ permalink: /
 
 # Hey there
 {: .fs-9 }
-
-This is where I keep my notes, my thoughts, my experiences or anything interesting which I think should belong here. :D
+I'm a design verification engineer.
+And this is where I keep my notes, my thoughts, my experiences or anything interesting which I think should belong here. :D
 {: .fs-6 .fw-300 }
 
 
