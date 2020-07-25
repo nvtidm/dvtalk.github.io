@@ -4,6 +4,9 @@
 {% if site.logo_inv %}
   $logo_inv: "{{ site.logo_inv | absolute_url }}";
 {% endif %}
+{% if site.logo_qr  %}
+  $logo_qr : "{{ site.logo_qr | absolute_url }}";
+{% endif %}
 @import "./support/support";
 @import "./color_schemes/{{ include.color_scheme }}";
 @import "./modules";
