@@ -144,7 +144,6 @@ layout: table_wrappers
         {% endif %}
 
         {% if page.tags.size > 0 %}
-        <hr>
         <span>[Tags
           {% for tag in page.tags %}
           {% if tag != "" %}
@@ -156,6 +155,7 @@ layout: table_wrappers
         {% endif %}
 
         {% if page.comments != false %}
+        <hr>
         {% include disqus.html %}
         {% endif %}
 
