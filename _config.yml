@@ -15,7 +15,7 @@
 # in the templates via {{ site.myvariable }}.
 #theme: "just-the-docs"
 
-title: a design verification engineer blog
+title: dvtalk
 description: My life as a design verification engineer
 url: "https://dvtalk.github.io" # the base hostname & protocol for your site, e.g. http://example.com
 
