@@ -143,23 +143,25 @@ layout: table_wrappers
           </ul>
         {% endif %}
 
+        {% if page.tags.size > 0 %}
+        <hr>
+        <span>[Tags
+          {% for tag in page.tags %}
+          {% if tag != "" %}
+          {% capture tag_name %}{{ tag }}{% endcapture %}
+          <a href="/tag/{{ tag_name }}"><code class="highligher-rouge"><nobr>{{ tag_name }}</nobr></code>&nbsp;</a>
+          {% endif %}
+          {% endfor %}
+          ]</span>
+        {% endif %}
+
         {% if page.comments != false %}
-           {% include disqus.html %}
+        {% include disqus.html %}
         {% endif %}
 
         {% if site.footer_content != nil or site.last_edit_timestamp or site.gh_edit_link %}
           <hr>
           <footer>
-            {% if page.tags.size > 0 %}
-            <span>[Tags
-              {% for tag in page.tags %}
-              {% if tag != "" %}
-              {% capture tag_name %}{{ tag }}{% endcapture %}
-              <a href="/tag/{{ tag_name }}"><code class="highligher-rouge"><nobr>{{ tag_name }}</nobr></code>&nbsp;</a>
-              {% endif %}
-              {% endfor %}
-            ]</span>
-            {% endif %}
 
             {% if site.back_to_top %}
               <p><a href="#top" id="back-to-top">{{ site.back_to_top_text }}</a></p>
@@ -206,5 +208,4 @@ layout: table_wrappers
     {% endif %}
   </div>
 </body>
-<script id="dsq-count-scr" src="//dvtalk.disqus.com/count.js" async></script>
 </html>

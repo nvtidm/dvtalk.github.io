@@ -5,6 +5,7 @@ parent: Systemverilog Randoms
 grand_parent: My Randoms
 description: Using parameterized class to select parent of our parent class
 tags: [systemverilog,uvm]
+comments: true
 nav_order: 1
 ---
 
