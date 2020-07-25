@@ -11,5 +11,5 @@ permalink: /docs/randoms/systemverilog_randoms
 
 # Systemverilog Random
 Random things about Systemverilog
-{: .fs-6 .fw-300 }
+{: .fs-5 .fw-500 }
 

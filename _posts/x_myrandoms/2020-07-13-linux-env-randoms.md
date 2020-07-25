@@ -7,7 +7,7 @@ nav_order: 1
 permalink: /docs/randoms/linux_env_randoms
 ---
 
-# 
-It's randoms of vim
-{: .fs-6 .fw-300 }
+
+# Random posts about linux env
+{: .fs-5 .fw-500 }
 
