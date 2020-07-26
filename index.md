@@ -3,7 +3,7 @@ layout: post
 title: A Design Verification Engineer Blog
 nav_order: 0
 description: "My life as a design verification engineer"
-comments: true
+comments: false
 permalink: /
 ---
 
