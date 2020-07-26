@@ -111,6 +111,8 @@ plugins:
   - jekyll-gist
   - jekyll-sitemap
 
+author:
+  twitter: dvtalk
 
 compress_html:
   clippings: all
