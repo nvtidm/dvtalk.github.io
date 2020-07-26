@@ -16,7 +16,8 @@
 #theme: "just-the-docs"
 
 title: dvtalk
-description: My life as a design verification engineer
+tagline: dvtalk
+description: My life as a design verification engineer.
 url: "https://dvtalk.github.io" # the base hostname & protocol for your site, e.g. http://example.com
 
 permalink: pretty
@@ -111,8 +112,20 @@ plugins:
   - jekyll-gist
   - jekyll-sitemap
 
+# for seo tag
 author:
-  twitter: dvtalk
+  twitter: dvtalk1
+
+social:
+  name: dvtalk
+  links:
+    - https://github.com/dvtalk
+
+image:
+  path: "/assets/images/dvtalk.png"
+  height: 100
+  width: 100
+
 
 compress_html:
   clippings: all
