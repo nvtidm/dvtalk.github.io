@@ -2,7 +2,7 @@
 layout: post
 title: My Randoms
 nav_order: 2
-comments: true
+comments: false
 has_children: true
 permalink: /randoms
 ---

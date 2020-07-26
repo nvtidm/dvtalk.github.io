@@ -4,6 +4,7 @@ title: Install tmux without root and Internet access
 parent: Linux Env Randoms
 grand_parent: My Randoms
 description: Step by step to install tmux for linux user
+comments: true
 tags: [linux_env,]
 nav_order: 1
 ---

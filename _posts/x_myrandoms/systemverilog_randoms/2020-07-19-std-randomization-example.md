@@ -5,6 +5,7 @@ parent: Systemverilog Randoms
 grand_parent: My Randoms
 description: std::randomization examples
 tag: systemverilog
+comments: true
 nav_order: 1
 ---
 # std::randomization examples

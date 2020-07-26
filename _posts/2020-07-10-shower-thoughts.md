@@ -2,7 +2,7 @@
 layout: post
 title: Shower Thoughts
 nav_order: 4
-comments: true
+comments: false
 has_children: true
 permalink: /showerthoughts
 ---
