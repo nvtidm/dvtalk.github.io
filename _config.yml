@@ -121,7 +121,7 @@ social:
   links:
     - https://github.com/dvtalk
 
-image: "/assets/images/dvtalk.png"
+image: "/assets/images/dvtalk_qrcode.png"
 
 
 compress_html:
