@@ -121,10 +121,7 @@ social:
   links:
     - https://github.com/dvtalk
 
-image:
-  path: "/assets/images/dvtalk.png"
-  height: 100
-  width: 100
+image: "/assets/images/dvtalk.png"
 
 
 compress_html:
