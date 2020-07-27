@@ -23,11 +23,11 @@ This post is to store some of std::randomization examples that I created/collect
       <th> Link </th>
    </tr>
    <tr>
-      <td> array randomization with constrains on unique element, size(), sum, element value constrains </td>
+      <td> array randomization with constrains on unique element, number of elements, array sum, constrains for each element value using foreach</td>
       <td>
       <div class="code">
       {% highlight verilog %}
-  int d_array[i] < 100;
+  int d_array[]; // also works with queue d_array[$]
 
   std::randomize(d_array) with {                                
     unique {d_array};
@@ -42,10 +42,85 @@ This post is to store some of std::randomization examples that I created/collect
       </div>
       </td>
       <td>
-      <a href="https://www.edaplayground.com/x/5nYm" title="std::randomization example for array">
+      <a href="https://www.edaplayground.com/x/5nYm" title="std::randomization example for array/queue">
       <svg width="25" height="25" viewBox="0 -0.1 2 2" class="customsvg"> <use xlink:href="#svg-edaplay"></use></svg></a>
       </td>
    </tr>
+
+   <tr>
+      <td> array randomization using sum with</td>
+      <td>
+      <div class="code">
+      {% highlight verilog %}
+    int d_array[]; //also work with queue, try d_array[$]
+
+    std::randomize(d_array) with {
+      d_array.size() == 5;
+      d_array.sum() with ( item > 10 ? item:0)  == 100;
+      foreach (d_array[i]) {
+        d_array[i] inside {[0:100]};
+      }
+    };
+      {% endhighlight %}
+      </div>
+      </td>
+      <td>
+      <a href="https://www.edaplayground.com/x/5css" title="std::randomization example for array using sum with, and also inside">
+      <svg width="25" height="25" viewBox="0 -0.1 2 2" class="customsvg"> <use xlink:href="#svg-edaplay"></use></svg></a>
+      </td>
+   </tr>
+
+   <tr>
+      <td> randomization using implication constraints</td>
+      <td>
+      <div class="code">
+      {% highlight verilog %}
+    int d_array[]; 
+
+    std::randomize(d_array) with {
+      d_array.size() == 3;
+      d_array[0] > 10 -> d_array[1] inside {0,1,2};
+      d_array[0] < 10 -> d_array[1] inside {3,4,5}
+                         & d_array[2] inside {6,7,8};
+    };     
+      {% endhighlight %}
+      </div>
+      </td>
+      <td>
+      <a href="https://www.edaplayground.com/x/39Hg" title="randomization example using implication constraint">
+      <svg width="25" height="25" viewBox="0 -0.1 2 2" class="customsvg"> <use xlink:href="#svg-edaplay"></use></svg></a>
+      </td>
+   </tr>
+
+   <tr>
+      <td> randomization using condition constraints</td>
+      <td>
+      <div class="code">
+      {% highlight verilog %}
+    int d_array[]; 
+
+    std::randomize(d_array) with {
+      d_array.size() == 3;
+      if (d_array[0] > 10) {
+        d_array[1] inside {0,1,2};
+      }
+      else {
+        d_array[1] inside {3,4,5};
+        d_array[2] inside {6,7,8};
+      }
+    };     
+      {% endhighlight %}
+      </div>
+      </td>
+      <td>
+      <a href="https://www.edaplayground.com/x/dQx" title="randomization example using condition constraint">
+      <svg width="25" height="25" viewBox="0 -0.1 2 2" class="customsvg"> <use xlink:href="#svg-edaplay"></use></svg></a>
+      </td>
+   </tr>
+
+
+
+
 </table></ul></div>
 
 
