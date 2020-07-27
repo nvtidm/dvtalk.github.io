@@ -22,11 +22,11 @@ table {
 th,
 td {
   @include fs-3;
-  min-width: 120px;
-  padding-top: $sp-2;
+  min-width: 50px;
+  padding-top: $sp-1;
   padding-right: $sp-3;
   padding-bottom: $sp-2;
-  padding-left: $sp-3;
+  padding-left: $sp-1;
   // background-color: $table-background-color;
   background-color: #faf7ff;
   border-bottom: $border_table rgba($border-color, 0.5);

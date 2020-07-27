@@ -4,7 +4,7 @@
 // stylelint-disable selector-no-qualifying-type, declaration-block-semicolon-newline-after,declaration-block-single-line-max-declarations, selector-no-type, selector-max-type
 
 code {
-  padding: 0.2em 0.15em;
+  padding: 0.15em 0.15em;
   font-weight: 500;
   // background-color: $code-background-color;
   border: $border $border-color;
@@ -13,7 +13,7 @@ code {
 
 pre.highlight,
 figure.highlight {
-  padding: $sp-2;
+  padding: $sp-1;
   margin-top: 0;
   margin-bottom: 0;
   // background-color: $code-background-color;
@@ -27,7 +27,7 @@ figure.highlight {
 }
 
 .highlighter-rouge {
-  margin-bottom: $sp-3;
+  margin-bottom: $sp-2;
 }
 
 .highlight .c {
