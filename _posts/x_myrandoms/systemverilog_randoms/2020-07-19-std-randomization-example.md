@@ -118,6 +118,32 @@ This post is to store some of std::randomization examples that I created/collect
       </td>
    </tr>
 
+   <tr>
+      <td> randomization with multiple variables</td>
+      <td>
+      <div class="code">
+      {% highlight verilog %}
+  int d_array[]; 
+  int num;
+
+  std::randomize(d_array, num) with {
+    num inside {[0:100]};
+    d_array.size()  == 3;
+    d_array.sum(item) with ( item > 10? item:0) == num;
+    foreach (d_array[i]){
+      d_array[i] inside {[0:100]};
+    }
+  };     
+      {% endhighlight %}
+      </div>
+      </td>
+      <td>
+      <a href="https://www.edaplayground.com/x/f5g" title="std::randomization example with multiple variables">
+      <svg width="25" height="25" viewBox="0 -0.1 2 2" class="customsvg"> <use xlink:href="#svg-edaplay"></use></svg></a>
+      </td>
+   </tr>
+
+
 
 
 
