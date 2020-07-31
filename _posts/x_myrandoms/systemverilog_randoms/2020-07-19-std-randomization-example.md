@@ -17,7 +17,7 @@ This post is to store some of std::randomization examples that I created/collect
 ---
 
 <div> <ul> 
-<input type="text" class="tablefilterinput" id="FilterInput" onkeyup="tablefilter()" placeholder="Table filter input" title="filter input">
+<input type="text" class="tablefilterinput" id="FilterInput" onkeyup="tablefilter()" placeholder="Table filter input..." title="filter input">
 
 <table id="myTable" >
    <tr>
@@ -145,6 +145,57 @@ This post is to store some of std::randomization examples that I created/collect
       <svg width="25" height="25" viewBox="0 -0.1 2 2" class="customsvg"> <use xlink:href="#svg-edaplay"></use></svg></a>
       </td>
    </tr>
+
+
+   <tr>
+      <td> randomization with weight distribution</td>
+      <td>
+      <div class="code">
+      {% highlight verilog %}
+  int d_array[]; 
+
+  std::randomize(d_array) with {
+    d_array.size()  == 1000;
+    foreach (d_array[i]){
+      d_array[i] dist { [0:50]:/80, [51:99]:/20 };
+    }
+  }; // 80% d_array element value will be in range [0:50]
+      {% endhighlight %}
+      </div>
+      </td>
+      <td>
+      <a href="https://www.edaplayground.com/x/5HdN" title="std::randomization example with weight distribution">
+      <svg width="25" height="25" viewBox="0 -0.1 2 2" class="customsvg"> <use xlink:href="#svg-edaplay"></use></svg></a>
+      </td>
+   </tr>
+
+
+   <tr>
+      <td> randomization with solve .. before </td>
+      <td>
+      <div class="code">
+      {% highlight verilog %}
+  int d_array[]; 
+  int num;
+
+  std::randomize(d_array, num) with {
+    solve num before d_array;
+    num inside {[0:100]};
+    d_array.size()  == 3;
+    d_array.sum(item) with ( item > 10? item:0) == num;
+    foreach (d_array[i]){
+      d_array[i] inside {[0:100]};
+    }
+ };     
+      {% endhighlight %}
+      </div>
+      </td>
+      <td>
+      <a href="https://www.edaplayground.com/x/3fJD" title="std::randomization example with solve before">
+      <svg width="25" height="25" viewBox="0 -0.1 2 2" class="customsvg"> <use xlink:href="#svg-edaplay"></use></svg></a>
+      </td>
+   </tr>
+
 
 </table>
     <script>
