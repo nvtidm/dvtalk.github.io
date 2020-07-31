@@ -16,7 +16,10 @@ This post is to store some of std::randomization examples that I created/collect
 {: .fs-5 .fw-500 }
 ---
 
-<div> <ul> <table>
+<div> <ul> 
+<input type="text" class="tablefilterinput" id="FilterInput" onkeyup="tablefilter()" placeholder="Table filter input" title="filter input">
+
+<table id="myTable" >
    <tr>
       <th> Description </th>
       <th> Code </th>
@@ -143,11 +146,25 @@ This post is to store some of std::randomization examples that I created/collect
       </td>
    </tr>
 
-
-
-
-
-</table></ul></div>
-
-
-
+</table>
+    <script>
+      function tablefilter() {
+        var input, filter, table, tr, td, i, txtValue;
+        input = document.getElementById("FilterInput");
+        filter = input.value.toUpperCase();
+        table = document.getElementById("myTable");
+        tr = table.getElementsByTagName("tr");
+        for (i = 0; i < tr.length; i++) {
+          td = tr[i].getElementsByTagName("td")[0];
+          if (td) {
+            txtValue = td.textContent || td.innerText;
+            if (txtValue.toUpperCase().indexOf(filter) > -1) {
+              tr[i].style.display = "";
+            } else {
+              tr[i].style.display = "none";
+            }
+          }       
+        }
+      }
+    </script>
+</ul></div>
