@@ -35,6 +35,9 @@
   <meta name="viewport" content="width=device-width, initial-scale=1">
 
   {% seo %}
+  <meta property="og:image" content="{% if page.image %}{{ page.image | absolute_url }}{% else %}{{ site.logo | absolute_url }}{% endif %}">
+  <meta property="og:type" content="Blog" />
+
 
   {% include head_custom.html %}
 
