@@ -142,6 +142,11 @@ layout: table_wrappers
           </ul>
         {% endif %}
 
+
+        <a href="https://twitter.com/share?ref_src=twsrc%5Etfw" class="twitter-share-button" data-show-count="false">Tweet</a><script async src="https://platform.twitter.com/widgets.js" charset="utf-8"></script>
+        <div class="fb-share-button" data-href="{{ page.url | absolute_url }}" data-layout="button" data-size="small"><a target="_blank" href="https://www.facebook.com/sharer/sharer.php?u={{ page.url | absolute_url | url_encode }}&amp;src=sdkpreparse" class="fb-xfbml-parse-ignore">Share</a></div>
+
+
         {% if page.tags.size > 0 %}
         <span>[Tags
           {% for tag in page.tags %}
@@ -152,6 +157,9 @@ layout: table_wrappers
           {% endfor %}
           ]</span>
         {% endif %}
+
+
+
 
         {% if page.comments != false %}
         <hr>
