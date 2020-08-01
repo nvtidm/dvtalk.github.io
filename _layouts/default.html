@@ -147,7 +147,7 @@ layout: table_wrappers
           {% for tag in page.tags %}
           {% if tag != "" %}
           {% capture tag_name %}{{ tag }}{% endcapture %}
-          <a href="/tag/{{ tag_name }}"><code class="highligher-rouge"><nobr>{{ tag_name }}</nobr></code>&nbsp;</a>
+          <a href="/tag/{{ tag_name }}" title="{{ tag_name }}"><code class="highligher-rouge"><nobr>{{ tag_name }}</nobr></code>&nbsp;</a>
           {% endif %}
           {% endfor %}
           ]</span>
@@ -163,7 +163,7 @@ layout: table_wrappers
           <footer>
 
             {% if site.back_to_top %}
-              <p><a href="#top" id="back-to-top">{{ site.back_to_top_text }}</a></p>
+              <p><a href="#top" id="back-to-top" title="top">{{ site.back_to_top_text }}</a></p>
             {% endif %}
             {% if site.footer_content != nil %}
               <p class="text-small text-grey-dk-000 mb-0">{{ site.footer_content }}</p>
