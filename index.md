@@ -4,6 +4,7 @@ title: A Design Verification Engineer Blog
 nav_order: 0
 description: "I'm a design verification engineer and this is where I keep my notes, my thoughts, my experiences or anything interesting that I think should belong here."
 comments: false
+share: false
 permalink: /
 ---
 
