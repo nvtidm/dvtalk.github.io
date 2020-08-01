@@ -95,6 +95,29 @@
   }
 }
 
+
+.st-custom-button[data-network] {
+   display: inline-block;
+   padding: 10px 10px;
+   cursor: pointer;
+
+   &:hover {
+      text-decoration: underline;
+      // background-color: #00c7ff;
+   }
+ }
+
+
+.customsvg_share {
+  fill: currentColor;
+}
+.customsvg_share:hover {
+  width:28pt;
+  height:28pt;
+  fill: black;
+}
+
+
 .site-nav,
 .site-header,
 

@@ -150,7 +150,17 @@ layout: table_wrappers
            <!-- <div class="fb-share-button" data-href="{{ page.url | absolute_url }}" data-layout="button" data-size="small"> <a target="_blank" href="https://www.facebook.com/sharer/sharer.php?u={{ page.url | absolute_url | url_encode }}&amp;src=sdkpreparse" class="fb-xfbml-parse-ignore">Share</a></div> -->
            <!-- <script src="https://platform.linkedin.com/in.js" type="text/javascript">lang: en_US</script> -->
            <!-- <script type="IN/Share" data-url="{{ page.url | absolute_url }}"></script> -->
-           <div class="sharethis-inline-share-buttons"></div>
+           <!-- <div class="sharethis-inline-share-buttons"></div> -->
+           <span>
+             <div data-network="linkedin" class="st-custom-button" title="Share on LinkedIn">
+               <svg width="27" height="27" viewBox="0 0 1 1" class="customsvg_share"> <use xlink:href="#svg-linkedin"></use> </svg> </div>
+             <div data-network="twitter" class="st-custom-button" title="Share on Twitter">
+               <svg width="27" height="27" viewBox="0 0 1 1" class="customsvg_share"> <use xlink:href="#svg-twitter"></use> </svg> </div>
+             <div data-network="facebook" class="st-custom-button" title="Share on Facebook" >
+               <svg width="27" height="27" viewBox="0 0 1 1" class="customsvg_share"> <use xlink:href="#svg-facebook"></use> </svg> </div>
+             </div>
+             <!-- <div data-network="print" class="st-custom-button">Print</div> -->
+           </span>
            <br>
         {% endif %}
 
