@@ -38,6 +38,11 @@
   <meta property="og:image" content="{% if page.image %}{{ page.image | absolute_url }}{% else %}{{ site.logo_qr | absolute_url }}{% endif %}">
   <meta property="og:type" content="Blog" />
 
+  <meta property="twitter:title" content="{% if page.title %}{{ page.title | absolute_url }}{% else %}{{ site.title | absolute_url }}{% endif %}"  >
+  <meta property="twitter:description"  content="{% if page.description %}{{ page.description | absolute_url }}{% else %}{{ site.description | absolute_url }}{% endif %}" >
+  <meta property="twitter:image" content="{% if page.image %}{{ page.image | absolute_url }}{% else %}{{ site.logo_qr | absolute_url }}{% endif %}">
+  <meta property="twitter:card" content="{% if page.url %}{{ page.url | absolute_url }}{% else %}{{ site.url | absolute_url }}{% endif %}">
+
 
   {% include head_custom.html %}
 
