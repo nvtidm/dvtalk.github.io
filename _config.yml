@@ -116,10 +116,10 @@ plugins:
 author:
   twitter: dvtalk1
 
-social:
-  name: dvtalk
-  links:
-    - https://github.com/dvtalk
+# social:
+#   name: dvtalk
+#   links:
+#     - https://github.com/dvtalk
 
 image: "/assets/images/dvtalk_qr.png"
 
