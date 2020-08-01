@@ -26,7 +26,7 @@
           {%- if node.url == "/" -%}
           <a href="{{ node.url | absolute_url }}" class="nav-list-link{% if page.url == node.url %} active{% endif %}" title="My life as a design verification engineer">Hey there </a>
           {%- else -%}
-            <a href="{{ node.url | absolute_url }}" class="nav-list-link{% if page.url == node.url %} active{% endif %}"  title="{{ node.description }}">{{ node.title }}</a>
+            <a href="{{ node.url | absolute_url }}" class="nav-list-link{% if page.url == node.url %} active{% endif %}"  title="{{ node.title }}">{{ node.title }}</a>
           {%- endif -%}
           {%- if node.has_children -%}
             {%- assign children_list = pages_list | where: "parent", node.title -%}
