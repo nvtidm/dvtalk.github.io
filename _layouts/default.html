@@ -147,9 +147,10 @@ layout: table_wrappers
         {% endif %}
 
         {% if page.share != false %}
-           <div class="fb-share-button" data-href="{{ page.url | absolute_url }}" data-layout="button" data-size="small"> <a target="_blank" href="https://www.facebook.com/sharer/sharer.php?u={{ page.url | absolute_url | url_encode }}&amp;src=sdkpreparse" class="fb-xfbml-parse-ignore">Share</a></div>
-           <script src="https://platform.linkedin.com/in.js" type="text/javascript">lang: en_US</script>
-           <script type="IN/Share" data-url="{{ page.url | absolute_url }}"></script>
+           <!-- <div class="fb-share-button" data-href="{{ page.url | absolute_url }}" data-layout="button" data-size="small"> <a target="_blank" href="https://www.facebook.com/sharer/sharer.php?u={{ page.url | absolute_url | url_encode }}&amp;src=sdkpreparse" class="fb-xfbml-parse-ignore">Share</a></div> -->
+           <!-- <script src="https://platform.linkedin.com/in.js" type="text/javascript">lang: en_US</script> -->
+           <!-- <script type="IN/Share" data-url="{{ page.url | absolute_url }}"></script> -->
+           <div class="sharethis-inline-share-buttons"></div>
            <br>
         {% endif %}
 
