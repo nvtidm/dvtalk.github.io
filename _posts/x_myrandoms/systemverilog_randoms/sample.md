@@ -3,11 +3,12 @@ layout: default
 title: <title>
 parent: Systemverilog Random
 grand_parent: My Randoms
+description: <Add your description here>
 tag: systemverilog
 nav_order: 1
 ---
 
-{: .fs-6 .fw-300 }
+{: .fs-5 .fw-500 }
 
 
 #link to posts in this site:
