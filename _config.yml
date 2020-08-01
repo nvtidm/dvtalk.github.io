@@ -17,7 +17,7 @@
 
 title: dvtalk
 tagline: dvtalk
-description: Personal blog of a design verification engineer.
+description: "I'm a design verification engineer and this is where I keep my notes, my thoughts, my experiences or anything interesting that I think should belong here."
 url: "https://dvtalk.github.io" # the base hostname & protocol for your site, e.g. http://example.com
 
 permalink: pretty
@@ -122,6 +122,7 @@ social:
     - https://github.com/dvtalk
 
 image: "/assets/images/dvtalk_qrcode.png"
+
 
 
 compress_html:

@@ -2,18 +2,18 @@
 layout: post
 title: A Design Verification Engineer Blog
 nav_order: 0
-description: "My life as a design verification engineer"
+description: "I'm a design verification engineer and this is where I keep my notes, my thoughts, my experiences or anything interesting that I think should belong here."
 comments: false
 permalink: /
 ---
 
 # A Design Verification Engineer Blog
-I'm a design verification engineer and this is where I keep my notes, my thoughts, my experiences or anything interesting which I think should belong here. :D
+I'm a design verification engineer and this is where I keep my notes, my thoughts, my experiences or anything interesting that I think should belong here. :D
 {: .fs-5 .fw-500 }
 
 ---
 ## Who am I
-I'm a design verification engineer and I've been in this industry for quite a while. Mostly this site is for keeping notes of what I know, and also problems big and small which I faced. I work with Systemverilog, uvm everyday and these are what I know the most. However, now and then, I also find myself struggling with formal verification, design, STA timing, =)) and the list goes on with synthesis, ECO logic, and also scripting. Talking about scripting, I have been using csh and perl for a long time before switching to zsh/bash and python recently. And I love vim, gosh, it is the best.
+I'm a design verification engineer and I've been in this industry for quite a while. Mostly this dvtalk blog is for keeping notes of what I know, and also problems big and small which I faced. I work with Systemverilog, uvm everyday and these are what I know the most. However, now and then, I also find myself struggling with formal verification, design, STA timing, =)) and the list goes on with synthesis, ECO logic, and also scripting. Talking about scripting, I have been using csh and perl for a long time before switching to zsh/bash and python recently. And I love vim, gosh, it is the best.
 
 ---
 ## What you'll find here
