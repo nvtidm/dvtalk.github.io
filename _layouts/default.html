@@ -34,7 +34,7 @@ layout: table_wrappers
   <div class="side-bar">
     <div class="site-header">
       <a href="{{ '/' | absolute_url }}" title="My life as a design verification engineer" class="site-title lh-tight">{% include title.html %}</a>
-      <a href="#" id="menu-button" class="site-button">
+      <a href="#" id="menu-button" class="site-button" title="#">
         <svg viewBox="0 0 24 24" class="icon"><use xlink:href="#svg-menu"></use></svg>
       </a>
     </div>
@@ -147,7 +147,7 @@ layout: table_wrappers
           {% for tag in page.tags %}
           {% if tag != "" %}
           {% capture tag_name %}{{ tag }}{% endcapture %}
-          <a href="/tag/{{ tag_name }}" title="{{ tag_name }}"><code class="highligher-rouge"><nobr>{{ tag_name }}</nobr></code>&nbsp;</a>
+          <a href="/tag/{{ tag_name }}"><code class="highligher-rouge"><nobr>{{ tag_name }}</nobr></code>&nbsp;</a>
           {% endif %}
           {% endfor %}
           ]</span>
@@ -198,7 +198,7 @@ layout: table_wrappers
 
     {% if site.search_enabled != false %}
       {% if site.search.button %}
-        <a href="#" id="search-button" class="search-button">
+        <a href="#" id="search-button" class="search-button" title="search">
           <svg viewBox="0 0 24 24" class="icon"><use xlink:href="#svg-search2"></use></svg>
         </a>
       {% endif %}
