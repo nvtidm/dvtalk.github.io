@@ -72,7 +72,6 @@ $sidebar-color: $grey-lt-000 !default;
 $search-background-color: $white !default;
 $table-background-color: $white !default;
 $code-background-color: $grey-lt-000 !default;
-$feedback-color: darken($sidebar-color, 15%) !default;
 
 
 $body-text-color: $grey-dk-100 !default;
@@ -83,6 +82,8 @@ $link-color: $purple-000 !default;
 $btn-primary-color: $purple-100 !default;
 $base-button-color: #f7f7f7 !default;
 
+$feedback-color: darken($sidebar-color, 15%) !default;
+$feedback-link-color: darken($link-color, 15%) !default;
 //
 // Spacing
 //

@@ -16,7 +16,8 @@ layout: table_wrappers
 
     ::-webkit-scrollbar-track {
     width: 3px;
-    border: 1px dashed #c3bfff;
+    <!-- border: 1px dashed #c3bfff; -->
+    border: 1px dashed $sidebar-color;
     }
 
     ::-webkit-scrollbar-thumb {
@@ -131,8 +132,6 @@ layout: table_wrappers
           {{ content }}
         {% endif %}
 
-
-
         {% if page.has_children == true and page.has_toc != false %}
           <hr>
           <h2 class="text-delta">Table of contents</h2>
@@ -156,7 +155,6 @@ layout: table_wrappers
                <svg width="27" height="27" viewBox="0 0 1 1" class="customsvg_share"> <use xlink:href="#svg-facebook"></use> </svg> </div>
              <div data-network="print" class="st-custom-button" title="Print this page">
                <svg width="27" height="27" viewBox="0 0 1 1" class="customsvg_share"> <use xlink:href="#svg-print"></use> </svg> </div>
-
              <div data-network='' class="st-custom-button" id="demo" title="Copy URL" onclick="copyToClipboard(document.getElementById('demo').innerHTML)">
                <svg width="27" height="27" viewBox="0 0 1 1" class="customsvg_share"> <use xlink:href="#svg-copy"></use> </svg></div>
              <script>

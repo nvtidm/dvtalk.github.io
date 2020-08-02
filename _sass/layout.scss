@@ -20,7 +20,7 @@
     align-items: flex-end;
 
     background-image: linear-gradient(
-      90deg,
+      360deg,
       rgba($feedback-color, 1) 0%,
       rgba($feedback-color, 0.4) 50%,
       rgba($feedback-color, 0) 100%
@@ -36,12 +36,12 @@
 }
 
 .customsvg {
-  fill: currentColor;
+  fill: darken($feedback-color, 30%);
 }
 .customsvg:hover {
   width:28pt;
   height:28pt;
-  fill: black;
+  fill: lighten($feedback-link-color, 10%);
 }
 
 
@@ -187,9 +187,9 @@
     background-size: contain;
   }
 }
-@if variable-exists(logo_inv) {
+@if variable-exists(logo_dawn) {
   .site-logo:hover {
-    background-image: url($logo_inv);
+    background-image: url($logo_dawn);
   }
 }
 
@@ -207,12 +207,12 @@
 }
 
 .site-title:hover {
-  background-image: linear-gradient(
-    -90deg,
-    rgba($feedback-color, 1) 00%,
-    rgba($feedback-color, 0.5) 50%,
-    rgba($feedback-color, 0) 100%
-  );
+  // background-image: linear-gradient(
+  //   -90deg,
+  //   rgba($feedback-color, 1) 00%,
+  //   rgba($feedback-color, 0.5) 50%,
+  //   rgba($feedback-color, 0) 100%
+  // );
 }
 
 .site-button:hover {
@@ -234,6 +234,7 @@ body {
     position: static;
     padding-bottom: 0;
   }
+
 }
 
 // stylelint-enable selector-max-type
@@ -259,3 +260,68 @@ body {
   height: $sp-5;
   color: $link-color;
 }
+
+
+.myForm {
+  font-size: 1em;
+  width: 30em;
+  padding: 1em;
+}
+
+.myForm * {
+  box-sizing: border-box;
+  border-collapse: collapse;
+}
+
+.myForm label {
+  padding: 0;
+  font-weight: bold;
+  text-align:left;
+  display: block;
+}
+
+.myForm input {
+  margin-left: 2em;
+  float: right;
+  width: 25em;
+  max-width: 100%;
+  border: 1px solid $feedback-color;
+  font-family: "Optima",sans-serif;
+  font-size: 0.9em;
+  background: $table-background-color;
+  padding: 0.3em;
+}
+.myForm select,
+.myForm textarea {
+  margin-left: 2em;
+  float: right;
+  width: 25em;
+  max-width: 100%;
+  border: 1px solid $feedback-color;
+  font-family: "Optima",sans-serif;
+  font-size: 0.9em;
+  padding: 0.3em;
+}
+
+.myForm textarea {
+  height: 150px;
+  background: $table-background-color;
+}
+
+.myForm button {
+  padding: 1em;
+  border-radius: 0.3em;
+  background: $feedback-color;
+  border: none;
+  font-weight: bold;
+  margin-left: 12em;
+  margin-top: 1em;
+  justify-content: center;
+}
+
+.myForm button:hover {
+  background: $btn-primary-color;
+  color: #ffff;
+  cursor: pointer;
+}
+

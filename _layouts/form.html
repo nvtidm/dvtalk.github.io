@@ -7,82 +7,14 @@ layout: default
 
 <!DOCTYPE html>
 <html lang="en">
-  <head>
-    <style>
-      .myForm {
-        font-size: 1em;
-        width: 30em;
-        padding: 1em;
-      }
-
-      .myForm * {
-        box-sizing: border-box;
-        border-collapse: collapse;
-      }
-
-      .myForm label {
-        padding: 0;
-        font-weight: bold;
-        text-align:left;
-        display: block;
-      }
-
-      .myForm input {
-        margin-left: 2em;
-        float: right;
-        width: 25em;
-        max-width: 100%;
-        border: 1px solid #ccc;
-        font-family: "Optima",sans-serif;
-        font-size: 0.9em;
-        background: #faf7ff;
-        padding: 0.3em;
-      }
-      .myForm select,
-      .myForm textarea {
-        margin-left: 2em;
-        float: right;
-        width: 25em;
-        max-width: 100%;
-        border: 1px solid #ccc;
-        font-family: "Optima",sans-serif;
-        font-size: 0.9em;
-        padding: 0.3em;
-      }
-
-      .myForm textarea {
-        height: 150px;
-        background: #faf7ff;
-      }
-
-      .myForm button {
-        padding: 1em;
-        border-radius: 0.3em;
-        background: #d4d1ff;;
-        border: none;
-        font-weight: bold;
-        margin-left: 12em;
-        margin-top: 1em;
-        justify-content: center;
-      }
-
-      .myForm button:hover {
-        background: #7253ed;
-        color: #ffff;
-        cursor: pointer;
-      }
-    </style>
-
-  </head>
-
-  <!-- <body> -->
-      <form class="myForm" action="https://formspree.io/xwkrqywa" method="POST" >
+  <body>
+    <form class="myForm" action="https://formspree.io/xwkrqywa" method="POST" >
       <p> <label>Name <input type="text" name="name" required> </label> </p>
       <p> <label>Email <input type="email" name="email_address"> </label> </p>
       <p> <label>AMA <textarea name="comments" maxlength="1500"></textarea> </label> </p>
       <p> <button>Tell me now </button></p>
     </form>
-  <!-- </body> -->
+  </body>
 </html>
 
 

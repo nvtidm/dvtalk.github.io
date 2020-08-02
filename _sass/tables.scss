@@ -26,7 +26,7 @@
   border-right: $border_table $border-color;
   border-top: $border_table rgba($border-color, 0.5);
   border-bottom: $border_table rgba($border-color, 0.5);
-  background-color: #faf7ff;
+  background-color: $table-background-color;
   box-shadow: inset 1px 1px 1px rgba(0, 0, 0, 0.50);//  0 1px 2px rgba(0, 0, 0, 0.08);
 }
 
@@ -44,8 +44,8 @@ td {
   padding-right: $sp-3;
   padding-bottom: $sp-2;
   padding-left: $sp-1;
-  // background-color: $table-background-color;
-  background-color: #faf7ff;
+  background-color: $table-background-color;
+  // background-color: #faf7ff;
   border-bottom: $border_table rgba($border-color, 0.5);
   border-left: $border_table $border-color;
 
