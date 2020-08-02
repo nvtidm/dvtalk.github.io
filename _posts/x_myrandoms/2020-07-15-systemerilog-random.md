@@ -4,6 +4,7 @@ title: Systemverilog Randoms
 parent: My Randoms
 has_children: true
 nav_order: 3
+comments: false
 description: List of systemverilog randoms posts
 tag: systemverilog
 permalink: /docs/randoms/systemverilog_randoms
