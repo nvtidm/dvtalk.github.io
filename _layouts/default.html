@@ -156,6 +156,16 @@ layout: table_wrappers
                <svg width="27" height="27" viewBox="0 0 1 1" class="customsvg_share"> <use xlink:href="#svg-facebook"></use> </svg> </div>
              <div data-network="print" class="st-custom-button" title="Print this page">
                <svg width="27" height="27" viewBox="0 0 1 1" class="customsvg_share"> <use xlink:href="#svg-print"></use> </svg> </div>
+
+             <div data-network='' class="st-custom-button" id="demo" onclick="copyToClipboard(document.getElementById('demo').innerHTML)">
+               <svg width="27" height="27" viewBox="0 0 1 1" class="customsvg_share"> <use xlink:href="#svg-copy"></use> </svg></div>
+             <script>
+               function copyToClipboard(text) {
+                 var text = "{{ page.url | absolute_url }}";
+                 window.prompt("Copy to clipboard: Ctrl+C, Enter", text);
+               }
+             </script>
+
            </span>
            <br>
         {% endif %}
