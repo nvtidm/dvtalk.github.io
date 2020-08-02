@@ -1,7 +1,12 @@
 // stylelint-disable selector-max-specificity, selector-max-id, selector-max-type, selector-no-qualifying-type, primer/no-override,
 
 @media print {
-  .site-footer,
+  .st-custom-button{
+    display: none !important;
+  }
+  .site-footer{
+    display: none !important;
+  }
   .site-button,
   #edit-this-page,
   #back-to-top,
