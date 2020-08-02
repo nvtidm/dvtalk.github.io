@@ -61,6 +61,10 @@ p {
 a {
   color: $link-color;
   text-decoration: none;
+
+  &:hover{
+    color: lighten($link-color, 10%);
+  }
 }
 
 a:not([class]) {
