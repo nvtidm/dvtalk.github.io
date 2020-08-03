@@ -7,6 +7,30 @@
   .site-footer{
     display: none !important;
   }
+  .search-button{
+    display: none !important;
+  }
+  .tablefilterinput{
+    display: none !important;
+  }
+  .disqus{
+    display: none !important;
+  }
+  .code{
+    // display: inline-block;
+    overflow-wrap: break-word;
+    word-wrap: break-word;
+    hyphens: auto;
+  }
+
+  pre{
+    // overflow: visible;???
+    display: inline-block;
+    overflow-wrap: break-word;
+    word-wrap: break-word;
+    hyphens: auto;
+  }
+
   .site-button,
   #edit-this-page,
   #back-to-top,
