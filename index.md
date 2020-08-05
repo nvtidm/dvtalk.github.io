@@ -14,14 +14,15 @@ I'm a design verification engineer and this is where I keep my notes, my thought
 
 ---
 ## Who am I
-I'm a design verification engineer and I've been in this industry for quite a while. Mostly this dvtalk blog is for keeping notes of what I know, and also problems big and small which I faced. I work with Systemverilog, uvm everyday and these are what I know the most. However, now and then, I also find myself struggling with formal verification, design, STA timing, =)) and the list goes on with synthesis, ECO logic, and also scripting. Talking about scripting, I have been using csh and perl for a long time before switching to zsh/bash and python recently. And I love vim, gosh, it is the best.
+I'm a design verification engineer and I've been in this industry for quite a while. Mostly this dvtalk blog is for keeping notes of what I know, and also problems big and small which I faced. My main task is verification so I work with systemverilog, uvm everyday and these are what I know the most. However, now and then, I also find myself struggling with formal verification, STA timing, design, and also scripting. Talking about scripting, I have been using csh and perl for a long time before switching to zsh and python recently. And also I love vim, gosh, it is the best.
 
 ---
 ## What you'll find here
-* You'll find my how to
-* You'll also find my thoughts
-* And you'll find my randoms.
-Let's just say my randoms are just a bit better organized piece of my notes. They might be about Systemverilog or uvm or even vim. Just some random things that I really don't now where to post.
+* You'll find my randoms.
+Let's just say my randoms are just a bit better organized piece of my notes since I note a lot. This will be where I keep them. They will be about systemverilog or uvm or vim. Just some random interesting things that I really don't now where to post.
+* You'll find my how to.
+These will be guides to do specific things. Mostly they will be about systemverilog and uvm and vim also, I guess. (Just keep it like that, since at this very moment I have nothing in this category =D ).
+* And you'll also find my thoughts.
 
 
 
