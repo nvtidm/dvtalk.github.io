@@ -12,7 +12,7 @@ nav_order: 1
 Sometimes an example is just enough.
 Honestly, I do search and copy a lot. It is simply because I cannot remember everything.
 Sometimes I pay a lot of time to understand and get the code run perfectly and then completely forget about it after 1 year.
-This post is to store some of std::randomization examples that I created/collected, just for me to copy later. :D
+This post is to store some of systemverilog std::randomization examples that I created/collected, just for me to copy later. :D
 {: .fs-5 .fw-500 }
 ---
 
@@ -26,7 +26,7 @@ This post is to store some of std::randomization examples that I created/collect
       <th> Link </th>
    </tr>
    <tr>
-      <td> array randomization with constrains on unique element, number of elements, array sum, constrains for each element value using foreach</td>
+      <td> systemverilog std::randomization array with constrains on unique element, number of elements, array sum, constrains for each element value using foreach</td>
       <td>
       <div class="code">
       {% highlight verilog %}
@@ -51,7 +51,7 @@ This post is to store some of std::randomization examples that I created/collect
    </tr>
 
    <tr>
-      <td> array randomization using sum with</td>
+      <td> systemverilog std::randomization array using sum with</td>
       <td>
       <div class="code">
       {% highlight verilog %}
@@ -74,7 +74,7 @@ This post is to store some of std::randomization examples that I created/collect
    </tr>
 
    <tr>
-      <td> randomization using implication constraints</td>
+      <td> systemverilog std::randomization using implication constraints</td>
       <td>
       <div class="code">
       {% highlight verilog %}
@@ -96,7 +96,7 @@ This post is to store some of std::randomization examples that I created/collect
    </tr>
 
    <tr>
-      <td> randomization using condition constraints</td>
+      <td> systemverilog std::randomization using condition constraints</td>
       <td>
       <div class="code">
       {% highlight verilog %}
@@ -122,7 +122,7 @@ This post is to store some of std::randomization examples that I created/collect
    </tr>
 
    <tr>
-      <td> randomization with multiple variables</td>
+      <td> systemverilog std::randomization with multiple variables</td>
       <td>
       <div class="code">
       {% highlight verilog %}
@@ -148,7 +148,7 @@ This post is to store some of std::randomization examples that I created/collect
 
 
    <tr>
-      <td> randomization with weight distribution</td>
+      <td> systemverilog std::randomization with weight distribution</td>
       <td>
       <div class="code">
       {% highlight verilog %}
@@ -171,7 +171,7 @@ This post is to store some of std::randomization examples that I created/collect
 
 
    <tr>
-      <td> randomization with solve .. before </td>
+      <td> systemverilog std::randomization with solve .. before </td>
       <td>
       <div class="code">
       {% highlight verilog %}
@@ -214,7 +214,7 @@ This post is to store some of std::randomization examples that I created/collect
             } else {
               tr[i].style.display = "none";
             }
-          }       
+          }
         }
       }
     </script>
