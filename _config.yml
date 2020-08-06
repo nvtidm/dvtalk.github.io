@@ -113,15 +113,9 @@ plugins:
   - jekyll-gist
   - jekyll-sitemap
   - jekyll-last-modified-at
+  - jekyll-feed
 
 # for seo tag
-author:
-  twitter: dvtalk1
-
-# social:
-#   name: dvtalk
-#   links:
-#     - https://github.com/dvtalk
 
 image: "/assets/images/dvtalk_qr.png"
 
