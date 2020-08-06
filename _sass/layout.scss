@@ -326,3 +326,50 @@ body {
   cursor: pointer;
 }
 
+$toc-width: 232px !default;
+
+.toc {
+  display: none;
+
+  @include mq(md) {
+    z-index: 0;
+    display: block;
+    position: fixed;
+    top: 59px;
+    // right: calc((100% - #{$nav-width + $content-width + $toc-width}) / 2);
+    // right: calc(5 -$toc-width);
+    right: -190px;
+    width: $toc-width;
+    max-height: calc(100% - 118px);
+    overflow: auto;
+  }
+  &:hover{
+    right: 0;
+  }
+}
+
+.toc-list {
+  &:before {
+    content: "On this page";
+    font-size: 12px;
+    font-weight: 300;
+    text-transform: uppercase;
+    letter-spacing: 0.1em;
+    color: $grey-dk-300;
+    line-height: 1.5;
+  }
+  border: 1px solid $link-color;
+  font-size: 14px;
+  list-style-type: none;
+  background-color: lighten($sidebar-color, 2);
+  padding: $sp-6 $sp-4;
+  margin-left: $sp-6;
+  margin-right: 0;
+  margin-bottom: 0;
+  overflow: auto;
+}
+
+.toc-item {
+  padding-top: .25rem;
+  padding-bottom: .25rem;
+}

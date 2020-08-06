@@ -6,6 +6,7 @@ grand_parent: My Randoms
 description: std::randomization examples
 tag: systemverilog
 comments: true
+toc_en: true
 nav_order: 1
 ---
 # std::randomization examples

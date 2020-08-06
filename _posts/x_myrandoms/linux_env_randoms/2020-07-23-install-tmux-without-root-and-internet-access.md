@@ -7,6 +7,7 @@ description: Step by step to install tmux for linux user
 comments: true
 tags: [linux_env,]
 nav_order: 1
+toc_en: true
 ---
 
 # Install tmux with no root and Internet
