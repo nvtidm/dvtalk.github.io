@@ -336,8 +336,6 @@ $toc-width: 232px !default;
     display: block;
     position: fixed;
     top: 59px;
-    // right: calc((100% - #{$nav-width + $content-width + $toc-width}) / 2);
-    // right: calc(5 -$toc-width);
     right: -190px;
     width: $toc-width;
     max-height: calc(100% - 118px);
@@ -361,12 +359,16 @@ $toc-width: 232px !default;
   border: 1px solid $link-color;
   font-size: 14px;
   list-style-type: none;
-  background-color: lighten($sidebar-color, 2);
-  padding: $sp-6 $sp-4;
+  background-color: lighten($sidebar-color, 1);
+  // background-color: lighten(#005086, 70);
+  padding: $sp-5 $sp-4;
   margin-left: $sp-6;
   margin-right: 0;
   margin-bottom: 0;
   overflow: auto;
+  &:hover{
+    border: 1px solid darken($sidebar-color, 30);
+  }
 }
 
 .toc-item {
