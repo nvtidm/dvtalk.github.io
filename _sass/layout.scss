@@ -369,7 +369,7 @@ $toc-width: 232px !default;
     border: 1px solid darken($sidebar-color, 30);
     background-image: linear-gradient(
       360deg,
-      rgba(darken($feedback-color, 0), 1) 0%,
+      rgba(darken($feedback-color, 0), 0.8) 0%,
       rgba($feedback-color, 0.3) 30%,
       rgba($feedback-color, 0) 100%
       ),
