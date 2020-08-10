@@ -23,8 +23,10 @@
 
       gtag('config', '{{ site.ga_tracking }}'{% unless site.ga_tracking_anonymize_ip == nil %}, { 'anonymize_ip': true }{% endunless %});
     </script>
-
   {% endif %}
+
+
+
 
   {% if site.search_enabled != false %}
     <script type="text/javascript" src="{{ '/assets/js/vendor/lunr.min.js' | absolute_url }}"></script>
@@ -48,6 +50,7 @@
   <meta property="twitter:description"  content="{% if page.description %}{{ page.description }}{% else %}{{ site.description  }}{% endif %}" >
   <meta property="twitter:image" content="{% if page.image %}{{ page.image | absolute_url }}{% else %}{{ site.logo_qr | absolute_url }}{% endif %}">
   <meta property="twitter:url" content="{% if page.url %}{{ page.url | absolute_url }}{% else %}{{ site.url | absolute_url }}{% endif %}">
+  <meta name="msvalidate.01" content="8A23F7E9461E7CB4AAE342C69B4C7023" />
 
 
   {% include head_custom.html %}
