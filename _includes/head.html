@@ -3,11 +3,11 @@
   <meta http-equiv="X-UA-Compatible" content="IE=Edge">
 
   {% unless site.plugins contains "jekyll-seo-tag" %}
-    <title>{{ page.title }} - {{ site.title }}</title>
+    <!-- <title>{{ page.title }} - {{ site.title }}</title> -->
 
-    {% if page.description %}
-      <meta name="Description" content="{{ page.description }}">
-    {% endif %}
+    <!-- {% if page.description %} -->
+    <!--   <meta name="Description" content="{{ page.description }}"> -->
+    <!-- {% endif %} -->
   {% endunless %}
 
   <link rel="shortcut icon" href="{{ 'dvtalk.ico' | absolute_url }}" type="image/x-icon">
@@ -38,7 +38,7 @@
   <script type='text/javascript' src='https://platform-api.sharethis.com/js/sharethis.js#property=5f255d315a110b001244ded3&product=inline-share-buttons' async='async'></script>
   {% endif %}
 
-  <meta name="keywords" content="verification, uvm, systemverilog, chip, icdesign">
+  <meta name="keywords" content="verification, uvm, systemverilog, vim, icdesign">
   <meta name="viewport" content="width=device-width, initial-scale=1">
 
   {% seo %}
