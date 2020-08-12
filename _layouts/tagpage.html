@@ -4,16 +4,42 @@ layout: default
 {{ content }}
 
 <div class="post">
-  <table>
+
+  <input type="text" class="tablefilterinput" id="FilterInput" onkeyup="tablefilter()" placeholder="Table filter input..." title="filter input">
+
+  <table id="myTable" >
     <tr>
       <th> Post </th>
       <th> Description </th>
     </tr>
-     {% for post in site.tags[page.tag] %}
-       <tr>
-       <td><a href="{{ post.url }}">{{ post.title }}</a></td>
-       <td>{{ post.description }}</td>
-       </tr>
-     {% endfor %}
+    {% for post in site.tags[page.tag] %}
+    <tr>
+      <td><a href="{{ post.url }}">{{ post.title }}</a></td>
+      <td>{{ post.description }}</td>
+    </tr>
+    {% endfor %}
   </table>
+
+  <script>
+    function tablefilter() {
+      var input, filter, table, tr, td, i, txtValue;
+      input = document.getElementById("FilterInput");
+      filter = input.value.toUpperCase();
+      table = document.getElementById("myTable");
+      tr = table.getElementsByTagName("tr");
+      for (i = 0; i < tr.length; i++) {
+        td = tr[i].getElementsByTagName("td")[0];
+        if (td) {
+          txtValue = td.textContent || td.innerText;
+          if (txtValue.toUpperCase().indexOf(filter) > -1) {
+            tr[i].style.display = "";
+          } else {
+            tr[i].style.display = "none";
+          }
+        }
+      }
+    }
+  </script>
+
 </div>
+
