@@ -4,24 +4,16 @@ layout: default
 {{ content }}
 
 <div class="post">
-<ul>
   <table>
     <tr>
       <th> Post </th>
       <th> Description </th>
     </tr>
      {% for post in site.tags[page.tag] %}
-       {% if post.lang %}
-       <li lang="{{post.lang}}">
-       {% else %}
-       <li>
-       {% endif %}
        <tr>
        <td><a href="{{ post.url }}">{{ post.title }}</a></td>
        <td>{{ post.description }}</td>
-       </li>
        </tr>
      {% endfor %}
   </table>
-</ul>
 </div>

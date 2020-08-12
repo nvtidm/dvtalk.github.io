@@ -17,7 +17,7 @@ This post is to store some of systemverilog std::randomization examples that I c
 {: .fs-5 .fw-500 }
 ---
 
-<div> <ul> 
+<div>  
 <input type="text" class="tablefilterinput" id="FilterInput" onkeyup="tablefilter()" placeholder="Table filter input..." title="filter input">
 
 <table id="myTable" >
@@ -219,4 +219,4 @@ This post is to store some of systemverilog std::randomization examples that I c
         }
       }
     </script>
-</ul></div>
+</div>
