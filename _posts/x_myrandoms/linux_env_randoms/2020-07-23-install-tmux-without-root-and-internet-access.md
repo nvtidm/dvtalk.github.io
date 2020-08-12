@@ -43,7 +43,7 @@ libevent and ncurses are two libraries that required for tmux. Your linux env mi
    make install
 {% endhighlight %}
 </div>
-The ```--prefix=$HOME/local ``` is commonly used when installing a tool without root. Basically it will guide the compiling step to store any data to the ```$HOME/local```. So remember this for later use.
+The `--prefix=$HOME/local ` is commonly used when installing a tool without root. Basically it will guide the compiling step to store any data to the $HOME/local. So remember this for later use.
 
 ---
 ### Then install ncurses
@@ -64,7 +64,7 @@ The ```--prefix=$HOME/local ``` is commonly used when installing a tool without 
    cd tmux-3.2-rc.tar
 {% endhighlight %}
 </div>
-Copy this code below to a bash script (not tcsh or csh script), for example ```compiletmux.sh```
+Copy this code below to a bash script (not tcsh or csh script), for example `compiletmux.sh`
 
 <div class ="code" markdown="1" >
 {% highlight bash %}
@@ -73,5 +73,5 @@ Copy this code below to a bash script (not tcsh or csh script), for example ```c
  CPPFLAGS="-I$HOME/local/include -I$HOME/local/include/ncurses" LDFLAGS="-static -L$HOME/local/include -L$HOME/local/include/ncurses -L$HOME/local/lib" make
 {% endhighlight %}
 </div>
-Then run this new script ```compiletmux.sh```, you'll see a ```tmux``` binary file in current directory. 
-Finally, copy this tmux to ```$HOME/local/bin``` and enjoy your new life with tmux.
+Then run this new script `compiletmux.sh`, you'll see a `tmux` binary file in current directory. 
+Finally, copy this tmux to `$HOME/local/bin` and enjoy your new life with tmux.
