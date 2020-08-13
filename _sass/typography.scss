@@ -12,11 +12,13 @@ h1,
 h2,
 .text-beta {
   @include fs-6;
+  font-weight: 500;
 }
 
 h3,
 .text-gamma {
   @include fs-5;
+  font-weight: 550;
 }
 
 h4,
