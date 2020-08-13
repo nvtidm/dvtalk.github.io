@@ -20,12 +20,12 @@ function search() {
 // }
 
 function down() {
-  window.scrollBy(0, 25);
+  window.scrollBy(0, 40);
 
 }
 
 function up() {
-  window.scrollBy(0, -25);
+  window.scrollBy(0, -40);
 }
 
 function toppage() {
