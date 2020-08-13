@@ -53,12 +53,12 @@ uvm test and testbench top are two basic items of a uvm testbench, where everyth
 
 ### DUT and driver/monitor connections
 As described above, in the testbench top module, the DUT will be connect to the virtual interface object. This virtual interface object will be register to the `uvm_config_db`. So in the uvm test side, to give the driver the ability to drive the DUT signals, as well as the monitor to sample the DUT signals, we will get the virtual interface object (which connected to DUT in top module) from the `uvm_db_config`.
-![](https://jqpbrw.by.files.1drv.com/y4pEiMe-QPfl1IlAo8G99Z01uDu2sf2KgFo_AAvjGYydPBszcFpj__iAAOuFqpnPa8IuHAC8fPewwmBzVEOd-PmGelNubt3yIZuWaOxImY1Fkyj8ZoQG--8OT7Nh7Byuuwp6_4AraYkgtXYXXhcBXEReMRLUfmiDkb9PhDykQayGm6fTq5G3jbb3ndQwB_BcBfIj0LRwZe7iIqTKjzt6boKt3D1NxIiZplrxrhvEf__t7E?encodeFailures=1&width=1919&height=859)
+![testbench top and uvm test connection relation](https://jqpbrw.by.files.1drv.com/y4pEiMe-QPfl1IlAo8G99Z01uDu2sf2KgFo_AAvjGYydPBszcFpj__iAAOuFqpnPa8IuHAC8fPewwmBzVEOd-PmGelNubt3yIZuWaOxImY1Fkyj8ZoQG--8OT7Nh7Byuuwp6_4AraYkgtXYXXhcBXEReMRLUfmiDkb9PhDykQayGm6fTq5G3jbb3ndQwB_BcBfIj0LRwZe7iIqTKjzt6boKt3D1NxIiZplrxrhvEf__t7E?encodeFailures=1&width=1919&height=859)
 
 ### Testbench construction
 Everythings in a uvm testbench begin in the testbench top, where the `run_test()` method is called, this method is actually a task defined in the uvm_globals.svh which is imported `import uvm_pkg::*` . Then inside this `run_test()` we will call the `uvm_top.run_test()`. The `uvm_top.run_test()` will get the name of the uvm test class (usually passed in as the command line argument `+UVM_TESTNAME=YOUR_TEST_NAME` ), then it will use the uvm factory to find that test class and construct it (the test class must be registered to the uvm factory by using `uvm_component_utils()` ). After that, still in the `uvm_top.run_test()`, the uvm phases will be started. First phase will be build_phase, where the uvm hierarchy will be constructed top down (from env to agent, then driver/monitor,...). 
 Refer to the figure below from [uvm_cookbook](https://verificationacademy.com/cookbook/testbench/build)
-![](https://by3302files.storage.live.com/y4mEu1I9nAsQbg6vvTfyIQbEJ4v1P73CM0ISP066beWvKlA5Rp3hmucZ0esvu0fuvIlPrHiWVpBrkzN14ybN-hYLcei_h7qLrSnHUMOlLIaWbd4Hhxnl6ZCPr1gzAadmdK9PxQZaJ3VcpAQ4Hk6WMrem8bS2kQyycUTEPuMsiBCuvDE83Fk4bHQSN_4Ew-ZiHQCk4CPYgxB9l4p8okAe5oBUg/2020_08_09_uvm_test_vs_uvm_top_1.png?psid=1&width=772&height=553)
+![testbench top and uvm test build flow figure](https://by3302files.storage.live.com/y4mEu1I9nAsQbg6vvTfyIQbEJ4v1P73CM0ISP066beWvKlA5Rp3hmucZ0esvu0fuvIlPrHiWVpBrkzN14ybN-hYLcei_h7qLrSnHUMOlLIaWbd4Hhxnl6ZCPr1gzAadmdK9PxQZaJ3VcpAQ4Hk6WMrem8bS2kQyycUTEPuMsiBCuvDE83Fk4bHQSN_4Ew-ZiHQCk4CPYgxB9l4p8okAe5oBUg/2020_08_09_uvm_test_vs_uvm_top_1.png?psid=1&width=772&height=553)
 
 ---
 
