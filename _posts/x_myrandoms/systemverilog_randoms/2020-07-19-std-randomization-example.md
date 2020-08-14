@@ -220,4 +220,4 @@ This post is to store some of systemverilog std::randomization examples that I c
       }
     </script>
 </div>
-[![asciicast](https://asciinema.org/a/353418.svg)](https://asciinema.org/a/353418)
+<script id="asciicast-353418" src="https://asciinema.org/a/353418.js" async></script>
