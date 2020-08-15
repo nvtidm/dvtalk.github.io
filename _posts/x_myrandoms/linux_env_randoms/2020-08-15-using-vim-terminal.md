@@ -21,12 +21,12 @@ Vim supports the terminal feature since version 8.1. This feature allows us to h
 * First to use vim terminal, we should have vim from version 8.1 and compiled with `+terminal` option.
 * To open vim terminal, just type the command `:terminal`, or `:vert terminal` to open the terminal in a veritcal split window.
 * To close the vim terminal, type `exit` or `Ctrl-W Ctrl-C`
-* To move b/w buffers and vim terminal buffer, use `:buffers` as normal, since vim terminal will be treated as a buffer in vim. Or if current vim terminal is opened in another window, just simply use `Ctrl-W Ctrl-W`.
+* To move between buffers and vim terminal buffer, use `:buffers` as normal, since vim terminal will be treated as a buffer in vim. Or if current vim terminal is opened in another window, just simply use `Ctrl-W Ctrl-W`.
 
 ### Vim Terminal-Normal and Terminal-Job mode
 Terminal-Normal mode and Terminal-Job mode are newly introduced along with vim terminal feature.
 * Terminal-Job mode is the default mode when we open the vim terminal. It's actually will be like a normal terminal, where we can use the cli command.
-* Terminal-Normal mode is kind of a cool mode that I really enjoy. It allows us to move the cursor around the terminal screen in a vim-way, and we also perform vim commands such as yanking, selecting text, but not modifying command (deleted, change, replace command).
+* Terminal-Normal mode is kind of a cool mode that I really enjoy. It allows us to move the cursor around the terminal screen in a vim-way, and we also perform vim commands such as yanking, selecting text, but not modifying command like deleted, change, replace command.
 * Type `Ctrl-W N` or `Ctrl\ Ctrl-N` to enter Terminal-Normal mode. Type `i` or `a` to return to Terminal-Job mode.
 <script id="asciicast-353548" src="https://asciinema.org/a/353548.js" async></script>
 
@@ -40,15 +40,15 @@ Wanna be a little bit faster, use this [vim-sendtowindow](https://github.com/KKP
 
 ---
 ## Open another file in vim terminal
-Sometimes when I navigating through files inside a vim terminal and I want to open a file right from the terminal, I end up like in this figure below. A file is opened inside vim terminal with 2 status lines, one for the new opened file, one for the vim terminal. This is pretty annoying to me.
+Sometimes when I navigating through files inside a vim terminal and I want to open a file right from the terminal, I end up like in this figure below. A file is opened inside vim terminal with 2 status lines, one for the new opened file, one for the vim terminal (means the status line of current opened vim). This is pretty annoying to me.
 ![vim terminal](https://8zuu0g.by.files.1drv.com/y4ms0VTF1SD3HMx67macafhAd9I7wHvT_mcW8zxEtabiMeFQHpkzte1YonNH3tE4GFSvdnoRfidzg96CxHchAKGBTOD2dlE7vEWciIe_vt_WAxC4Crva_Wci0mNzbBiuKUmswTg4me5_Z_-Y8I4gQLyUB7Xr_ZXD92PgxDEGEOXmpl9xIxxAl8njyzZ1RXGnEHMlpVG9Sylj0I-T4-LWZGwTg)
 
 So I create this bash script, which is simply to open the new file from vim terminal to the current vim. Check `:h terminal` for more detail of how it works.
 <script src="https://gist.github.com/dvtalk/7a1776737f4302b3ed7b71b68fce1b35.js"></script>
 The command is `printf "<ESC>]51;[\"drop\", \"$pathdir\"]^G" ` but I does not figure out how to display them correctly in this post :D.
 
-Let's see how it looks like when using this function to open the file inside vim terminal
+Let's see how it's like now when using this script to open a file inside vim terminal
 <script id="asciicast-353418" src="https://asciinema.org/a/353418.js" async></script>
 
 ## Conclusion
-Those things above is pretty much everythings that I've been doing inside vim terminal. If you're interesting, just check `:h terminal`
+Those things above is pretty much everythings that I've been doing inside vim terminal. If you like this feature already and want to dig deeper, just check `:h terminal`
