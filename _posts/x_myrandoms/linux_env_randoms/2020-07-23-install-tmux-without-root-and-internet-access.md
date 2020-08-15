@@ -5,7 +5,7 @@ parent: Linux Env Randoms
 grand_parent: My Randoms
 description: Step by step to install tmux for linux user
 comments: true
-tags: [linux_env,]
+tags: [linux_env,cli_app]
 nav_order: 1
 toc_en: true
 ---
