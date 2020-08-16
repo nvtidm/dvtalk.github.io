@@ -3,7 +3,7 @@ layout: default
 title: Using Vim terminal
 parent: Linux Env Randoms
 grand_parent: My Randoms
-description: Using Vim terminal
+description: How a design verification engineer uses Vim terminal
 comments: true
 tags: [linux_env,vim]
 nav_order: 1
