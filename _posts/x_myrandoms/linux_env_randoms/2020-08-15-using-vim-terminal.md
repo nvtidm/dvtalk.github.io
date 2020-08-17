@@ -28,7 +28,7 @@ Terminal-Normal mode and Terminal-Job mode are newly introduced along with vim t
 * Terminal-Job mode is the default mode when we open the vim terminal. It's actually will be like a normal terminal, where we can use the cli command.
 * Terminal-Normal mode is kind of a cool mode that I really enjoy. It allows us to move the cursor around the terminal screen in a vim-way, and we also perform vim commands such as yanking, selecting text, but not modifying command like deleted, change, replace command.
 * Type `Ctrl-W N` or `Ctrl\ Ctrl-N` to enter Terminal-Normal mode. Type `i` or `a` to return to Terminal-Job mode.
-<script id="asciicast-353548" src="https://asciinema.org/a/353548.js" async></script>
+<script id="asciicast-353835" src="https://asciinema.org/a/353835.js" async></script>
 
 ---
 ## Vim send data from a buffer to vim terminal
