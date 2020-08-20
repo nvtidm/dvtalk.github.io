@@ -49,7 +49,7 @@ The command is `printf "<ESC>]51;[\"drop\", \"$pathdir\"]^G" ` but I does not fi
 
 Then in your `.cshrc` or `.bashrc` files as below (for tcsh) so that we can use this script to open file as normal vim when in vim terminal.
 <div class ="code" markdown="1" >
-{% highlight shell %}
+{% highlight bash %}
 # tcsh
 if ( $?VIM_TERMINAL ) then
    alias vi vimsend
@@ -58,7 +58,7 @@ endif
 </div>
 
 Now let's see how it's like now when using this script to open a file inside vim terminal
-<script id="asciicast-353418" src="https://asciinema.org/a/353418.js" async></script>
+<script id="asciicast-354593" src="https://asciinema.org/a/354593.js" async></script>
 
 
 
