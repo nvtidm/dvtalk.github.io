@@ -47,8 +47,20 @@ So I create this bash script, which is simply to open the new file from vim term
 <script src="https://gist.github.com/dvtalk/7a1776737f4302b3ed7b71b68fce1b35.js"></script>
 The command is `printf "<ESC>]51;[\"drop\", \"$pathdir\"]^G" ` but I does not figure out how to display them correctly in this post :D.
 
-Let's see how it's like now when using this script to open a file inside vim terminal
+Then in your `.cshrc` or `.bashrc` files as below (for tcsh) so that we can use this script to open file as normal vim when in vim terminal.
+<div class ="code" markdown="1" >
+{% highlight shell %}
+# tcsh
+if ( $?VIM_TERMINAL ) then
+   alias vi vimsend
+endif
+{% endhighlight %}
+</div>
+
+Now let's see how it's like now when using this script to open a file inside vim terminal
 <script id="asciicast-353418" src="https://asciinema.org/a/353418.js" async></script>
+
+
 
 ## Conclusion
 Those things above is pretty much everythings that I've been doing inside vim terminal. If you like this feature already and want to dig deeper, just check `:h terminal`
