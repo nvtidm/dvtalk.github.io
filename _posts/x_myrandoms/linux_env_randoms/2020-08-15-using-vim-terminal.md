@@ -63,4 +63,4 @@ Now let's see how it's like now when using this script to open a file inside vim
 
 
 ## Conclusion
-Those things above is pretty much everythings that I've been doing inside vim terminal. If you like this feature already and want to dig deeper, just check `:h terminal`
+Those things above is pretty much everything that I've been doing inside vim terminal. If you like this feature already and want to dig deeper, just check `:h terminal`
