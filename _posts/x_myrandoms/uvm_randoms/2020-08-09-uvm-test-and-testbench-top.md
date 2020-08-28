@@ -63,6 +63,8 @@ Refer to the figure below from [uvm_cookbook](https://verificationacademy.com/co
 ---
 
 ## Don't be confused
+
+### uvm_top
 The uvm testbench top different with `uvm_top`. The `uvm_top` is a global variable that hold the handle of `uvm_root` object inside uvm_pkg (which we import in the uvm testbench top). When we import the `uvm_pkg::*` in the testbench top, then call the `run_test()` method, the `uvm_root` object is created (`uvm_root` is a singleton class). Check this code below in the [uvm_root.svh](http://www.studio-muzzi.com/project/docs/UVMdocs_smu/uvm-1.1d/uvm__root_8svh_source.html)
 
 <div class ="code" markdown="1" >
@@ -71,6 +73,13 @@ The uvm testbench top different with `uvm_top`. The `uvm_top` is a global variab
 {% endhighlight %}
 </div>
 
+### uvm_test_top
+We also have `uvm_test_top`. When running the uvm testbench, we will see testbench hierarchy path like this `uvm_test_top.env.agent_1.driver_1`, the `uvm_test_top` here is the variable contains the handle of the test class passsed in as cli argument when running simulation `+UVM_TESTNAME=YOUR_TEST_NAME`. It also is the top hierarchy of our uvm testbench. Check this code below in the [uvm_root.svh](http://www.studio-muzzi.com/project/docs/UVMdocs_smu/uvm-1.1d/uvm__root_8svh_source.html)
 
+<div class ="code" markdown="1" >
+{% highlight verilog %}
+$cast(uvm_test_top, factory.create_component_by_name(test_name, "", "uvm_test_top", null));
+{% endhighlight %}
+</div>
 
 
