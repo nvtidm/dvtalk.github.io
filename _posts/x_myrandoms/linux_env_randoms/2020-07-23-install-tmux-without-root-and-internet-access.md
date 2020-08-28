@@ -43,7 +43,7 @@ libevent and ncurses are two libraries that required for tmux. Your linux env mi
    make install
 {% endhighlight %}
 </div>
-The `--prefix=$HOME/local ` is commonly used when installing a tool without root. Basically it will guide the compiling step to store any data to the $HOME/local. So remember this for later use.
+The `--prefix=$HOME/local ` is commonly used when installing a tool without root. Basically it will guide the compiling step to store any data to the `$HOME/local`. So remember this for later use.
 
 ---
 ### Then install ncurses
