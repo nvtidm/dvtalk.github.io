@@ -63,7 +63,7 @@ For Questasim and VCS, these commands is the Tcl-based command, which means you 
       </td>
       <td>
       <div class="code">
-      {% highlight Tcl %}
+      {% highlight tcl %}
   when { $now > 1000ns } {
     force {/top/U_MODULE_A/I_SIGNAL_A[1:0]} 10#3           
     force /top/U_MODULE_A/I_SIGNAL_B        1
@@ -81,7 +81,7 @@ From 1000ns of simulation time, I_SIGNAL_A[1:0] will be 2'b11, I_SIGNAL_B will b
       </td>
       <td>
       <div class="code">
-      {% highlight Tcl %}
+      {% highlight tcl %}
   when { /top/U_MODULE_A/I_CLK'event and $now > 1000ns } {
     force /top/U_MODULE_A/I_SIGNAL_C [ examine /top/U_MODULE_A/I_CLK ]
   }
@@ -98,7 +98,7 @@ From 1000ns of simulation time, at every event of I_CLK (rising edge, falling ed
       </td>
       <td>
       <div class="code">
-      {% highlight Tcl %}
+      {% highlight tcl %}
   when { top/U_MODULE_A/I_RESET_N'event and top/U_MODULE_A/I_RESET_N = 1  } {
      force top/U_MODULE_A/I_CLK_B 1 , 0 0.5 ns -r 1.0 ns
   }
@@ -116,7 +116,7 @@ After 1ns from the moment I_CLK_B first forced to be 1, repeat the same sequence
       </td>
       <td>
       <div class="code">
-      {% highlight Tcl %}
+      {% highlight tcl %}
   set flag_m 1
   when { /top/U_MODULE_A/I_SIGNAL_E'event and /top/U_MODULE_A/I_SIGNAL_E = 1} {
     if { $flag == 1  } {
