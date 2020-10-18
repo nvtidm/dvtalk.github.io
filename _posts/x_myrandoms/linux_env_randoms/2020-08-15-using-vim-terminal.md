@@ -5,7 +5,7 @@ parent: Env Randoms
 grand_parent: My Randoms
 description: How a design verification engineer uses Vim terminal
 comments: true
-tags: [linux_env,vim]
+tags: [linux_env,vim,cli_app]
 nav_order: 1
 toc_en: true
 

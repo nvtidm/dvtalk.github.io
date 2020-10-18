@@ -13,9 +13,9 @@ toc_en: true
 # Forcing Signals with Questasim/ModelSim
 I've been using vcs and questasim for verification for a while, and both of these tools allow us to interact with the simulator using their cli.
 We can use them for debugging, create checking point, restore simulation, ... .
-But mostly for my cases, I use this cli for forcing signals.
-And this methods help me in many situations such as creating some error cases (for testing purspose), or forcing signals from the logic that has not been implements yet.
-Let's go through some examples for forcing signals using Questasim (or another version of this eda tool is ModelSim)
+But mostly for my case, I use this cli for forcing signals.
+And this method help me in many situations such as creating some error cases (for testing purspose), or forcing signals from the logic that has not been implements yet.
+Let's go through some examples for forcing signals using Questasim (or another version of this eda tool is ModelSim).
 {: .fs-5 .fw-500 }
 
 ---
