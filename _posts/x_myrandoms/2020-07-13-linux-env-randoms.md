@@ -1,6 +1,6 @@
 ---
 layout: default
-title: Linux Env Randoms
+title: Env Randoms
 parent: My Randoms
 has_children: true
 comments: false
@@ -9,7 +9,7 @@ permalink: /docs/randoms/linux_env_randoms
 ---
 
 
-# Linux Env Randoms
-Random posts about linux env
+# Env Randoms
+Random posts about linux env, EDA tools, scripting, .etc
 {: .fs-5 .fw-500 }
 
