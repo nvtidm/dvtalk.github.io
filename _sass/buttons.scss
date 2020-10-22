@@ -15,8 +15,6 @@
   font-size: inherit;
   font-weight: 500;
   line-height: 1.5;
- // color: $link-color;
-
   color: $white;
   text-decoration: none;
   vertical-align: baseline;
@@ -40,7 +38,7 @@
 
   &:hover,
   &.zeroclipboard-is-hover {
-    color: darken($link-color, 5%);
+    color: darken($white, 5%);
   }
 
   &:hover,
@@ -117,8 +115,6 @@
 
 .btn-dawn {
   @include btn-color($white, $btn-primary-color);
-  color: $white;
-
 
 }
 
