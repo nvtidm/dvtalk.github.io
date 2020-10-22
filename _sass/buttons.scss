@@ -38,7 +38,7 @@
 
   &:hover,
   &.zeroclipboard-is-hover {
-    color: darken($link-color, 2%);
+    color: darken($link-color, 5%);
   }
 
   &:hover,
@@ -111,6 +111,12 @@
 
 .btn-blue {
   @include btn-color($white, $blue-000);
+}
+
+.btn-dawn {
+  @include btn-color($white, $btn-primary-color);
+
+
 }
 
 .btn-green {

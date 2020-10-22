@@ -43,7 +43,7 @@ Topics:
 {% for temptag in sortedtemptags %}
   {% assign tagitems = temptag | split: '#' %}
   {% capture tagname %}{{ tagitems[1] }}{% endcapture %}
-  <a href="/tag/{{ tagname }}"><code class="highligher-rouge">{{ tagname }}</code></a>
+  <a href="/tag/{{ tagname }}" class="btn btn-dawn mr-2">{{ tagname }}</a>
 {% endfor %}
 </nobr>
 
