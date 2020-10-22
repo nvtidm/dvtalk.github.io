@@ -115,6 +115,7 @@
 
 .btn-dawn {
   @include btn-color($white, $btn-primary-color);
+  color: $white;
 
 
 }
