@@ -114,7 +114,7 @@
 }
 
 .btn-dawn {
-  @include btn-color($white, $btn-primary-color);
+  @include btn-color($white, darken($sidebar-color, 47%));
 
 }
 
