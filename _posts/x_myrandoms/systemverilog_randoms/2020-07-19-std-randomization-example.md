@@ -220,7 +220,7 @@ This post is to store some of systemverilog std::randomization examples that I c
       </div>
       </td>
       <td>
-      <a href="https://www.edaplayground.com/x/D4wU" title="std::randomization example with solve before">
+      <a href="https://www.edaplayground.com/x/D4wU" title="std::randomization example with multi-dimensional array">
       <svg width="25" height="25" viewBox="0 -0.1 2 2" class="customsvg"> <use xlink:href="#svg-edaplay"></use></svg></a>
       </td>
    </tr>
