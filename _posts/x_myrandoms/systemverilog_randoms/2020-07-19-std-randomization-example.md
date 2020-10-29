@@ -206,7 +206,6 @@ This post is to store some of systemverilog std::randomization examples that I c
       {% highlight verilog %}
     int d_array [5][]; 
   
-    function void display();
     std::randomize(d_array) with {
           unique {d_array};
           foreach (d_array[i]) {
