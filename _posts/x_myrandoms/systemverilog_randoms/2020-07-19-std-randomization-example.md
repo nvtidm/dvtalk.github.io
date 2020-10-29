@@ -198,6 +198,35 @@ This post is to store some of systemverilog std::randomization examples that I c
    </tr>
 
 
+
+   <tr>
+      <td> systemverilog std::randomization with multi-dimensional array </td>
+      <td>
+      <div class="code">
+      {% highlight verilog %}
+    int d_array [5][]; 
+  
+    function void display();
+    std::randomize(d_array) with {
+          unique {d_array};
+          foreach (d_array[i]) {
+                  d_array[i].size() inside {[1:2]};
+          }
+          foreach (d_array[i,j]) {
+                   d_array[i][j] inside {[0:16]};
+          }
+    };
+      {% endhighlight %}
+      </div>
+      </td>
+      <td>
+      <a href="https://www.edaplayground.com/x/D4wU" title="std::randomization example with solve before">
+      <svg width="25" height="25" viewBox="0 -0.1 2 2" class="customsvg"> <use xlink:href="#svg-edaplay"></use></svg></a>
+      </td>
+   </tr>
+
+
+
 </table>
     <script>
       function tablefilter() {
