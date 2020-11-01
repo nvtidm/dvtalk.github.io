@@ -57,7 +57,7 @@ endif
 {% endhighlight %}
 </div>
 
-Now let's see how it's like now when using this script to open a file inside vim terminal
+Now let's see how it's like when using this script to open a file inside vim terminal
 <script id="asciicast-354593" src="https://asciinema.org/a/354593.js" async></script>
 
 
