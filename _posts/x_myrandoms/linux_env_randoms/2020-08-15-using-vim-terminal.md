@@ -45,9 +45,9 @@ Sometimes when I navigating through files inside a vim terminal and I want to op
 
 So I create this bash script, which is simply to open the new file from vim terminal to the current vim. Check `:h terminal` for more detail of how it works.
 <script src="https://gist.github.com/dvtalk/7a1776737f4302b3ed7b71b68fce1b35.js"></script>
-The command is `printf "<ESC>]51;[\"drop\", \"$pathdir\"]^G" ` but I does not figure out how to display them correctly in this post :D.
+The command is `printf "<ESC>]51;[\"drop\", \"$pathdir\"]^G" ` but I do not figure out how to display them correctly in this post :D.
 
-Then in your `.cshrc` or `.bashrc` files as below (for tcsh) so that we can use this script to open file as normal vim when in vim terminal.
+Then in your `.cshrc` or `.bashrc` file, create an alias for vim command as below (for tcsh) so that we can use this script to open file as normal vim when in vim terminal.
 <div class ="code" markdown="1" >
 {% highlight bash %}
 # tcsh
