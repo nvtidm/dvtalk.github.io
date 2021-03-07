@@ -188,5 +188,55 @@ and we want all of those procedure statement start at the same time.
 
 * Here we have the for loop an block name, `for_loop_block_1`, then when the first process finished, we kill all remaining active processes by using `disable for_loop_block_1`.
 
-### fine-grain control
+### fine-grain process control
+Systemverilog also provide us this built-in `process` class (in the built-in `std` package) to control the active processes.
+Mostly, I use this `process` class for debugging purpose, to check the status of all the processes in the `fork/join` block.
+Check the example below:
+
+<div class ="code" markdown="1" >
+{% highlight verilog %}
+  std::process p1,p2,p3;
+  
+  initial begin
+        fork
+          begin
+            $display("%t ps, start of thread %d", $time,1);
+            p1 = std::process::self();
+            #1 
+            $display("%t ps, end of thread %d", $time,1);
+          end
+          begin
+            $display("%t ps, start of thread %d", $time,2);
+            p2 = std::process::self();
+             #3 
+            $display("%t ps, end of thread %d", $time,2);
+          end
+          begin
+            $display("%t ps, start of thread %d", $time,3);
+            p3 = std::process::self();
+             #2 
+            $display("%t ps, end of thread %d", $time,3);
+          end
+    join_any
+
+    $display("the first process has finished");
+    $display("thread 1 process status: %s", p1.status().name());
+    $display("thread 2 process status: %s", p2.status().name());
+    $display("thread 3 process status: %s", p3.status().name());
+
+    wait fork; // wait for all the processes inside fork/join_any to finished
+
+    $display("the NEXT Statement ... ");
+  end 
+{% endhighlight %}
+</div>
+* The p1, p2, p3 has the variable type as `process` class, 
+then we use the static function `self()` of the `process` class to get the handle to the current processes of thread 1, 2, 3 respectively.
+* After that, we can use the `status()` method to check the status of the process.
+* We can also have other control over the process using these built-in methods of the `process` class: `kill()`, `suspend()`, `resume()`, etc.
+
+---
+## Finding more information
+To having more understanding as well as having more example, you can check the IEEE Standard for SystemVerilog, chapter.9 Process.
+
 
