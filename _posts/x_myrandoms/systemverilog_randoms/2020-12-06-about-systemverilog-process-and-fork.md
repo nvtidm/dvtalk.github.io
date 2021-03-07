@@ -1,0 +1,192 @@
+---
+layout: default
+title: About systemverilog process and fork join
+parent: Systemverilog Randoms
+grand_parent: My Randoms
+description: This post is about systemverilog processes including using fork, wait/disable fork, fork in a loop, and also fine grain process control
+tags: [systemverilog]
+comments: true
+toc_en: true
+nav_order: 3
+---
+
+# About systemverilog process and fork join
+In systemverilog, we can group statements into blocks and there are two ways to do so. The first way is groups them into `begin`-`end` block, where statements are executed sequentially.
+The other way is using the `fork`-`join` block, also called parallel block. In this block, all statements are executed concurrently.
+This post will share how to use this `fork`-`join` block and some of its practical cases.
+{: .fs-5 .fw-500 }
+
+---
+## join/join_none/join_any
+First up, let's look at the structure of the sequential block.
+The block begin with the keywork `fork`, all procedure statements under this keywork will be started at the same time. When the parent process can resume its execution is depended on the closing keywork.
+We have `join`, `join_none` and `join_any`. The diagram below will explain what the differences between those keyworks.
+
+* For `fork`-`join`, all the procedure statements will have to finish before the parent process can resume its execution.
+* For `fork`-`join_any`, the parent process will be blocked until one of the processes spawned by the fork finished.
+* For `fork`-`join_none`, the parent process will continue at the same time with all the processes spawned by the fork.
+
+Just simple as that, start your block with `fork`, then end your block with either `join`, `join_any` or `join_none`. 
+However, life is not that much easy. Let's consider some cases below, where using some other control methods alongside with fork are necessary.
+
+---
+## fork join in a loop
+### fork join_none in a loop
+Let consider this case, we have a list of item, and we want to start a single procedure statement for each item of that list,
+and we want all of those procedure statement start at the same time. Also, we need all of those processes to finish before executing
+any other statement.
+We can easily achieve the requirement using `fork` and `join_none` as below.
+<div class ="code" markdown="1" >
+{% highlight verilog %}
+    int lst[5] = '{1,2,3,4,5};
+    for(int i=0; i < 5; i++ )  begin
+      fork
+        begin
+          automatic int j = i;
+          $display ("%t ps, start thread %d", $time, j);
+          #lst[j];
+          $display("%t ps, end of thread %d", $time,j);
+        end
+      join_none
+    end
+    wait fork;
+    #1;
+    $display("the NEXT Statement ... ");
+{% endhighlight %}
+</div>
+There are several things that we can notice here.
+* Firstly it's the `automatic` keywork. We need to copy `i` to `j` automatic variable in each interation of the for loop.
+Since we use `join_none` here, all of 5 processes will start at the same time, and we only have one `i` variable, and after 5 iterations, `i` will hold a value of 5.
+This means that if we use `i` variable intead of creating local copy of it, these all 5 processes will run with the same value of `i` after 5 iterations, which is 5.
+Then we'll end up having 5 exactly the same processes instead of 5 processes with 5 value of a list.
+* Secondly, it's the `wait fork` statement, this is for waiting all 5 processes to finish before executing the next statement.
+* Why don't we use `fork/join` here? It's simply because when using `join` instead of `join_none` inside a loop, 
+all the processes inside `fork/join` will have to finish before moving to the next iteration of the loop. In the example above, 
+if the `fork/join` is used instead of `fork/join_none`, we'll have 5 thread executed sequentially, not concurrently.
+
+### fork join_any in a loop
+Similar to the example above, but this time, we need to execute the next statement ```$display("the NEXT Statement ... ");``` right after ONE of the 5 processes finished.
+In this case, using `fork/join_any` will NOT solve the requirement.
+<div class ="code" markdown="1" >
+{% highlight verilog %}
+    int lst[5] = '{1,2,3,4,5};
+    for(int i=0; i < 5; i++ )  begin
+      fork
+        begin
+          automatic int j = i;
+          $display ("%t ps, start thread %d", $time, j);
+          #lst[j];
+          $display("%t ps, end of thread %d", $time,j);
+        end
+      join_any // --> wait until one of the processes inside the fork/join_any finished
+    end
+    wait fork;
+    #1;
+    $display("the NEXT Statement ... ");
+{% endhighlight %}
+</div>
+* Why it does not work? What is required is starting 5 processes at the same time using a for loop, then executing the next statement after any one of the processes finished.
+Here inside the `fork/join_any`, there is only 1 procedure statment (inside `begin/end`), therefore we will need to wait for the process to finish before moving to the next iteration of the loop,
+which means we will have 5 processes executed sequentially, not concurrently.
+* To solve this problem, we need to use `fork/join_none` inside loop to create 5 processes executed concurrently, and then using an event to execute 
+the next statement right after one of the 5 processes finished.
+<div class ="code" markdown="1" >
+{% highlight verilog %}
+    int lst[5] = '{1,2,3,4,5};
+    uvm_event finish_event;
+    for(int i=0; i < 5; i++ )  begin
+      fork
+        begin
+          automatic int j = i;
+          $display ("%t ps, start thread %d", $time, j);
+          #lst[j];
+          $display("%t ps, end of thread %d", $time,j);
+
+          finish_event.trigger(); //
+        end
+      join_none
+    end
+    finish_event.wait_trigger(); // wait for an event to be triggered instead of using wait fork;
+    #1;
+    $display("the NEXT Statement ... ");
+{% endhighlight %}
+</div>
+* In the above example, by using `fork/join_none`, we have 5 processes executed concurrently. And by using `uvm_event`, the 
+```$display("the NEXT Statement ... ");``` will be executed when one of the 5 processes finished.
+
+---
+## Process control
+Systemverilog supplies us several ways to control the processes, those methods are especially useful when it comes to using `fork/join` statement.
+Besides, we can also use other methods such as uvm_event as above to tackle the problem.
+
+### wait fork statement
+`wait fork` might be the statement that is used the most when controlling process in `fork join`. It's pretty simple, all the child subprocesses will 
+have to finish before executing the next statement.
+<div class ="code" markdown="1" >
+{% highlight verilog %}
+    fork
+        #1 $display("%t ps, end of thread %d", $time,j);
+        #3 $display("%t ps, end of thread %d", $time,j);
+        #2 $display("%t ps, end of thread %d", $time,j);
+    join_any
+    $display("the first process has finished");
+
+    wait fork; // wait for all the processes inside fork/join_any to finished
+
+    $display("the NEXT Statement ... ");
+{% endhighlight %}
+</div>
+
+### disable fork statement
+`disable fork`, in the other hand, will terminates all active descendants (subprocesses).
+<div class ="code" markdown="1" >
+{% highlight verilog %}
+    fork
+        #1 $display("%t ps, end of thread %d", $time,j);
+        #3 $display("%t ps, end of thread %d", $time,j);
+        #2 $display("%t ps, end of thread %d", $time,j);
+    join_any
+
+    $display("the first process has finished");
+
+    disable fork; // disable all the processes inside fork/join_any after  the first subprocesses finished.
+
+    $display("the NEXT Statement ... ");
+{% endhighlight %}
+</div>
+
+### disable statement
+We also have a `disable` statement, which can disable the processes of the entire block or task (cannot be used to disable a function).
+
+Let's use above example with new requirement: disable all remaining active process after one of the processes finished.
+
+We have a list of item, and we want to start a single procedure statement for each item of that list
+and we want all of those procedure statement start at the same time.
+
+<div class ="code" markdown="1" >
+{% highlight verilog %}
+    int lst[5] = '{1,2,3,4,5};
+    uvm_event finish_event;
+    for_loop_block_1: for(int i=0; i < 5; i++ )  begin
+      fork
+        begin
+          automatic int j = i;
+          $display ("%t ps, start thread %d", $time, j);
+          #lst[j];
+          $display("%t ps, end of thread %d", $time,j);
+          finish_event.trigger(); //
+        end
+      join_none
+    end
+
+    finish_event.trigger();
+    disable for_loop_block_1; //
+    #1;
+    $display("the NEXT Statement ... ");
+{% endhighlight %}
+</div>
+
+* Here we have the for loop an block name, `for_loop_block_1`, then when the first process finished, we kill all remaining active processes by using `disable for_loop_block_1`.
+
+### fine-grain control
+
