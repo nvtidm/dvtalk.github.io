@@ -56,7 +56,7 @@ We can easily achieve the requirement using `fork` and `join_none` as below.
 </div>
 There are several things that we can notice here.
 * Firstly it's the `automatic` keywork. We need to copy `i` to `j` automatic variable in each interation of the for loop.
-Since we use `join_none` here, all of 5 processes will start at the same time, and we only have one `i` variable, and after 5 iterations, `i` will hold a value of 5.
+Since we use `join_none` here, all of 5 processes will start at the same time, and we only have one `i` variable, and after 5 iterations, `i` will hold a value 4.
 This means that if we use `i` variable intead of creating local copy of it, these all 5 processes will run with the same value of `i` after 5 iterations, which is 5.
 Then we'll end up having 5 exactly the same processes instead of 5 processes with 5 value of a list.
 * Secondly, it's the `wait fork` statement, this is for waiting all 5 processes to finish before executing the next statement.
