@@ -19,6 +19,7 @@ Blah blah blah
 ### Rules to follow
 ### Macro substitution and argument substitution
 ### Recommendation
+### Debugging
 
 ---
 Examples 
