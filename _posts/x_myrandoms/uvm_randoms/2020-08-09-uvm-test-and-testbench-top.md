@@ -73,6 +73,7 @@ The uvm testbench top different with `uvm_top`. The `uvm_top` is a global variab
 {% endhighlight %}
 </div>
 
+
 ### uvm_test_top
 We have `uvm_test_top`. It's actually the default variable containing the object of uvm test that we discussed above. When the run_test() is called, the uvm test class (which is passed in as cli argument with `+UVM_TESTNAME=YOUR_TEST_NAME`) will be constructed and the handle will be stored in the `uvm_test_top` variable. As above, it also is the top hierarchy of our uvm testbench. When running the uvm testbench, we will see testbench hierarchy path like this `uvm_test_top.env.agent_1.driver_1`. Check this code below in the [uvm_root.svh](http://www.studio-muzzi.com/project/docs/UVMdocs_smu/uvm-1.1d/uvm__root_8svh_source.html)
 

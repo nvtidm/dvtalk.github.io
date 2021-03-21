@@ -7,8 +7,8 @@ description: This post is about systemverilog macro and some examples of it
 tags: [systemverilog]
 comments: true
 toc_en: true
-nav_exclude: true
-search_exclude: true
+nav_exclude: false
+search_exclude: false
 nav_order: 3
 ---
 
@@ -19,9 +19,26 @@ Blah blah blah
 ---
 ## Systemverilog macro 101
 ### Rules to follow
+* Avoid using the macro name which is similar to any compiler directives.
+* No space after the backslash \ at the end of each line except for the last line of the macro.
+* No space between macro name and the open parentheses for macro argument "("    >.<
+
 ### Macro substitution and argument substitution
+
 ### Recommendation
+* If writing a function/task is possible, avoid writing macro =D.
+* Write all the macros in one file, and inlude that file in your sv package. Since redefine macro is allowed,
+write macros everywhere in your codes make debugging these macros became painful.
+* Macro can call other macros or compiler directives, or even calls itself, but be careful.
+
 ### Debugging
+Macro is anoying when it comes to debugging. When I need to write and debug a macro, I do this:
+* Open macro files in EDA tool, such as verdi, then hover the mouse over the macro to see the generated code.
+
+
+---
+## Examples 
+
 // Assertion to compare SIGNAL value with EXP_VALUE
 // Provide clock in CLK, enable/reset signal in ENA. ENA default is 0(inactive).
 // Use EXT_ERROR_CMD to add addtional statement when assertion fail, leave it blank if no use.
@@ -35,12 +52,6 @@ Blah blah blah
       $error($psprintf(`"The SIGNAL is supposed to be EXP_VALUE, real value is 0x%x`", SIGNAL )); \
       EXT_ERROR_CMD ; \
    end
-
-
-
-
----
-Examples 
 
 ---
 ## Finding more information
