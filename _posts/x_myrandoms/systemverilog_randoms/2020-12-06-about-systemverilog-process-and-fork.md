@@ -7,6 +7,8 @@ description: This post is about systemverilog processes including using fork, wa
 tags: [systemverilog]
 comments: true
 toc_en: true
+nav_exclude: false
+search_exclude: false
 nav_order: 3
 ---
 
