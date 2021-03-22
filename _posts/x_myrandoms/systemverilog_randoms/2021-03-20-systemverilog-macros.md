@@ -28,8 +28,8 @@ Blah blah blah
 ### Recommendation
 * If writing a function/task is possible, avoid writing macro =D.
 * Write all the macros in one file, and inlude that file in your sv package. Since redefine macro is allowed,
-write macros everywhere in your codes make debugging these macros became painful.
-* Macro can call other macros or compiler directives, or even calls itself, but be careful.
+write macros everywhere in your codes make debugging these macros become painful.
+* Macro can call other macros or compiler directives, or even call itself, but be careful.
 
 ### Debugging
 Macro is anoying when it comes to debugging. When I need to write and debug a macro, I do this:

@@ -1,0 +1,85 @@
+I"<h1 id="list-of-my-playground-on-edaplayground">List of my playground on EDAPlayground</h1>
+
+<p><input type="text" class="tablefilterinput" id="FilterInput" onkeyup="tablefilter()" placeholder="Table filter input..." title="filter input" /></p>
+<div class="fs-6 fw-300">
+
+  <table>
+    <thead>
+      <tr>
+        <th style="text-align: left"><a href="https://www.edaplayground.com"> <svg width="20" height="20" viewBox="0 -0.1 2 2" class="customsvg"> <use xlink:href="#svg-edaplay"></use></svg> Name</a></th>
+        <th style="text-align: left">Description</th>
+        <th style="text-align: left">Related posts</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td style="text-align: left"><a href="https://www.edaplayground.com/x/2wVa">Choosing your grandparent class</a></td>
+        <td style="text-align: left">Using parameterized class to select parent of our parent class</td>
+        <td style="text-align: left"><a href="/2020/07/15/choosing-grandparent-class/">Choosing grandparent class </a></td>
+      </tr>
+      <tr>
+        <td style="text-align: left"><a href="https://www.edaplayground.com/x/5nYm">std::randomization for array/queue</a></td>
+        <td style="text-align: left">Example of systemverilog std::randomization for an array with constrains on size, array sum, each element value</td>
+        <td style="text-align: left"><a href="/2020/07/19/std-randomization-example/">std::randomization examples </a></td>
+      </tr>
+      <tr>
+        <td style="text-align: left"><a href="https://www.edaplayground.com/x/5css">std::randomization for array using sum with</a></td>
+        <td style="text-align: left">Example of systemverilog std::randomization for constraining an array based on sum of element value</td>
+        <td style="text-align: left"><a href="/2020/07/19/std-randomization-example/">std::randomization examples </a></td>
+      </tr>
+      <tr>
+        <td style="text-align: left"><a href="https://www.edaplayground.com/x/39Hg">std::randomization using implication constraints</a></td>
+        <td style="text-align: left">Example of systemverilog std::randomization using implication</td>
+        <td style="text-align: left"><a href="/2020/07/19/std-randomization-example/">std::randomization examples </a></td>
+      </tr>
+      <tr>
+        <td style="text-align: left"><a href="https://www.edaplayground.com/x/dQx">std::randomization using condition constraints</a></td>
+        <td style="text-align: left">Example of systemverilog std::randomization using condition</td>
+        <td style="text-align: left"><a href="/2020/07/19/std-randomization-example/">std::randomization examples </a></td>
+      </tr>
+      <tr>
+        <td style="text-align: left"><a href="https://www.edaplayground.com/x/f5g">std::randomization with multiple variables</a></td>
+        <td style="text-align: left">Example of systemverilog std::randomization for multiple variables</td>
+        <td style="text-align: left"><a href="/2020/07/19/std-randomization-example/">std::randomization examples </a></td>
+      </tr>
+      <tr>
+        <td style="text-align: left"><a href="https://www.edaplayground.com/x/5HdN">std::randomization with weight distribution</a></td>
+        <td style="text-align: left">Example of systemverilog std::randomization using weight distribution</td>
+        <td style="text-align: left"><a href="/2020/07/19/std-randomization-example/">std::randomization examples </a></td>
+      </tr>
+      <tr>
+        <td style="text-align: left"><a href="https://www.edaplayground.com/x/3fJD">std::randomization with solve..before</a></td>
+        <td style="text-align: left">Example of systemverilog std::randomization using solve..before</td>
+        <td style="text-align: left"><a href="/2020/07/19/std-randomization-example/">std::randomization examples </a></td>
+      </tr>
+      <tr>
+        <td style="text-align: left"><a href="https://www.edaplayground.com/x/D4wU">std::randomization example with multi-dimensional array</a></td>
+        <td style="text-align: left">Example of systemverilog std::randomization for multi-dimensional array</td>
+        <td style="text-align: left"><a href="/2020/07/19/std-randomization-example/">std::randomization examples </a></td>
+      </tr>
+    </tbody>
+  </table>
+
+  <script>
+function tablefilter() {
+  var input, filter, table, tr, td, i, txtValue;
+  input = document.getElementById("FilterInput");
+  filter = input.value.toUpperCase();
+  table = document.getElementById("myTable");
+  tr = table.getElementsByTagName("tr");
+  for (i = 0; i < tr.length; i++) {
+    td = tr[i].getElementsByTagName("td")[0];
+    if (td) {
+      txtValue = td.textContent || td.innerText;
+      if (txtValue.toUpperCase().indexOf(filter) > -1) {
+        tr[i].style.display = "";
+      } else {
+        tr[i].style.display = "none";
+      }
+    }       
+  }
+}
+</script>
+
+</div>
+:ET

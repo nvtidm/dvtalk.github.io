@@ -1,0 +1,67 @@
+I"�<h1 id="install-tmux-with-no-root-and-internet">Install tmux with no root and Internet</h1>
+<p class="fs-5 fw-500">No Internet access in 2020?? Well, if you’re working in this industry then you will not suprise about this. There is no way we can access to the Internet from the login server, and also not root at all. However we still can install some of our beloved tools without asking IT team.</p>
+
+<hr />
+<h2 id="what-do-we-need-first">What do we need first</h2>
+<p>You should download these source files below to your local laptop and then copy them to your home dir in the linux server.</p>
+<div class="code-example">
+  <ul>
+    <li>libevent: <a href="https://github.com/libevent/libevent/releases/download/release-2.1.12-stable/libevent-2.1.12-stable.tar.gz">https://github.com/libevent/libevent/releases/download/release-2.1.12-stable/libevent-2.1.12-stable.tar.gz</a></li>
+    <li>ncurses: <a href="ftp://ftp.gnu.org/gnu/ncurses/ncurses-5.9.tar.gz">ftp://ftp.gnu.org/gnu/ncurses/ncurses-5.9.tar.gz</a></li>
+    <li>tmux: <a href="https://github.com/tmux/tmux/releases/download/3.2-rc/tmux-3.2-rc.tar.gz">https://github.com/tmux/tmux/releases/download/3.2-rc/tmux-3.2-rc.tar.gz</a></li>
+  </ul>
+</div>
+<p>libevent and ncurses are two libraries that required for tmux. Your linux env might has these 2 libraries already, but there is high possibility that those libs are too old and incompatible.</p>
+
+<hr />
+<h2 id="then-we-install-them-locally">Then we install them locally</h2>
+<h3 id="first-create-your-local-directory">First create your local directory</h3>
+<div class="code">
+
+  <figure class="highlight"><pre><code class="language-sh" data-lang="sh">   <span class="nb">mkdir</span> <span class="nt">-p</span> <span class="nv">$HOME</span>/local</code></pre></figure>
+
+</div>
+<hr />
+<h3 id="secondly-install-libevent">Secondly install libevent</h3>
+<div class="code">
+
+  <figure class="highlight"><pre><code class="language-bash" data-lang="bash">   <span class="nb">tar </span>xvzf libevent-2.0.19-stable.tar.gz
+   <span class="nb">cd </span>libevent-2.1.12-stable.tar.gz
+   ./configure <span class="nt">--prefix</span><span class="o">=</span><span class="nv">$HOME</span>/local <span class="nt">--disable-shared</span>
+   make
+   make <span class="nb">install</span></code></pre></figure>
+
+</div>
+<p>The <code class="language-plaintext highlighter-rouge">--prefix=$HOME/local </code> is commonly used when installing a tool without root. Basically it will guide the compiling step to store any data to the <code class="language-plaintext highlighter-rouge">$HOME/local</code>. So remember this for later use.</p>
+
+<hr />
+<h3 id="then-install-ncurses">Then install ncurses</h3>
+<div class="code">
+
+  <figure class="highlight"><pre><code class="language-bash" data-lang="bash">   <span class="nb">tar </span>xvzf ncurses-5.9.tar.gz
+   <span class="nb">cd </span>ncurses-5.9
+   ./configure <span class="nt">--prefix</span><span class="o">=</span><span class="nv">$HOME</span>/local
+   make
+   make <span class="nb">install</span></code></pre></figure>
+
+</div>
+<hr />
+<h3 id="finally-install-tmux">Finally install tmux</h3>
+<div class="code">
+
+  <figure class="highlight"><pre><code class="language-bash" data-lang="bash">   <span class="nb">tar </span>xvzf tmux-3.2-rc.tar.gz
+   <span class="nb">cd </span>tmux-3.2-rc.tar</code></pre></figure>
+
+</div>
+<p>Copy this code below to a bash script (not tcsh or csh script), for example <code class="language-plaintext highlighter-rouge">compiletmux.sh</code></p>
+
+<div class="code">
+
+  <figure class="highlight"><pre><code class="language-bash" data-lang="bash"><span class="c">#!/bin/bash</span>
+ ./configure <span class="nv">CFLAGS</span><span class="o">=</span><span class="s2">"-I</span><span class="nv">$HOME</span><span class="s2">/local/include -I</span><span class="nv">$HOME</span><span class="s2">/local/include/ncurses"</span> <span class="nv">LDFLAGS</span><span class="o">=</span><span class="s2">"-L</span><span class="nv">$HOME</span><span class="s2">/local/lib -L</span><span class="nv">$HOME</span><span class="s2">/local/include/ncurses -L</span><span class="nv">$HOME</span><span class="s2">/local/include"</span>
+ <span class="nv">CPPFLAGS</span><span class="o">=</span><span class="s2">"-I</span><span class="nv">$HOME</span><span class="s2">/local/include -I</span><span class="nv">$HOME</span><span class="s2">/local/include/ncurses"</span> <span class="nv">LDFLAGS</span><span class="o">=</span><span class="s2">"-static -L</span><span class="nv">$HOME</span><span class="s2">/local/include -L</span><span class="nv">$HOME</span><span class="s2">/local/include/ncurses -L</span><span class="nv">$HOME</span><span class="s2">/local/lib"</span> make</code></pre></figure>
+
+</div>
+<p>Then run this new script <code class="language-plaintext highlighter-rouge">compiletmux.sh</code>, you’ll see a <code class="language-plaintext highlighter-rouge">tmux</code> binary file in current directory. 
+Finally, copy this tmux to <code class="language-plaintext highlighter-rouge">$HOME/local/bin</code> and enjoy your new life with tmux.</p>
+:ET
