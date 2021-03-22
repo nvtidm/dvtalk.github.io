@@ -12,7 +12,7 @@ nav_order: 3
 
 # About systemverilog process and fork join
 In systemverilog, we can group statements into blocks and there are two ways to do so. The first way is groups them into `begin`-`end` block, where statements are executed sequentially.
-The other way is using the `fork`-`join` block, also called parallel block. In this block, all statements are executed concurrently.
+The other way is to use the `fork`-`join` block, also called parallel block. In this block, all statements are executed concurrently.
 This post will share how to use this `fork`-`join` block and some of its practical cases.
 {: .fs-5 .fw-500 }
 
@@ -27,7 +27,7 @@ We have `join`, `join_none` and `join_any`. The diagram below will explain what 
 * For `fork`-`join_none`, the parent process will continue at the same time with all the processes spawned by the fork.
 
 Just simple as that, start your block with `fork`, then end your block with either `join`, `join_any` or `join_none`. 
-However, life is not that much easy. Let's consider some cases below, where using some other control methods alongside with fork are necessary.
+However, life is not that much easy. Let's consider some cases below, where using some other control methods alongside with fork is necessary.
 
 ---
 ## fork join in a loop
@@ -57,8 +57,8 @@ We can easily achieve the requirement using `fork` and `join_none` as below.
 There are several things that we can notice here.
 * Firstly it's the `automatic` keywork. We need to copy `i` to `j` automatic variable in each interation of the for loop.
 Since we use `join_none` here, all of 5 processes will start at the same time, and we only have one `i` variable, and after 5 iterations, `i` will hold a value 4.
-This means that if we use `i` variable intead of creating local copy of it, these all 5 processes will run with the same value of `i` after 5 iterations, which is 5.
-Then we'll end up having 5 exactly the same processes instead of 5 processes with 5 value of a list.
+This means that if we use `i` variable intead of creating local copy of it, these all 5 processes will run with the same value of `i` after 5 iterations, which is 4.
+Then we'll end up having 5 exactly the same processes instead of 5 processes with 5 different values of a list.
 * Secondly, it's the `wait fork` statement, this is for waiting all 5 processes to finish before executing the next statement.
 * Why don't we use `fork/join` here? It's simply because when using `join` instead of `join_none` inside a loop, 
 all the processes inside `fork/join` will have to finish before moving to the next iteration of the loop. In the example above, 
@@ -85,7 +85,7 @@ In this case, using `fork/join_any` will NOT solve the requirement.
     $display("the NEXT Statement ... ");
 {% endhighlight %}
 </div>
-* Why it does not work? What is required is starting 5 processes at the same time using a for loop, then executing the next statement after any one of the processes finished.
+* Why it does not work? What is required is to start 5 processes at the same time using a for loop, then executing the next statement right after any one of the processes finished.
 Here inside the `fork/join_any`, there is only 1 procedure statment (inside `begin/end`), therefore we will need to wait for the process to finish before moving to the next iteration of the loop,
 which means we will have 5 processes executed sequentially, not concurrently.
 * To solve this problem, we need to use `fork/join_none` inside loop to create 5 processes executed concurrently, and then using an event to execute 
@@ -117,7 +117,7 @@ the next statement right after one of the 5 processes finished.
 ---
 ## Process control
 Systemverilog supplies us several ways to control the processes, those methods are especially useful when it comes to using `fork/join` statement.
-Besides, we can also use other methods such as uvm_event as above to tackle the problem.
+Besides, we can also use other methods such as `uvm_event` as above to tackle the problem.
 
 ### wait fork statement
 `wait fork` might be the statement that is used the most when controlling process in `fork join`. It's pretty simple, all the child subprocesses will 
