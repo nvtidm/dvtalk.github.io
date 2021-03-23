@@ -1,4 +1,4 @@
-I"T<h1 id="forcing-signals-with-questasimmodelsim">Forcing Signals with Questasim/ModelSim</h1>
+I".<h1 id="forcing-signals-with-questasimmodelsim">Forcing Signals with Questasim/ModelSim</h1>
 <p class="fs-5 fw-500">I’ve been using vcs and questasim for verification for a while, and both of these tools allow us to interact with the simulator using their cli.
 We can use them for debugging, create checking point, restore simulation, … .
 But mostly for my case, I use this cli for forcing signals.
@@ -22,9 +22,9 @@ Usually, I create a file containing forcing commands, then source this file duri
 <h2 id="some-examples-of-forcing-signals-using-questasim">Some examples of forcing signals using Questasim</h2>
 <h3 id="first-up">First up</h3>
 <ul>
-  <li>Make sure your signals have correct path, you can find signal path by using Questasim cli command in cli mode:<code class="language-plaintext highlighter-rouge">find nets -recursive -ports /top/*TOP*/*MODULE_A*/*RESET*</code></li>
+  <li>Make sure your signals have correct path, you can find signal path by using Questasim cli command in cli mode:<code class="highlighter-rouge">find nets -recursive -ports /top/*TOP*/*MODULE_A*/*RESET*</code></li>
   <li>Check your tcl syntax carefully</li>
-  <li>If you use force file like this: <code class="language-plaintext highlighter-rouge">vsim -do &lt;force_file.tcl&gt;</code>, considering using below template</li>
+  <li>If you use force file like this: <code class="highlighter-rouge">vsim -do &lt;force_file.tcl&gt;</code>, considering using below template</li>
 </ul>
 <div class="code">
 

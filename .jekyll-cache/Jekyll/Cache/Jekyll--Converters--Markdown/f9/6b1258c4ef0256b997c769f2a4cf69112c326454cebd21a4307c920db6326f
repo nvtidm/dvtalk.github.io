@@ -1,4 +1,4 @@
-I"7#<h1 id="differences-between-uvm-test-and-uvm-testbench-top">Differences between uvm test and uvm testbench top</h1>
+I"� <h1 id="differences-between-uvm-test-and-uvm-testbench-top">Differences between uvm test and uvm testbench top</h1>
 <p class="fs-5 fw-500">Back in the early days of my journey with uvm, the concept of uvm test and testbench top really got me. Before learning to use systemverilog and uvm, I only knew about a basic testbench, where the top would handle everything. So when studying a uvm testbench, it took me quite sometime to absorb how uvm test and testbench top hierarchy are related. Here it is:</p>
 
 <hr />
@@ -7,22 +7,22 @@
 <ul>
   <li>The DUT will be instantiated.</li>
   <li>Clock will be generated and supplied to the DUT.</li>
-  <li>The virtual interface will be constructed, and connect to the DUT ports. Also the virtual interface object handle  will be registered to the <code class="language-plaintext highlighter-rouge">uvm_config_db</code>.</li>
-  <li>The <code class="language-plaintext highlighter-rouge">run_test()</code> method will be called.</li>
-  <li>Also in this top, we must have this line: <code class="language-plaintext highlighter-rouge">import uvm_pkg::*;</code></li>
+  <li>The virtual interface will be constructed, and connect to the DUT ports. Also the virtual interface object handle  will be registered to the <code class="highlighter-rouge">uvm_config_db</code>.</li>
+  <li>The <code class="highlighter-rouge">run_test()</code> method will be called.</li>
+  <li>Also in this top, we must have this line: <code class="highlighter-rouge">import uvm_pkg::*;</code></li>
 </ul>
 
-<p>The testbench top will be passed to the EDA tool as top module in the compiling step. Then all the hdl path of your dut will start from this tb top and look like this: <code class="language-plaintext highlighter-rouge">tb_top.dut.sub_module1.signal_a</code> (where <code class="language-plaintext highlighter-rouge">tb_top</code> is the module name of the testbench top module)</p>
+<p>The testbench top will be passed to the EDA tool as top module in the compiling step. Then all the hdl path of your dut will start from this tb top and look like this: <code class="highlighter-rouge">tb_top.dut.sub_module1.signal_a</code> (where <code class="highlighter-rouge">tb_top</code> is the module name of the testbench top module)</p>
 
 <hr />
 
 <h2 id="what-is-uvm-test">What is uvm test</h2>
-<p>uvm test will be a place where the uvm components such as <code class="language-plaintext highlighter-rouge">uvm_env</code>, <code class="language-plaintext highlighter-rouge">uvm_agent</code>, <code class="language-plaintext highlighter-rouge">uvm_scoreboard</code> will be constructed to create the testbench hierarchy.
+<p>uvm test will be a place where the uvm components such as <code class="highlighter-rouge">uvm_env</code>, <code class="highlighter-rouge">uvm_agent</code>, <code class="highlighter-rouge">uvm_scoreboard</code> will be constructed to create the testbench hierarchy.
 A lot of things will occur inside the uvm test, but commonly these steps will be performed:</p>
 <ul>
-  <li>Construct an <code class="language-plaintext highlighter-rouge">uvm_env</code>.</li>
+  <li>Construct an <code class="highlighter-rouge">uvm_env</code>.</li>
   <li>Create the configuration for env and sub-configuration of sub-component (such as agent, monitor, etc).</li>
-  <li>Get the virtual interface handle from <code class="language-plaintext highlighter-rouge">uvm_config_db</code>.</li>
+  <li>Get the virtual interface handle from <code class="highlighter-rouge">uvm_config_db</code>.</li>
   <li>etc.</li>
 </ul>
 
@@ -41,11 +41,11 @@ A lot of things will occur inside the uvm test, but commonly these steps will be
 <p>uvm test and testbench top are two basic items of a uvm testbench, where everything begins. To distinguish these two, we should better understand how they related to each other.</p>
 
 <h3 id="dut-and-drivermonitor-connections">DUT and driver/monitor connections</h3>
-<p>As described above, in the testbench top module, the DUT will be connect to the virtual interface object. This virtual interface object will be register to the <code class="language-plaintext highlighter-rouge">uvm_config_db</code>. So in the uvm test side, to give the driver the ability to drive the DUT signals, as well as the monitor to sample the DUT signals, we will get the virtual interface object (which connected to DUT in top module) from the <code class="language-plaintext highlighter-rouge">uvm_db_config</code>.
+<p>As described above, in the testbench top module, the DUT will be connect to the virtual interface object. This virtual interface object will be register to the <code class="highlighter-rouge">uvm_config_db</code>. So in the uvm test side, to give the driver the ability to drive the DUT signals, as well as the monitor to sample the DUT signals, we will get the virtual interface object (which connected to DUT in top module) from the <code class="highlighter-rouge">uvm_db_config</code>.
 <img src="https://jqqyra.by.files.1drv.com/y4mpOHaCB4faTDr78inMH3usW3dm9jyIGVN8J2MmWVJcChnz2PPDye3_drhatqEiIHoS4Y9TPr84wSMoLV3e0qAeo5DYOsJq5l_dfINp9Gl1plKkpfOpkWuwTG7MT63cxMXLAwiBJl8qwISYg0K_x0gNkfoj9gDilFbHWjs1DunMaCnuodN3kTl5kLP3Ay7I7rzjPDlhAgB9Qq91O0yVowknA" alt="testbench top and uvm test connection relation" /></p>
 
 <h3 id="testbench-construction">Testbench construction</h3>
-<p>Everythings in a uvm testbench begin in the testbench top, where the <code class="language-plaintext highlighter-rouge">run_test()</code> method is called, this method is actually a task defined in the uvm_globals.svh which is imported <code class="language-plaintext highlighter-rouge">import uvm_pkg::*</code> . Then inside this <code class="language-plaintext highlighter-rouge">run_test()</code> we will call the <code class="language-plaintext highlighter-rouge">uvm_top.run_test()</code>. The <code class="language-plaintext highlighter-rouge">uvm_top.run_test()</code> will get the name of the uvm test class (usually passed in as the command line argument <code class="language-plaintext highlighter-rouge">+UVM_TESTNAME=YOUR_TEST_NAME</code> ), then it will use the uvm factory to find that test class and construct it (the test class must be registered to the uvm factory by using <code class="language-plaintext highlighter-rouge">uvm_component_utils()</code> ). After that, still in the <code class="language-plaintext highlighter-rouge">uvm_top.run_test()</code>, the uvm phases will be started. First phase will be build_phase, where the uvm hierarchy will be constructed top down (from env to agent, then driver/monitor,…). 
+<p>Everythings in a uvm testbench begin in the testbench top, where the <code class="highlighter-rouge">run_test()</code> method is called, this method is actually a task defined in the uvm_globals.svh which is imported <code class="highlighter-rouge">import uvm_pkg::*</code> . Then inside this <code class="highlighter-rouge">run_test()</code> we will call the <code class="highlighter-rouge">uvm_top.run_test()</code>. The <code class="highlighter-rouge">uvm_top.run_test()</code> will get the name of the uvm test class (usually passed in as the command line argument <code class="highlighter-rouge">+UVM_TESTNAME=YOUR_TEST_NAME</code> ), then it will use the uvm factory to find that test class and construct it (the test class must be registered to the uvm factory by using <code class="highlighter-rouge">uvm_component_utils()</code> ). After that, still in the <code class="highlighter-rouge">uvm_top.run_test()</code>, the uvm phases will be started. First phase will be build_phase, where the uvm hierarchy will be constructed top down (from env to agent, then driver/monitor,…). 
 Refer to the figure below from <a href="https://verificationacademy.com/cookbook/testbench/build">uvm_cookbook</a>
 <img src="https://by3302files.storage.live.com/y4mEu1I9nAsQbg6vvTfyIQbEJ4v1P73CM0ISP066beWvKlA5Rp3hmucZ0esvu0fuvIlPrHiWVpBrkzN14ybN-hYLcei_h7qLrSnHUMOlLIaWbd4Hhxnl6ZCPr1gzAadmdK9PxQZaJ3VcpAQ4Hk6WMrem8bS2kQyycUTEPuMsiBCuvDE83Fk4bHQSN_4Ew-ZiHQCk4CPYgxB9l4p8okAe5oBUg/2020_08_09_uvm_test_vs_uvm_top_1.png?psid=1&amp;width=772&amp;height=553" alt="testbench top and uvm test build flow figure" /></p>
 
@@ -54,7 +54,7 @@ Refer to the figure below from <a href="https://verificationacademy.com/cookbook
 <h2 id="dont-be-confused">Don’t be confused</h2>
 
 <h3 id="uvm_top">uvm_top</h3>
-<p>The uvm testbench top different with <code class="language-plaintext highlighter-rouge">uvm_top</code>. The <code class="language-plaintext highlighter-rouge">uvm_top</code> is a global variable that hold the handle of <code class="language-plaintext highlighter-rouge">uvm_root</code> object inside uvm_pkg (which we import in the uvm testbench top). When we import the <code class="language-plaintext highlighter-rouge">uvm_pkg::*</code> in the testbench top, then call the <code class="language-plaintext highlighter-rouge">run_test()</code> method, the <code class="language-plaintext highlighter-rouge">uvm_root</code> object is created (<code class="language-plaintext highlighter-rouge">uvm_root</code> is a singleton class). Check this code below in the <a href="http://www.studio-muzzi.com/project/docs/UVMdocs_smu/uvm-1.1d/uvm__root_8svh_source.html">uvm_root.svh</a></p>
+<p>The uvm testbench top different with <code class="highlighter-rouge">uvm_top</code>. The <code class="highlighter-rouge">uvm_top</code> is a global variable that hold the handle of <code class="highlighter-rouge">uvm_root</code> object inside uvm_pkg (which we import in the uvm testbench top). When we import the <code class="highlighter-rouge">uvm_pkg::*</code> in the testbench top, then call the <code class="highlighter-rouge">run_test()</code> method, the <code class="highlighter-rouge">uvm_root</code> object is created (<code class="highlighter-rouge">uvm_root</code> is a singleton class). Check this code below in the <a href="http://www.studio-muzzi.com/project/docs/UVMdocs_smu/uvm-1.1d/uvm__root_8svh_source.html">uvm_root.svh</a></p>
 
 <div class="code">
 
@@ -63,7 +63,7 @@ Refer to the figure below from <a href="https://verificationacademy.com/cookbook
 </div>
 
 <h3 id="uvm_test_top">uvm_test_top</h3>
-<p>We have <code class="language-plaintext highlighter-rouge">uvm_test_top</code>. It’s actually the default variable containing the object of uvm test that we discussed above. When the run_test() is called, the uvm test class (which is passed in as cli argument with <code class="language-plaintext highlighter-rouge">+UVM_TESTNAME=YOUR_TEST_NAME</code>) will be constructed and the handle will be stored in the <code class="language-plaintext highlighter-rouge">uvm_test_top</code> variable. As above, it also is the top hierarchy of our uvm testbench. When running the uvm testbench, we will see testbench hierarchy path like this <code class="language-plaintext highlighter-rouge">uvm_test_top.env.agent_1.driver_1</code>. Check this code below in the <a href="http://www.studio-muzzi.com/project/docs/UVMdocs_smu/uvm-1.1d/uvm__root_8svh_source.html">uvm_root.svh</a></p>
+<p>We have <code class="highlighter-rouge">uvm_test_top</code>. It’s actually the default variable containing the object of uvm test that we discussed above. When the run_test() is called, the uvm test class (which is passed in as cli argument with <code class="highlighter-rouge">+UVM_TESTNAME=YOUR_TEST_NAME</code>) will be constructed and the handle will be stored in the <code class="highlighter-rouge">uvm_test_top</code> variable. As above, it also is the top hierarchy of our uvm testbench. When running the uvm testbench, we will see testbench hierarchy path like this <code class="highlighter-rouge">uvm_test_top.env.agent_1.driver_1</code>. Check this code below in the <a href="http://www.studio-muzzi.com/project/docs/UVMdocs_smu/uvm-1.1d/uvm__root_8svh_source.html">uvm_root.svh</a></p>
 
 <div class="code">
 

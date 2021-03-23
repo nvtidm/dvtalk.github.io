@@ -1,4 +1,4 @@
-I"ý<h1 id="install-tmux-with-no-root-and-internet">Install tmux with no root and Internet</h1>
+I"‹<h1 id="install-tmux-with-no-root-and-internet">Install tmux with no root and Internet</h1>
 <p class="fs-5 fw-500">No Internet access in 2020?? Well, if youâ€™re working in this industry then you will not suprise about this. There is no way we can access to the Internet from the login server, and also not root at all. However we still can install some of our beloved tools without asking IT team.</p>
 
 <hr />
@@ -32,7 +32,7 @@
    make <span class="nb">install</span></code></pre></figure>
 
 </div>
-<p>The <code class="language-plaintext highlighter-rouge">--prefix=$HOME/local </code> is commonly used when installing a tool without root. Basically it will guide the compiling step to store any data to the <code class="language-plaintext highlighter-rouge">$HOME/local</code>. So remember this for later use.</p>
+<p>The <code class="highlighter-rouge">--prefix=$HOME/local </code> is commonly used when installing a tool without root. Basically it will guide the compiling step to store any data to the <code class="highlighter-rouge">$HOME/local</code>. So remember this for later use.</p>
 
 <hr />
 <h3 id="then-install-ncurses">Then install ncurses</h3>
@@ -53,7 +53,7 @@
    <span class="nb">cd </span>tmux-3.2-rc.tar</code></pre></figure>
 
 </div>
-<p>Copy this code below to a bash script (not tcsh or csh script), for example <code class="language-plaintext highlighter-rouge">compiletmux.sh</code></p>
+<p>Copy this code below to a bash script (not tcsh or csh script), for example <code class="highlighter-rouge">compiletmux.sh</code></p>
 
 <div class="code">
 
@@ -62,6 +62,6 @@
  <span class="nv">CPPFLAGS</span><span class="o">=</span><span class="s2">"-I</span><span class="nv">$HOME</span><span class="s2">/local/include -I</span><span class="nv">$HOME</span><span class="s2">/local/include/ncurses"</span> <span class="nv">LDFLAGS</span><span class="o">=</span><span class="s2">"-static -L</span><span class="nv">$HOME</span><span class="s2">/local/include -L</span><span class="nv">$HOME</span><span class="s2">/local/include/ncurses -L</span><span class="nv">$HOME</span><span class="s2">/local/lib"</span> make</code></pre></figure>
 
 </div>
-<p>Then run this new script <code class="language-plaintext highlighter-rouge">compiletmux.sh</code>, youâ€™ll see a <code class="language-plaintext highlighter-rouge">tmux</code> binary file in current directory. 
-Finally, copy this tmux to <code class="language-plaintext highlighter-rouge">$HOME/local/bin</code> and enjoy your new life with tmux.</p>
+<p>Then run this new script <code class="highlighter-rouge">compiletmux.sh</code>, youâ€™ll see a <code class="highlighter-rouge">tmux</code> binary file in current directory. 
+Finally, copy this tmux to <code class="highlighter-rouge">$HOME/local/bin</code> and enjoy your new life with tmux.</p>
 :ET

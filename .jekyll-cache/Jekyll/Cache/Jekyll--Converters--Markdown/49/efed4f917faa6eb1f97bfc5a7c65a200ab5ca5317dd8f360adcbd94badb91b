@@ -1,0 +1,5 @@
+I"õ<h1 id="about-systemverilog-process-and-fork-join">About systemverilog process and fork join</h1>
+<p class="fs-5 fw-500">In systemverilog, we can group statements into blocks and there are two ways to do so. The first way is groups them into <code class="highlighter-rouge">begin</code>-<code class="highlighter-rouge">end</code> block, where statements are executed sequentially.
+The other way is to use the <code class="highlighter-rouge">fork</code>-<code class="highlighter-rouge">join</code> block, also called parallel block. In this block, all statements are executed concurrently.
+This post will share how to use this <code class="highlighter-rouge">fork</code>-<code class="highlighter-rouge">join</code> block and some of its practical cases.</p>
+:ET

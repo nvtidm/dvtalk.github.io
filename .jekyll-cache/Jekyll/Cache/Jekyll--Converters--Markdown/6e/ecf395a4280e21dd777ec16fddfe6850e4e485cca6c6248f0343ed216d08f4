@@ -1,4 +1,4 @@
-I"<h1 id="choosing-grandparent-class">Choosing grandparent class</h1>
+I"<h1 id="choosing-grandparent-class">Choosing grandparent class</h1>
 <p class="fs-5 fw-500">Usually when defining a new class, we will choose which class we will extends from.
 How about choosing the parent class of the class which we will extends from? 
 It is possible, and I will call it a grandparent class.</p>
@@ -26,7 +26,7 @@ Now if we has some of those classes as below:</p>
 
 </div>
 
-<p>We can use <code class="language-plaintext highlighter-rouge">typedef</code> to create new class type with full control of which is parent class of which.</p>
+<p>We can use <code class="highlighter-rouge">typedef</code> to create new class type with full control of which is parent class of which.</p>
 <div class="code">
 
   <figure class="highlight"><pre><code class="language-verilog" data-lang="verilog">     <span class="k">typedef</span> <span class="n">component_a</span> <span class="p">#(</span> <span class="n">component_b</span> <span class="p">#(</span><span class="n">component_c</span><span class="p">)</span> <span class="p">)</span> <span class="n">customized_component</span><span class="p">;</span></code></pre></figure>
