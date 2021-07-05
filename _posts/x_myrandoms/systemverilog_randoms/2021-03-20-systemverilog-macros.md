@@ -29,7 +29,7 @@ Macro is a piece of code which enable the text substitution everywhere the macro
 ### Rules to follow
 * Avoid using the macro name which is similar to any compiler directives.
 * No space after the backslash \ at the end of each line except for the last line of the macro.
-* No space between macro name and the open parentheses for macro argument "("    >.<
+* No space between macro name and the open parentheses for macro argument "(" (I actually had a painful experience with this rule :")).
 
 ### Using macro argument
 * Only the `ARG` itself: replaced as normal
