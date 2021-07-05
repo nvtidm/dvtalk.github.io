@@ -1,3 +1,0 @@
-I"ù<h1 id="differences-between-uvm-test-and-uvm-testbench-top">Differences between uvm test and uvm testbench top</h1>
-<p class="fs-5 fw-500">Back in the early days of my journey with uvm, the concept of uvm test and testbench top really got me. Before learning to use systemverilog and uvm, I only knew about a basic testbench, where the top would handle everything. So when studying a uvm testbench, it took me quite sometime to absorb how uvm test and testbench top hierarchy are related. Here it is:</p>
-:ET
