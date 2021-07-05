@@ -22,7 +22,7 @@ This post will share how to use this `fork`-`join` block and some of its practic
 ## join/join_none/join_any
 First up, let's look at the structure of the sequential block.
 The block begin with the keywork `fork`, all procedure statements under this keywork will be started at the same time. When the parent process can resume its execution is depended on the closing keywork.
-We have `join`, `join_none` and `join_any`. The diagram below will explain what the differences between those keyworks.
+We have `join`, `join_none` and `join_any`.
 
 * For `fork`-`join`, all the procedure statements will have to finish before the parent process can resume its execution.
 * For `fork`-`join_any`, the parent process will be blocked until one of the processes spawned by the fork finished.
@@ -115,6 +115,43 @@ the next statement right after one of the 5 processes finished.
 </div>
 * In the above example, by using `fork/join_none`, we have 5 processes executed concurrently. And by using `uvm_event`, the 
 ```$display("the NEXT Statement ... ");``` will be executed when one of the 5 processes finished.
+
+### fork join_none in a forever loop
+We can also put the fork in side a forever loop.
+I sometimes do this when creating uvm sequence.
+However, we should be careful about the content of the `fork-join_none` block, cause it might hang our simulator.
+Never write any code with no statement to control the process in forever loop like below:
+<div class ="code" markdown="1" >
+{% highlight verilog %}
+    forever begin
+      fork
+        begin
+          $display ("%t ps, start thread %d", $time, j);
+          #1;
+          $display("%t ps, end of thread %d", $time,j);
+        end
+      join_none
+    end
+{% endhighlight %}
+</div>
+* The above code will hang our simulator. Because we're using fork/join_none, and the 2 `display` task will be executed right away, then move to the next interation of the forever loop.
+This loop will create infinite number of process and hang the simulator. We should at least have some control inside the `fork-join_none` like below:
+{% highlight verilog %}
+    forever begin
+      fork
+        begin
+          $display ("%t ps, start thread %d", $time, j);
+          #10;
+          //
+          // Wait for some signal to trigger.
+          ...
+          //
+          $display("%t ps, end of thread %d", $time,j);
+        end
+      join_none
+    end
+{% endhighlight %}
+
 
 ---
 ## Process control

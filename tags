@@ -5463,7 +5463,7 @@ D	assets/js/vendor/lunr.min.js	/^!function(){var e=function(t){var r=new e.Build
 DUT and driver/monitor connections	_posts/x_myrandoms/uvm_randoms/2020-08-09-uvm-test-and-testbench-top.md	/^### DUT and driver\/monitor connections$/;"	S	section:Differences between uvm test and uvm testbench top""How uvm test and uvm testbench top are related?
 DUT and driver/monitor connections	_site/2020/08/09/uvm-test-and-testbench-top/index.html	/^   <span class="kt">class<\/span> <span class="n">test_no1<\/span> <span class="k">extends<\/spa/;"	j
 Debugging	_posts/x_myrandoms/systemverilog_randoms/2021-03-20-systemverilog-macros.md	/^### Debugging$/;"	S	section:Systemverilog macro with examples""Systemverilog macro 101
-Debugging	_site/2021/03/20/systemverilog-macros/index.html	/^<!DOCTYPE html><html lang="en-US"><head><meta charset="UTF-8"><meta http-equiv="X-UA-Compatible"/;"	j
+Debugging	_site/2021/03/20/systemverilog-macros/index.html	/^<span class="c1">\/\/ generated code:  $display("top.module_a.signal_a signal, expected value is/;"	j
 Differences between uvm test and uvm testbench top	_posts/x_myrandoms/uvm_randoms/2020-08-09-uvm-test-and-testbench-top.md	/^# Differences between uvm test and uvm testbench top $/;"	c
 Differences between uvm test and uvm testbench top	_site/2020/08/09/uvm-test-and-testbench-top/index.html	/^<!DOCTYPE html><html lang="en-US"><head><meta charset="UTF-8"><meta http-equiv="X-UA-Compatible"/;"	h
 Don't be confused	_posts/x_myrandoms/uvm_randoms/2020-08-09-uvm-test-and-testbench-top.md	/^## Don't be confused$/;"	s	chapter:Differences between uvm test and uvm testbench top
@@ -5476,8 +5476,8 @@ Enforcement	CODE_OF_CONDUCT.md	/^## Enforcement$/;"	s	chapter:Contributor Covena
 Enforcement	_site/CODE_OF_CONDUCT.md	/^## Enforcement$/;"	s	chapter:Contributor Covenant Code of Conduct
 Env Randoms	_posts/x_myrandoms/2020-07-13-linux-env-randoms.md	/^# Env Randoms$/;"	c
 Env Randoms	_site/docs/randoms/linux_env_randoms.html	/^<!DOCTYPE html><html lang="en-US"><head><meta charset="UTF-8"><meta http-equiv="X-UA-Compatible"/;"	h
-Examples	_posts/x_myrandoms/systemverilog_randoms/2021-03-20-systemverilog-macros.md	/^## Examples $/;"	s	chapter:Systemverilog macro with examples
-Examples	_site/2021/03/20/systemverilog-macros/index.html	/^<!DOCTYPE html><html lang="en-US"><head><meta charset="UTF-8"><meta http-equiv="X-UA-Compatible"/;"	i
+Examples	_posts/x_myrandoms/systemverilog_randoms/2021-03-20-systemverilog-macros.md	/^## Examples$/;"	s	chapter:Systemverilog macro with examples
+Examples	_site/2021/03/20/systemverilog-macros/index.html	/^<span class="c1">\/\/ generated code:  $display("top.module_a.signal_a signal, expected value is/;"	i
 Extended details	_sass/vendor/normalize.scss/README.md	/^## Extended details$/;"	s	chapter:normalize.scss v0.1.0
 FieldRef	_site/assets/js/vendor/lunr.min.js	/^!function(){var e=function(t){var r=new e.Builder;return r.pipeline.add(e.trimmer,e.stopWordFilt/;"	c	class:e
 FieldRef	assets/js/vendor/lunr.min.js	/^!function(){var e=function(t){var r=new e.Builder;return r.pipeline.add(e.trimmer,e.stopWordFilt/;"	c	class:e
@@ -5498,7 +5498,7 @@ Finding more information	_posts/x_myrandoms/systemverilog_randoms/2020-12-06-abo
 Finding more information	_posts/x_myrandoms/systemverilog_randoms/2021-03-20-systemverilog-macros.md	/^## Finding more information$/;"	s	chapter:Systemverilog macro with examples
 Finding more information	_site/2020/10/18/forcing-signals-with-QuestaSim/index.html	/^      <\/code><\/pre><\/figure>This means: When I_SIGNAL_E change value to 1 the first time, for/;"	i
 Finding more information	_site/2020/12/06/about-systemverilog-process-and-fork/index.html	/^  <span class="k">end<\/span> <\/code><\/pre><\/figure><\/div><ul><li>The p1, p2, p3 has the var/;"	i
-Finding more information	_site/2021/03/20/systemverilog-macros/index.html	/^<!DOCTYPE html><html lang="en-US"><head><meta charset="UTF-8"><meta http-equiv="X-UA-Compatible"/;"	i
+Finding more information	_site/2021/03/20/systemverilog-macros/index.html	/^   <span class="k">end<\/span><\/code><\/pre><\/figure><hr \/><h2 id="finding-more-information">/;"	i
 First create your local directory	_posts/x_myrandoms/linux_env_randoms/2020-07-23-install-tmux-without-root-and-internet-access.md	/^### First create your local directory$/;"	S	section:Install tmux with no root and Internet""Then we install them locally
 First create your local directory	_site/2020/07/23/install-tmux-without-root-and-internet-access/index.html	/^<!DOCTYPE html><html lang="en-US"><head><meta charset="UTF-8"><meta http-equiv="X-UA-Compatible"/;"	j
 First up	_posts/x_myrandoms/linux_env_randoms/2020-10-18-forcing-signals-with-QuestaSim.md	/^### First up$/;"	S	section:Forcing Signals with Questasim/ModelSim""Some examples of forcing signals using Questasim
@@ -5526,8 +5526,6 @@ Linux environment related posts	_posts/tag/2020-07-23-linux-env.md	/^# Linux env
 Linux environment related posts	_site/tag/linux_env.html	/^<!DOCTYPE html><html lang="en-US"><head><meta charset="UTF-8"><meta http-equiv="X-UA-Compatible"/;"	h
 List of my playground on EDAPlayground	_posts/2020-07-19-eda-list.md	/^# List of my playground on EDAPlayground$/;"	c
 List of my playground on EDAPlayground	_site/edaplayground.html	/^<!DOCTYPE html><html lang="en-US"><head><meta charset="UTF-8"><meta http-equiv="X-UA-Compatible"/;"	h
-Macro substitution and argument substitution	_posts/x_myrandoms/systemverilog_randoms/2021-03-20-systemverilog-macros.md	/^### Macro substitution and argument substitution$/;"	S	section:Systemverilog macro with examples""Systemverilog macro 101
-Macro substitution and argument substitution	_site/2021/03/20/systemverilog-macros/index.html	/^<!DOCTYPE html><html lang="en-US"><head><meta charset="UTF-8"><meta http-equiv="X-UA-Compatible"/;"	j
 MatchData	_site/assets/js/vendor/lunr.min.js	/^!function(){var e=function(t){var r=new e.Builder;return r.pipeline.add(e.trimmer,e.stopWordFilt/;"	c	class:e
 MatchData	assets/js/vendor/lunr.min.js	/^!function(){var e=function(t){var r=new e.Builder;return r.pipeline.add(e.trimmer,e.stopWordFilt/;"	c	class:e
 My How to	_posts/2020-07-10-my-howto.md	/^# My How to$/;"	c
@@ -5557,7 +5555,7 @@ PROHIBITED	assets/js/vendor/lunr.min.js	/^!function(){var e=function(t){var r=ne
 Pipeline	_site/assets/js/vendor/lunr.min.js	/^!function(){var e=function(t){var r=new e.Builder;return r.pipeline.add(e.trimmer,e.stopWordFilt/;"	c	class:e
 Pipeline	assets/js/vendor/lunr.min.js	/^!function(){var e=function(t){var r=new e.Builder;return r.pipeline.add(e.trimmer,e.stopWordFilt/;"	c	class:e
 Process control	_posts/x_myrandoms/systemverilog_randoms/2020-12-06-about-systemverilog-process-and-fork.md	/^## Process control$/;"	s	chapter:About systemverilog process and fork join
-Process control	_site/2020/12/06/about-systemverilog-process-and-fork/index.html	/^    <span class="p">$<\/span><span class="nb">display<\/span><span class="p">(<\/span><span clas/;"	i
+Process control	_site/2020/12/06/about-systemverilog-process-and-fork/index.html	/^    <span class="k">end<\/span><\/code><\/pre><\/figure><hr \/><h2 id="process-control"> <a href/;"	i
 Query	_site/assets/js/vendor/lunr.min.js	/^!function(){var e=function(t){var r=new e.Builder;return r.pipeline.add(e.trimmer,e.stopWordFilt/;"	c	class:e
 Query	assets/js/vendor/lunr.min.js	/^!function(){var e=function(t){var r=new e.Builder;return r.pipeline.add(e.trimmer,e.stopWordFilt/;"	c	class:e
 QueryLexer	_site/assets/js/vendor/lunr.min.js	/^!function(){var e=function(t){var r=new e.Builder;return r.pipeline.add(e.trimmer,e.stopWordFilt/;"	c	class:e
@@ -5569,9 +5567,9 @@ QueryParser	assets/js/vendor/lunr.min.js	/^!function(){var e=function(t){var r=n
 REQUIRED	_site/assets/js/vendor/lunr.min.js	/^!function(){var e=function(t){var r=new e.Builder;return r.pipeline.add(e.trimmer,e.stopWordFilt/;"	p	class:e.Query.presence
 REQUIRED	assets/js/vendor/lunr.min.js	/^!function(){var e=function(t){var r=new e.Builder;return r.pipeline.add(e.trimmer,e.stopWordFilt/;"	p	class:e.Query.presence
 Recommendation	_posts/x_myrandoms/systemverilog_randoms/2021-03-20-systemverilog-macros.md	/^### Recommendation$/;"	S	section:Systemverilog macro with examples""Systemverilog macro 101
-Recommendation	_site/2021/03/20/systemverilog-macros/index.html	/^<!DOCTYPE html><html lang="en-US"><head><meta charset="UTF-8"><meta http-equiv="X-UA-Compatible"/;"	j
+Recommendation	_site/2021/03/20/systemverilog-macros/index.html	/^<span class="c1">\/\/ generated code:  $display("top.module_a.signal_a signal, expected value is/;"	j
 Rules to follow	_posts/x_myrandoms/systemverilog_randoms/2021-03-20-systemverilog-macros.md	/^### Rules to follow$/;"	S	section:Systemverilog macro with examples""Systemverilog macro 101
-Rules to follow	_site/2021/03/20/systemverilog-macros/index.html	/^<!DOCTYPE html><html lang="en-US"><head><meta charset="UTF-8"><meta http-equiv="X-UA-Compatible"/;"	j
+Rules to follow	_site/2021/03/20/systemverilog-macros/index.html	/^   <span class="n">macro<\/span> <span class="n">text2<\/span><span class="p">;<\/span><\/code></;"	j
 Scope	CODE_OF_CONDUCT.md	/^## Scope$/;"	s	chapter:Contributor Covenant Code of Conduct
 Scope	_site/CODE_OF_CONDUCT.md	/^## Scope$/;"	s	chapter:Contributor Covenant Code of Conduct
 Secondly install libevent	_posts/x_myrandoms/linux_env_randoms/2020-07-23-install-tmux-without-root-and-internet-access.md	/^### Secondly install libevent$/;"	S	section:Install tmux with no root and Internet""</div>
@@ -5582,6 +5580,8 @@ Set	assets/js/vendor/lunr.min.js	/^!function(){var e=function(t){var r=new e.Bui
 Set	assets/js/vendor/lunr.min.js	/^!function(){var e=function(t){var r=new e.Builder;return r.pipeline.add(e.trimmer,e.stopWordFilt/;"	f	function:e
 Some examples of forcing signals using Questasim	_posts/x_myrandoms/linux_env_randoms/2020-10-18-forcing-signals-with-QuestaSim.md	/^## Some examples of forcing signals using Questasim$/;"	s	chapter:Forcing Signals with Questasim/ModelSim
 Some examples of forcing signals using Questasim	_site/2020/10/18/forcing-signals-with-QuestaSim/index.html	/^<!DOCTYPE html><html lang="en-US"><head><meta charset="UTF-8"><meta http-equiv="X-UA-Compatible"/;"	i
+Syntax	_posts/x_myrandoms/systemverilog_randoms/2021-03-20-systemverilog-macros.md	/^### Syntax$/;"	S	section:Systemverilog macro with examples""Systemverilog macro 101
+Syntax	_site/2021/03/20/systemverilog-macros/index.html	/^<!DOCTYPE html><html lang="en-US"><head><meta charset="UTF-8"><meta http-equiv="X-UA-Compatible"/;"	j
 Systemverilog Random	_posts/x_myrandoms/2020-07-15-systemerilog-random.md	/^# Systemverilog Random$/;"	c
 Systemverilog Random	_site/docs/randoms/systemverilog_randoms.html	/^<!DOCTYPE html><html lang="en-US"><head><meta charset="UTF-8"><meta http-equiv="X-UA-Compatible"/;"	h
 Systemverilog macro 101	_posts/x_myrandoms/systemverilog_randoms/2021-03-20-systemverilog-macros.md	/^## Systemverilog macro 101$/;"	s	chapter:Systemverilog macro with examples
@@ -5625,6 +5625,8 @@ UVM related posts	_posts/tag/2020-07-10-uvm.md	/^# UVM related posts$/;"	c
 UVM related posts	_site/tag/uvm.html	/^<!DOCTYPE html><html lang="en-US"><head><meta charset="UTF-8"><meta http-equiv="X-UA-Compatible"/;"	h
 Using Vim terminal	_posts/x_myrandoms/linux_env_randoms/2020-08-15-using-vim-terminal.md	/^# Using Vim terminal$/;"	c
 Using Vim terminal	_site/2020/08/15/using-vim-terminal/index.html	/^<!DOCTYPE html><html lang="en-US"><head><meta charset="UTF-8"><meta http-equiv="X-UA-Compatible"/;"	h
+Using macro argument	_posts/x_myrandoms/systemverilog_randoms/2021-03-20-systemverilog-macros.md	/^### Using macro argument$/;"	S	section:Systemverilog macro with examples""Systemverilog macro 101
+Using macro argument	_site/2021/03/20/systemverilog-macros/index.html	/^   <span class="n">macro<\/span> <span class="n">text2<\/span><span class="p">;<\/span><\/code></;"	j
 Using registers	_posts/x_myrandoms/linux_env_randoms/2020-08-15-using-vim-terminal.md	/^### Using registers$/;"	S	section:Using Vim terminal""Vim send data from a buffer to vim terminal
 Using registers	_site/2020/08/15/using-vim-terminal/index.html	/^<!DOCTYPE html><html lang="en-US"><head><meta charset="UTF-8"><meta http-equiv="X-UA-Compatible"/;"	j
 Using vim terminal	_posts/x_myrandoms/linux_env_randoms/2020-08-15-using-vim-terminal.md	/^## Using vim terminal$/;"	s	chapter:Using Vim terminal
@@ -5876,7 +5878,7 @@ back-to-top	_site/2020/08/09/uvm-test-and-testbench-top/index.html	/^   <span cl
 back-to-top	_site/2020/08/15/using-vim-terminal/index.html	/^endif<\/code><\/pre><\/figure><\/div><p>Now let’s see how it’s like when using this script t/;"	I
 back-to-top	_site/2020/10/18/forcing-signals-with-QuestaSim/index.html	/^      <\/code><\/pre><\/figure>This means: When I_SIGNAL_E change value to 1 the first time, for/;"	I
 back-to-top	_site/2020/12/06/about-systemverilog-process-and-fork/index.html	/^  <span class="k">end<\/span> <\/code><\/pre><\/figure><\/div><ul><li>The p1, p2, p3 has the var/;"	I
-back-to-top	_site/2021/03/20/systemverilog-macros/index.html	/^<!DOCTYPE html><html lang="en-US"><head><meta charset="UTF-8"><meta http-equiv="X-UA-Compatible"/;"	I
+back-to-top	_site/2021/03/20/systemverilog-macros/index.html	/^   <span class="k">end<\/span><\/code><\/pre><\/figure><hr \/><h2 id="finding-more-information">/;"	I
 back-to-top	_site/docs/howto/uvm-howto.html	/^<!DOCTYPE html><html lang="en-US"><head><meta charset="UTF-8"><meta http-equiv="X-UA-Compatible"/;"	I
 back-to-top	_site/docs/howto/vim-howto.html	/^<!DOCTYPE html><html lang="en-US"><head><meta charset="UTF-8"><meta http-equiv="X-UA-Compatible"/;"	I
 back-to-top	_site/docs/randoms/linux_env_randoms.html	/^<!DOCTYPE html><html lang="en-US"><head><meta charset="UTF-8"><meta http-equiv="X-UA-Compatible"/;"	I
@@ -6174,8 +6176,8 @@ content	_site/assets/js/search-data.json	/^    "content": " ",$/;"	s	object:43
 content	_site/assets/js/search-data.json	/^    "content": " ",$/;"	s	object:44
 content	_site/assets/js/search-data.json	/^    "content": ". | Name | Description | Related posts | . | Choosing your grandparent class | U/;"	s	object:28
 content	_site/assets/js/search-data.json	/^    "content": "As mentioned, we force signals using the interactive mode of those EDA tool, so /;"	s	object:10
+content	_site/assets/js/search-data.json	/^    "content": "Assertion to compare SIGNAL value with EXP_VALUE. Provide clock in CLK, enable\//;"	s	object:2
 content	_site/assets/js/search-data.json	/^    "content": "Back in the early days of my journey with uvm, the concept of uvm test and testb/;"	s	object:18
-content	_site/assets/js/search-data.json	/^    "content": "Blah blah blah . ",$/;"	s	object:0
 content	_site/assets/js/search-data.json	/^    "content": "First create your local directory . mkdir -p $HOME\/local . Secondly install lib/;"	s	object:25
 content	_site/assets/js/search-data.json	/^    "content": "First up . | Make sure your signals have correct path, you can find signal path /;"	s	object:11
 content	_site/assets/js/search-data.json	/^    "content": "First up, let’s look at the structure of the sequential block. The block begin/;"	s	object:5
@@ -6185,6 +6187,7 @@ content	_site/assets/js/search-data.json	/^    "content": "It has random notes a
 content	_site/assets/js/search-data.json	/^    "content": "It’s How to of vim . ",$/;"	s	object:38
 content	_site/assets/js/search-data.json	/^    "content": "It’s How to of vim . ",$/;"	s	object:39
 content	_site/assets/js/search-data.json	/^    "content": "I’ve been using vcs and questasim for verification for a while, and both of th/;"	s	object:9
+content	_site/assets/js/search-data.json	/^    "content": "Macro is a piece of code which enable the text substitution everywhere the macro/;"	s	object:0
 content	_site/assets/js/search-data.json	/^    "content": "No Internet access in 2020?? Well, if you’re working in this industry then you/;"	s	object:23
 content	_site/assets/js/search-data.json	/^    "content": "Open vim terminal . | First to use vim terminal, we should have vim from version/;"	s	object:14
 content	_site/assets/js/search-data.json	/^    "content": "Random posts about linux env, EDA tools, scripting, .etc . ",$/;"	s	object:37
@@ -6192,9 +6195,9 @@ content	_site/assets/js/search-data.json	/^    "content": "Random posts about uv
 content	_site/assets/js/search-data.json	/^    "content": "Random things about Systemverilog . ",$/;"	s	object:34
 content	_site/assets/js/search-data.json	/^    "content": "Read the User Manual released by Questasim for more information and example on h/;"	s	object:12
 content	_site/assets/js/search-data.json	/^    "content": "Recently, I go through this wonderful paper of DVCon 2016 Paper_link. This paper/;"	s	object:31
-content	_site/assets/js/search-data.json	/^    "content": "Rules to follow . | Avoid using the macro name which is similar to any compiler /;"	s	object:1
 content	_site/assets/js/search-data.json	/^    "content": "Sometimes an example is just enough. Honestly, I do search and copy a lot. It is/;"	s	object:27
 content	_site/assets/js/search-data.json	/^    "content": "Sometimes when I navigating through files inside a vim terminal and I want to op/;"	s	object:16
+content	_site/assets/js/search-data.json	/^    "content": "Syntax . `define macro_name(ARG1=0, ARG2=\\"default_string\\") \\\\ macro text1;/;"	s	object:1
 content	_site/assets/js/search-data.json	/^    "content": "Systemverilog supplies us several ways to control the processes, those methods a/;"	s	object:7
 content	_site/assets/js/search-data.json	/^    "content": "This is a very interesting method, but don’t be greedy since it might be painf/;"	s	object:33
 content	_site/assets/js/search-data.json	/^    "content": "Those things above is pretty much everything that I’ve been doing inside vim t/;"	s	object:17
@@ -6205,7 +6208,6 @@ content	_site/assets/js/search-data.json	/^    "content": "Usually when defining
 content	_site/assets/js/search-data.json	/^    "content": "Vim supports the terminal feature since version 8.1. This feature allows us to h/;"	s	object:13
 content	_site/assets/js/search-data.json	/^    "content": "You can run an example of this method on this simple code here: --&gt; . ",$/;"	s	object:32
 content	_site/assets/js/search-data.json	/^    "content": "You should download these source files below to your local laptop and then copy /;"	s	object:24
-content	_site/assets/js/search-data.json	/^    "content": "\/\/ Assertion to compare SIGNAL value with EXP_VALUE \/\/ Provide clock in CLK,/;"	s	object:2
 content	_site/assets/js/search-data.json	/^    "content": "fork join_none in a loop . Let consider this case, we have a list of item, and w/;"	s	object:6
 content	_site/assets/js/search-data.json	/^    "content": "uvm test and testbench top are two basic items of a uvm testbench, where everyth/;"	s	object:21
 content	_site/assets/js/search-data.json	/^    "content": "uvm test will be a place where the uvm components such as uvm_env, uvm_agent, uv/;"	s	object:20
@@ -6259,7 +6261,7 @@ debug	package-lock.json	/^        "debug": {$/;"	o	object:dependencies.expand-br
 debug	package-lock.json	/^        "debug": {$/;"	o	object:dependencies.snapdragon.dependencies
 debug	package-lock.json	/^        "debug": {$/;"	o	object:dependencies.stylelint-selector-no-utility.dependencies
 debug	package-lock.json	/^    "debug": {$/;"	o	object:dependencies
-debugging	_site/2021/03/20/systemverilog-macros/index.html	/^<!DOCTYPE html><html lang="en-US"><head><meta charset="UTF-8"><meta http-equiv="X-UA-Compatible"/;"	I
+debugging	_site/2021/03/20/systemverilog-macros/index.html	/^<span class="c1">\/\/ generated code:  $display("top.module_a.signal_a signal, expected value is/;"	I
 decamelize	package-lock.json	/^            "decamelize": "^1.1.1",$/;"	s	object:dependencies.stylelint-selector-no-utility.dependencies.yargs.requires
 decamelize	package-lock.json	/^            "decamelize": "^1.1.2",$/;"	s	object:dependencies.stylelint-selector-no-utility.dependencies.meow.requires
 decamelize	package-lock.json	/^            "decamelize": "^1.2.0"$/;"	s	object:dependencies.yargs.dependencies.yargs-parser.requires
@@ -6300,7 +6302,7 @@ demo	_site/2020/08/09/uvm-test-and-testbench-top/index.html	/^   <span class="kt
 demo	_site/2020/08/15/using-vim-terminal/index.html	/^endif<\/code><\/pre><\/figure><\/div><p>Now let’s see how it’s like when using this script t/;"	I
 demo	_site/2020/10/18/forcing-signals-with-QuestaSim/index.html	/^      <\/code><\/pre><\/figure>This means: When I_SIGNAL_E change value to 1 the first time, for/;"	I
 demo	_site/2020/12/06/about-systemverilog-process-and-fork/index.html	/^  <span class="k">end<\/span> <\/code><\/pre><\/figure><\/div><ul><li>The p1, p2, p3 has the var/;"	I
-demo	_site/2021/03/20/systemverilog-macros/index.html	/^<!DOCTYPE html><html lang="en-US"><head><meta charset="UTF-8"><meta http-equiv="X-UA-Compatible"/;"	I
+demo	_site/2021/03/20/systemverilog-macros/index.html	/^   <span class="k">end<\/span><\/code><\/pre><\/figure><hr \/><h2 id="finding-more-information">/;"	I
 demo	_site/docs/howto/uvm-howto.html	/^<!DOCTYPE html><html lang="en-US"><head><meta charset="UTF-8"><meta http-equiv="X-UA-Compatible"/;"	I
 demo	_site/docs/howto/vim-howto.html	/^<!DOCTYPE html><html lang="en-US"><head><meta charset="UTF-8"><meta http-equiv="X-UA-Compatible"/;"	I
 demo	_site/docs/randoms/linux_env_randoms.html	/^<!DOCTYPE html><html lang="en-US"><head><meta charset="UTF-8"><meta http-equiv="X-UA-Compatible"/;"	I
@@ -7092,7 +7094,7 @@ disqus_thread	_site/2020/08/09/uvm-test-and-testbench-top/index.html	/^   <span 
 disqus_thread	_site/2020/08/15/using-vim-terminal/index.html	/^endif<\/code><\/pre><\/figure><\/div><p>Now let’s see how it’s like when using this script t/;"	I
 disqus_thread	_site/2020/10/18/forcing-signals-with-QuestaSim/index.html	/^      <\/code><\/pre><\/figure>This means: When I_SIGNAL_E change value to 1 the first time, for/;"	I
 disqus_thread	_site/2020/12/06/about-systemverilog-process-and-fork/index.html	/^  <span class="k">end<\/span> <\/code><\/pre><\/figure><\/div><ul><li>The p1, p2, p3 has the var/;"	I
-disqus_thread	_site/2021/03/20/systemverilog-macros/index.html	/^<!DOCTYPE html><html lang="en-US"><head><meta charset="UTF-8"><meta http-equiv="X-UA-Compatible"/;"	I
+disqus_thread	_site/2021/03/20/systemverilog-macros/index.html	/^   <span class="k">end<\/span><\/code><\/pre><\/figure><hr \/><h2 id="finding-more-information">/;"	I
 disqus_thread	_site/edaplayground.html	/^<!DOCTYPE html><html lang="en-US"><head><meta charset="UTF-8"><meta http-equiv="X-UA-Compatible"/;"	I
 dist	_sass/vendor/normalize.scss/package.json	/^  "dist": {$/;"	o
 div	_site/assets/css/404_info.css	/^html,body,div,span,applet,object,iframe,h1,h2,h3,h4,h5,h6,p,blockquote,pre,a,abbr,acronym,addres/;"	s
@@ -7251,7 +7253,7 @@ esprima	package-lock.json	/^    "esprima": {$/;"	o	object:dependencies
 esutils	package-lock.json	/^        "esutils": "^2.0.2",$/;"	s	object:dependencies.@babel/highlight.requires
 esutils	package-lock.json	/^        "esutils": "^2.0.2",$/;"	s	object:dependencies.@babel/types.requires
 esutils	package-lock.json	/^    "esutils": {$/;"	o	object:dependencies
-examples	_site/2021/03/20/systemverilog-macros/index.html	/^<!DOCTYPE html><html lang="en-US"><head><meta charset="UTF-8"><meta http-equiv="X-UA-Compatible"/;"	I
+examples	_site/2021/03/20/systemverilog-macros/index.html	/^<span class="c1">\/\/ generated code:  $display("top.module_a.signal_a signal, expected value is/;"	I
 execa	package-lock.json	/^        "execa": "^1.0.0",$/;"	s	object:dependencies.os-locale.requires
 execa	package-lock.json	/^    "execa": {$/;"	o	object:dependencies
 execall	package-lock.json	/^            "execall": "^1.0.0",$/;"	s	object:dependencies.stylelint-selector-no-utility.dependencies.stylelint.requires
@@ -7361,7 +7363,7 @@ find-up	package-lock.json	/^        "find-up": {$/;"	o	object:dependencies.yargs
 find-up	package-lock.json	/^    "find-up": {$/;"	o	object:dependencies
 finding-more-information	_site/2020/10/18/forcing-signals-with-QuestaSim/index.html	/^      <\/code><\/pre><\/figure>This means: When I_SIGNAL_E change value to 1 the first time, for/;"	I
 finding-more-information	_site/2020/12/06/about-systemverilog-process-and-fork/index.html	/^  <span class="k">end<\/span> <\/code><\/pre><\/figure><\/div><ul><li>The p1, p2, p3 has the var/;"	I
-finding-more-information	_site/2021/03/20/systemverilog-macros/index.html	/^<!DOCTYPE html><html lang="en-US"><head><meta charset="UTF-8"><meta http-equiv="X-UA-Compatible"/;"	I
+finding-more-information	_site/2021/03/20/systemverilog-macros/index.html	/^   <span class="k">end<\/span><\/code><\/pre><\/figure><hr \/><h2 id="finding-more-information">/;"	I
 fine-grain process control	_posts/x_myrandoms/systemverilog_randoms/2020-12-06-about-systemverilog-process-and-fork.md	/^### fine-grain process control$/;"	S	section:About systemverilog process and fork join""Process control
 fine-grain process control	_site/2020/12/06/about-systemverilog-process-and-fork/index.html	/^    <span class="p">$<\/span><span class="nb">display<\/span><span class="p">(<\/span><span clas/;"	j
 fine-grain-process-control	_site/2020/12/06/about-systemverilog-process-and-fork/index.html	/^    <span class="p">$<\/span><span class="nb">display<\/span><span class="p">(<\/span><span clas/;"	I
@@ -7396,10 +7398,13 @@ fork join in a loop	_posts/x_myrandoms/systemverilog_randoms/2020-12-06-about-sy
 fork join in a loop	_site/2020/12/06/about-systemverilog-process-and-fork/index.html	/^<!DOCTYPE html><html lang="en-US"><head><meta charset="UTF-8"><meta http-equiv="X-UA-Compatible"/;"	i
 fork join_any in a loop	_posts/x_myrandoms/systemverilog_randoms/2020-12-06-about-systemverilog-process-and-fork.md	/^### fork join_any in a loop$/;"	S	section:About systemverilog process and fork join""fork join in a loop
 fork join_any in a loop	_site/2020/12/06/about-systemverilog-process-and-fork/index.html	/^    <span class="p">$<\/span><span class="nb">display<\/span><span class="p">(<\/span><span clas/;"	j
+fork join_none in a forever loop	_posts/x_myrandoms/systemverilog_randoms/2020-12-06-about-systemverilog-process-and-fork.md	/^### fork join_none in a forever loop$/;"	S	section:About systemverilog process and fork join""fork join in a loop
+fork join_none in a forever loop	_site/2020/12/06/about-systemverilog-process-and-fork/index.html	/^    <span class="p">$<\/span><span class="nb">display<\/span><span class="p">(<\/span><span clas/;"	j
 fork join_none in a loop	_posts/x_myrandoms/systemverilog_randoms/2020-12-06-about-systemverilog-process-and-fork.md	/^### fork join_none in a loop$/;"	S	section:About systemverilog process and fork join""fork join in a loop
 fork join_none in a loop	_site/2020/12/06/about-systemverilog-process-and-fork/index.html	/^<!DOCTYPE html><html lang="en-US"><head><meta charset="UTF-8"><meta http-equiv="X-UA-Compatible"/;"	j
 fork-join-in-a-loop	_site/2020/12/06/about-systemverilog-process-and-fork/index.html	/^<!DOCTYPE html><html lang="en-US"><head><meta charset="UTF-8"><meta http-equiv="X-UA-Compatible"/;"	I
 fork-join_any-in-a-loop	_site/2020/12/06/about-systemverilog-process-and-fork/index.html	/^    <span class="p">$<\/span><span class="nb">display<\/span><span class="p">(<\/span><span clas/;"	I
+fork-join_none-in-a-forever-loop	_site/2020/12/06/about-systemverilog-process-and-fork/index.html	/^    <span class="p">$<\/span><span class="nb">display<\/span><span class="p">(<\/span><span clas/;"	I
 fork-join_none-in-a-loop	_site/2020/12/06/about-systemverilog-process-and-fork/index.html	/^<!DOCTYPE html><html lang="en-US"><head><meta charset="UTF-8"><meta http-equiv="X-UA-Compatible"/;"	I
 form	_site/assets/css/404_info.css	/^html,body,div,span,applet,object,iframe,h1,h2,h3,h4,h5,h6,p,blockquote,pre,a,abbr,acronym,addres/;"	s
 form	_site/assets/css/just-the-docs-dark.css	/^ol, ul, dl, pre, address, blockquote, table, div, hr, form, fieldset, noscript .table-wrapper { /;"	s
@@ -8869,7 +8874,6 @@ longest-streak	package-lock.json	/^    "longest-streak": {$/;"	o	object:dependen
 loud-rejection	package-lock.json	/^            "loud-rejection": "^1.0.0",$/;"	s	object:dependencies.stylelint-selector-no-utility.dependencies.meow.requires
 loud-rejection	package-lock.json	/^        "loud-rejection": "^1.0.0",$/;"	s	object:dependencies.meow.requires
 loud-rejection	package-lock.json	/^    "loud-rejection": {$/;"	o	object:dependencies
-macro-substitution-and-argument-substitution	_site/2021/03/20/systemverilog-macros/index.html	/^<!DOCTYPE html><html lang="en-US"><head><meta charset="UTF-8"><meta http-equiv="X-UA-Compatible"/;"	I
 magnitude	_site/assets/js/vendor/lunr.min.js	/^!function(){var e=function(t){var r=new e.Builder;return r.pipeline.add(e.trimmer,e.stopWordFilt/;"	m	class:e.Vector
 magnitude	assets/js/vendor/lunr.min.js	/^!function(){var e=function(t){var r=new e.Builder;return r.pipeline.add(e.trimmer,e.stopWordFilt/;"	m	class:e.Vector
 main	_site/assets/css/just-the-docs-dark.css	/^article, aside, details, figcaption, figure, footer, header, hgroup, main, menu, nav, section, s/;"	s
@@ -9475,7 +9479,7 @@ previewStart	_site/assets/js/just-the-docs.js	/^              previewStart: cont
 previewStart	_site/assets/js/just-the-docs.js	/^          previewStart: contentPosition.previewStart, previewEnd: contentPosition.previewEnd,$/;"	p	class:searchLoaded.update.addResult.previewPosition
 previewStart	assets/js/just-the-docs.js	/^              previewStart: contentPosition.previewStart, previewEnd: contentPosition.previewEnd/;"	p	class:searchLoaded.update.addResult.previewPosition
 previewStart	assets/js/just-the-docs.js	/^          previewStart: contentPosition.previewStart, previewEnd: contentPosition.previewEnd,$/;"	p	class:searchLoaded.update.addResult.previewPosition
-process-control	_site/2020/12/06/about-systemverilog-process-and-fork/index.html	/^    <span class="p">$<\/span><span class="nb">display<\/span><span class="p">(<\/span><span clas/;"	I
+process-control	_site/2020/12/06/about-systemverilog-process-and-fork/index.html	/^    <span class="k">end<\/span><\/code><\/pre><\/figure><hr \/><h2 id="process-control"> <a href/;"	I
 process-nextick-args	package-lock.json	/^            "process-nextick-args": "~2.0.0",$/;"	s	object:dependencies.through2.dependencies.readable-stream.requires
 process-nextick-args	package-lock.json	/^    "process-nextick-args": {$/;"	o	object:dependencies
 progress	_site/assets/css/just-the-docs-dark.css	/^audio, canvas, progress, video { display: inline-block; \/* 1 *\/ vertical-align: baseline; \/* /;"	s
@@ -9534,7 +9538,7 @@ readable-stream	package-lock.json	/^        "readable-stream": {$/;"	o	object:de
 readable-stream	package-lock.json	/^        "readable-stream": {$/;"	o	object:dependencies.through2.dependencies
 readable-stream	package-lock.json	/^    "readable-stream": {$/;"	o	object:dependencies
 readme	_sass/vendor/normalize.scss/package.json	/^  "readme": "ERROR: No README data found!",$/;"	s
-recommendation	_site/2021/03/20/systemverilog-macros/index.html	/^<!DOCTYPE html><html lang="en-US"><head><meta charset="UTF-8"><meta http-equiv="X-UA-Compatible"/;"	I
+recommendation	_site/2021/03/20/systemverilog-macros/index.html	/^<span class="c1">\/\/ generated code:  $display("top.module_a.signal_a signal, expected value is/;"	I
 red-000	_sass/support/_variables.scss	/^$red-000: #f77e7e !default;$/;"	v
 red-100	_sass/support/_variables.scss	/^$red-100: #f96e65 !default;$/;"	v
 red-200	_sass/support/_variables.scss	/^$red-200: #e94c4c !default;$/;"	v
@@ -10692,7 +10696,7 @@ rimraf	package-lock.json	/^    "rimraf": {$/;"	o	object:dependencies
 root-font-size	_sass/support/_variables.scss	/^$root-font-size: 16px !default; \/\/ Base font-size for rems$/;"	v
 ruby	_site/assets/css/404_info.css	/^html,body,div,span,applet,object,iframe,h1,h2,h3,h4,h5,h6,p,blockquote,pre,a,abbr,acronym,addres/;"	s
 ruby	assets/css/404_info.css	/^html,body,div,span,applet,object,iframe,h1,h2,h3,h4,h5,h6,p,blockquote,pre,a,abbr,acronym,addres/;"	s
-rules-to-follow	_site/2021/03/20/systemverilog-macros/index.html	/^<!DOCTYPE html><html lang="en-US"><head><meta charset="UTF-8"><meta http-equiv="X-UA-Compatible"/;"	I
+rules-to-follow	_site/2021/03/20/systemverilog-macros/index.html	/^   <span class="n">macro<\/span> <span class="n">text2<\/span><span class="p">;<\/span><\/code></;"	I
 run	_site/assets/js/vendor/lunr.min.js	/^!function(){var e=function(t){var r=new e.Builder;return r.pipeline.add(e.trimmer,e.stopWordFilt/;"	m	class:e.Pipeline
 run	_site/assets/js/vendor/lunr.min.js	/^!function(){var e=function(t){var r=new e.Builder;return r.pipeline.add(e.trimmer,e.stopWordFilt/;"	m	class:e.QueryLexer
 run	assets/js/vendor/lunr.min.js	/^!function(){var e=function(t){var r=new e.Builder;return r.pipeline.add(e.trimmer,e.stopWordFilt/;"	m	class:e.Pipeline
@@ -10736,7 +10740,7 @@ search-button	_site/2020/08/09/uvm-test-and-testbench-top/index.html	/^   <span 
 search-button	_site/2020/08/15/using-vim-terminal/index.html	/^endif<\/code><\/pre><\/figure><\/div><p>Now let’s see how it’s like when using this script t/;"	I
 search-button	_site/2020/10/18/forcing-signals-with-QuestaSim/index.html	/^      <\/code><\/pre><\/figure>This means: When I_SIGNAL_E change value to 1 the first time, for/;"	I
 search-button	_site/2020/12/06/about-systemverilog-process-and-fork/index.html	/^  <span class="k">end<\/span> <\/code><\/pre><\/figure><\/div><ul><li>The p1, p2, p3 has the var/;"	I
-search-button	_site/2021/03/20/systemverilog-macros/index.html	/^<!DOCTYPE html><html lang="en-US"><head><meta charset="UTF-8"><meta http-equiv="X-UA-Compatible"/;"	I
+search-button	_site/2021/03/20/systemverilog-macros/index.html	/^   <span class="k">end<\/span><\/code><\/pre><\/figure><hr \/><h2 id="finding-more-information">/;"	I
 search-button	_site/docs/howto/uvm-howto.html	/^<!DOCTYPE html><html lang="en-US"><head><meta charset="UTF-8"><meta http-equiv="X-UA-Compatible"/;"	I
 search-button	_site/docs/howto/vim-howto.html	/^<!DOCTYPE html><html lang="en-US"><head><meta charset="UTF-8"><meta http-equiv="X-UA-Compatible"/;"	I
 search-button	_site/docs/randoms/linux_env_randoms.html	/^<!DOCTYPE html><html lang="en-US"><head><meta charset="UTF-8"><meta http-equiv="X-UA-Compatible"/;"	I
@@ -11586,6 +11590,7 @@ svg:not(:root)	_site/assets/css/just-the-docs-default.css	/^svg:not(:root) { ove
 svg:not(:root)	_site/assets/css/just-the-docs-light.css	/^svg:not(:root) { overflow: hidden; }$/;"	s
 synesthesia	package-lock.json	/^        "synesthesia": "^1.0.1"$/;"	s	object:dependencies.pipetteur.requires
 synesthesia	package-lock.json	/^    "synesthesia": {$/;"	o	object:dependencies
+syntax	_site/2021/03/20/systemverilog-macros/index.html	/^<!DOCTYPE html><html lang="en-US"><head><meta charset="UTF-8"><meta http-equiv="X-UA-Compatible"/;"	I
 systemverilog-macro-101	_site/2021/03/20/systemverilog-macros/index.html	/^<!DOCTYPE html><html lang="en-US"><head><meta charset="UTF-8"><meta http-equiv="X-UA-Compatible"/;"	I
 systemverilog-macro-with-examples	_site/2021/03/20/systemverilog-macros/index.html	/^<!DOCTYPE html><html lang="en-US"><head><meta charset="UTF-8"><meta http-equiv="X-UA-Compatible"/;"	I
 systemverilog-random	_site/docs/randoms/systemverilog_randoms.html	/^<!DOCTYPE html><html lang="en-US"><head><meta charset="UTF-8"><meta http-equiv="X-UA-Compatible"/;"	I
@@ -11939,6 +11944,7 @@ use	_site/assets/js/vendor/lunr.min.js	/^!function(){var e=function(t){var r=new
 use	assets/js/vendor/lunr.min.js	/^!function(){var e=function(t){var r=new e.Builder;return r.pipeline.add(e.trimmer,e.stopWordFilt/;"	m	class:e.Builder
 use	package-lock.json	/^        "use": "^3.1.0"$/;"	s	object:dependencies.snapdragon.requires
 use	package-lock.json	/^    "use": {$/;"	o	object:dependencies
+using-macro-argument	_site/2021/03/20/systemverilog-macros/index.html	/^   <span class="n">macro<\/span> <span class="n">text2<\/span><span class="p">;<\/span><\/code></;"	I
 using-registers	_site/2020/08/15/using-vim-terminal/index.html	/^<!DOCTYPE html><html lang="en-US"><head><meta charset="UTF-8"><meta http-equiv="X-UA-Compatible"/;"	I
 using-vim-sendtowindow	_site/2020/08/15/using-vim-terminal/index.html	/^<!DOCTYPE html><html lang="en-US"><head><meta charset="UTF-8"><meta http-equiv="X-UA-Compatible"/;"	I
 using-vim-terminal	_site/2020/08/15/using-vim-terminal/index.html	/^<!DOCTYPE html><html lang="en-US"><head><meta charset="UTF-8"><meta http-equiv="X-UA-Compatible"/;"	I
@@ -12644,8 +12650,8 @@ vim-related-posts	_site/tag/vim.html	/^<!DOCTYPE html><html lang="en-US"><head><
 vim-send-data-from-a-buffer-to-vim-terminal	_site/2020/08/15/using-vim-terminal/index.html	/^<!DOCTYPE html><html lang="en-US"><head><meta charset="UTF-8"><meta http-equiv="X-UA-Compatible"/;"	I
 vim-terminal-normal-and-terminal-job-mode	_site/2020/08/15/using-vim-terminal/index.html	/^<!DOCTYPE html><html lang="en-US"><head><meta charset="UTF-8"><meta http-equiv="X-UA-Compatible"/;"	I
 wait fork statement	_posts/x_myrandoms/systemverilog_randoms/2020-12-06-about-systemverilog-process-and-fork.md	/^### wait fork statement$/;"	S	section:About systemverilog process and fork join""Process control
-wait fork statement	_site/2020/12/06/about-systemverilog-process-and-fork/index.html	/^    <span class="p">$<\/span><span class="nb">display<\/span><span class="p">(<\/span><span clas/;"	j
-wait-fork-statement	_site/2020/12/06/about-systemverilog-process-and-fork/index.html	/^    <span class="p">$<\/span><span class="nb">display<\/span><span class="p">(<\/span><span clas/;"	I
+wait fork statement	_site/2020/12/06/about-systemverilog-process-and-fork/index.html	/^    <span class="k">end<\/span><\/code><\/pre><\/figure><hr \/><h2 id="process-control"> <a href/;"	j
+wait-fork-statement	_site/2020/12/06/about-systemverilog-process-and-fork/index.html	/^    <span class="k">end<\/span><\/code><\/pre><\/figure><hr \/><h2 id="process-control"> <a href/;"	I
 warn	_site/assets/js/vendor/lunr.min.js	/^!function(){var e=function(t){var r=new e.Builder;return r.pipeline.add(e.trimmer,e.stopWordFilt/;"	f	function:e.utils
 warn	assets/js/vendor/lunr.min.js	/^!function(){var e=function(t){var r=new e.Builder;return r.pipeline.add(e.trimmer,e.stopWordFilt/;"	f	function:e.utils
 warnIfFunctionNotRegistered	_site/assets/js/vendor/lunr.min.js	/^!function(){var e=function(t){var r=new e.Builder;return r.pipeline.add(e.trimmer,e.stopWordFilt/;"	f	function:e.Pipeline

@@ -1,0 +1,273 @@
+I"�<h1 id="about-systemverilog-process-and-fork-join">About systemverilog process and fork join</h1>
+<p class="fs-5 fw-500">In systemverilog, we can group statements into blocks and there are two ways to do so. The first way is groups them into <code class="language-plaintext highlighter-rouge">begin</code>-<code class="language-plaintext highlighter-rouge">end</code> block, where statements are executed sequentially.
+The other way is to use the <code class="language-plaintext highlighter-rouge">fork</code>-<code class="language-plaintext highlighter-rouge">join</code> block, also called parallel block. In this block, all statements are executed concurrently.
+This post will share how to use this <code class="language-plaintext highlighter-rouge">fork</code>-<code class="language-plaintext highlighter-rouge">join</code> block and some of its practical cases.</p>
+
+<hr />
+<h2 id="joinjoin_nonejoin_any">join/join_none/join_any</h2>
+<p>First up, let’s look at the structure of the sequential block.
+The block begin with the keywork <code class="language-plaintext highlighter-rouge">fork</code>, all procedure statements under this keywork will be started at the same time. When the parent process can resume its execution is depended on the closing keywork.
+We have <code class="language-plaintext highlighter-rouge">join</code>, <code class="language-plaintext highlighter-rouge">join_none</code> and <code class="language-plaintext highlighter-rouge">join_any</code>.</p>
+
+<ul>
+  <li>For <code class="language-plaintext highlighter-rouge">fork</code>-<code class="language-plaintext highlighter-rouge">join</code>, all the procedure statements will have to finish before the parent process can resume its execution.</li>
+  <li>For <code class="language-plaintext highlighter-rouge">fork</code>-<code class="language-plaintext highlighter-rouge">join_any</code>, the parent process will be blocked until one of the processes spawned by the fork finished.</li>
+  <li>For <code class="language-plaintext highlighter-rouge">fork</code>-<code class="language-plaintext highlighter-rouge">join_none</code>, the parent process will continue at the same time with all the processes spawned by the fork.</li>
+</ul>
+
+<p>Just simple as that, start your block with <code class="language-plaintext highlighter-rouge">fork</code>, then end your block with either <code class="language-plaintext highlighter-rouge">join</code>, <code class="language-plaintext highlighter-rouge">join_any</code> or <code class="language-plaintext highlighter-rouge">join_none</code>. 
+However, life is not that much easy. Let’s consider some cases below, where using some other control methods alongside with fork is necessary.</p>
+
+<hr />
+<h2 id="fork-join-in-a-loop">fork join in a loop</h2>
+<h3 id="fork-join_none-in-a-loop">fork join_none in a loop</h3>
+<p>Let consider this case, we have a list of item, and we want to start a single procedure statement for each item of that list,
+and we want all of those procedure statement start at the same time. Also, we need all of those processes to finish before executing
+any other statement.
+We can easily achieve the requirement using <code class="language-plaintext highlighter-rouge">fork</code> and <code class="language-plaintext highlighter-rouge">join_none</code> as below.</p>
+<div class="code">
+
+  <figure class="highlight"><pre><code class="language-verilog" data-lang="verilog">    <span class="kt">int</span> <span class="n">lst</span><span class="p">[</span><span class="mi">5</span><span class="p">]</span> <span class="o">=</span> <span class="err">'</span><span class="o">{</span><span class="mi">1</span><span class="p">,</span><span class="mi">2</span><span class="p">,</span><span class="mi">3</span><span class="p">,</span><span class="mi">4</span><span class="p">,</span><span class="mi">5</span><span class="o">}</span><span class="p">;</span>
+    <span class="k">for</span><span class="p">(</span><span class="kt">int</span> <span class="n">i</span><span class="o">=</span><span class="mi">0</span><span class="p">;</span> <span class="n">i</span> <span class="o">&lt;</span> <span class="mi">5</span><span class="p">;</span> <span class="n">i</span><span class="o">++</span> <span class="p">)</span>  <span class="k">begin</span>
+      <span class="k">fork</span>
+        <span class="k">begin</span>
+          <span class="k">automatic</span> <span class="kt">int</span> <span class="n">j</span> <span class="o">=</span> <span class="n">i</span><span class="p">;</span>
+          <span class="p">$</span><span class="nb">display</span> <span class="p">(</span><span class="s">"%t ps, start thread %d"</span><span class="p">,</span> <span class="p">$</span><span class="kt">time</span><span class="p">,</span> <span class="n">j</span><span class="p">);</span>
+          <span class="p">#</span><span class="n">lst</span><span class="p">[</span><span class="n">j</span><span class="p">];</span>
+          <span class="p">$</span><span class="nb">display</span><span class="p">(</span><span class="s">"%t ps, end of thread %d"</span><span class="p">,</span> <span class="p">$</span><span class="kt">time</span><span class="p">,</span><span class="n">j</span><span class="p">);</span>
+        <span class="k">end</span>
+      <span class="k">join_none</span>
+    <span class="k">end</span>
+    <span class="k">wait</span> <span class="k">fork</span><span class="p">;</span>
+    <span class="p">#</span><span class="mi">1</span><span class="p">;</span>
+    <span class="p">$</span><span class="nb">display</span><span class="p">(</span><span class="s">"the NEXT Statement ... "</span><span class="p">);</span></code></pre></figure>
+
+</div>
+<p>There are several things that we can notice here.</p>
+<ul>
+  <li>Firstly it’s the <code class="language-plaintext highlighter-rouge">automatic</code> keywork. We need to copy <code class="language-plaintext highlighter-rouge">i</code> to <code class="language-plaintext highlighter-rouge">j</code> automatic variable in each interation of the for loop.
+Since we use <code class="language-plaintext highlighter-rouge">join_none</code> here, all of 5 processes will start at the same time, and we only have one <code class="language-plaintext highlighter-rouge">i</code> variable, and after 5 iterations, <code class="language-plaintext highlighter-rouge">i</code> will hold a value 4.
+This means that if we use <code class="language-plaintext highlighter-rouge">i</code> variable intead of creating local copy of it, these all 5 processes will run with the same value of <code class="language-plaintext highlighter-rouge">i</code> after 5 iterations, which is 4.
+Then we’ll end up having 5 exactly the same processes instead of 5 processes with 5 different values of a list.</li>
+  <li>Secondly, it’s the <code class="language-plaintext highlighter-rouge">wait fork</code> statement, this is for waiting all 5 processes to finish before executing the next statement.</li>
+  <li>Why don’t we use <code class="language-plaintext highlighter-rouge">fork/join</code> here? It’s simply because when using <code class="language-plaintext highlighter-rouge">join</code> instead of <code class="language-plaintext highlighter-rouge">join_none</code> inside a loop, 
+all the processes inside <code class="language-plaintext highlighter-rouge">fork/join</code> will have to finish before moving to the next iteration of the loop. In the example above, 
+if the <code class="language-plaintext highlighter-rouge">fork/join</code> is used instead of <code class="language-plaintext highlighter-rouge">fork/join_none</code>, we’ll have 5 thread executed sequentially, not concurrently.</li>
+</ul>
+
+<h3 id="fork-join_any-in-a-loop">fork join_any in a loop</h3>
+<p>Similar to the example above, but this time, we need to execute the next statement <code class="language-plaintext highlighter-rouge">$display("the NEXT Statement ... ");</code> right after ONE of the 5 processes finished.
+In this case, using <code class="language-plaintext highlighter-rouge">fork/join_any</code> will NOT solve the requirement.</p>
+<div class="code">
+
+  <figure class="highlight"><pre><code class="language-verilog" data-lang="verilog">    <span class="kt">int</span> <span class="n">lst</span><span class="p">[</span><span class="mi">5</span><span class="p">]</span> <span class="o">=</span> <span class="err">'</span><span class="o">{</span><span class="mi">1</span><span class="p">,</span><span class="mi">2</span><span class="p">,</span><span class="mi">3</span><span class="p">,</span><span class="mi">4</span><span class="p">,</span><span class="mi">5</span><span class="o">}</span><span class="p">;</span>
+    <span class="k">for</span><span class="p">(</span><span class="kt">int</span> <span class="n">i</span><span class="o">=</span><span class="mi">0</span><span class="p">;</span> <span class="n">i</span> <span class="o">&lt;</span> <span class="mi">5</span><span class="p">;</span> <span class="n">i</span><span class="o">++</span> <span class="p">)</span>  <span class="k">begin</span>
+      <span class="k">fork</span>
+        <span class="k">begin</span>
+          <span class="k">automatic</span> <span class="kt">int</span> <span class="n">j</span> <span class="o">=</span> <span class="n">i</span><span class="p">;</span>
+          <span class="p">$</span><span class="nb">display</span> <span class="p">(</span><span class="s">"%t ps, start thread %d"</span><span class="p">,</span> <span class="p">$</span><span class="kt">time</span><span class="p">,</span> <span class="n">j</span><span class="p">);</span>
+          <span class="p">#</span><span class="n">lst</span><span class="p">[</span><span class="n">j</span><span class="p">];</span>
+          <span class="p">$</span><span class="nb">display</span><span class="p">(</span><span class="s">"%t ps, end of thread %d"</span><span class="p">,</span> <span class="p">$</span><span class="kt">time</span><span class="p">,</span><span class="n">j</span><span class="p">);</span>
+        <span class="k">end</span>
+      <span class="k">join_any</span> <span class="c1">// --&gt; wait until one of the processes inside the fork/join_any finished</span>
+    <span class="k">end</span>
+    <span class="k">wait</span> <span class="k">fork</span><span class="p">;</span>
+    <span class="p">#</span><span class="mi">1</span><span class="p">;</span>
+    <span class="p">$</span><span class="nb">display</span><span class="p">(</span><span class="s">"the NEXT Statement ... "</span><span class="p">);</span></code></pre></figure>
+
+</div>
+<ul>
+  <li>Why it does not work? What is required is to start 5 processes at the same time using a for loop, then executing the next statement right after any one of the processes finished.
+Here inside the <code class="language-plaintext highlighter-rouge">fork/join_any</code>, there is only 1 procedure statment (inside <code class="language-plaintext highlighter-rouge">begin/end</code>), therefore we will need to wait for the process to finish before moving to the next iteration of the loop,
+which means we will have 5 processes executed sequentially, not concurrently.</li>
+  <li>To solve this problem, we need to use <code class="language-plaintext highlighter-rouge">fork/join_none</code> inside loop to create 5 processes executed concurrently, and then using an event to execute 
+the next statement right after one of the 5 processes finished.</li>
+</ul>
+<div class="code">
+
+  <figure class="highlight"><pre><code class="language-verilog" data-lang="verilog">    <span class="kt">int</span> <span class="n">lst</span><span class="p">[</span><span class="mi">5</span><span class="p">]</span> <span class="o">=</span> <span class="err">'</span><span class="o">{</span><span class="mi">1</span><span class="p">,</span><span class="mi">2</span><span class="p">,</span><span class="mi">3</span><span class="p">,</span><span class="mi">4</span><span class="p">,</span><span class="mi">5</span><span class="o">}</span><span class="p">;</span>
+    <span class="n">uvm_event</span> <span class="n">finish_event</span><span class="p">;</span>
+    <span class="k">for</span><span class="p">(</span><span class="kt">int</span> <span class="n">i</span><span class="o">=</span><span class="mi">0</span><span class="p">;</span> <span class="n">i</span> <span class="o">&lt;</span> <span class="mi">5</span><span class="p">;</span> <span class="n">i</span><span class="o">++</span> <span class="p">)</span>  <span class="k">begin</span>
+      <span class="k">fork</span>
+        <span class="k">begin</span>
+          <span class="k">automatic</span> <span class="kt">int</span> <span class="n">j</span> <span class="o">=</span> <span class="n">i</span><span class="p">;</span>
+          <span class="p">$</span><span class="nb">display</span> <span class="p">(</span><span class="s">"%t ps, start thread %d"</span><span class="p">,</span> <span class="p">$</span><span class="kt">time</span><span class="p">,</span> <span class="n">j</span><span class="p">);</span>
+          <span class="p">#</span><span class="n">lst</span><span class="p">[</span><span class="n">j</span><span class="p">];</span>
+          <span class="p">$</span><span class="nb">display</span><span class="p">(</span><span class="s">"%t ps, end of thread %d"</span><span class="p">,</span> <span class="p">$</span><span class="kt">time</span><span class="p">,</span><span class="n">j</span><span class="p">);</span>
+
+          <span class="n">finish_event</span><span class="p">.</span><span class="n">trigger</span><span class="p">();</span> <span class="c1">//</span>
+        <span class="k">end</span>
+      <span class="k">join_none</span>
+    <span class="k">end</span>
+    <span class="n">finish_event</span><span class="p">.</span><span class="n">wait_trigger</span><span class="p">();</span> <span class="c1">// wait for an event to be triggered instead of using wait fork;</span>
+    <span class="p">#</span><span class="mi">1</span><span class="p">;</span>
+    <span class="p">$</span><span class="nb">display</span><span class="p">(</span><span class="s">"the NEXT Statement ... "</span><span class="p">);</span></code></pre></figure>
+
+</div>
+<ul>
+  <li>In the above example, by using <code class="language-plaintext highlighter-rouge">fork/join_none</code>, we have 5 processes executed concurrently. And by using <code class="language-plaintext highlighter-rouge">uvm_event</code>, the
+<code class="language-plaintext highlighter-rouge">$display("the NEXT Statement ... ");</code> will be executed when one of the 5 processes finished.</li>
+</ul>
+
+<h3 id="fork-join_none-in-a-forever-loop">fork join_none in a forever loop</h3>
+<p>We can also put the fork in side a forever loop.
+I sometimes do this when creating uvm sequence.
+However, we should be careful about the content of the <code class="language-plaintext highlighter-rouge">fork-join_none</code> block, cause it might hang our simulator.
+Never write any code like below:</p>
+<div class="code">
+
+  <figure class="highlight"><pre><code class="language-verilog" data-lang="verilog">    <span class="kt">int</span> <span class="n">lst</span><span class="p">[</span><span class="mi">5</span><span class="p">]</span> <span class="o">=</span> <span class="err">'</span><span class="o">{</span><span class="mi">1</span><span class="p">,</span><span class="mi">2</span><span class="p">,</span><span class="mi">3</span><span class="p">,</span><span class="mi">4</span><span class="p">,</span><span class="mi">5</span><span class="o">}</span><span class="p">;</span>
+    <span class="n">uvm_event</span> <span class="n">finish_event</span><span class="p">;</span>
+    <span class="k">for</span><span class="p">(</span><span class="kt">int</span> <span class="n">i</span><span class="o">=</span><span class="mi">0</span><span class="p">;</span> <span class="n">i</span> <span class="o">&lt;</span> <span class="mi">5</span><span class="p">;</span> <span class="n">i</span><span class="o">++</span> <span class="p">)</span>  <span class="k">begin</span>
+      <span class="k">fork</span>
+        <span class="k">begin</span>
+          <span class="k">automatic</span> <span class="kt">int</span> <span class="n">j</span> <span class="o">=</span> <span class="n">i</span><span class="p">;</span>
+          <span class="p">$</span><span class="nb">display</span> <span class="p">(</span><span class="s">"%t ps, start thread %d"</span><span class="p">,</span> <span class="p">$</span><span class="kt">time</span><span class="p">,</span> <span class="n">j</span><span class="p">);</span>
+          <span class="p">#</span><span class="n">lst</span><span class="p">[</span><span class="n">j</span><span class="p">];</span>
+          <span class="p">$</span><span class="nb">display</span><span class="p">(</span><span class="s">"%t ps, end of thread %d"</span><span class="p">,</span> <span class="p">$</span><span class="kt">time</span><span class="p">,</span><span class="n">j</span><span class="p">);</span>
+
+          <span class="n">finish_event</span><span class="p">.</span><span class="n">trigger</span><span class="p">();</span> <span class="c1">//</span>
+        <span class="k">end</span>
+      <span class="k">join_none</span>
+    <span class="k">end</span>
+    <span class="n">finish_event</span><span class="p">.</span><span class="n">wait_trigger</span><span class="p">();</span> <span class="c1">// wait for an event to be triggered instead of using wait fork;</span>
+    <span class="p">#</span><span class="mi">1</span><span class="p">;</span>
+    <span class="p">$</span><span class="nb">display</span><span class="p">(</span><span class="s">"the NEXT Statement ... "</span><span class="p">);</span></code></pre></figure>
+
+</div>
+
+<hr />
+<h2 id="process-control">Process control</h2>
+<p>Systemverilog supplies us several ways to control the processes, those methods are especially useful when it comes to using <code class="language-plaintext highlighter-rouge">fork/join</code> statement.
+Besides, we can also use other methods such as <code class="language-plaintext highlighter-rouge">uvm_event</code> as above to tackle the problem.</p>
+
+<h3 id="wait-fork-statement">wait fork statement</h3>
+<p><code class="language-plaintext highlighter-rouge">wait fork</code> might be the statement that is used the most when controlling process in <code class="language-plaintext highlighter-rouge">fork join</code>. It’s pretty simple, all the child subprocesses will 
+have to finish before executing the next statement.</p>
+<div class="code">
+
+  <figure class="highlight"><pre><code class="language-verilog" data-lang="verilog">    <span class="k">fork</span>
+        <span class="p">#</span><span class="mi">1</span> <span class="p">$</span><span class="nb">display</span><span class="p">(</span><span class="s">"%t ps, end of thread %d"</span><span class="p">,</span> <span class="p">$</span><span class="kt">time</span><span class="p">,</span><span class="n">j</span><span class="p">);</span>
+        <span class="p">#</span><span class="mi">3</span> <span class="p">$</span><span class="nb">display</span><span class="p">(</span><span class="s">"%t ps, end of thread %d"</span><span class="p">,</span> <span class="p">$</span><span class="kt">time</span><span class="p">,</span><span class="n">j</span><span class="p">);</span>
+        <span class="p">#</span><span class="mi">2</span> <span class="p">$</span><span class="nb">display</span><span class="p">(</span><span class="s">"%t ps, end of thread %d"</span><span class="p">,</span> <span class="p">$</span><span class="kt">time</span><span class="p">,</span><span class="n">j</span><span class="p">);</span>
+    <span class="k">join_any</span>
+    <span class="p">$</span><span class="nb">display</span><span class="p">(</span><span class="s">"the first process has finished"</span><span class="p">);</span>
+
+    <span class="k">wait</span> <span class="k">fork</span><span class="p">;</span> <span class="c1">// wait for all the processes inside fork/join_any to finished</span>
+
+    <span class="p">$</span><span class="nb">display</span><span class="p">(</span><span class="s">"the NEXT Statement ... "</span><span class="p">);</span></code></pre></figure>
+
+</div>
+
+<h3 id="disable-fork-statement">disable fork statement</h3>
+<p><code class="language-plaintext highlighter-rouge">disable fork</code>, in the other hand, will terminates all active descendants (subprocesses).</p>
+<div class="code">
+
+  <figure class="highlight"><pre><code class="language-verilog" data-lang="verilog">    <span class="k">fork</span>
+        <span class="p">#</span><span class="mi">1</span> <span class="p">$</span><span class="nb">display</span><span class="p">(</span><span class="s">"%t ps, end of thread %d"</span><span class="p">,</span> <span class="p">$</span><span class="kt">time</span><span class="p">,</span><span class="n">j</span><span class="p">);</span>
+        <span class="p">#</span><span class="mi">3</span> <span class="p">$</span><span class="nb">display</span><span class="p">(</span><span class="s">"%t ps, end of thread %d"</span><span class="p">,</span> <span class="p">$</span><span class="kt">time</span><span class="p">,</span><span class="n">j</span><span class="p">);</span>
+        <span class="p">#</span><span class="mi">2</span> <span class="p">$</span><span class="nb">display</span><span class="p">(</span><span class="s">"%t ps, end of thread %d"</span><span class="p">,</span> <span class="p">$</span><span class="kt">time</span><span class="p">,</span><span class="n">j</span><span class="p">);</span>
+    <span class="k">join_any</span>
+
+    <span class="p">$</span><span class="nb">display</span><span class="p">(</span><span class="s">"the first process has finished"</span><span class="p">);</span>
+
+    <span class="kt">disable</span> <span class="k">fork</span><span class="p">;</span> <span class="c1">// disable all the processes inside fork/join_any after  the first subprocesses finished.</span>
+
+    <span class="p">$</span><span class="nb">display</span><span class="p">(</span><span class="s">"the NEXT Statement ... "</span><span class="p">);</span></code></pre></figure>
+
+</div>
+
+<h3 id="disable-statement">disable statement</h3>
+<p>We also have a <code class="language-plaintext highlighter-rouge">disable</code> statement, which can disable the processes of the entire block or task (cannot be used to disable a function).</p>
+
+<p>Let’s use above example with new requirement: disable all remaining active process after one of the processes finished.</p>
+
+<p>We have a list of item, and we want to start a single procedure statement for each item of that list
+and we want all of those procedure statement start at the same time.</p>
+
+<div class="code">
+
+  <figure class="highlight"><pre><code class="language-verilog" data-lang="verilog">    <span class="kt">int</span> <span class="n">lst</span><span class="p">[</span><span class="mi">5</span><span class="p">]</span> <span class="o">=</span> <span class="err">'</span><span class="o">{</span><span class="mi">1</span><span class="p">,</span><span class="mi">2</span><span class="p">,</span><span class="mi">3</span><span class="p">,</span><span class="mi">4</span><span class="p">,</span><span class="mi">5</span><span class="o">}</span><span class="p">;</span>
+    <span class="n">uvm_event</span> <span class="n">finish_event</span><span class="p">;</span>
+    <span class="nl">for_loop_block_1:</span> <span class="k">for</span><span class="p">(</span><span class="kt">int</span> <span class="n">i</span><span class="o">=</span><span class="mi">0</span><span class="p">;</span> <span class="n">i</span> <span class="o">&lt;</span> <span class="mi">5</span><span class="p">;</span> <span class="n">i</span><span class="o">++</span> <span class="p">)</span>  <span class="k">begin</span>
+      <span class="k">fork</span>
+        <span class="k">begin</span>
+          <span class="k">automatic</span> <span class="kt">int</span> <span class="n">j</span> <span class="o">=</span> <span class="n">i</span><span class="p">;</span>
+          <span class="p">$</span><span class="nb">display</span> <span class="p">(</span><span class="s">"%t ps, start thread %d"</span><span class="p">,</span> <span class="p">$</span><span class="kt">time</span><span class="p">,</span> <span class="n">j</span><span class="p">);</span>
+          <span class="p">#</span><span class="n">lst</span><span class="p">[</span><span class="n">j</span><span class="p">];</span>
+          <span class="p">$</span><span class="nb">display</span><span class="p">(</span><span class="s">"%t ps, end of thread %d"</span><span class="p">,</span> <span class="p">$</span><span class="kt">time</span><span class="p">,</span><span class="n">j</span><span class="p">);</span>
+          <span class="n">finish_event</span><span class="p">.</span><span class="n">trigger</span><span class="p">();</span> <span class="c1">//</span>
+        <span class="k">end</span>
+      <span class="k">join_none</span>
+    <span class="k">end</span>
+
+    <span class="n">finish_event</span><span class="p">.</span><span class="n">trigger</span><span class="p">();</span>
+    <span class="kt">disable</span> <span class="n">for_loop_block_1</span><span class="p">;</span> <span class="c1">//</span>
+    <span class="p">#</span><span class="mi">1</span><span class="p">;</span>
+    <span class="p">$</span><span class="nb">display</span><span class="p">(</span><span class="s">"the NEXT Statement ... "</span><span class="p">);</span></code></pre></figure>
+
+</div>
+
+<ul>
+  <li>Here we have the for loop an block name, <code class="language-plaintext highlighter-rouge">for_loop_block_1</code>, then when the first process finished, we kill all remaining active processes by using <code class="language-plaintext highlighter-rouge">disable for_loop_block_1</code>.</li>
+</ul>
+
+<h3 id="fine-grain-process-control">fine-grain process control</h3>
+<p>Systemverilog also provide us this built-in <code class="language-plaintext highlighter-rouge">process</code> class (in the built-in <code class="language-plaintext highlighter-rouge">std</code> package) to control the active processes.
+Mostly, I use this <code class="language-plaintext highlighter-rouge">process</code> class for debugging purpose, to check the status of all the processes in the <code class="language-plaintext highlighter-rouge">fork/join</code> block.
+Check the example below:</p>
+
+<div class="code">
+
+  <figure class="highlight"><pre><code class="language-verilog" data-lang="verilog">  <span class="n">std</span><span class="o">::</span><span class="n">process</span> <span class="n">p1</span><span class="p">,</span><span class="n">p2</span><span class="p">,</span><span class="n">p3</span><span class="p">;</span>
+  
+  <span class="k">initial</span> <span class="k">begin</span>
+        <span class="k">fork</span>
+          <span class="k">begin</span>
+            <span class="p">$</span><span class="nb">display</span><span class="p">(</span><span class="s">"%t ps, start of thread %d"</span><span class="p">,</span> <span class="p">$</span><span class="kt">time</span><span class="p">,</span><span class="mi">1</span><span class="p">);</span>
+            <span class="n">p1</span> <span class="o">=</span> <span class="n">std</span><span class="o">::</span><span class="n">process</span><span class="o">::</span><span class="n">self</span><span class="p">();</span>
+            <span class="p">#</span><span class="mi">1</span> 
+            <span class="p">$</span><span class="nb">display</span><span class="p">(</span><span class="s">"%t ps, end of thread %d"</span><span class="p">,</span> <span class="p">$</span><span class="kt">time</span><span class="p">,</span><span class="mi">1</span><span class="p">);</span>
+          <span class="k">end</span>
+          <span class="k">begin</span>
+            <span class="p">$</span><span class="nb">display</span><span class="p">(</span><span class="s">"%t ps, start of thread %d"</span><span class="p">,</span> <span class="p">$</span><span class="kt">time</span><span class="p">,</span><span class="mi">2</span><span class="p">);</span>
+            <span class="n">p2</span> <span class="o">=</span> <span class="n">std</span><span class="o">::</span><span class="n">process</span><span class="o">::</span><span class="n">self</span><span class="p">();</span>
+             <span class="p">#</span><span class="mi">3</span> 
+            <span class="p">$</span><span class="nb">display</span><span class="p">(</span><span class="s">"%t ps, end of thread %d"</span><span class="p">,</span> <span class="p">$</span><span class="kt">time</span><span class="p">,</span><span class="mi">2</span><span class="p">);</span>
+          <span class="k">end</span>
+          <span class="k">begin</span>
+            <span class="p">$</span><span class="nb">display</span><span class="p">(</span><span class="s">"%t ps, start of thread %d"</span><span class="p">,</span> <span class="p">$</span><span class="kt">time</span><span class="p">,</span><span class="mi">3</span><span class="p">);</span>
+            <span class="n">p3</span> <span class="o">=</span> <span class="n">std</span><span class="o">::</span><span class="n">process</span><span class="o">::</span><span class="n">self</span><span class="p">();</span>
+             <span class="p">#</span><span class="mi">2</span> 
+            <span class="p">$</span><span class="nb">display</span><span class="p">(</span><span class="s">"%t ps, end of thread %d"</span><span class="p">,</span> <span class="p">$</span><span class="kt">time</span><span class="p">,</span><span class="mi">3</span><span class="p">);</span>
+          <span class="k">end</span>
+    <span class="k">join_any</span>
+
+    <span class="p">$</span><span class="nb">display</span><span class="p">(</span><span class="s">"the first process has finished"</span><span class="p">);</span>
+    <span class="p">$</span><span class="nb">display</span><span class="p">(</span><span class="s">"thread 1 process status: %s"</span><span class="p">,</span> <span class="n">p1</span><span class="p">.</span><span class="n">status</span><span class="p">().</span><span class="n">name</span><span class="p">());</span>
+    <span class="p">$</span><span class="nb">display</span><span class="p">(</span><span class="s">"thread 2 process status: %s"</span><span class="p">,</span> <span class="n">p2</span><span class="p">.</span><span class="n">status</span><span class="p">().</span><span class="n">name</span><span class="p">());</span>
+    <span class="p">$</span><span class="nb">display</span><span class="p">(</span><span class="s">"thread 3 process status: %s"</span><span class="p">,</span> <span class="n">p3</span><span class="p">.</span><span class="n">status</span><span class="p">().</span><span class="n">name</span><span class="p">());</span>
+
+    <span class="k">wait</span> <span class="k">fork</span><span class="p">;</span> <span class="c1">// wait for all the processes inside fork/join_any to finished</span>
+
+    <span class="p">$</span><span class="nb">display</span><span class="p">(</span><span class="s">"the NEXT Statement ... "</span><span class="p">);</span>
+  <span class="k">end</span> </code></pre></figure>
+
+</div>
+<ul>
+  <li>The p1, p2, p3 has the variable type as <code class="language-plaintext highlighter-rouge">process</code> class, 
+then we use the static function <code class="language-plaintext highlighter-rouge">self()</code> of the <code class="language-plaintext highlighter-rouge">process</code> class to get the handle to the current processes of thread 1, 2, 3 respectively.</li>
+  <li>After that, we can use the <code class="language-plaintext highlighter-rouge">status()</code> method to check the status of the process.</li>
+  <li>We can also have other control over the process using these built-in methods of the <code class="language-plaintext highlighter-rouge">process</code> class: <code class="language-plaintext highlighter-rouge">kill()</code>, <code class="language-plaintext highlighter-rouge">suspend()</code>, <code class="language-plaintext highlighter-rouge">resume()</code>, etc.</li>
+</ul>
+
+<div> You can run an example of this fine grain control here:
+<a href="https://www.edaplayground.com/x/fc2c" title="SystemVerilog fine grain control">
+<svg width="25" height="25" viewBox="0 -0.1 2 2" class="customsvg"> <use xlink:href="#svg-edaplay"></use></svg>
+</a></div>
+
+<hr />
+<h2 id="finding-more-information">Finding more information</h2>
+<p>To having more understanding as well as having more example, you can check the IEEE Standard for SystemVerilog, chapter.9 Process.</p>
+
+:ET
