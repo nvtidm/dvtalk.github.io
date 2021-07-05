@@ -237,6 +237,11 @@ then we use the static function `self()` of the `process` class to get the handl
 * After that, we can use the `status()` method to check the status of the process.
 * We can also have other control over the process using these built-in methods of the `process` class: `kill()`, `suspend()`, `resume()`, etc.
 
+<div> You can run an example of this fine grain control here:
+<a href="https://www.edaplayground.com/x/fc2c" title="SystemVerilog fine grain control">
+<svg width="25" height="25" viewBox="0 -0.1 2 2" class="customsvg"> <use xlink:href="#svg-edaplay"></use></svg>
+</a></div>
+
 ---
 ## Finding more information
 To having more understanding as well as having more example, you can check the IEEE Standard for SystemVerilog, chapter.9 Process.
