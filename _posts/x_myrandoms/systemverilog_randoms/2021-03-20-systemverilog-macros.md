@@ -47,7 +47,7 @@ Macro is a piece of code which enable the text substitution everywhere the macro
 {% endhighlight %}
 </div>
 
-* \`" (a tick then double quotes): if `ARG` is put between these, the `ARG` will considered as a string, also \`" will be parsing as doubled quotes ".
+* \`" (a tick then double quotes): if `ARG` is put between these, the `ARG` will considered as a string, also \`" will be parsed as doubled quotes ".
 <div class="code">
 {% highlight verilog %}
 `define print_arg(ARG1, ARG2) $display(`"AGR2 signal, expected value is ARG1, current value: %0d `", ARG2);

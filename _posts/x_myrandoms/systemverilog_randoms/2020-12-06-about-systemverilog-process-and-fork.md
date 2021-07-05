@@ -119,7 +119,7 @@ the next statement right after one of the 5 processes finished.
 ### fork join_none in a forever loop
 We can also put the fork in side a forever loop.
 I sometimes do this when creating uvm sequence.
-However, we should be careful about the content of the `fork-join_none` block, cause it might hang our simulator.
+However, we should be careful about the content of the `fork-join_none` block, because it might hang our simulator.
 Never write any code with no statement to control the process in forever loop like below:
 <div class ="code" markdown="1" >
 {% highlight verilog %}
@@ -134,7 +134,7 @@ Never write any code with no statement to control the process in forever loop li
     end
 {% endhighlight %}
 </div>
-* The above code will hang our simulator. Because we're using fork/join_none, and the 2 `display` task will be executed right away, then move to the next interation of the forever loop.
+* The above code will hang our simulator. Because we're using `fork/join_none`, and the 2 `$display` tasks will be executed right away, then move to the next interation of the forever loop.
 This loop will create infinite number of process and hang the simulator. We should at least have some control inside the `fork-join_none` like below:
 {% highlight verilog %}
     forever begin
