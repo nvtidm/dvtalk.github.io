@@ -38,25 +38,36 @@ Macro is a piece of code which enable the text substitution everywhere the macro
 {% highlight verilog %}
 `define get_signal(ARG1, ARG2)  bit signal_``ARG1 = ARG2;
 
---> usage example: 
-`get_signal(1, top.module_a.signal_a)   
+--> usage example:
+`get_signal(1, top.module_a.signal_a)
 // generated code: bit signal_1 = top.module_a.signal_a;
 
 `get_signal(c, top.module_a.signal_abc) 
 // generated code: bit signal_c = top.module_a.signal_abc;
 {% endhighlight %}
 </div>
-* \`" (a tick then a double quote): if `ARG` is put between these, the `ARG` will considered as a string.
+
+* \`" (a tick then double quotes): if `ARG` is put between these, the `ARG` will considered as a string, also \`" will be parsing as doubled quotes ".
 <div class="code">
 {% highlight verilog %}
-`define get_signal(ARG1, ARG2)  bit signal_``ARG1 = ARG2;
+`define print_arg(ARG1, ARG2) $display(`"AGR2 signal, expected value is ARG1, current value: %0d `", ARG2);
 
---> usage example: 
-// generated code:
+--> usage example:
+`print_arg(1, top.module_a.signal_a)
+// generated code:  $display("top.module_a.signal_a signal, expected value is 1, current value: %0d ", top.module_a.signal_a);
 
 {% endhighlight %}
 </div>
-* \`\\`" (a tick, a backslash, a tick then a double quote): to keep the backslash in the generated text.
+
+* \`\\`" (a tick, a backslash, a tick then double quotes): to keep the backslash in the generated text.
+{% highlight verilog %}
+`define print_arg(ARG1, ARG2) $display(`"AGR2 signal, expected value is ARG1, current value: %0d `", ARG2);
+
+--> usage example:
+`print_arg(1, top.module_a.signal_a)
+// generated code:  $display("top.module_a.signal_a signal, expected value is 1, current value: %0d ", top.module_a.signal_a);
+
+{% endhighlight %}
 
 ### Recommendation
 * If writing a function/task is possible, avoid writing macro =D.
@@ -70,19 +81,11 @@ Macro is anoying when it comes to debugging. When I need to write and debug a ma
 
 
 ---
-## Examples 
-
-
-
-
-
-
-
-
-
-// Assertion to compare SIGNAL value with EXP_VALUE
-// Provide clock in CLK, enable/reset signal in ENA. ENA default is 0(inactive).
-// Use EXT_ERROR_CMD to add addtional statement when assertion fail, leave it blank if no use.
+## Examples
+Assertion to compare SIGNAL value with EXP_VALUE.
+Provide clock in CLK, enable/reset signal in ENA. ENA default is 0(inactive).
+Use EXT_ERROR_CMD to add addtional statement when assertion fail, leave it blank if no use.
+{% highlight verilog %}
 `define assertion_signal_check(SIGNAL, EXP_VALUE, CLK, ENA=0, EXT_ERROR_CMD) \
    property check_``SIGNAL``_p; \
       @(posedge CLK ) \
@@ -93,6 +96,7 @@ Macro is anoying when it comes to debugging. When I need to write and debug a ma
       $error($psprintf(`"The SIGNAL is supposed to be EXP_VALUE, real value is 0x%x`", SIGNAL )); \
       EXT_ERROR_CMD ; \
    end
+{% endhighlight %}
 
 ---
 ## Finding more information
