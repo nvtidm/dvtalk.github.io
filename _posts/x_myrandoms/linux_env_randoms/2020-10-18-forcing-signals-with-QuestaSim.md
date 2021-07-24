@@ -14,7 +14,7 @@ toc_en: true
 I've been using vcs and questasim for verification for a while, and both of these tools allow us to interact with the simulator using their cli.
 We can use them for debugging, create checking point, restore simulation, ... .
 But mostly for my case, I use this cli for forcing signals.
-And this method help me in many situations such as creating some error cases (for testing purspose), or forcing signals from the logic that has not been implements yet.
+And this method help me in many situations such as creating some error cases (for testing purpose), or forcing signals from the logic that has not been implements yet.
 Let's go through some examples for forcing signals using Questasim (or another version of this eda tool is ModelSim).
 {: .fs-5 .fw-500 }
 
@@ -29,7 +29,7 @@ Usually, I create a file containing forcing commands, then source this file duri
 {% endhighlight %}
 </div>
 
-For Questasim and VCS, these commands is the Tcl-based command, which means you will use tcl syntax for writting your force file.
+For Questasim and VCS, these commands is the Tcl-based command, which means you will use tcl syntax for writing your force file.
 
 ---
 ## Some examples of forcing signals using Questasim
@@ -159,4 +159,4 @@ When I_SIGNAL_E change value to 1 the first time, force the I_SIGNAL_D to 1.
 ## Finding more information
 Read the User Manual released by Questasim for more information and example on how to force signals.
 The manual files usually can be found at the installation directory of each tool.
-Besides, you could also refer the ModelSim PE manual. It's a free download tool from Mentor for edutaion purpose and the commands are similar to Questasim.
+Besides, you could also refer the ModelSim PE manual. It's a free download tool from Mentor for education purpose and the commands are similar to Questasim.
