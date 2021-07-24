@@ -1,9 +1,9 @@
 ---
 layout: default
-title: About systemverilog process and fork join
+title: About Systemverilog process and fork join
 parent: Systemverilog Randoms
 grand_parent: My Randoms
-description: This post is about systemverilog processes including using fork, wait/disable fork, fork in a loop, and also fine grain process control
+description: This post is about Systemverilog processes including using fork, wait/disable fork, fork in a loop, and also fine grain process control
 tags: [systemverilog]
 comments: true
 toc_en: true
@@ -12,8 +12,8 @@ search_exclude: false
 nav_order: 3
 ---
 
-# About systemverilog process and fork join
-In systemverilog, we can group statements into blocks and there are two ways to do so. The first way is groups them into `begin`-`end` block, where statements are executed sequentially.
+# About Systemverilog process and fork join
+In Systemverilog, we can group statements into blocks and there are two ways to do so. The first way is groups them into `begin`-`end` block, where statements are executed sequentially.
 The other way is to use the `fork`-`join` block, also called parallel block. In this block, all statements are executed concurrently.
 This post will share how to use this `fork`-`join` block and some of its practical cases.
 {: .fs-5 .fw-500 }
@@ -57,9 +57,9 @@ We can easily achieve the requirement using `fork` and `join_none` as below.
 {% endhighlight %}
 </div>
 There are several things that we can notice here.
-* Firstly it's the `automatic` keywork. We need to copy `i` to `j` automatic variable in each interation of the for loop.
+* Firstly it's the `automatic` keywork. We need to copy `i` to `j` automatic variable in each iteration of the for loop.
 Since we use `join_none` here, all of 5 processes will start at the same time, and we only have one `i` variable, and after 5 iterations, `i` will hold a value 4.
-This means that if we use `i` variable intead of creating local copy of it, these all 5 processes will run with the same value of `i` after 5 iterations, which is 4.
+This means that if we use `i` variable instead of creating local copy of it, these all 5 processes will run with the same value of `i` after 5 iterations, which is 4.
 Then we'll end up having 5 exactly the same processes instead of 5 processes with 5 different values of a list.
 * Secondly, it's the `wait fork` statement, this is for waiting all 5 processes to finish before executing the next statement.
 * Why don't we use `fork/join` here? It's simply because when using `join` instead of `join_none` inside a loop, 
@@ -281,6 +281,6 @@ then we use the static function `self()` of the `process` class to get the handl
 
 ---
 ## Finding more information
-To having more understanding as well as having more example, you can check the IEEE Standard for SystemVerilog, chapter.9 Process.
+To having more understanding as well as having more example, you can check the IEEE Standard for Systemverilog, chapter.9 Process.
 
 

@@ -3,7 +3,7 @@ layout: default
 title: Systemverilog macro with examples
 parent: Systemverilog Randoms
 grand_parent: My Randoms
-description: This post is about systemverilog macro and some examples of it
+description: This post is about Systemverilog macro and some examples of it
 tags: [systemverilog]
 comments: true
 toc_en: true
@@ -79,20 +79,20 @@ Macro is a piece of code which enable the text substitution everywhere the macro
 ### Recommendation
 * If writing a function/task is possible, avoid writing macro =D.
 * Marco is usually used for coverage point definition, assertion definition.
-* Write all the macros in one file, and inlude that file in your sv package. Since redefine macro is allowed,
+* Write all the macros in one file, and include that file in your sv package. Since redefine macro is allowed,
 write macros everywhere in your codes make debugging these macros become painful.
 * Macro can call other macros or compiler directives, but be careful, should keep it simple.
 * When using argument, try to use default value (similar to default value in function/task).
 
 ### Debugging
-Macro is anoying when it comes to debugging. When I need to write and debug a macro, I do this:
+Macro is annoying when it comes to debugging. When I need to write and debug a macro, I do this:
 * Open macro files in EDA tool, such as verdi, then hover the mouse over the macro to see the generated code.
 
 ---
 ## Examples
 Assertion to compare `SIGNAL` value with `EXP_VALUE`.
 Provide clock in `CLK`, enable/reset signal in `ENA`. `ENA` default is 0 (inactive).
-Use `EXT_ERROR_CMD` to add addtional statement when assertion fail, leave it blank if no use.
+Use `EXT_ERROR_CMD` to add additional statement when assertion fail, leave it blank if no use.
 {% highlight verilog %}
 `define assertion_signal_check(SIGNAL, EXP_VALUE, CLK, ENA=0, EXT_ERROR_CMD) \
    property check_``SIGNAL``_p; \

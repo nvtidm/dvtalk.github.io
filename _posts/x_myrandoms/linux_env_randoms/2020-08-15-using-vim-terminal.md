@@ -19,7 +19,7 @@ Vim supports the terminal feature since version 8.1. This feature allows us to h
 ## Using vim terminal
 ### Open vim terminal
 * First to use vim terminal, we should have vim from version 8.1 and compiled with `+terminal` option.
-* To open vim terminal, just type the command `:terminal`, or `:vert terminal` to open the terminal in a veritcal split window.
+* To open vim terminal, just type the command `:terminal`, or `:vert terminal` to open the terminal in a vertical split window.
 * To close the vim terminal, type `exit` or `Ctrl-W Ctrl-C`
 * To move between buffers and vim terminal buffer, use `:buffers` as normal, since vim terminal will be treated as a buffer in vim. Or if current vim terminal is opened in another window, just simply use `Ctrl-W Ctrl-W`.
 
@@ -36,7 +36,7 @@ Terminal-Normal mode and Terminal-Job mode are newly introduced along with vim t
 To copy the data from the vim buffer to the vim terminal buffer, we can use registers. Simply yank the data from normal vim buffer to vim registers, then go to the vim terminal (in Terminal-Normal mode), then paste the data from the register using this command `Ctrl-W " {register}`.
 
 ### Using vim-sendtowindow
-Wanna be a little bit faster, use this [vim-sendtowindow](https://github.com/KKPMW/vim-sendtowindow) plugin. This plugin actually doing the same thing as we disussed above but using vimscript: yank the selected data to a registers, then send the data in the register to the vim terminal. However I think it's quite handy when testing your code with vim terminal, check the plugin page if you're interested.
+Wanna be a little bit faster, use this [vim-sendtowindow](https://github.com/KKPMW/vim-sendtowindow) plugin. This plugin actually doing the same thing as we discussed above but using vimscript: yank the selected data to a registers, then send the data in the register to the vim terminal. However I think it's quite handy when testing your code with vim terminal, check the plugin page if you're interested.
 
 ---
 ## Open another file in vim terminal
