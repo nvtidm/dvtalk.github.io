@@ -51,7 +51,7 @@ Macro is a piece of code which enable the text substitution everywhere the macro
 * \`" (a tick then double quotes): if `ARG` is put between these, the `ARG` will considered as a string, also \`" will be parsed as doubled quotes ".
 <div class="code">
 {% highlight verilog %}
-`define print_arg(ARG1, ARG2) $display(`"AGR2 signal, expected value is ARG1, current value: %0d `", ARG2);
+`define print_arg(ARG1, ARG2) $display(`"ARG2 signal, expected value is ARG1, current value: %0d `", ARG2);
 
 --> usage example:
 `print_arg(1, top.module_a.signal_a)
@@ -68,16 +68,20 @@ Macro is a piece of code which enable the text substitution everywhere the macro
 `print_arg(top.module_a.signal_a)
 // generated code:  $display(" \"top.module_a.signal_a\" signal, current value: %0d ", top.module_a.signal_a);
 //
-// simulation output:  "top.module_a.signal_a", current value: 2000
+// simulation output:  "top.module_a.signal_a" signal, current value: 2000
 //
 {% endhighlight %}
 
+<div> <p></p>You can run an example of these macros with argument here:
+<a href="https://www.edaplayground.com/x/PR3c" title="SystemVerilog Macros">
+<svg width="25" height="25" viewBox="0 -0.1 2 2" class="customsvg"> <use xlink:href="#svg-edaplay"></use></svg>
+</a></div>
 ### Recommendation
 * If writing a function/task is possible, avoid writing macro =D.
 * Marco is usually used for coverage point definition, assertion definition.
 * Write all the macros in one file, and inlude that file in your sv package. Since redefine macro is allowed,
 write macros everywhere in your codes make debugging these macros become painful.
-* Macro can call other macros or compiler directives, or even call itself, but be careful, should keep it simple.
+* Macro can call other macros or compiler directives, but be careful, should keep it simple.
 * When using argument, try to use default value (similar to default value in function/task).
 
 ### Debugging
