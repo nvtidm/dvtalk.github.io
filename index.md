@@ -47,3 +47,16 @@ Topics:
 {% endfor %}
 </nobr>
 
+---
+Posts:
+<ul>
+{% for post in site.posts %}
+  {% if post.comments == true %}
+    <li>
+      <a href="{{ post.url }}">{{ post.title }}</a>
+    </li>
+  {% endif %}
+{% endfor %}
+</ul>
+ 
+
