@@ -89,26 +89,45 @@ but will be read and handled using `base_sequence` Parent class, and in the `bas
 ---
 ## Polymorphism in SystemVerilog
 ### What does it mean?
-Simply speaking, polymorphism means many possible ways.
+Simply speaking, polymorphism means many possible ways. This means that we can achieve different tasks but using the same interface.
+Take this example below:
+{% highlight verilog %}
+  base_sequence m_seq[$]; // a queue of handle of base_sequence obj has base_write() function
 
-**To be continue. =D**
+  aes_sequence  m_aes_seq   = new();  // Where aes_sequence is extended from base_sequence
+  rsa_sequence  m_rsa_seq   = new();  // Where rsa_sequence is extended from base_sequence
+  sha_sequence  m_sha_seq   = new();  // Where sha_sequence is extended from base_sequence
+  ...
+  m_seq.push_back(m_aes_seq);
+  m_seq.push_back(m_rsa_seq);
+  m_seq.push_back(m_sha_seq);
+  ...
+  foreach (m_seq[i]) begin
+     m_seq[i].base_write();  // using the same line of code, we can call 3 different functions.
+                             // the result will depend on the object that m_seq[i] point to.
+  end
+  ...
+{% endhighlight %}
+* In above example, using only 1 line of code, we can have up to three ways of execution, based on the object that `m_seq[i]` point to.
+This is the most common example of polymorphism.
+* Actually, when talking about polymorphism, there are even 3 major classes as below.
+
+
+### Three major classes of polymorphism
+As [wikipedia](https://en.wikipedia.org/wiki/Polymorphism_(computer_science)), polymorphism has three major classes:
+1. Ad hoc polymorphism: Function overloading/Operator overloading.
+* Function overloading meaning we can define many functions with the same name, but with different arguments.
+This is **not supported** in Systemverilog. You may find this very common in other languages such as Java.
+1. Parametric polymorphism:
+* Simply understand as *Generic Programming*. Systemverilog supports this as *Parameterized classes*.
+1. Subtype polymorphism:
+* The most well known kind of polymorphism. This whole post including the variable type explanation and the example above are actually to explain this type.
+However, in Systemverilog, to achieve polymorphism, we must define methods as `virtual`.
+
 ### Virtual vs non-virtual methods
 
 ---
-## Polymorphism in UVM
-
-### uvm override and phases
-### uvm tlm
-### do_copy/do_compare
-
-
-<div> You can run an example of this fine grain control here:
-<a href="https://www.edaplayground.com/x/fc2c" title="SystemVerilog fine grain control">
-<svg width="25" height="25" viewBox="0 -0.1 2 2" class="customsvg"> <use xlink:href="#svg-edaplay"></use></svg>
-</a></div>
-
----
 ## Finding more information
-To having more understanding as well as having more example, you can check the IEEE Standard for SystemVerilog, chapter.9 Process.
+To having more understanding as well as having more example, you can check the IEEE Standard for SystemVerilog, Chapter.8 Classes.
 
 
