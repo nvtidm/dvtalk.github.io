@@ -90,9 +90,10 @@ Macro is annoying when it comes to debugging. When I need to write and debug a m
 
 ---
 ## Examples
-Assertion to compare `SIGNAL` value with `EXP_VALUE`.
-Provide clock in `CLK`, enable/reset signal in `ENA`. `ENA` default is 0 (inactive).
-Use `EXT_ERROR_CMD` to add additional statement when assertion fail, leave it blank if no use.
+Create a macro to define assertion with below requirements:
+1. Assertion to compare `SIGNAL` value with `EXP_VALUE`.
+1. Provide clock in `CLK`, enable/reset signal in `ENA`. `ENA` default is 0 (inactive).
+1. Use `EXT_ERROR_CMD` to add additional statement when assertion fail, leave it blank if no use.
 {% highlight verilog %}
 `define assertion_signal_check(SIGNAL, EXP_VALUE, CLK, ENA=0, EXT_ERROR_CMD) \
    property check_``SIGNAL``_p; \
