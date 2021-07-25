@@ -122,7 +122,7 @@ This is **not supported** in Systemverilog. You may find this very common in oth
 * Simply understand as *Generic Programming*. Systemverilog supports this as *Parameterized classes*.
 1. Subtype polymorphism:
 * The most well known kind of polymorphism in Sytemverilog. This whole post including the variable type explanation and the example above are actually to explain this type.
-However, in Systemverilog, to achieve polymorphism, we must define methods as `virtual`.
+However, in Systemverilog, to achieve this kind of polymorphism, we must define methods as `virtual`.
 
 ### Virtual vs non-virtual methods
 Let try the code example below:
