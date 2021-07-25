@@ -23,7 +23,7 @@ A variable in general has several properties.
 However let's just focus on three important things below for this post.
 
 1. Name: The name of the variable.
-1. Object that variable points to: The memory which the hold the data of the variable.
+1. Object that variable points to: The memory which holds the data of the variable.
 1. Type: The data type of the variable. This will define the structure of the variable and how it is stored in the memory.
 * Systemverilog is the static typed programming language, which means in the same scope, after the variable is defined, the type cannot be changed, similar to C or Java.
 There are several programming languages those have dynamic typed such as Python, JavaScript, ...
@@ -33,7 +33,7 @@ There are several programming languages those have dynamic typed such as Python,
 * Typecasting is also called type conversion. This is the act of parsing the data in memory in the other way.
 It is important to understand that the structure of the data in the memory will not be changed. Instead, the data is only read in a different manner.
 * For class-typed variable, upcasting means reading the Child object in the memory and point that object to the Parent class variable.
-(a Child object is typecasted to Parent class variable). Remember, as above explanation, the object still has the structure defined by Child class, but read/parsing using the Parent class.
+(a Child object is typecasted to Parent class variable). Remember, as above explanation, the object still has the structure defined by Child class, but read/parse using the Parent class.
 
 ### Which function can be called?
 Let's take an example:
@@ -109,22 +109,45 @@ Take this example below:
   ...
 {% endhighlight %}
 * In above example, using only 1 line of code, we can have up to three ways of execution, based on the object that `m_seq[i]` point to.
-This is the most common example of polymorphism.
+This is the most common example of polymorphism in Systemverilog.
 * Actually, when talking about polymorphism, there are even 3 major classes as below.
 
 
 ### Three major classes of polymorphism
 As [wikipedia](https://en.wikipedia.org/wiki/Polymorphism_(computer_science)), polymorphism has three major classes:
 1. Ad hoc polymorphism: Function overloading/Operator overloading.
-* Function overloading meaning we can define many functions with the same name, but with different arguments.
+* Function overloading means we can define many functions with the same name, but different arguments.
 This is **not supported** in Systemverilog. You may find this very common in other languages such as Java.
 1. Parametric polymorphism:
 * Simply understand as *Generic Programming*. Systemverilog supports this as *Parameterized classes*.
 1. Subtype polymorphism:
-* The most well known kind of polymorphism. This whole post including the variable type explanation and the example above are actually to explain this type.
+* The most well known kind of polymorphism in Sytemverilog. This whole post including the variable type explanation and the example above are actually to explain this type.
 However, in Systemverilog, to achieve polymorphism, we must define methods as `virtual`.
 
 ### Virtual vs non-virtual methods
+Let try the code example below:
+{% highlight verilog %}
+
+  base_sequence m_base_seq;          // base_sequence class has a function called base_write()
+  aes_sequence  m_aes_seq   = new(); // aes_sequence will override the base_write() function in base_sequence
+
+  m_base_seq = m_aes_seq;  // m_base_seq now points to an object of a Child class (aes_sequence)
+  ...
+
+  // If base_write() is a VIRTUAL method
+  m_base_seq.base_write();  // will call the method in aes_sequence class
+                            // because the obj is aes_sequence class obj, and the function is virtual
+
+  // If base_write() is a NON-VIRTUAL method
+  m_base_seq.base_write();  // will call the method in base_sequence class
+                            // even though m_base_seq point to a aes_sequence obj,
+                            // the function in base_sequence is called
+
+  ...
+{% endhighlight %}
+* Simply put, we must define method as `virtual` to have polymorphism in Systemverilog.
+* Once the method is defined virtual, it will remain virtual in any child class that overrides it.
+* The virtual method can override non-virtual method.
 
 ---
 ## Finding more information
