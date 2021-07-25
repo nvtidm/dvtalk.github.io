@@ -13,7 +13,7 @@ nav_order: 3
 ---
 
 # What to know about polymorphism in SystemVerilog
-Polymorphism is one of very crucial concepts of any OPP languages. Since SystemVerilog is an OOP, it is important for us to understand this.
+Polymorphism is one of very crucial concepts of any OOP languages. Since SystemVerilog is an OOP, it is important for us to understand this.
 {: .fs-5 .fw-500 }
 
 ---
@@ -23,7 +23,7 @@ A variable in general has several properties.
 However let's just focus on three important things below for this post.
 
 1. Name: The name of the variable.
-1. Object that variable point to: The memory which the hold the data of the variable.
+1. Object that variable points to: The memory which the hold the data of the variable.
 1. Type: The data type of the variable. This will define the structure of the variable and how it is stored in the memory.
 * Systemverilog is the static typed programming language, which means in the same scope, after the variable is defined, the type cannot be changed, similar to C or Java.
 There are several programming languages those have dynamic typed such as Python, JavaScript, ...
@@ -37,8 +37,8 @@ It is important to understand that the structure of the data in the memory will 
 
 ### Which function can be called?
 Let's take an example:
-* There is `base_sequence` class, which has `base_write` function.
-* `aes_sequence` class is extended from the `base_sequence` and add new function `aes_write`.
+* There is `base_sequence` class, which has `base_write()` function.
+* `aes_sequence` class is extended from the `base_sequence` and add new function `aes_write()`.
 * Now, Parent class is `base_sequence`, Child class is `aes_sequence`, we create a variable as below:
 {% highlight verilog %}
   base_sequence m_base_seq;
@@ -91,7 +91,7 @@ but will be read and handled using `base_sequence` Parent class, and in the `bas
 ### What does it mean?
 Simply speaking, polymorphism means many possible ways.
 
-To be continue. =D
+**To be continue. =D**
 ### Virtual vs non-virtual methods
 
 ---
