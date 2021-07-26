@@ -89,7 +89,8 @@ but will be read and handled using `base_sequence` Parent class, and in the `bas
 ---
 ## Polymorphism in SystemVerilog
 ### What does it mean?
-Simply speaking, polymorphism means many possible ways. This means that we can achieve different tasks but using the same code.
+Simply speaking, polymorphism means many possible ways. 
+This means that we can have many different ways of execution but using the same piece of code. 
 Take this example below:
 {% highlight verilog %}
   base_sequence m_seq[$]; // a queue of handle of base_sequence obj has base_write() function
