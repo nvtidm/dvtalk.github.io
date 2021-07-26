@@ -117,7 +117,7 @@ This is the most common example of polymorphism in Systemverilog.
 ### Three major classes of polymorphism
 As [wikipedia](https://en.wikipedia.org/wiki/Polymorphism_(computer_science)), polymorphism has three major classes:
 1. Ad hoc polymorphism: Function overloading/Operator overloading.
-* Function overloading means we can define many functions with the same name, but different arguments.
+* Function overloading means we can define many functions with the same name, but different sets of arguments.
 This is **not supported** in Systemverilog. You may find this very common in other languages such as Java.
 1. Parametric polymorphism:
 * Simply understand as *Generic Programming*. Systemverilog supports this as *Parameterized classes*. 
