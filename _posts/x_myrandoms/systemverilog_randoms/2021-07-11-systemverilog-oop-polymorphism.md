@@ -59,7 +59,7 @@ Let's take an example:
 * After upcasting, we now have the `m_base_seq` points to an object of a child class `aes_sequence`, but has the type of a parent class `base_sequence`.
 * The statement `m_base_seq.aes_write()` will generate compilation error. As discussed earlier, the obj will have the data structure of `aes_sequence` Child class 
 but will be read and handled using `base_sequence` Parent class, and in the `base_sequence`, there is no `aes_write()` function, that's why compilation error occurs.
-* A simple way to remember this is: *The type of the variable will decide which function can be called, and the object that variable points to will decide which data to return.*
+* A simple way to remember this is: **The type of the variable will decide which function can be called, and the object that variable points to will decide which data to return.**
 
 ### Some cases when upcasting occur
 * Passing object as function/task argument.
