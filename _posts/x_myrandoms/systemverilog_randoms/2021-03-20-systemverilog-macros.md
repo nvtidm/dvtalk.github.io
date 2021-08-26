@@ -90,6 +90,7 @@ Macro is annoying when it comes to debugging. When I need to write and debug a m
 
 ---
 ## Examples
+### Macro to create an assertion
 Create a macro to define assertion with below requirements:
 1. Assertion to compare `SIGNAL` value with `EXP_VALUE`.
 1. Provide clock in `CLK`, enable/reset signal in `ENA`. `ENA` default is 0 (inactive).
@@ -121,6 +122,62 @@ Create a macro to define assertion with below requirements:
 //   end
 //
 {% endhighlight %}
+
+### Macro for queue/array conversion
+{% highlight c %}
+`define ARRAY_TO_QUEUE(ARR,ARR_SIZE, QUEUE) \
+   for (int i=0; i<ARR_SIZE; i++) begin \
+      QUEUE.push_back(ARR[i]); \
+   end
+
+//
+`define QUEUE_32_TO_8(Q_32, Q_8) \
+   Q_8.delete(); \
+   foreach (Q_32[i]) begin \
+      bit[31:0] m_tmp = Q_32[i]; \
+      Q_8.push_back(m_tmp[31:24]);\
+      Q_8.push_back(m_tmp[23:16]);\
+      Q_8.push_back(m_tmp[15:08]);\
+      Q_8.push_back(m_tmp[07:00]);\
+   end
+
+//
+`define QUEUE_8_TO_32(Q_8, Q_32) \
+   Q_32.delete(); \
+   for(int i=0;i<Q_8.size();i +=4) begin \
+      Q_32.push_back({Q_8[i],  \
+      Q_8[i+1], \
+      Q_8[i+2], \
+      Q_8[i+3]});\
+   end
+
+//
+`define QUEUE_128_TO_32(Q_128, Q_32) \
+   Q_32.delete(); \
+   foreach (Q_128[i]) begin\
+      bit[127:0] m_tmp = Q_128[i];\
+      Q_32.push_back(m_tmp[127:96]);\
+      Q_32.push_back(m_tmp[95:64]);\
+      Q_32.push_back(m_tmp[63:32]);\
+      Q_32.push_back(m_tmp[31:00]);\
+   end
+
+//
+`define QUEUE_192_TO_32(Q_192, Q_32) \
+   Q_32.delete(); \
+   foreach (Q_192[i]) begin\
+      bit[191:0] m_tmp = Q_192[i];\
+      Q_32.push_back(m_tmp[191:160]);\
+      Q_32.push_back(m_tmp[159:128]);\
+      Q_32.push_back(m_tmp[127:96]);\
+      Q_32.push_back(m_tmp[95:64]);\
+      Q_32.push_back(m_tmp[63:32]);\
+      Q_32.push_back(m_tmp[31:00]);\
+   end
+
+{% endhighlight %}
+
+
 
 ---
 ## Finding more information
