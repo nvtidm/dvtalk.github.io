@@ -1,6 +1,6 @@
 ---
 layout: default
-title: Virtual in Systemverilog
+title: Summarize - virtual in Systemverilog
 parent: Systemverilog Randoms
 grand_parent: My Randoms
 description: What virtual keyword means.
@@ -13,7 +13,9 @@ nav_order: 3
 ---
 
 # Summarize: virtual in Systemverilog
-The keyword `virtual` is used in different several ways in Systemverilog, and the annoying things is that the meaning of each usage is totally differents from the others.
+The keyword `virtual` is used in different several ways in Systemverilog, and the annoying things is that the meaning of `virtual` in each usage is totally different from the others.
+{: .fs-5 .fw-500 }
+
 Let's just sum it up.
 {: .fs-5 .fw-500 }
 
@@ -34,9 +36,10 @@ All the class extended from virtual class must implement all the pure virtual me
 Think about it as a template that all the child class must follow.
 
 ## Virtual interface
-Interface, as defined in Systemverilog LRM, is a "bundle of nets or variables" and it is created to "encapsulate the communication between blocks".
+Interface, as defined in Systemverilog LRM, is a *"bundle of nets or variables"*. It is created to *"encapsulate the communication between blocks"*
+and also has *"ability to encapsulate functionality as well as connectivity, making an interface, at its highest level, more like a class template"*.
 
-Below is an example of interface, and how it is construct to an interface object.
+Below is an example of interface, and how it is constructed to an interface object.
 {% highlight verilog %}
    interface bus_signals;
       logic [7:0] signal_a;
@@ -62,4 +65,15 @@ This is similar to construct a class object, then assign the handle of that obje
 {% endhighlight %}
 
 ## Virtual uvm sequence
-If 
+Now the `virtual` in virtual uvm sequence is not a keyword. The virtual uvm sequence is just a type of sequence in uvm.
+
+In uvm methodology, the sequence has the responsibilities to create scenarios.
+To do that, it will create several transaction items and send those to other component of the testbench which will drive the DUT physical signals.
+For example, a sequence will send a bundle of data to a DUT module.
+Those data will be called transaction items, and the order, the timing of how and when those data are sent is controlled by a sequence.
+
+The virtual sequence, in the other hand, will not create transaction items but will create and start other sequences.
+This is called sequence layering, and it allow us to create more complicated scenarios from the simpler ones.
+
+There's also the virtual sequencer in uvm, but it hardly ever used.
+
