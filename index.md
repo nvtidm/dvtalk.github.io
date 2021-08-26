@@ -32,6 +32,18 @@ Use the search box if you need anything.
 And if you cannot find what you need, well, later then. :D
 
 ---
+Posts:
+<ul>
+{% for post in site.posts %}
+  {% if post.comments == true %}
+    <li>
+      <a href="{{ post.url }}">{{ post.title }}</a>
+    </li>
+  {% endif %}
+{% endfor %}
+</ul>
+
+---
 {% capture temptags %}
   {% for tag in site.tags %}
     {{ tag[1].size | plus: 1000 }}#{{ tag[0] }}#{{ tag[1].size }}
@@ -45,16 +57,3 @@ And if you cannot find what you need, well, later then. :D
   <a href="/tag/{{ tagname }}" class="btn btn-dawn mr-2">{{ tagname }}</a>
 {% endfor %}
 </nobr>
----
-Posts:
-<ul>
-{% for post in site.posts %}
-  {% if post.comments == true %}
-    <li>
-      <a href="{{ post.url }}">{{ post.title }}</a>
-    </li>
-  {% endif %}
-{% endfor %}
-</ul>
- 
-
