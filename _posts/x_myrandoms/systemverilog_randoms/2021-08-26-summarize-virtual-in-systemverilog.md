@@ -24,7 +24,7 @@ Let's just sum it up.
 Inside a class, a `virtual` method (function or task) will allow overriding the implementation of the method in a derived class.
 We must define a method as `virtual` to achieve polymorphism in Systemverilog.
 
-To understand more about polymorphism and what's the different between virtual and non-virtual method, check out this post: 
+To understand more about polymorphism and what's the different between virtual and non-virtual method, check out this post:  [Systemverilog OOP - Polymorphism]({{ site.baseurl }}{% link _posts/x_myrandoms/systemverilog_randoms/2021-07-11-systemverilog-oop-polymorphism.md  %})
 
 ## Virtual class and pure virtual methods
 Virtual class is also known as Abstract class (which you might be familiar with when programming in other languages).
