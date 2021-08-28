@@ -125,7 +125,15 @@ Create a macro to define assertion with below requirements:
 
 ### Macro for queue/array conversion
 {% highlight c %}
+`define ARRAY_APPEND_TO_QUEUE(ARR,ARR_SIZE, QUEUE) \
+   for (int i=0; i<ARR_SIZE; i++) begin \
+      QUEUE.push_back(ARR[i]); \
+   end
+
+//
+{% highlight c %}
 `define ARRAY_TO_QUEUE(ARR,ARR_SIZE, QUEUE) \
+   QUEUE.delete(); \
    for (int i=0; i<ARR_SIZE; i++) begin \
       QUEUE.push_back(ARR[i]); \
    end
