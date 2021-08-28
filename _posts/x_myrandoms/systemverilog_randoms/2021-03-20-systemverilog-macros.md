@@ -131,7 +131,6 @@ Create a macro to define assertion with below requirements:
    end
 
 //
-{% highlight c %}
 `define ARRAY_TO_QUEUE(ARR,ARR_SIZE, QUEUE) \
    QUEUE.delete(); \
    for (int i=0; i<ARR_SIZE; i++) begin \
