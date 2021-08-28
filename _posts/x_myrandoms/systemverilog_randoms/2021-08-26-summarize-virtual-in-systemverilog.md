@@ -75,5 +75,5 @@ Those data will be called transaction items, and the order, the timing of how an
 The virtual sequence, in the other hand, will not create transaction items but will create and start other sequences.
 This is called sequence layering, and it allow us to create more complicated scenarios from the simpler ones.
 
-There's also the virtual sequencer in uvm, but it hardly ever used.
+There's also the virtual sequencer in uvm, but it's hardly ever used.
 
