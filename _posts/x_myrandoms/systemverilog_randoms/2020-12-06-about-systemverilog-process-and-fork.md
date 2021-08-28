@@ -24,9 +24,9 @@ First up, let's look at the structure of the sequential block.
 The block begin with the keywork `fork`, all procedure statements under this keywork will be started at the same time. When the parent process can resume its execution is depended on the closing keywork.
 We have `join`, `join_none` and `join_any`.
 
-* For `fork`-`join`, all the procedure statements will have to finish before the parent process can resume its execution.
-* For `fork`-`join_any`, the parent process will be blocked until one of the processes spawned by the fork finished.
-* For `fork`-`join_none`, the parent process will continue at the same time with all the processes spawned by the fork.
+* For `fork`-`join`, **all the procedure statements** will have to finish before the parent process can resume its execution.
+* For `fork`-`join_any`, the parent process will be blocked until **one of the processes** spawned by the fork finished.
+* For `fork`-`join_none`, the parent process will **continue at the same time** with all the processes spawned by the fork.
 
 Just simple as that, start your block with `fork`, then end your block with either `join`, `join_any` or `join_none`. 
 However, life is not that much easy. Let's consider some cases below, where using some other control methods alongside with fork is necessary.
@@ -67,7 +67,7 @@ all the processes inside `fork/join` will have to finish before moving to the ne
 if the `fork/join` is used instead of `fork/join_none`, we'll have 5 thread executed sequentially, not concurrently.
 
 ### fork join_any in a loop
-Similar to the example above, but this time, we need to execute the next statement ```$display("the NEXT Statement ... ");``` right after ONE of the 5 processes finished.
+Similar to the example above, but this time, we need to execute the next statement ```$display("the NEXT Statement ... ");``` right after *ONE of the 5 processes* finished.
 In this case, using `fork/join_any` will NOT solve the requirement.
 <div class ="code" markdown="1" >
 {% highlight verilog %}
@@ -155,12 +155,11 @@ This loop will create infinite number of process and hang the simulator. We shou
 
 ---
 ## Process control
-Systemverilog supplies us several ways to control the processes, those methods are especially useful when it comes to using `fork/join` statement.
+Systemverilog supplies us several ways to control processes, those methods are especially useful when it comes to using `fork/join` statement.
 Besides, we can also use other methods such as `uvm_event` as above to tackle the problem.
 
 ### wait fork statement
-`wait fork` might be the statement that is used the most when controlling process in `fork join`. It's pretty simple, all the child subprocesses will 
-have to finish before executing the next statement.
+`wait fork` might be the statement that is used the most when controlling processes in `fork join`. It's pretty simple, all the child subprocesses will have to finish before executing the next statement.
 <div class ="code" markdown="1" >
 {% highlight verilog %}
     fork
