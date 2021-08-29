@@ -40,13 +40,16 @@ Let's take a C
 "svdpi.h"
 C-SV type match
 
-### Built .so files
+### Build .so files
 {% highlight Makefile %}
 LDFLAGS    = -Wl,-rpath,$(OPENSSL_PATH)/lib  -lssl -lcrypto
 C_INCLUDE  = -I$(QUESTA_SIM_INS_DIR)/questasim/include
 
 msft_c_model.so: aes_sv_c_dpi.c
 	gcc -m64 -fPIC -g -W -shared -fdiagnostics-color=never -std=c99 $(C_INCLUDE) $(LDFLAGS) -o aes_sv_c_dpi.so aes_sv_c_dpi.c
+
+aes: aes.c
+	gcc -m64 -std=c99 $(C_INCLUDE) $(LDFLAGS) aes.c -o aes
 {% endhighlight %}
 
 ---
@@ -102,6 +105,7 @@ Take this example below:
 ## Finding more information
 To have more understanding as well as more examples, check below references:
 1. The IEEE Standard for SystemVerilog, Chapter.35. Direct programming interface, Annex H DPI C layer.
+1. EDA User guide (Questasim).
 1. [How to Call C-functions from SystemVerilog Using DPI-C](https://www.amiq.com/consulting/2019/01/30/how-to-call-c-functions-from-systemverilog-using-dpi-c/)
 1. [Openssl man page with examples](https://www.openssl.org/docs/manmaster/man3/EVP_EncryptInit.html)
 
