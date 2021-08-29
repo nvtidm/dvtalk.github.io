@@ -188,6 +188,6 @@ Create a macro to define assertion with below requirements:
 
 ---
 ## Finding more information
-To having more understanding as well as having more example, you can check the IEEE Standard for SystemVerilog, chapter.22 Compilers directives.
+To have more understanding as well as more examples, you can check the IEEE Standard for SystemVerilog, chapter.22 Compilers directives.
 
 

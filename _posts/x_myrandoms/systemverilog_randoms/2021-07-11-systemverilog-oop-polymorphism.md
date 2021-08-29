@@ -157,6 +157,6 @@ Let try the code example below:
 
 ---
 ## Finding more information
-To having more understanding as well as having more example, you can check the IEEE Standard for SystemVerilog, Chapter.8 Classes.
+To have more understanding as well as more examples, you can check the IEEE Standard for SystemVerilog, Chapter.8 Classes.
 
 

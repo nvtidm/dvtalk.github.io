@@ -280,6 +280,6 @@ then we use the static function `self()` of the `process` class to get the handl
 
 ---
 ## Finding more information
-To having more understanding as well as having more example, you can check the IEEE Standard for Systemverilog, chapter.9 Process.
+To have more understanding as well as more examples, you can check the IEEE Standard for Systemverilog, chapter.9 Process.
 
 
