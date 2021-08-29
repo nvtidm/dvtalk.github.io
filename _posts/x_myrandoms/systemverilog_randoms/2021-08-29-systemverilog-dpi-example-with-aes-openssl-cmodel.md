@@ -26,7 +26,7 @@ This AES model is built with Openssl.
 ### AES encryption with Openssl library
 We're not gonna explain how to use Openssl library in this post, since it is pretty common and well explained in [the Openssl man page already](https://www.openssl.org/docs/manmaster/man3/EVP_EncryptInit.html).
 
-Let use this c files which already implement the aes encryption using Openssl library.
+Let use this c file which already implement the aes encryption using Openssl library.
 Now to perform aes encryption, we need to call `aes_encrypt` with suitable input of array of data.
 
 You can access to the full version here: [ aes.c ](https://gist.github.com/dvtalk/edca1d9753503cd03f04b495b040f0e3)
