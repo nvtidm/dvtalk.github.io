@@ -102,7 +102,7 @@ When the C-model is loaded and ready to use, we just need to import it into our 
 * The `input` in each argument means that that argument will be pass from SV to C code.
 For example, we will pass the value of `m_plaintext_len` to the `svplaintext_len` input argument of the `cAesEncrypt()` in C code.
 * For the `output` argument, in the other hand, the data will be passed from C code to SV code.
-We actually passe the reference/pointer to the array in memory that will store the `m_ciphertext`, the C code will write data to the memory pointed by that pointer.
+We actually pass the reference/pointer to the array in memory that will store the `m_ciphertext`, the C code will write data to the memory pointed by that pointer.
 
 ### Calling C function in Systemverilog
 {% highlight verilog %}
