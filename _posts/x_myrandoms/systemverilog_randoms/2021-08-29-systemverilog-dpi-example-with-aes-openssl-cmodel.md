@@ -14,7 +14,7 @@ nav_order: 3
 
 # Systemverilog DPI example with AES-Openssl C-model
 When creating scoreboard, there is a high possibility that we'll need to integrate the golden model written in other programming languages into our testbench.
-Systemverilog support this by the DPI (Direct Programming Interface).
+Systemverilog support this with the DPI (Direct Programming Interface).
 {: .fs-5 .fw-500 }
 
 This post is an example of using DPI-C to make C model generate the expected data of AES encryption.
@@ -27,7 +27,7 @@ This AES model is built with Openssl.
 We're not gonna explain how to use Openssl library in this post, since it is pretty common and well explained in [the Openssl man page already](https://www.openssl.org/docs/manmaster/man3/EVP_EncryptInit.html).
 
 Let use this c file which already implement the aes encryption using Openssl library.
-Now to perform aes encryption, we need to call `aes_encrypt` with suitable input of array of data.
+To perform aes encryption, we need to call `aes_encrypt` with suitable input of array of data.
 
 You can access to the full version here: [ aes.c ](https://gist.github.com/dvtalk/edca1d9753503cd03f04b495b040f0e3)
 {% highlight c %}
@@ -43,17 +43,18 @@ You can access to the full version here: [ aes.c ](https://gist.github.com/dvtal
      return ciphertext_len;
    }
 {% endhighlight %}
-* The input is the `plaintext` to encrypt, the `key` and `ivec`. All of these inputs are passed to the function by using the pointer to the array of data of those.
-Also, we need to supply the encryption mode, the size of the plaintext (in unit of bytes) and key (in unit of bits).
-* The output is `ciphertext`, it's an pointer to and array of data, and we passed that pointer to this function to store the output data. Also, the function will return the size of ciphertext in unit of bytes.
+* The inputs are the `plaintext` to encrypt, the `key` and `ivec`. All of these inputs are passed to the function by using the pointer to the array of those data in memory.
+Also, we need to supply the encryption mode, the size of the plaintext (in unit of byte) and key (in unit of bit).
+* The output is `ciphertext`, it's an pointer to and array of data, and we passed that pointer to this function to store the output data.
+Also, the function will return the size of ciphertext in unit of byte.
 
 ### C wrapper to interract with Systemverilog
 Now, C and Systemverilog are two different programming languages, with different set of data types.
 
 So, to be able to use this `aes_encrypt`, we need to make sure C and SV code understand each other by making a C wrapper file below.
 <script src="https://gist.github.com/dvtalk/50280465f7c0f185fc6bc6001963169b.js"></script>
-* We notice that the type of the plaintext, key, ivec, ciphertext array of bytes is not `unsigned char *` anymore.
-Instead, the type is now `svOpenArrayHandle`. This type is pre-defined C type and it's equivalent to the array of int, byte, shortint,... type in Systemverilog.
+* We notice that the type of the plaintext, key, ivec, ciphertext array of bytes are not `unsigned char *` anymore.
+Instead, their type is now `svOpenArrayHandle`. This type is pre-defined C type and it's equivalent to the array of int, byte, shortint,... type in Systemverilog.
 Read this post for [other type mapping correspondence](https://www.amiq.com/consulting/2019/01/30/how-to-call-c-functions-from-systemverilog-using-dpi-c/).
 * Then we just need to type cast to normal C data type and call the `aes_encrypt()` function.
 * The pre-defined C type `svOpenArrayHandle` and the function `svGetArrayPtr` is defined in the `"svdpi.h"`. This file is provided by your EDA simulation tool.
@@ -84,7 +85,7 @@ aes: aes.c
    // The Questasim will load the ${C_MODEL_DIR}/aes_sv_c_dpi.so when run simulation
 {% endhighlight %}
 * This is depend on the EDA tool that you're using for simulation.
-You need read the EDA User Guide to know suitable option to load the .so file as well as the location of the `"svdpi.h"` file.
+You need read your EDA tool User Guide to know suitable option to load the .so file as well as the location of the `"svdpi.h"` file.
 
 ### Importing the C function to SV testbench
 When the C-model is loaded and ready to use, we just need to import it into our testbench as below.
