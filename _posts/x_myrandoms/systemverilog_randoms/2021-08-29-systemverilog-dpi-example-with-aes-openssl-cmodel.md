@@ -98,7 +98,7 @@ When the C-model is loaded and ready to use, we just need to import it into our 
       input  byte m_ivec[],
       output byte m_ciphertext[]);
 {% endhighlight %}
-* The `cAesEncrypt()` is the C-wrapper function that we created in [this](#C wrapper to interract with Systemverilog). The argument list in the `import` statement must have the same order as the C code function.
+* The `cAesEncrypt()` is the C-wrapper function that we created in [this](#c-wrapper-to-interract-with-systemverilog). The argument list in the `import` statement must have the same order as the C code function.
 * The `input` in each argument means that that argument will be pass from SV to C code.
 For example, we will pass the value of `m_plaintext_len` to the `svplaintext_len` input argument of the `cAesEncrypt()` in C code.
 * For the `output` argument, in the other hand, the data will be passed from C code to SV code.
