@@ -4,7 +4,7 @@ title: Summarize - virtual in Systemverilog
 parent: Systemverilog Randoms
 grand_parent: My Randoms
 description: What virtual keyword means.
-tags: [systemverilog]
+tags: [systemverilog, uvm]
 comments: true
 toc_en: true
 nav_exclude: false
