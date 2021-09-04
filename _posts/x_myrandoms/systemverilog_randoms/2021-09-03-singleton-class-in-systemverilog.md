@@ -13,12 +13,14 @@ nav_order: 3
 ---
 
 # Singleton class in Systemverilog
-Singleton class
+Singleton class is a type of class which only has one object. Once constructed, it will persist and can be accessed everywhere.
+Singleton pattern is actually one of the simpliest [design pattern](https://refactoring.guru/design-patterns), and also pretty common in many programming languages.
 {: .fs-5 .fw-500 }
 
 ---
 ## How to create a singleton class in Systemverilog
 ### Creating a protected constructor
+To create a singleton class, firstly we need a protected constructor.
 {% highlight verilog %}
 class example_singleton_class;
 
@@ -28,12 +30,15 @@ class example_singleton_class;
 
 endclass
 {% endhighlight %}
+* By make the constructor protected, we have a full control of how this class is constructed.
+Because this constructor `new()` function can only be called inside this class.
 
-### Adding static m_self variable and get_inst() function
+### Adding static m_self variable and static get_inst() function
+Since the constructor `new()` is protected, we create a function that acts as a contructor and return the handle to the object.
 {% highlight verilog %}
 class example_singleton_class;
    ...
-   static example_singleton_class m_self;
+   static protected example_singleton_class m_self;
    ...
    protected function new(string name = "example_singleton_class")
       super.new(name);
@@ -49,21 +54,46 @@ class example_singleton_class;
 endclass
 
 {% endhighlight %}
-
+* The `m_self` will have the handle to the `example_singleton_class` object.
+* The `get_inst()` will check if the `m_self` is null. If it is, we will construct a `example_singleton_class` object then assign the handle of that object to `m_self` variable.
+If the `m_self` already has the handle of the singleton object, we just need to return that handle.
+By doing this, we can make sure that the `new()` constructor will only called one time when the `get_inst()` is called the first time.
+Eventually, only one `example_singleton_class` object will be created.
+* We need to define the `get_inst()` function as static, so that we can called it by using the class name with scope operator `example_singleton_class::get_inst()`.
+This provided the global access to the `get_inst()` function.
+Also since it is `static`, the `get_inst()` cannot be defined as `virtual`.
+* Because the `get_inst()` is static, the `m_self` must be static as well (The static function can only access to the static variable of the class).
+* We also want to defined the `m_self` as protected, so that the only way to get the handle of this object is to call the `get_inst()` function.
 
 ### Constructing a singleton class
+Now, when we need the access to the object of `example_singleton_class`, we just need to call the `get_inst()` function as below.
+Since this function is static, we can call it everywhere in our environment.
 {% highlight verilog %}
 ...
-   example_singleton_class m_singl_class = example_singleton_class::get_inst();
+   example_singleton_class m_singleton = example_singleton_class::get_inst();
 ...
 {% endhighlight %}
 
 ---
 ## Is it any good?
 ### Which class can be singleton
+From it properties, we can see that any class that is supposed to be accessed everywhere in our environment is a candidate for creating singleton class.
+This could be a class that provide the backdoor access to the memory of DUT, a class that handle all the plusargs that passed from the run time commands 
+or a class to dynamic allocate/deallocate index number of data packets.
 
 ### Some uvm singleton classes
-
+If using the uvm methodology, we can see that several classes are actually singleton:
+1. uvm_root and uvm_top:
+* uvm_root is the the singleton class, and the uvm_top has the handle to that singleton class.
+* This class serve as a top for all of the uvm component, and it is contructed by default when we call `run_test()`.
+1. uvm_core_service_t:
+* From uvm1.2, the core services class will contains the method to access to handle of several uvm feature such as Factory, Report Server.
+* To get the handle of this singleton class, we just call `uvm_core_service_t cs = uvm_core_service_t::get()`
+1. uvm_factory:
+* Factory is actually another type of design pattern, but we'll talk about it in another post.
+* In uvm, uvm_factory allow us to substitute a class with its child class when constructing object.
+* To have the handle to uvm_factory, we can call its static class as other singleton: `uvm_factory factory = uvm_factory::get();`
+* There's another way to get uvm_factory singleton handle using core services: `uvm_factory factory = uvm_core_service_t::get().get_factory()`
 
 ---
 ## Finding more information
