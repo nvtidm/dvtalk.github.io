@@ -81,6 +81,7 @@ From it properties, a class might need below requirements can be a candidate for
 * Need to be access from many unrelated part of our environment.
 * Have the access to a shared resource.
 * Have a single purpose which many classes needs.
+
 This could be a class that provide the backdoor access to the memory of DUT, a class that handle all the plusargs that passed from the run time commands 
 or a class to dynamic allocate/deallocate index number of data packets.
 
