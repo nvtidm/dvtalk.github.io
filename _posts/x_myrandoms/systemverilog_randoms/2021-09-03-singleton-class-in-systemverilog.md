@@ -30,11 +30,11 @@ class example_singleton_class;
 
 endclass
 {% endhighlight %}
-* By make the constructor protected, we have a full control of how this class is constructed.
-Because this constructor `new()` function can only be called inside this class.
+* By make the constructor protected, we have a full control of how this class is constructed,
+because this constructor `new()` function can only be called inside this class.
 
 ### Adding static m_self variable and static get_inst() function
-Since the constructor `new()` is protected, we create a function that acts as a contructor and return the handle to the object.
+Since the constructor `new()` is protected, we need to create a function that acts as a contructor and return the handle to the object.
 {% highlight verilog %}
 class example_singleton_class;
    ...
@@ -54,7 +54,7 @@ class example_singleton_class;
 endclass
 
 {% endhighlight %}
-* The `m_self` will have the handle to the `example_singleton_class` object.
+* The `m_self` will have the handle to the `example_singleton_class` object itself.
 * The `get_inst()` will check if the `m_self` is null. If it is, we will construct a `example_singleton_class` object then assign the handle of that object to `m_self` variable.
 If the `m_self` already has the handle of the singleton object, we just need to return that handle.
 By doing this, we can make sure that the `new()` constructor will only called one time when the `get_inst()` is called the first time.
@@ -77,7 +77,10 @@ Since this function is static, we can call it everywhere in our environment.
 ---
 ## Is it any good?
 ### Which class can be singleton
-From it properties, we can see that any class that is supposed to be accessed everywhere in our environment is a candidate for creating singleton class.
+From it properties, a class might need below requirements can be a candidate for creating singleton class:
+* Need to be access from many unrelated part of our environment.
+* Have the access to a shared resource.
+* Have a single purpose which many classes needs.
 This could be a class that provide the backdoor access to the memory of DUT, a class that handle all the plusargs that passed from the run time commands 
 or a class to dynamic allocate/deallocate index number of data packets.
 
@@ -85,7 +88,7 @@ or a class to dynamic allocate/deallocate index number of data packets.
 If using the uvm methodology, we can see that several classes are actually singleton:
 1. uvm_root and uvm_top:
 * uvm_root is the the singleton class, and the uvm_top has the handle to that singleton class.
-* This class serve as a top for all of the uvm component, and it is contructed by default when we call `run_test()`.
+* This class serves as a top for all of the uvm component, and it is contructed by default when we call `run_test()`.
 1. uvm_core_service_t:
 * From uvm1.2, the core services class will contains the method to access to handle of several uvm feature such as Factory, Report Server.
 * To get the handle of this singleton class, we just call `uvm_core_service_t cs = uvm_core_service_t::get()`
