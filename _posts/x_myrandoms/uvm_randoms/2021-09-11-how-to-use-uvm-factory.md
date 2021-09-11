@@ -127,6 +127,7 @@ However I have never used these ones.
 +uvm_set_type_override=<org_type>,<new_override_type>
 
 +uvm_set_inst_override=<org_type>,<new_override_type>,<full_inst_path>
+//
 {% endhighlight %}
 
 ### Uvm factory debug
@@ -138,10 +139,10 @@ uvm_factory m_factory = uvm_core_service_t::get().get_factory();
 //print the override information
 m_factory.print();
 
-m_factory.debug_create_by_type(l2_layer_base);
+m_factory.debug_create_by_type(l2_layer_base::get_type());
 
-m_factory.debug_create_by_name(l2_layer_base::get_type());
-
+m_factory.debug_create_by_name(l2_layer_base::get_full_name());
+//
 {% endhighlight %}
 
 ---
