@@ -356,7 +356,7 @@ $toc-width: 232px !default;
     color: $grey-dk-300;
     line-height: 1.5;
   }
-  border: 1.9px solid $link-color;
+  border: 2.0px dashed $link-color;
   font-size: 14px;
   list-style-type: none;
   background-color: lighten($sidebar-color, 1);
