@@ -129,7 +129,7 @@ However I have never used these ones.
 +uvm_set_inst_override=<org_type>,<new_override_type>,<full_inst_path>
 {% endhighlight %}
 
-### uvm factory debug
+### Uvm factory debug
 uvm factory class is actually a singleton class, and it has several method those will help us debugging:
 {% highlight verilog %}
 // to get the uvm_factory object handle
@@ -147,7 +147,7 @@ m_factory.debug_create_by_name(l2_layer_base::get_type());
 ---
 
 ## Finding more information
-1. [ How uvm factory actually works ] (https://hungvn.test)
+1. [ How uvm factory actually works ](https://hungvn.test)
 1. [ uvm cookbook ](https://verificationacademy.com/cookbook/factory)
 
 
