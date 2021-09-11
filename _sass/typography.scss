@@ -23,10 +23,9 @@ h3,
 
 h4,
 .text-delta {
-  @include fs-2;
-  font-weight: 400;
-  text-transform: uppercase;
-  letter-spacing: 0.1em;
+  @include fs-4;
+  font-weight: 550;
+  text-decoration: underline;
 }
 
 h5,
