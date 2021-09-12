@@ -141,7 +141,7 @@ m_factory.print();
 
 m_factory.debug_create_by_type(l2_layer_base::get_type());
 
-m_factory.debug_create_by_name(l2_layer_base::get_full_name());
+m_factory.debug_create_by_name("l2_layer_base"); //assuming the class was created with name "l2_layer_base"
 //
 {% endhighlight %}
 
