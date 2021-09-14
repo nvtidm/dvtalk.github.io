@@ -98,9 +98,9 @@ endclass
 
 ---
 ## Inside the uvm_factory
-So, when defining the class, we will register the class into the uvm_factory using the uvm macro .
-
-Then when constructing the obj, we will ask the uvm_factory to construct and return the expected obj.
+So, when defining the class with uvm factory we need
+1. We will register the class into the uvm_factory using the uvm macro .
+1. Then when constructing the obj, we will ask the uvm_factory to construct and return the expected obj.
 If the class has been overriden, then the return obj will be the object of the overriden child class instead of the original one.
 
 Let see how the uvm_factory can do that
@@ -166,6 +166,7 @@ Let just cover the override by type here.
 The override by inst type is just has the same fashion as the by type override.
 
 We has another array to stored those overriden information
+The uvm_factory_override class is an object that has information of original class and the overriden class
 {% highlight verilog %}
 class uvm_default_factory extends uvm_factory;
    protected uvm_factory_override m_type_overrides[$];
@@ -185,7 +186,17 @@ endclass
 {% endhighlight %}
 
 ### factory create object function
+function uvm_object uvm_default_factory::create_object_by_type (uvm_object_wrapper requested_type,  
+                                                        string parent_inst_path="",  
+                                                        string name=""); 
 
+   requested_type = find_override_by_type(requested_type, full_inst_path);
+
+   return requested_type.create_object(name);
+endfunction
+
+* The find_override_by_type will search the latest overriden class type in the m_type_overrides[$], then return the class type that needed to construct.
+* Finaly, we construct the object.
 
 ---
 ## Walk through
