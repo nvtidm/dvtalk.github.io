@@ -148,7 +148,7 @@ m_factory.debug_create_by_name("l2_layer_base"); //assuming the class was create
 ---
 
 ## Finding more information
-1. [ How uvm factory actually works ](https://hungvn.test)
+1. [ How uvm factory actually works ]({{ site.baseurl }}{% link _posts/x_myrandoms/uvm_randoms/2021-09-12-how-uvm-factory-actually-works.md %})
 1. [ uvm cookbook ](https://verificationacademy.com/cookbook/factory)
 
 
