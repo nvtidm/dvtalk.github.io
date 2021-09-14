@@ -107,7 +107,7 @@ Let see how the uvm_factory can do that
 
 ### Object/Component wrapper class
 The uvm_object_registry actually has another function called create_object().
-This function will be called in uvm_factory to create an object of the original class for the lookup purpose in the factory
+This function will be called in uvm_factory to create an object of the original class.
 
 Also the uvm_object_registry is extended from the uvm_object_wrapper class, which is simply an abstract class.
 {% highlight verilog %}
@@ -186,6 +186,7 @@ endclass
 {% endhighlight %}
 
 ### factory create object function
+{% highlight verilog %}
 function uvm_object uvm_default_factory::create_object_by_type (uvm_object_wrapper requested_type,  
                                                         string parent_inst_path="",  
                                                         string name=""); 
@@ -194,6 +195,7 @@ function uvm_object uvm_default_factory::create_object_by_type (uvm_object_wrapp
 
    return requested_type.create_object(name);
 endfunction
+{% endhighlight %}
 
 * The find_override_by_type will search the latest overriden class type in the m_type_overrides[$], then return the class type that needed to construct.
 * Finaly, we construct the object.
