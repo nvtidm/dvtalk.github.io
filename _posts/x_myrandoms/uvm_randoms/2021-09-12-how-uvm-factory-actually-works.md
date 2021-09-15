@@ -19,10 +19,21 @@ If you have not known what uvm factory is yet, check this one:
 
 ---
 ## Things to know before diving in
-* Class scope operator `::`
+* Class scope resolution operator `::`.
+1. We use the class scope resolution operator to gain access to an element inside a class.
+1. A class scope resolution operator can be used for all static element: static class variables, static function/task, parameters, local parameters, enums, unions, constraints, nested class declaritions and typedefs.
+
 * Abstract class
+1. Abstract class is like a template of other classes, cannot be instantiated directly. [Virtual class and pure virtual methods]({{ site.baseurl }}{% link _posts/x_myrandoms/systemverilog_randoms/2021-08-26-summarize-virtual-in-systemverilog.md %})
+
 * Parameterized class
+1. Known as generic class in other programming languages.
+1. The important point when using parameterized class is that the class type is only valid when parameters are provided. And each set of parameters will create a different class type.
+1. For example, given the parameterized class `class bus_monitor #(int ADDR_BUS_WIDTH);`, the `bus_monitor` is not a valid class type. `bus_monitor#(32)` and `bus_monitor#(64)` are valid, and these are two different class type.
+
 * Singleton class
+1. This is a type of class that can only has one single instance.
+1. Check this post for detailed [ Singleton class in Systemverilog  ]({{ site.baseurl }}{% link _posts/x_myrandoms/systemverilog_randoms/2021-09-03-singleton-class-in-systemverilog.md %})
 
 ---
 ## Registering the uvm obj/component to uvm factory
