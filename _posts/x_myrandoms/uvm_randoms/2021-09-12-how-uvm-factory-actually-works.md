@@ -37,25 +37,27 @@ If you have not known what uvm factory is yet, check this one:
 
 ---
 ## Registering the uvm obj/component to uvm factory
-Using uvm factory, we just need to call a simple method,
-then all the objects of the original class will be substitued by the new class when constructing.
+Firstly, when declare the class, we must register the class to the uvm factory.
+This step is simpified using the uvm macro: `uvm_object_utils` or `uvm_component_utils`.
 
 ### Object/Component registry class
+The macro, will actually create a typedef of type_id as below:
 {% highlight verilog %}
 class l2_layer extends uvm_object;
    `uvm_object_utils(l2_layer)
 
 //-->
 //generated code from macros
-// typedef uvm_object_registry #(l2_layer, "l2_layer") type_id;
-// ...
+   typedef uvm_object_registry #(l2_layer, "l2_layer") type_id;
+   ...
 endclass
 {% endhighlight %}
 
-The `uvm_object_registry#(l2_layer, "l2_layer")` class will be constructed and register to uvm factory by itself like a singleton class.
+The `uvm_object_registry#(l2_layer, "l2_layer")` class will be constructed and register it's instance handle to uvm factory by itself.
 {% highlight verilog %}
 class uvm_object_registry #(type T=uvm_object, string Tname="") extends uvm_object_wrapper;
    //1. factory register code
+   typedef uvm_object_registry #(T,Tname) this_type;
    local static this_type me = get();
    static function this_type get();
       if (me == null) begin
@@ -67,9 +69,15 @@ class uvm_object_registry #(type T=uvm_object, string Tname="") extends uvm_obje
    endfunction
 endclass
 {% endhighlight %}
+* We can see that the `uvm_object_registry#(l2_layer, "l2_layer")` is actually a singleton class.
+Also, thanks to the initialization of the static variable `static this_type me = get()`, this class will be constructed automatically at the very beginning, before any execution.
+This is actually called **eager initialization**, where the instance of singleton class is created thanks to the initialization of static variable.
 
+* Also, in the `get()` function, this singleton class `uvm_object_registry#(l2_layer, "l2_layer")` will be registered to uvm factory using this statement `factory.register(me)`
 
-* Explain how the class is register in to the uvm_factory
+* So, when define a class `l2_layer`, by using `uvm_object_utils(l2_layer)` macro, we actually will create a singleton object, and register this object to the uvm factory.
+This singleton object will contain the class type `l2_layer` and the class name string as its parameters.
+Those are the information will be used by the uvm factory for searching and constructing class instance.
 
 ---
 ## Constructing the new object
