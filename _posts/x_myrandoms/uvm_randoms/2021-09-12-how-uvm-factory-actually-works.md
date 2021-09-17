@@ -33,7 +33,7 @@ If you have not known what uvm factory is yet, check this one:
 
 * Singleton class
 1. This is a type of class that can only has one single instance.
-1. Check this post for detailed [ Singleton class in Systemverilog  ]({{ site.baseurl }}{% link _posts/x_myrandoms/systemverilog_randoms/2021-09-03-singleton-class-in-systemverilog.md %})
+1. Check this post for detailed informations [ Singleton class in Systemverilog  ]({{ site.baseurl }}{% link _posts/x_myrandoms/systemverilog_randoms/2021-09-03-singleton-class-in-systemverilog.md %})
 
 ---
 ## Registering the uvm obj/component to uvm factory
@@ -41,7 +41,7 @@ Firstly, when declare the class, we must register the class to the uvm factory.
 This step is simpified using the uvm macro: `uvm_object_utils` or `uvm_component_utils`.
 
 ### Object/Component registry class
-The macro, will actually create a typedef of type_id as below:
+The macro will actually create a typedef of type_id as below:
 {% highlight verilog %}
 class l2_layer extends uvm_object;
    `uvm_object_utils(l2_layer)
@@ -75,19 +75,25 @@ This is actually called **eager initialization**, where the instance of singleto
 
 * Also, in the `get()` function, this singleton class `uvm_object_registry#(l2_layer, "l2_layer")` will be registered to uvm factory using this statement `factory.register(me)`
 
-* So, when define a class `l2_layer`, by using `uvm_object_utils(l2_layer)` macro, we actually will create a singleton object, and register this object to the uvm factory.
-This singleton object will contain the class type `l2_layer` and the class name string as its parameters.
+* So, when define a class `l2_layer`, by using `uvm_object_utils(l2_layer)` macro, we actually will create a singleton object.
+In `l2_layer` class, the handle of this singleton object is stored in `type_id` variable.
+This `type_id` object is registered to the uvm factory automatically.
+Also, this singleton object will contain the class type `l2_layer` and the class name string as its parameters.
 Those are the information will be used by the uvm factory for searching and constructing class instance.
 
 ---
 ## Constructing the new object
+The other code convention when using uvm factory is that to construct the obj, instead of using the `new()` constructor directly,
+we must use the `create()` method inside the `type_id` singleton object:
 
+`l2_layer m_l2_obj = l2_layer::type_id::create("l2_layer");`
 ### Constructing object
+Still in the `uvm_object_registry` class, we will have this `create()` method.
 
 {% highlight verilog %}
 class uvm_object_registry #(type T=uvm_object, string Tname="") extends uvm_object_wrapper;
    ...
-   //1. factory register code
+   //1. singleton object construction and factory register code
    ...
 
    //2. create() function, called by user
@@ -103,17 +109,22 @@ class uvm_object_registry #(type T=uvm_object, string Tname="") extends uvm_obje
 
 endclass
 {% endhighlight %}
-* So by calling type_id::create(), we actually ask the uvm facotry to construct and return the override child class of the current obj
 
-Example of creating `l2_layer` object in a sequence class
+* The `create()` is a static function, so we can access this function using class scope resolution operator `l2_layer::type_id::create()`
+* In this method, we actually ask the uvm factory to construct the object using this statement `obj = factory.create_object_by_type(get(), contxt, name)`.
+In uvm factory, there is an array to stored the original class type and it's overriden class type.
+If the `l2_layer` is overriden by it's child class, this child class will be constructed instead.
+
+Example of creating `l2_layer` object in a sequence class:
 {% highlight verilog %}
 class sequence_a extends uvm_sequence;
 ...
-   l2_layer m_l2_seq = l2_layer::type_id::create("l2_layer");
+   l2_layer::type_id::set_type_override(l2_layer_mac::get_type()); // where the l2_layer_mac is extended from l2_layer
+...
+   l2_layer m_l2_obj = l2_layer::type_id::create("l2_layer");  // the l2_layer_mac object will be constructed
 ...
 endclass
 {% endhighlight %}
-* Explain all the step
 
 ---
 ## Inside the uvm_factory
