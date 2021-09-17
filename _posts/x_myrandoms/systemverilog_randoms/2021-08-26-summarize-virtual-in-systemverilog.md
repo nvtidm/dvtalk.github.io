@@ -30,7 +30,7 @@ To understand more about polymorphism and what's the different between virtual a
 Virtual class is also known as Abstract class (which you might be familiar with when programming in other languages).
 This kind of class can only be inherited, it cannot be instantiated.
 
-Inside a virtual class, we must define methods as `pure virtual`, and as well as the virtual class itself, the virtual method must not contain any body code.
+Inside a virtual class, we can define methods as `pure virtual`, this pure virtual method must not contain any body code.
 All the class extended from virtual class must implement all the pure virtual method.
 
 Think about it as a template that all the child class must follow.
