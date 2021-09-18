@@ -12,7 +12,7 @@ toc_en: true
 ---
 
 # How uvm factory actually works
-This post will go into detailed of the uvm factory operation.
+This post will go into the detailed implementation of the uvm factory.
 If you have not known what uvm factory is yet, check this one:
 [How to use uvm factory]({{ site.baseurl }}{% link _posts/x_myrandoms/uvm_randoms/2021-09-11-how-to-use-uvm-factory.md %}).
 {: .fs-5 .fw-500 }
@@ -21,7 +21,7 @@ If you have not known what uvm factory is yet, check this one:
 ## Things to know before diving in
 * Class scope resolution operator `::`.
 1. We use the class scope resolution operator to gain access to an element inside a class.
-1. A class scope resolution operator can be used for all static element: static class variables, static function/task, parameters, local parameters, enums, unions, constraints, nested class declaritions and typedefs.
+1. A class scope resolution operator can be used for all static element: static class variables, static function/task, parameters, local parameters, enums, unions, constraints, nested class declaritions and *typedefs*.
 
 * Abstract class
 1. Abstract class is like a template of other classes, cannot be instantiated directly. [Virtual class and pure virtual methods]({{ site.baseurl }}{% link _posts/x_myrandoms/systemverilog_randoms/2021-08-26-summarize-virtual-in-systemverilog.md %})
@@ -37,8 +37,8 @@ If you have not known what uvm factory is yet, check this one:
 
 ---
 ## Registering the uvm obj/component to uvm factory
-Firstly, when declare the class, we must register the class to the uvm factory.
-This step is simpified using the uvm macro: `uvm_object_utils` or `uvm_component_utils`.
+Firstly, when defining a class, we must register that class to the uvm factory.
+This step is simpified by using the uvm macro: `uvm_object_utils` or `uvm_component_utils`.
 
 ### Object/Component registry class
 The macro will actually create a typedef of type_id as below:
@@ -125,21 +125,29 @@ class sequence_a extends uvm_sequence;
 ...
 endclass
 {% endhighlight %}
+* In the above example, the `l2_layer` is overriden by its child class `l2_layer_mac`.
+* So after constructing object using uvm factory, the `m_l2_obj` variable will point to an object of `l2_layer_mac`.
 
 ---
 ## Inside the uvm_factory
-So, when defining the class with uvm factory we need
-1. We will register the class into the uvm_factory using the uvm macro .
+So, when defining the class with uvm factory we need:
+1. Firstly, we will register the class into the uvm_factory using the uvm macro.
 1. Then when constructing the obj, we will ask the uvm_factory to construct and return the expected obj.
 If the class has been overriden, then the return obj will be the object of the overriden child class instead of the original one.
 
-Let see how the uvm_factory can do that
+Let see how the `uvm_factory` can do that
+
+### uvm_factory class
+In uvm1.2, The `uvm_factory` is actually a abstract class.
+The `uvm_default_factory` is the extended class of the `uvm_factory` and it's instance can be retrieved through a `uvm_coreservice_t` singleton class as below:
+
+`uvm_factory factory = uvm_core_service_t::get().get_factory()`
 
 ### Object/Component wrapper class
-The uvm_object_registry actually has another function called create_object().
-This function will be called in uvm_factory to create an object of the original class.
+The `uvm_object_registry` actually has another function called `create_object()`.
+This function will be called by the `uvm_factory` to create an object of the registered class.
 
-Also the uvm_object_registry is extended from the uvm_object_wrapper class, which is simply an abstract class.
+Also the `uvm_object_registry` is extended from the `uvm_object_wrapper` class, which is simply an abstract class.
 {% highlight verilog %}
 virtual class uvm_object_wrapper;
    virtual function uvm_object create_object (string name="");
@@ -170,10 +178,25 @@ class uvm_object_registry #(type T=uvm_object, string Tname="") extends uvm_obje
    endfunction
 endclass
 {% endhighlight %}
-* Why we need an abstract class uvm_object_wrapper? Because the uvm_object_registry has parameters,
-so cannot create array as below, ...
+* The `create()` method will be called by user. As explained in the section above, this function will return the handle of the overriden class object.
+* The `create_object()` method will be called by `uvm_factory`. This function will construct and return the object of the register class.
 
-### factory register() function
+Example:
+{% highlight verilog %}
+...
+   l2_layer::type_id::set_type_override(l2_layer_mac::get_type()); // where the l2_layer_mac is extended from l2_layer
+...
+   l2_layer m_l2_obj = l2_layer::type_id::create("l2_layer");  // the l2_layer_mac object will be constructed
+...
+{% endhighlight %}
+* In the above example, inside the `uvm_object_registry#(l2_layer, "l2_layer")`,
+the `create()` method will construct the `l2_layer_mac` object thanks to uvm factory, and the `create_object()` will construct the `l2_layer` object.
+
+### Factory register() function
+As above, to register a class to the factory, we call `factory.register(me)` inside the `get()` function of the `uvm_object_registry`.
+Where `me` has the handle to the object of singleton class `uvm_object_registry#(l2_layer, "l2_layer")`
+
+Let's take a look at the `register()` function
 {% highlight verilog %}
 class uvm_default_factory extends uvm_factory;
 
@@ -188,15 +211,19 @@ class uvm_default_factory extends uvm_factory;
    endfunction
 endclass
 {% endhighlight %}
-* The m_type_names array is used for ...
-* The m_types is used for ...
 
-### factory override function
+* In uvm factory, we have options for overriding the original class, either by type or by name.
+The two above associative arrays `m_types` and `m_type_names` serve that purpose.
+They will store the class registered to factory using either class type or class name string as lookup key.
+* Before perform override function or class contructor function on a class,
+the factory will check these 2 arrays to make sure that class has already been registered in the factory.
+
+### Factory override function
 Let just cover the override by type here.
-The override by inst type is just has the same fashion as the by type override.
+The override by inst just operates in the same fashion as the by type override.
 
-We has another array to stored those overriden information
-The uvm_factory_override class is an object that has information of original class and the overriden class
+We has another array to store the overriden information.
+The `uvm_factory_override` class is an object that has information of original class and the overriden class.
 {% highlight verilog %}
 class uvm_default_factory extends uvm_factory;
    protected uvm_factory_override m_type_overrides[$];
@@ -215,7 +242,12 @@ class uvm_default_factory extends uvm_factory;
 endclass
 {% endhighlight %}
 
-### factory create object function
+### Factory create object function
+Finaly, when create and object using the `create()` function as below:
+
+`l2_layer m_l2_obj = l2_layer::type_id::create("l2_layer");`
+
+We will call the function `create_object_by_type()` in uvm factory
 {% highlight verilog %}
 function uvm_object uvm_default_factory::create_object_by_type (uvm_object_wrapper requested_type,  
                                                         string parent_inst_path="",  
@@ -227,16 +259,12 @@ function uvm_object uvm_default_factory::create_object_by_type (uvm_object_wrapp
 endfunction
 {% endhighlight %}
 
-* The find_override_by_type will search the latest overriden class type in the m_type_overrides[$], then return the class type that needed to construct.
-* Finaly, we construct the object.
-
----
-## Walk through
-
+* The `find_override_by_type()` will search the latest overriden class type in the `m_type_overrides[$]`, then return the class type that needed to construct.
+* Then we will construct the object using the `create_object()` function inside the `uvm_object_registry#()` class.
+* For example, if the `l2_layer` is an original class type, and the `l2_layer_mac` is the overriden class type. The `create_object()` of `uvm_object_registry#(l2_layer_mac, "l2_layer_mac")` will be call, and the `l2_layer_mac` object will be constructed eventually.
 
 ---
 ## Finding more information
-1. [ How uvm factory actually works ](https://hungvn.test)
-1. [ uvm cookbook ](https://verificationacademy.com/cookbook/factory)
+1. [ uvm methodology reference ](https://verificationacademy.com/verification-methodology-reference/uvm/docs_1.1a/html/files/base/uvm_factory-svh.html)
 
 
