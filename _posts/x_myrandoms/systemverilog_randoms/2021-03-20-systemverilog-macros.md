@@ -36,14 +36,14 @@ Macro is a piece of code which enable the text substitution everywhere the macro
 * \`\` (double tick) + `ARG` : use the `ARG` to form a variable name, block name, signals, etc.
 <div class="code">
 {% highlight verilog %}
-`define get_signal(ARG1, ARG2)  bit signal_``ARG1 = ARG2;
+`define get_signal(ARG1, ARG2)  bit signal_``ARG1``_n = ARG2;
 
 --> usage example:
 `get_signal(1, top.module_a.signal_a)
-// generated code: bit signal_1 = top.module_a.signal_a;
+// generated code: bit signal_1_n = top.module_a.signal_a;
 
 `get_signal(c, top.module_a.signal_abc) 
-// generated code: bit signal_c = top.module_a.signal_abc;
+// generated code: bit signal_c_n = top.module_a.signal_abc;
 //
 {% endhighlight %}
 </div>
@@ -59,6 +59,21 @@ Macro is a piece of code which enable the text substitution everywhere the macro
 //
 {% endhighlight %}
 </div>
+
+This argument can be used a with `$psprintf()` to form a string.
+<div class="code">
+{% highlight verilog %}
+`define print_arg(ARG1, ARG2) $psprintf("%s signal, expected value is %s, current value: %0d ", `"ARG2`", `"ARG1`" , ARG2);
+
+--> usage example:
+`print_arg(1, top.module_a.signal_a)
+// generated code:  $psprintf("%s signal, expected value is %s, current value: %0d ", "top.module_a.signal_a", "1", top.module_a.signal_a);
+//
+{% endhighlight %}
+</div>
+
+
+
 
 * \`\\`" (a tick, a backslash, a tick then double quotes): to keep the escape sequence \\" in the generated text.
 {% highlight verilog %}
@@ -76,6 +91,11 @@ Macro is a piece of code which enable the text substitution everywhere the macro
 <a href="https://www.edaplayground.com/x/PR3c" title="SystemVerilog Macros">
 <svg width="25" height="25" viewBox="0 -0.1 2 2" class="customsvg"> <use xlink:href="#svg-edaplay"></use></svg>
 </a></div>
+
+### Local macro
+There is no such thing as local macro, but we can define a macro right when we need to call it,
+then `undef` after use so we do not worry that it might be called by accident somewhere else.
+
 ### Recommendation
 * If writing a function/task is possible, avoid writing macro =D.
 * Marco is usually used for coverage point definition, assertion definition.
@@ -185,6 +205,8 @@ Create a macro to define assertion with below requirements:
 {% endhighlight %}
 
 
+{% highlight verilog %}
+{% endhighlight %}
 
 ---
 ## Finding more information
