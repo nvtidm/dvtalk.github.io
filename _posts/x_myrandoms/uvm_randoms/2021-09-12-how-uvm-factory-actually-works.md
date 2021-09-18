@@ -222,8 +222,9 @@ the factory will check these 2 arrays to make sure that class has already been r
 Let just cover the override by type here.
 The override by inst just operates in the same fashion as the by type override.
 
-We has another array to store the overriden information.
-The `uvm_factory_override` class is an object that has information of original class and the overriden class.
+We has a queue to store the overriden information named `m_type_overrides`.
+This queue store the information of original class and it's overriden one.
+The `uvm_factory_override` class object is an object that store those information when we call the `set_type_override_by_type()` function.
 {% highlight verilog %}
 class uvm_default_factory extends uvm_factory;
    protected uvm_factory_override m_type_overrides[$];
