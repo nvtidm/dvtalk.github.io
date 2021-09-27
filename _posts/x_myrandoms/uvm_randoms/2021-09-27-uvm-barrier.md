@@ -60,7 +60,7 @@ m_my_event.reset();
 
 ---
 ## Finding more information
-1. [ uvm_event ](https://verificationacademy.com/verification-methodology-reference/uvm/docs_1.2/html/files/base/uvm_event-svh.html)
+1. [ uvm_barrier ](https://verificationacademy.com/verification-methodology-reference/uvm/docs_1.2/html/files/base/uvm_barrier-svh.html)
 1. [ uvm_event_callback ](https://verificationacademy.com/verification-methodology-reference/uvm/docs_1.2/html/files/base/uvm_event_callback-svh.html)
 1. [ uvm_pool ](https://verificationacademy.com/verification-methodology-reference/uvm/docs_1.2/html/files/base/uvm_pool-svh.html)
 
