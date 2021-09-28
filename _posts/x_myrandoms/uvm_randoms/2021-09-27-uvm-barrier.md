@@ -21,15 +21,18 @@ After that, all the pending processes will be resumed, similar to lifting the ba
 ## How to use uvm_barrier and uvm_barrier_pool
 
 ### uvm_barrier class basic function
-The `uvm_event` class supports several basic methods as below:
-* *`new()`*: Creates a new event object
-* *`set_threshold()`*: 
-* *`get_threshold()`*: 
-* *`wait_for()`*: 
-* *`reset()`*: 
-* *`set_auto_reset()`*:
-* *`get_num_waiters()`*: 
-* *`cancel()`*: 
+The `uvm_barrier` class supports several basic methods as below:
+* *`new()`*: Creates a new barrier object.
+* *`set_threshold(int threshold)`*: Set the number of waiting processes threshold. If the number of waiting processes is greater or equal to this number, the barrier will be lifted
+* *`get_threshold()`*: Return the current threshold of the barrier.
+* *`wait_for()`*: Blocking the current process, increase the number of waiting processes of the current uvm_barrier object.
+* *`reset(bit wakeup=1)`*: Reset the counter back to zero. If `wakeup` argument is 1'b1, all the waiting processes will resume. If `wakeup` is 1'b0, all the waiting processes will be kept waiting.
+* *`set_auto_reset(bit value=1)`*: Allow the barrier to autoreset after the threshold is reach.
+* *`get_num_waiters()`*: Return the number of waiting processes.
+* *`cancel()`*: Decrease the number of waiting processes by one.
+
+Let's take an example below:
+
 
 ### uvm_barrier_pool
 When the `trigger()` method and the `wait_trigger()` method are called at the same simulation time, we call it event race condition.
