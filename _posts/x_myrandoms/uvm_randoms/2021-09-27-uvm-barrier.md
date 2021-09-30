@@ -14,13 +14,13 @@ toc_en: true
 # How to use uvm_barrier and uvm_barrier_pool
 `uvm_barrier` is added alongside `uvm_event` for synchronization.
 This class allow us to block the specific processes until an expected number of processes reach a defined point.
-After that, all the pending processes will be resumed, similar to lifting the barrier.
+After that, all the pending processes will be resumed at the same time, similar to lifting the barrier.
 {: .fs-5 .fw-500 }
 
 ---
 ## How to use uvm_barrier and uvm_barrier_pool
 
-### uvm_barrier class basic function
+### uvm_barrier class basic functions
 The `uvm_barrier` class supports several basic methods as below:
 * *`new()`*: Creates a new barrier object.
 * *`set_threshold(int threshold)`*: Set the number of waiting processes threshold. If the number of waiting processes is greater or equal to this number, the barrier will be lifted
@@ -59,7 +59,7 @@ Let's take an example below:
 
 //
 // after 1ns, the process 1 is suspended, the counter of `m_bar` barrier will be 1. 
-//            the process 1 will wait for the counter reach the threshold value (which is 2).
+//            the process 1 will wait for the counter to reach the threshold value (which is 2).
 //
 // after 3ns, in the process 2, the `m_bar.wait_for()` will increase the barrier counter by 1,
 //            so the counter will be 2, equal to the threshold value, then the barrier is lifted.
@@ -70,7 +70,7 @@ Let's take an example below:
 
 
 ### uvm_barrier_pool
-Similar to [ uvm_event ]({{ site.baseurl }}{% link _posts/x_myrandoms/uvm_randoms/2021-09-20-uvm-event.md %}), we has this `uvm_barrier_pool`, which is a `uvm_pool` for uvm_barrier.
+Similar to [ uvm_event ]({{ site.baseurl }}{% link _posts/x_myrandoms/uvm_randoms/2021-09-20-uvm-event.md %}), we has this `uvm_barrier_pool`, which is a `uvm_pool` for `uvm_barrier` object.
 And we use it exactly like the `uvm_event_pool`.
 
 {% highlight verilog %}
@@ -91,7 +91,7 @@ So to create/get an `uvm_barrier` object which is shared globally, we just need 
 {% highlight verilog %}
    // if there is no uvm_barrier stored under name "test_finish_bar",
    // a new uvm_barrier object will be created by the pool
-   uvm_barrier m_finish_bar = uvm_barrier_pool::get_global("test_finish_ev");
+   uvm_barrier m_finish_bar = uvm_barrier_pool::get_global("test_finish_bar");
 
    m_finish_bar.set_threshold(3);
 
@@ -104,8 +104,8 @@ So to create/get an `uvm_barrier` object which is shared globally, we just need 
 ---
 ## Example
 
-### uvm_barrier basic
 ### uvm_barrier for counting signal pulse
+### uvm_barrier for collecting enough data before process
 
 ---
 ## Finding more information
