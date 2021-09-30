@@ -32,27 +32,72 @@ The `uvm_barrier` class supports several basic methods as below:
 * *`cancel()`*: Decrease the number of waiting processes by one.
 
 Let's take an example below:
+{% highlight verilog %}
+...
+   uvm_barrier m_bar = new();
+
+   // Set the threshold to 2,
+   // Means the barrier will be lifted when the number of processes waiting is 2.
+   m_bar.set_threshold(2);
+
+...
+   fork
+      begin
+         $display("Process 1");
+         #1ns;
+         m_bar.wait_for();  // suspend the process, increase the barrier counter by 1
+         $display("Process 1 resumes");
+      end
+
+      begin
+         $display("Process 2");
+         #3ns;
+         m_bar.wait_for();  // increase the barrier counter by 1, reach threshold value
+         $display("Process 2 resumes");
+      end
+   join_none
+
+//
+// after 1ns, the process 1 is suspended, the counter of `m_bar` barrier will be 1. 
+//            the process 1 will wait for the counter reach the threshold value (which is 2).
+//
+// after 3ns, in the process 2, the `m_bar.wait_for()` will increase the barrier counter by 1, so the counter will be 2.
+//            since the threshold is 2, then the barrier is lifted
+//            both of process 1 and 2 will be resumed after 3ns.
+
+{% endhighlight %}
 
 
 ### uvm_barrier_pool
-When the `trigger()` method and the `wait_trigger()` method are called at the same simulation time, we call it event race condition.
+Similar to [ uvm_event ]({{ site.baseurl }}{% link _posts/x_myrandoms/uvm_randoms/2021-09-20-uvm-event.md %}), we has this `uvm_barrier_pool`, which is a `uvm_pool` for uvm_barrier.
+And we use it exactly like the `uvm_event_pool`.
 
-When this happens, we will not know if the `trigger()` is occurred before or after the `wait_trigger()`.
-If the `trigger()` is executed first, we end up in a deadlock situation.
-The reason is the `wait_trigger()` will wait for the next trigger of the event, but it the `trigger()` is already processed prior to the wait.
-
-We can also avoid race condition by having a coding convention as below:
 {% highlight verilog %}
-uvm_event m_my_event = new();
+typedef uvm_object_string_pool #(uvm_barrier) uvm_barrier_pool;
+{% endhighlight %}
 
-//for trigger,
-//only trigger when the state of event is off (by reset or the event has not been trigger at all)
-m_my_event.wait_off();
-m_my_event.trigger();
+Let's think of this pool as a global associative array
+where the keys are strings of barrier names, and the values are the `uvm_barrier` objects.
 
-//for wait_trigger, reset the event to off state after wait_trigger() return
-m_my_event.wait_trigger();
-m_my_event.reset();
+Also, `uvm_pool` is a [ singleton class ]({{ site.baseurl }}{% link _posts/x_myrandoms/systemverilog_randoms/2021-09-03-singleton-class-in-systemverilog.md %}),
+that explains why it has global access.
+
+`uvm_barrier_pool` support several methods, but the most commonly used is `get_global()`.
+* *`get_global(<string key>)`*: Return the uvm barrier object that stored in `uvm_barrier_pool` with `<string key>`.
+If no item exist by the given input string, a new `uvm_barrier` object will be created for that key.
+
+So to create/get an uvm_barrier which is shared globally, we just need to call:
+{% highlight verilog %}
+   // if there is no uvm_barrier stored under name "test_finish_bar",
+   // a new uvm_barrier object will be created by the pool
+   uvm_barrier m_finish_bar = uvm_barrier_pool::get_global("test_finish_ev");
+
+   m_finish_bar.set_threshold(3);
+
+   // Or we can directly use the event as below:
+   uvm_barrier_pool::get_global("test_finish_bar").set_threshold(3);
+   ...
+   uvm_barrier_pool::get_global("test_finish_bar").wait_for();
 {% endhighlight %}
 
 ---
