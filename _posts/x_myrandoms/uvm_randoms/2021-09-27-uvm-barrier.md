@@ -61,9 +61,10 @@ Let's take an example below:
 // after 1ns, the process 1 is suspended, the counter of `m_bar` barrier will be 1. 
 //            the process 1 will wait for the counter reach the threshold value (which is 2).
 //
-// after 3ns, in the process 2, the `m_bar.wait_for()` will increase the barrier counter by 1, so the counter will be 2.
-//            since the threshold is 2, then the barrier is lifted
-//            both of process 1 and 2 will be resumed after 3ns.
+// after 3ns, in the process 2, the `m_bar.wait_for()` will increase the barrier counter by 1,
+//            so the counter will be 2, equal to the threshold value, then the barrier is lifted.
+//            eventually both of process 1 and 2 will be resumed after 3ns.
+//
 
 {% endhighlight %}
 
@@ -86,7 +87,7 @@ that explains why it has global access.
 * *`get_global(<string key>)`*: Return the uvm barrier object that stored in `uvm_barrier_pool` with `<string key>`.
 If no item exist by the given input string, a new `uvm_barrier` object will be created for that key.
 
-So to create/get an uvm_barrier which is shared globally, we just need to call:
+So to create/get an `uvm_barrier` object which is shared globally, we just need to call:
 {% highlight verilog %}
    // if there is no uvm_barrier stored under name "test_finish_bar",
    // a new uvm_barrier object will be created by the pool
