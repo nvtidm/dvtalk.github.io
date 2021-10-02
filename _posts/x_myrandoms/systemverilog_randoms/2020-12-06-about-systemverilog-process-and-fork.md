@@ -281,7 +281,6 @@ then we use the static function `self()` of the `process` class to get the handl
 Let's take another example of using fine grain process control with forever loop:
 {% highlight verilog %}
    std::process m_process_q[$];
-
    ...
    forever begin
       fork
