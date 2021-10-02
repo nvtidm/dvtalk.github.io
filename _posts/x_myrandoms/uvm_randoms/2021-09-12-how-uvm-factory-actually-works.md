@@ -131,8 +131,8 @@ endclass
 ---
 ## Inside the uvm_factory
 So, when defining the class with uvm factory we need:
-1. Firstly, we will register the class into the uvm_factory using the uvm macro.
-1. Then when constructing the obj, we will ask the uvm_factory to construct and return the expected obj.
+1. Firstly, we will register the class into the `uvm_factory` using the uvm macro.
+1. Then when constructing the obj, we will ask the `uvm_factory` to construct and return the expected obj.
 If the class has been overriden, then the return obj will be the object of the overriden child class instead of the original one.
 
 Let see how the `uvm_factory` can do that
