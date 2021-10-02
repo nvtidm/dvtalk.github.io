@@ -103,14 +103,46 @@ So to create/get an `uvm_barrier` object which is shared globally, we just need 
 
 ---
 ## Example
+### Using uvm_barrier to wait for a number of signal pulse
+{% highlight verilog %}
+   ...
+   virtual status_interface m_sts_if;
+   ...
 
-### uvm_barrier for counting signal pulse
-### uvm_barrier for collecting enough data before process
+   // Set the threshold to 5, 
+   // If there is 5 "wait_for()" statements blocking their processes, the barrier will be lifted
+   uvm_barrier_pool::get_global("wait_done_count").set_threshold(5);
+
+   ...
+   uvm_event m_done_count_ev = new();
+
+   fork
+      forever begin
+         @(posedge m_sts_if.op_done_signal_a);
+         fork 
+            begin
+               uvm_barrier_pool::get_global("wait_done_count").wait_for();
+               m_done_count_ev.trigger();
+            end 
+         join_none
+      end 
+   join_none
+
+   m_done_count_ev.wait_on();
+   $display("op_done_signal_a toggle 5 times");
+
+   ...
+{% endhighlight %}
+* In above example code, each time the `op_done_signal_a` asserts, we create a process which has a `wait_for()` statement.
+This statement will increase the counter of the barrier `wait_done_count` by one.
+Also, since this process is put in `fork`-`join_none`, the forever loop will continue immediately and wait for the next rise edge of the `op_done_signal_a`.
+* After 5 pulses of `op_done_signal_a`, there will be 5 processes blocked by `wait_for()` statement.
+Since the threshold is 5, the barrier will be lifted, all 5 processes will be resumed and execute the next statement, trigger the event `m_done_count_ev`.
+* So using `uvm_barrier` and an event, we can detect when the signal has asserted 5 times.
 
 ---
 ## Finding more information
 1. [ uvm_barrier ](https://verificationacademy.com/verification-methodology-reference/uvm/docs_1.2/html/files/base/uvm_barrier-svh.html)
-1. [ uvm_event_callback ](https://verificationacademy.com/verification-methodology-reference/uvm/docs_1.2/html/files/base/uvm_event_callback-svh.html)
 1. [ uvm_pool ](https://verificationacademy.com/verification-methodology-reference/uvm/docs_1.2/html/files/base/uvm_pool-svh.html)
 
 
