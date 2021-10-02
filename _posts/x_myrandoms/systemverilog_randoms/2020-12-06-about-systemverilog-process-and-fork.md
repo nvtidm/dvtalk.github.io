@@ -29,7 +29,7 @@ We have `join`, `join_none` and `join_any`.
 * For `fork`-`join_none`, the parent process will **continue at the same time** with all the processes spawned by the fork.
 
 Just simple as that, start your block with `fork`, then end your block with either `join`, `join_any` or `join_none`. 
-However, life is not that much easy. Let's consider some cases below, where using some other control methods alongside with fork is necessary.
+However, life is not that much easy. Let's consider some cases below, where using some other control methods alongside fork is necessary.
 
 ---
 ## fork join in a loop
@@ -277,6 +277,31 @@ then we use the static function `self()` of the `process` class to get the handl
 <a href="https://www.edaplayground.com/x/fc2c" title="SystemVerilog fine grain control">
 <svg width="25" height="25" viewBox="0 -0.1 2 2" class="customsvg"> <use xlink:href="#svg-edaplay"></use></svg>
 </a></div>
+
+Let's take another example of using fine grain process control with forever loop:
+{% highlight verilog %}
+   std::process m_process_q[$];
+
+   ...
+   forever begin
+      fork
+         begin
+            m_process_q.push_back(std::process::self());
+            @(posedge signal_a);
+            //... other statements
+         end 
+      join_none
+   end 
+
+   ...
+   foreach (m_process_q[i]) begin
+      m_process_q[i].kill();
+   end 
+
+   //
+{% endhighlight %}
+* In above example, we get all the handles of any process created in the forever loop and store in the queue `m_process_q[$]`.
+* Then later, when necessary, by iterating through that queue, we can kill all those processes.
 
 ---
 ## Finding more information
