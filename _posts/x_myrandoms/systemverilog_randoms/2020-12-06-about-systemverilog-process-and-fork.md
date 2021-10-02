@@ -118,7 +118,7 @@ the next statement right after one of the 5 processes finished.
 
 ### fork join_none in a forever loop
 We can also put the fork in side a forever loop.
-I sometimes do this when creating uvm sequence.
+I sometimes do this when monitoring a signal.
 However, we should be careful about the content of the `fork-join_none` block, because it might hang our simulator.
 Never write any code with no statement to control the process in forever loop like below:
 <div class ="code" markdown="1" >
