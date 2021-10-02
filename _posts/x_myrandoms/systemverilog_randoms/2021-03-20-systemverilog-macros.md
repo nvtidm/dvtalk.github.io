@@ -26,6 +26,7 @@ Macro is a piece of code which enable the text substitution everywhere the macro
    macro text2;
 {% endhighlight %}
 </div>
+
 ### Rules to follow
 * Avoid using the macro name which is similar to any compiler directives.
 * No space after the backslash `\` at the end of each line except for the last line of the macro.
@@ -98,11 +99,11 @@ then `undef` after use so we do not worry that it might be called by accident so
 
 ### Recommendation
 * If writing a function/task is possible, avoid writing macro =D.
-* Marco is usually used for coverage point definition, assertion definition.
 * Write all the macros in one file, and include that file in your sv package. Since redefine macro is allowed,
 write macros everywhere in your codes make debugging these macros become painful.
 * Macro can call other macros or compiler directives, but be careful, should keep it simple.
 * When using argument, try to use default value (similar to default value in function/task).
+* Make sure your code run first, then turn it into a macro.
 
 ### Debugging
 Macro is annoying when it comes to debugging. When I need to write and debug a macro, I do this:
