@@ -85,12 +85,16 @@ Then we contruct a pool then add/get semaphore object to this pool.
 
    ...
    // Now we can add/get semaphore object to the pool
-   semaphore m_port_avail_sem = new(2);                         //create semaphore with 2 keys
-   uvm_semaphore_pool::add("port_avail_sem", m_port_avail_sem); //add this semaphore to pool with name "port_avail_sem"
+
+   //create semaphore with 2 keys
+   semaphore m_port_avail_sem = new(2);
+
+   //add this semaphore to pool with name "port_avail_sem"
+   uvm_semaphore_pool::get_global_pool().add("port_avail_sem", m_port_avail_sem);
 
    ...
    // Get the semaphore "port_avail_sem" key from the pool
-   uvm_semaphore_pool::get("port_avail_sem").get(1);
+   uvm_semaphore_pool::get_global("port_avail_sem").get(1);
 
    //
 {% endhighlight %}
@@ -99,6 +103,9 @@ Then we contruct a pool then add/get semaphore object to this pool.
 ### Creating uvm_semaphore to use with uvm_object_string_pool
 We can create our own `uvm_semaphore` class, wrap around the `semaphore` of Systemverilog.
 This allow us having more control over the semaphore, also more information when debugging.
+
+Besides, since we extend `uvm_semaphore` from `uvm_object`, 
+we can use it with the `uvm_object_string_pool`, which is easier to use compare to the `uvm_pool`.
 
 Let's create the `uvm_semaphore` class as below. You can get the full class here: [ uvm_semaphore ]( https://gist.github.com/dvtalk/692f45bba567aaeae98f61f63d867058 )
 {% highlight verilog %}
@@ -128,7 +135,6 @@ Let's create the `uvm_semaphore` class as below. You can get the full class here
 {% endhighlight %}
 
 Then we can use this `uvm_semaphore` with `uvm_object_string_pool`, similar to the `uvm_event_pool` and `uvm_barrier_pool`.
-
 {% highlight verilog %}
    typedef uvm_object_string_pool #(uvm_semaphore) uvm_semaphore_pool;
 {% endhighlight %}
