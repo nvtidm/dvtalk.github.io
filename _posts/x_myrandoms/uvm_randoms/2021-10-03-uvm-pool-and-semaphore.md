@@ -64,25 +64,28 @@ So to create/get an `uvm_barrier` object which is shared globally, we just need 
 ---
 ## Example
 ### Using uvm_pool with Systemverilog semaphore directly
+Firstly, let's remember the `std::semaphore` in Systemverilog is a class.
+Therefore so we can construct and passing it's object handle as normal.
+
+To create a pool of Systemverilog semaphore, we just need to call an typedef statement as below:
+{% highlight verilog %}
+   `typedef 
+{% endhighlight %}
+
+Then to 
 {% highlight verilog %}
    ...
-   virtual status_interface m_sts_if;
-   ...
-
-   // Set the threshold to 5, 
-   // If there is 5 "wait_for()" statements blocking their processes, the barrier will be lifted
-   uvm_barrier_pool::get_global("wait_done_count").set_threshold(5);
-
-   ...
-   uvm_event m_done_count_ev = new();
 
    ...
 {% endhighlight %}
-* After 5 pulses of `op_done_signal_a`, there will be 5 processes blocked by `wait_for()` statement.
-Since the threshold is 5, the barrier will be lifted, all 5 processes will be resumed and execute the next statement, trigger the event `m_done_count_ev`.
-* So using `uvm_barrier` and an event, we can detect when the signal has asserted 5 times.
+
 
 ### Creating uvm_semaphore to use with uvm_object_string_pool
+We can create our own `uvm_semaphore` class, wrap around the `semaphore` of Systemverilog.
+This allow us having more control over the semaphore, also more information when debugging.
+
+Let's create the `uvm_semaphore` class as below. You can get the full class [ uvm_semaphore ]( https://gist.github.com/dvtalk/692f45bba567aaeae98f61f63d867058 )
+
 {% highlight verilog %}
    ...
    virtual status_interface m_sts_if;
