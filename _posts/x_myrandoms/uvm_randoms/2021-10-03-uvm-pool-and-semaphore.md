@@ -89,11 +89,11 @@ Then we contruct a pool then add/get semaphore object to this pool.
    //create semaphore with 2 keys
    semaphore m_port_avail_sem = new(2);
 
-   //add this semaphore to pool with name "port_avail_sem"
+   //add this semaphore to pool with lookup name "port_avail_sem"
    uvm_semaphore_pool::get_global_pool().add("port_avail_sem", m_port_avail_sem);
 
    ...
-   // Get the semaphore "port_avail_sem" key from the pool
+   // Get 1 key of the semaphore "port_avail_sem" from the pool
    uvm_semaphore_pool::get_global("port_avail_sem").get(1);
 
    //
@@ -145,16 +145,15 @@ and if the semaphore object does not exist, the pool will automatically construc
 * Also, we do not need to construct the pool manually, it will be construct automatically when we call `get_global()` the first time.
 
 {% highlight verilog %}
-   // When we call the get_global("port_avail_sem") the first time:
-   //    the pool will be constructed automatically. 
+   // When we call this function get_global("port_avail_sem").put(2) the first time:
+   //    the semaphore pool will be constructed automatically. 
    //    the semaphore object "port_avail_sem" will be constructed automatically 
-   //    The keyCount might be set as default to 0 (depend on your uvm_semaphore class), we might put more key to the bucket to use.
-
-   //add more 2 keys in semaphore bucket
+   //    the keyCount might be set as default to 0 (depend on your uvm_semaphore class), we might put more key to the bucket to use.
+   //    add more 2 keys in semaphore bucket.
    uvm_semaphore_pool::get_global("port_avail_sem").put(2); 
    
    ...
-   // Get semaphore key
+   // Get 1 key from the "port_avail_sem" semaphore in the pool
    uvm_semaphore_pool::get_global("port_avail_sem").get(1); //get key
    
 {% endhighlight %}
