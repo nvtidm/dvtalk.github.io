@@ -42,7 +42,7 @@ Semaphore most well-known application is to manage the access to the common reso
 For example, if there are only 5 slots in the memory to store data, then we create a semaphore with 5 keys to control the access to these slots.
 Any process wanting to grant a slot must get the key from the semaphore bucket, and return the key to the bucket when it finishes.
 If there is no key in the bucket, meaning all the slots are occupied, 
-the process must wait until other process done with the resource and return the key.
+the process must wait until other processes done using the resource and return the key.
 
 Basic methods of Systemverilog semaphore are:
 * *`new(int keyCount=0)`*: Construct a semaphore object with a specific number of keys.
