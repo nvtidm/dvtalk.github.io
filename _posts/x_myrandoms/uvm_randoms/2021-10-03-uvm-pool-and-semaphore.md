@@ -34,7 +34,7 @@ Let's take an example below:
 
 ### Systemverilog semaphore
 Semaphore is a class in the built-in `std` package of Systemverilog.
-As other languages, the semaphore is a bucket with a specific set of keys.
+As other languages, the semaphore is a bucket with a specific number of keys.
 When all the keys are get from the bucket, other proccesses wishing to get the key must wait until there's a key return to the bucket.
 
 Semaphore most well-known application is to manage the access to the common resource.
@@ -42,14 +42,25 @@ Semaphore most well-known application is to manage the access to the common reso
 For example, if there are only 5 slots in the memory to store data, then we create a semaphore with 5 keys to control the access to these slots.
 Any process wanting to grant a slot must get the key from the semaphore bucket, and return the key to the bucket when it finishes.
 If there is no key in the bucket, meaning all the slots are occupied, 
-the process must wait until other process done with the resource and return the key to the bucket.
+the process must wait until other process done with the resource and return the key.
 
 Basic methods of Systemverilog semaphore are:
-* *`new(int keyCount=0)`*: 
-* *`get(int keyCount=1)`*:
-* *`put(int keyCount=1)`*:
-* *`try_get(int keyCount=1)`*:
+* *`new(int keyCount=0)`*: Construct a semaphore object with a specific number of keys.
+* *`put(int keyCount=1)`*: Add keys to the bucket.
+* *`get(int keyCount=1)`*: Get keys from the bucket. When there are not enough keys in the bucket,
+this task will block the process until the keys are available.
+* *`try_get(int keyCount=1)`*: Similar to `get()` method, but this method will not block the process.
+If there is not enough keys as requested, this method will return 0.
 
+#### Disadvantages of Systemverilog semaphore:
+There are some points which I considered as a disadvantages of Systemverilog semaphore:
+1. Since semaphore is well-known for manage the access to common resource, it need to be accessed from many places in the environment.
+1. We can put more keys to the bucket, using the same function `put()` which is used to return the key.
+Therefore we might accidentally adding more keys to the bucket, causing the conflict, since there is more keys than the actuall resources.
+1. There is no built-in method for debugging.
+
+These issues can be solved by creating a class wrapping around the Systemverilog semaphore 
+and using the `uvm_pool`, which will be shown in below examples.
 
 ---
 ## Example
