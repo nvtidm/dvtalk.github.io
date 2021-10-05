@@ -1,19 +1,19 @@
 ---
 layout: default
-title: std::randomization examples
+title: std::randomize examples
 parent: Systemverilog Randoms
 grand_parent: My Randoms
-description: std::randomization examples
+description: std::randomize examples
 tag: systemverilog
 comments: true
 toc_en: true
 nav_order: 1
 ---
-# std::randomization examples
+# std::randomize examples
 Sometimes an example is just enough.
 Honestly, I do search and copy a lot. It is simply because I cannot remember everything.
 Sometimes I pay a lot of time to understand and get the code run perfectly and then completely forget about it after 1 year.
-This post is to store some of Systemverilog std::randomization examples that I created/collected, just for me to copy later. :D
+This post is to store some of Systemverilog std::randomize examples that I created/collected, just for me to copy later. :D
 {: .fs-5 .fw-500 }
 ---
 
@@ -27,7 +27,7 @@ This post is to store some of Systemverilog std::randomization examples that I c
       <th> Link </th>
    </tr>
    <tr>
-      <td> systemverilog std::randomization array with constrains on unique element, number of elements, array sum, constrains for each element value using foreach</td>
+      <td> systemverilog std::randomize array with constrains on unique element, number of elements, array sum, constrains for each element value using foreach</td>
       <td>
       <div class="code">
       {% highlight verilog %}
@@ -46,13 +46,13 @@ This post is to store some of Systemverilog std::randomization examples that I c
       </div>
       </td>
       <td>
-      <a href="https://www.edaplayground.com/x/5nYm" title="std::randomization example for array/queue">
+      <a href="https://www.edaplayground.com/x/5nYm" title="std::randomize example for array/queue">
       <svg width="25" height="25" viewBox="0 -0.1 2 2" class="customsvg"> <use xlink:href="#svg-edaplay"></use></svg></a>
       </td>
    </tr>
 
    <tr>
-      <td> systemverilog std::randomization array using sum with</td>
+      <td> systemverilog std::randomize array using sum with</td>
       <td>
       <div class="code">
       {% highlight verilog %}
@@ -69,13 +69,13 @@ This post is to store some of Systemverilog std::randomization examples that I c
       </div>
       </td>
       <td>
-      <a href="https://www.edaplayground.com/x/5css" title="std::randomization example for array using sum with, and also inside">
+      <a href="https://www.edaplayground.com/x/5css" title="std::randomize example for array using sum with, and also inside">
       <svg width="25" height="25" viewBox="0 -0.1 2 2" class="customsvg"> <use xlink:href="#svg-edaplay"></use></svg></a>
       </td>
    </tr>
 
    <tr>
-      <td> systemverilog std::randomization using implication constraints</td>
+      <td> systemverilog std::randomize using implication constraints</td>
       <td>
       <div class="code">
       {% highlight verilog %}
@@ -91,13 +91,13 @@ This post is to store some of Systemverilog std::randomization examples that I c
       </div>
       </td>
       <td>
-      <a href="https://www.edaplayground.com/x/39Hg" title="randomization example using implication constraint">
+      <a href="https://www.edaplayground.com/x/39Hg" title="randomize example using implication constraint">
       <svg width="25" height="25" viewBox="0 -0.1 2 2" class="customsvg"> <use xlink:href="#svg-edaplay"></use></svg></a>
       </td>
    </tr>
 
    <tr>
-      <td> systemverilog std::randomization using condition constraints</td>
+      <td> systemverilog std::randomize using condition constraints</td>
       <td>
       <div class="code">
       {% highlight verilog %}
@@ -117,13 +117,13 @@ This post is to store some of Systemverilog std::randomization examples that I c
       </div>
       </td>
       <td>
-      <a href="https://www.edaplayground.com/x/dQx" title="randomization example using condition constraint">
+      <a href="https://www.edaplayground.com/x/dQx" title="randomize example using condition constraint">
       <svg width="25" height="25" viewBox="0 -0.1 2 2" class="customsvg"> <use xlink:href="#svg-edaplay"></use></svg></a>
       </td>
    </tr>
 
    <tr>
-      <td> systemverilog std::randomization with multiple variables</td>
+      <td> systemverilog std::randomize with multiple variables</td>
       <td>
       <div class="code">
       {% highlight verilog %}
@@ -142,14 +142,14 @@ This post is to store some of Systemverilog std::randomization examples that I c
       </div>
       </td>
       <td>
-      <a href="https://www.edaplayground.com/x/f5g" title="std::randomization example with multiple variables">
+      <a href="https://www.edaplayground.com/x/f5g" title="std::randomize example with multiple variables">
       <svg width="25" height="25" viewBox="0 -0.1 2 2" class="customsvg"> <use xlink:href="#svg-edaplay"></use></svg></a>
       </td>
    </tr>
 
 
    <tr>
-      <td> systemverilog std::randomization with weight distribution</td>
+      <td> systemverilog std::randomize with weight distribution</td>
       <td>
       <div class="code">
       {% highlight verilog %}
@@ -165,14 +165,14 @@ This post is to store some of Systemverilog std::randomization examples that I c
       </div>
       </td>
       <td>
-      <a href="https://www.edaplayground.com/x/5HdN" title="std::randomization example with weight distribution">
+      <a href="https://www.edaplayground.com/x/5HdN" title="std::randomize example with weight distribution">
       <svg width="25" height="25" viewBox="0 -0.1 2 2" class="customsvg"> <use xlink:href="#svg-edaplay"></use></svg></a>
       </td>
    </tr>
 
 
    <tr>
-      <td> systemverilog std::randomization with solve .. before </td>
+      <td> systemverilog std::randomize with solve .. before </td>
       <td>
       <div class="code">
       {% highlight verilog %}
@@ -192,7 +192,7 @@ This post is to store some of Systemverilog std::randomization examples that I c
       </div>
       </td>
       <td>
-      <a href="https://www.edaplayground.com/x/3fJD" title="std::randomization example with solve before">
+      <a href="https://www.edaplayground.com/x/3fJD" title="std::randomize example with solve before">
       <svg width="25" height="25" viewBox="0 -0.1 2 2" class="customsvg"> <use xlink:href="#svg-edaplay"></use></svg></a>
       </td>
    </tr>
@@ -200,7 +200,7 @@ This post is to store some of Systemverilog std::randomization examples that I c
 
 
    <tr>
-      <td> systemverilog std::randomization with multi-dimensional array </td>
+      <td> systemverilog std::randomize with multi-dimensional array </td>
       <td>
       <div class="code">
       {% highlight verilog %}
@@ -219,7 +219,7 @@ This post is to store some of Systemverilog std::randomization examples that I c
       </div>
       </td>
       <td>
-      <a href="https://www.edaplayground.com/x/D4wU" title="std::randomization example with multi-dimensional array">
+      <a href="https://www.edaplayground.com/x/D4wU" title="std::randomize example with multi-dimensional array">
       <svg width="25" height="25" viewBox="0 -0.1 2 2" class="customsvg"> <use xlink:href="#svg-edaplay"></use></svg></a>
       </td>
    </tr>
