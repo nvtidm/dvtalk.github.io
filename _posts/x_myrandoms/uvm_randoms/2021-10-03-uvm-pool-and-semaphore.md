@@ -56,7 +56,7 @@ If there is not enough keys as requested, this method will return 0.
 There are some points which I considered as disadvantages of Systemverilog semaphore:
 1. Since semaphore is well-known for manage the access to common resource, it need to be accessed from many places in the environment.
 1. We can put more keys to the bucket, using the same function `put()` which is used to return the key.
-Therefore we might accidentally adding more keys to the bucket, causing the conflict, since there are more keys than actual resources.
+Therefore we might accidentally increase the total number of keys of the bucket, causing the conflict, since there are more keys than actual resources.
 1. There is no built-in method for debugging.
 
 These issues can be solved by creating a class wrapping around the Systemverilog semaphore 
