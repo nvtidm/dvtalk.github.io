@@ -48,8 +48,8 @@ Basic methods of Systemverilog semaphore are:
 * *`new(int keyCount=0)`*: Construct a semaphore object with a specific number of keys.
 * *`put(int keyCount=1)`*: Add keys to the bucket.
 * *`get(int keyCount=1)`*: Get keys from the bucket. When there are not enough keys in the bucket,
-this task will block the process until the keys are available.
-* *`try_get(int keyCount=1)`*: Similar to `get()` method, but this method will not block the process.
+this task will **block** the process until the keys are available.
+* *`try_get(int keyCount=1)`*: Similar to `get()` method, but this method will **not block** the process.
 If there is not enough keys as requested, this method will return 0.
 
 #### Disadvantages of Systemverilog semaphore:
