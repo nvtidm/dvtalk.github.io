@@ -21,7 +21,7 @@ In this post, let's go through examples of using `uvm_pool` for Systemverilog se
 {: .fs-5 .fw-500 }
 
 ---
-## uvm_pool and Systemverilog semaphore 101
+## uvm_pool and semaphore 101
 First up, let's briefly cover the semaphore and `uvm_pool`.
 
 ### What is uvm_pool
@@ -53,10 +53,10 @@ this task will block the process until the keys are available.
 If there is not enough keys as requested, this method will return 0.
 
 #### Disadvantages of Systemverilog semaphore:
-There are some points which I considered as a disadvantages of Systemverilog semaphore:
+There are some points which I considered as disadvantages of Systemverilog semaphore:
 1. Since semaphore is well-known for manage the access to common resource, it need to be accessed from many places in the environment.
 1. We can put more keys to the bucket, using the same function `put()` which is used to return the key.
-Therefore we might accidentally adding more keys to the bucket, causing the conflict, since there is more keys than the actuall resources.
+Therefore we might accidentally adding more keys to the bucket, causing the conflict, since there are more keys than actual resources.
 1. There is no built-in method for debugging.
 
 These issues can be solved by creating a class wrapping around the Systemverilog semaphore 
@@ -132,7 +132,8 @@ Let's create the `uvm_semaphore` class as below. You can get the full class here
    endclass
 {% endhighlight %}
 
-Then we can use this `uvm_semaphore` with `uvm_object_string_pool`, similar to the `uvm_event_pool` and `uvm_barrier_pool`.
+Then we can use this `uvm_semaphore` with `uvm_object_string_pool`, similar to the [ uvm_event_pool ]({{ site.baseurl }}{% link _posts/x_myrandoms/uvm_randoms/2021-09-20-uvm-event.md %})
+and [ uvm_barrier_pool ]({{ site.baseurl }}{% link _posts/x_myrandoms/uvm_randoms/2021-09-27-uvm-barrier.md %}).
 {% highlight verilog %}
    typedef uvm_object_string_pool #(uvm_semaphore) uvm_semaphore_pool;
 {% endhighlight %}
