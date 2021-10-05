@@ -28,41 +28,28 @@ First up, let's briefly cover the semaphore and `uvm_pool`.
 Let's take an example below:
 {% highlight verilog %}
 ...
-   uvm_barrier m_bar = new();
-
-   // Set the threshold to 2,
-   // Means the barrier will be lifted when the number of processes waiting is 2.
-   m_bar.set_threshold(2);
 
 
 {% endhighlight %}
 
 ### Systemverilog semaphore
-Similar to [ uvm_event ]({{ site.baseurl }}{% link _posts/x_myrandoms/uvm_randoms/2021-09-20-uvm-event.md %}), we has this `uvm_barrier_pool`, which is a `uvm_pool` for `uvm_barrier` object.
-And we use it exactly like the `uvm_event_pool`.
+Semaphore is a class in the built-in `std` package of Systemverilog.
+As other languages, the semaphore is a bucket with a specific set of keys.
+When all the keys are get from the bucket, other proccesses wishing to get the key must wait until there's a key return to the bucket.
 
-{% highlight verilog %}
-typedef uvm_object_string_pool #(uvm_barrier) uvm_barrier_pool;
-{% endhighlight %}
+Semaphore most well-known application is to manage the access to the common resource.
 
-Let's think of this pool as a global associative array
-where the keys are strings of barrier names, and the values are the `uvm_barrier` objects.
+For example, if there are only 5 slots in the memory to store data, then we create a semaphore with 5 keys to control the access to these slots.
+Any process wanting to grant a slot must get the key from the semaphore bucket, and return the key to the bucket when it finishes.
+If there is no key in the bucket, meaning all the slots are occupied, 
+the process must wait until other process done with the resource and return the key to the bucket.
 
-Also, `uvm_pool` is a [ singleton class ]({{ site.baseurl }}{% link _posts/x_myrandoms/systemverilog_randoms/2021-09-03-singleton-class-in-systemverilog.md %}),
-that explains why it has global access.
+Basic methods of Systemverilog semaphore are:
+* *`new(int keyCount=0)`*: 
+* *`get(int keyCount=1)`*:
+* *`put(int keyCount=1)`*:
+* *`try_get(int keyCount=1)`*:
 
-`uvm_barrier_pool` support several methods, but the most commonly used is `get_global()`.
-* *`get_global(<string key>)`*: Return the uvm barrier object that stored in `uvm_barrier_pool` with `<string key>`.
-If no item exist by the given input string, a new `uvm_barrier` object will be created for that key.
-
-So to create/get an `uvm_barrier` object which is shared globally, we just need to call:
-{% highlight verilog %}
-   // if there is no uvm_barrier stored under name "test_finish_bar",
-   // a new uvm_barrier object will be created by the pool
-   uvm_barrier m_finish_bar = uvm_barrier_pool::get_global("test_finish_bar");
-
-   m_finish_bar.set_threshold(3);
-{% endhighlight %}
 
 ---
 ## Example
