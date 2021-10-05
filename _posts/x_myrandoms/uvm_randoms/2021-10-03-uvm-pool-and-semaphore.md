@@ -59,7 +59,7 @@ There are some points which I considered as disadvantages of Systemverilog semap
 Therefore we might accidentally increase the total number of keys of the bucket, causing the conflict, since there are more keys than actual resources.
 1. There is no built-in method for debugging.
 
-These issues can be solved by creating a class wrapping around the Systemverilog semaphore 
+These issues can be solved by creating a class wrapping around the Systemverilog semaphore with some custom methods
 and using the `uvm_pool`, which will be shown in below examples.
 
 ---
