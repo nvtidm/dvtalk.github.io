@@ -113,4 +113,7 @@ and [ `uvm_barrier_pool` ]({{ site.baseurl }}{% link _posts/x_myrandoms/uvm_rand
 ## Finding more information
 To have more understanding as well as more examples, check below references:
 1. [Singleton Pattern - Creational Design Patterns](https://refactoring.guru/design-patterns/singleton)
+1. [How uvm_factory acutally works]({{ site.baseurl }}{% link _posts/x_myrandoms/uvm_randoms/2021-09-12-how-uvm-factory-actually-works.md %})
+1. [uvm_barrier_pool]({{ site.baseurl }}{% link _posts/x_myrandoms/uvm_randoms/2021-09-27-uvm-barrier.md %})
+1. [uvm_event_pool]({{ site.baseurl }}{% link _posts/x_myrandoms/uvm_randoms/2021-09-20-uvm-event.md %})
 
