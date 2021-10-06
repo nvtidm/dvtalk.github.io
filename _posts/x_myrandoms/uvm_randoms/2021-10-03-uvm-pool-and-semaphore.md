@@ -25,12 +25,12 @@ In this post, let's go through examples of using `uvm_pool` for Systemverilog se
 First up, let's briefly cover the semaphore and `uvm_pool`.
 
 ### What is uvm_pool
-Let's take an example below:
-{% highlight verilog %}
-...
-
-
-{% endhighlight %}
+1. `uvm_pool` allow us to store any type of data with a key as index, similar to an associative array.
+1. It is singleton class. 
+1. Must define a pool before use: `typedef uvm_pool(.KEY(int),.T(semaphore)) semaphore_pool`
+1. To get the handle of uvm_pool singleton object, use static method `semaphore_pool::get_global_pool()`
+1. Use public method `add(KEY key, T item)`,`delete(KEY key)`,`get(KEY key)`, to add/get object from pool
+1. Use static method `semaphore_pool::get_global(KEY key)` to get obj from the pool.
 
 ### Systemverilog semaphore
 Semaphore is a class in the built-in `std` package of Systemverilog.
