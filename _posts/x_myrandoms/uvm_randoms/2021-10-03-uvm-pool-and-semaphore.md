@@ -146,9 +146,10 @@ and if the semaphore object does not exist, the pool will automatically construc
 {% highlight verilog %}
    // When we call this function get_global("port_avail_sem").put(2) the first time:
    //    the semaphore pool will be constructed automatically. 
-   //    the semaphore object "port_avail_sem" will be constructed automatically 
-   //    the keyCount might be set as default to 0 (depend on your uvm_semaphore class), we might put more key to the bucket to use.
-   //    add more 2 keys in semaphore bucket.
+   //    the semaphore object associated with key name "port_avail_sem" will be constructed automatically.
+   //    the keyCount of the object might be set as default to 0 (depend on your uvm_semaphore class), 
+   //       we might put more key to the bucket to use.
+   //    put 2 more keys in semaphore bucket.
    uvm_semaphore_pool::get_global("port_avail_sem").put(2); 
    
    ...
@@ -161,6 +162,6 @@ and if the semaphore object does not exist, the pool will automatically construc
 ## Finding more information
 1. Systemverilog LRM, section 15.3 Semaphores
 1. Systemverilog LRM, Annex G Std package
-1. [ uvm_pool ](https://verificationacademy.com/verification-methodology-reference/uvm/docs_1.2/html/files/base/uvm_pool-svh.html)
+1. [ uvm_pool.svh ](https://verificationacademy.com/verification-methodology-reference/uvm/docs_1.2/html/files/base/uvm_pool-svh.html)
 
 
