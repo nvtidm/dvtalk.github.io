@@ -98,6 +98,16 @@ If using the uvm methodology, we can see that several classes are actually singl
 * In uvm, uvm_factory allow us to substitute a class with its child class when constructing object.
 * To have the handle to uvm_factory, we can call its static class as other singleton: `uvm_factory factory = uvm_factory::get();`
 * There's another way to get uvm_factory singleton handle using core services: `uvm_factory factory = uvm_core_service_t::get().get_factory()`
+* To understand how uvm works, read this post: [How uvm_factory acutally works]({{ site.baseurl }}{% link _posts/x_myrandoms/uvm_randoms/2021-09-12-how-uvm-factory-actually-works.md %})
+1. uvm_pool:
+* `uvm_pool` is a class which acts as an associative array.
+* We can decide the type of key and data of this associative array by defining 2 parameters of `uvm_pool` class.
+* This class is singleton class so it can be used to share data between components, objects in the environment.
+* The 2 common `uvm_pool` built-in the uvm are [ `uvm_event_pool` ]({{ site.baseurl }}{% link _posts/x_myrandoms/uvm_randoms/2021-09-20-uvm-event.md %})
+and [ `uvm_barrier_pool` ]({{ site.baseurl }}{% link _posts/x_myrandoms/uvm_randoms/2021-09-27-uvm-barrier.md %})
+1. uvm_queue:
+* Similar to `uvm_pool`, `uvm_queue` is a class which act as a Systemverilog queue.
+* Defined as singleton class, this queue can be accessed anywhere to share data.
 
 ---
 ## Finding more information
