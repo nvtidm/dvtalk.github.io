@@ -266,6 +266,6 @@ endfunction
 
 ---
 ## Finding more information
-1. [ uvm methodology reference ](https://verificationacademy.com/verification-methodology-reference/uvm/docs_1.1a/html/files/base/uvm_factory-svh.html)
+1. [ uvm_factory.svh ](https://verificationacademy.com/verification-methodology-reference/uvm/docs_1.1a/html/files/base/uvm_factory-svh.html)
 
 

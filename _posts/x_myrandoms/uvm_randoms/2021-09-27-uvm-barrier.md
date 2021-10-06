@@ -142,7 +142,7 @@ Since the threshold is 5, the barrier will be lifted, all 5 processes will be re
 
 ---
 ## Finding more information
-1. [ uvm_barrier ](https://verificationacademy.com/verification-methodology-reference/uvm/docs_1.2/html/files/base/uvm_barrier-svh.html)
-1. [ uvm_pool ](https://verificationacademy.com/verification-methodology-reference/uvm/docs_1.2/html/files/base/uvm_pool-svh.html)
+1. [ uvm_barrier.svh ](https://verificationacademy.com/verification-methodology-reference/uvm/docs_1.2/html/files/base/uvm_barrier-svh.html)
+1. [ uvm_pool.svh ](https://verificationacademy.com/verification-methodology-reference/uvm/docs_1.2/html/files/base/uvm_pool-svh.html)
 
 
