@@ -36,7 +36,7 @@ For Questasim and VCS, these commands is the Tcl-based command, which means you 
 ### First up
 * Make sure your signals have correct path, you can find signal path by using Questasim cli command in cli mode:`find nets -recursive -ports /top/*TOP*/*MODULE_A*/*RESET*`
 * Check your tcl syntax carefully.
-* 
+* Careful with radix format. Tcl will understand this radix format `0b11`, but for Questasim, we need to write data value with this format: `'b11`, `'hfaab`, `'d1024`. So check the EDA user guide carefully.
 * If you use force file like this: `vsim -do <force_file.tcl>`, considering using below template
 <div class ="code" markdown="1" >
 {% highlight bash %}
