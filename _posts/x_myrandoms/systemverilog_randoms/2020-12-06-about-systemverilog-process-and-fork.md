@@ -20,7 +20,7 @@ This post will share how to use this `fork`-`join` block and some of its practic
 
 ---
 ## join/join_none/join_any
-First up, let's look at the structure of the sequential block.
+First up, let's look at the structure of the parallel block.
 The block begin with the keywork `fork`, all procedure statements under this keywork will be started at the same time. When the parent process can resume its execution is depended on the closing keywork.
 We have `join`, `join_none` and `join_any`.
 
