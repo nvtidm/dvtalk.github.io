@@ -35,7 +35,7 @@ However, life is not that much easy. Let's consider some cases below, where usin
 ## fork join in a loop
 ### fork join_none in a loop
 Let consider this case, we have a list of item, and we want to start a single procedure statement for each item of that list,
-and we want all of those procedure statement start at the same time. Also, we need all of those processes to finish before executing
+and we want all of those procedure statements start at the same time. Also, we need all of those processes to finish before executing
 any other statement.
 We can easily achieve the requirement using `fork` and `join_none` as below.
 <div class ="code" markdown="1" >
@@ -116,10 +116,10 @@ the next statement right after one of the 5 processes finished.
 * In the above example, by using `fork/join_none`, we have 5 processes executed concurrently. And by using `uvm_event`, the 
 ```$display("the NEXT Statement ... ");``` will be executed when one of the 5 processes finished.
 
-### fork join_none in a forever loop
+### fork join in a forever loop
 We can also put the fork in side a forever loop.
 I sometimes do this when monitoring a signal.
-However, we should be careful about the content of the `fork-join_none` block, because it might hang our simulator.
+However, we should be careful about the content of the `fork-join` block, because it might hang our simulator.
 Never write any code with no statement to control the process in forever loop like below:
 <div class ="code" markdown="1" >
 {% highlight verilog %}
@@ -130,12 +130,29 @@ Never write any code with no statement to control the process in forever loop li
           #1;
           $display("%t ps, end of thread %d", $time,j);
         end
-      join_none
+      join
     end
 {% endhighlight %}
 </div>
-* The above code will hang our simulator. Because we're using `fork/join_none`, and the 2 `$display` tasks will be executed right away, then move to the next interation of the forever loop.
+* The above code will hang our simulator. Because we're using `fork/join`, and the 2 `$display` tasks will be executed right away, then move to the next interation of the forever loop.
 This loop will create infinite number of process and hang the simulator. We should at least have some control inside the `fork-join_none` like below:
+{% highlight verilog %}
+    forever begin
+      fork
+        begin
+          $display ("%t ps, start thread %d", $time, j);
+          #10;
+          //
+          // Wait for some signal to trigger.
+          ...
+          //
+          $display("%t ps, end of thread %d", $time,j);
+        end
+      join
+    end
+{% endhighlight %}
+
+Also, never use `fork/join_none` in forever loop as well. It will also hang our simulator.
 {% highlight verilog %}
     forever begin
       fork
@@ -151,7 +168,6 @@ This loop will create infinite number of process and hang the simulator. We shou
       join_none
     end
 {% endhighlight %}
-
 
 ---
 ## Process control
