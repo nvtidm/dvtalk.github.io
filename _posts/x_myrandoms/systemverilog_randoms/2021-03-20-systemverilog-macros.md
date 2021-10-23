@@ -250,7 +250,8 @@ foreach (m_obj[i]) begin
    `ARRAY_TO_QUEUE(m_tmp_q, 14, m_out_q)
 end 
 
-// Generated code is as below, with the same var i used for 2 loops: outter loop and inner loop
+// Generated code is as below, 
+// with the same var i used for 2 loops: outter loop and inner loop
 foreach (m_obj[i]) begin
    byte m_tmp_q[$];
    m_tmp_q = m_obj[i].get_queue();
@@ -261,7 +262,7 @@ foreach (m_obj[i]) begin
    end 
 end 
 
-// --> use a unique index interator name
+// --> Should use a unique index interator name
 `define ARRAY_TO_QUEUE(ARR,ARR_SIZE, QUEUE) \
       QUEUE.delete(); \
       for (int macro_idx=0; macro_idx<ARR_SIZE; macro_idx++) begin \
