@@ -146,67 +146,127 @@ Create a macro to define assertion with below requirements:
 
 ### Macro for queue/array conversion
 {% highlight c %}
-`define ARRAY_APPEND_TO_QUEUE(ARR,ARR_SIZE, QUEUE) \
-   for (int i=0; i<ARR_SIZE; i++) begin \
-      QUEUE.push_back(ARR[i]); \
-   end
 
 //
 `define ARRAY_TO_QUEUE(ARR,ARR_SIZE, QUEUE) \
-   QUEUE.delete(); \
-   for (int i=0; i<ARR_SIZE; i++) begin \
-      QUEUE.push_back(ARR[i]); \
-   end
+      QUEUE.delete(); \
+      for (int macro_idx=0; macro_idx<ARR_SIZE; macro_idx++) begin \
+         QUEUE.push_back(ARR[macro_idx]); \
+      end
+
+`define ARRAY_APPEND_TO_QUEUE(ARR,ARR_SIZE, QUEUE) \
+      for (int macro_idx=0; macro_idx<ARR_SIZE; macro_idx++) begin \
+         QUEUE.push_back(ARR[macro_idx]); \
+      end
+
 
 //
 `define QUEUE_32_TO_8(Q_32, Q_8) \
-   Q_8.delete(); \
-   foreach (Q_32[i]) begin \
-      bit[31:0] m_tmp = Q_32[i]; \
-      Q_8.push_back(m_tmp[31:24]);\
-      Q_8.push_back(m_tmp[23:16]);\
-      Q_8.push_back(m_tmp[15:08]);\
-      Q_8.push_back(m_tmp[07:00]);\
-   end
+      Q_8.delete(); \
+      foreach (Q_32[macro_idx]) begin\
+         bit[31:0] m_tmp = Q_32[macro_idx];\
+         Q_8.push_back(m_tmp[07:00]);\
+         Q_8.push_back(m_tmp[15:08]);\
+         Q_8.push_back(m_tmp[23:16]);\
+         Q_8.push_back(m_tmp[31:24]);\
+      end
 
 //
 `define QUEUE_8_TO_32(Q_8, Q_32) \
-   Q_32.delete(); \
-   for(int i=0;i<Q_8.size();i +=4) begin \
-      Q_32.push_back({Q_8[i],  \
-      Q_8[i+1], \
-      Q_8[i+2], \
-      Q_8[i+3]});\
-   end
+      Q_32.delete(); \
+      for(int macro_idx=0;macro_idx<Q_8.size();macro_idx +=4) begin \
+         Q_32.push_back({\
+            Q_8[macro_idx+3], \
+            Q_8[macro_idx+2], \
+            Q_8[macro_idx+1], \
+            Q_8[macro_idx] });\
+      end
 
 //
 `define QUEUE_128_TO_32(Q_128, Q_32) \
-   Q_32.delete(); \
-   foreach (Q_128[i]) begin\
-      bit[127:0] m_tmp = Q_128[i];\
-      Q_32.push_back(m_tmp[127:96]);\
-      Q_32.push_back(m_tmp[95:64]);\
-      Q_32.push_back(m_tmp[63:32]);\
-      Q_32.push_back(m_tmp[31:00]);\
-   end
+      Q_32.delete(); \
+      foreach (Q_128[macro_idx]) begin\
+         bit[127:0] m_tmp = Q_128[macro_idx];\
+         Q_32.push_back(m_tmp[31:00]);\
+         Q_32.push_back(m_tmp[63:32]);\
+         Q_32.push_back(m_tmp[95:64]);\
+         Q_32.push_back(m_tmp[127:96]);\
+      end
 
 //
 `define QUEUE_192_TO_32(Q_192, Q_32) \
-   Q_32.delete(); \
-   foreach (Q_192[i]) begin\
-      bit[191:0] m_tmp = Q_192[i];\
-      Q_32.push_back(m_tmp[191:160]);\
-      Q_32.push_back(m_tmp[159:128]);\
-      Q_32.push_back(m_tmp[127:96]);\
-      Q_32.push_back(m_tmp[95:64]);\
-      Q_32.push_back(m_tmp[63:32]);\
-      Q_32.push_back(m_tmp[31:00]);\
-   end
+      Q_32.delete(); \
+      foreach (Q_192[macro_idx]) begin\
+         bit[191:0] m_tmp = Q_192[macro_idx];\
+         Q_32.push_back(m_tmp[31:00]);\
+         Q_32.push_back(m_tmp[63:32]);\
+         Q_32.push_back(m_tmp[95:64]);\
+         Q_32.push_back(m_tmp[127:96]);\
+         Q_32.push_back(m_tmp[159:128]);\
+         Q_32.push_back(m_tmp[191:160]);\
+      end
+
+//
+`define QUEUE_256_TO_32(Q_256, Q_32) \
+      Q_32.delete(); \
+      foreach (Q_256[macro_idx]) begin\
+         bit[255:0] m_tmp = Q_256[macro_idx];\
+         Q_32.push_back(m_tmp[31:00]);\
+         Q_32.push_back(m_tmp[63:32]);\
+         Q_32.push_back(m_tmp[95:64]);\
+         Q_32.push_back(m_tmp[127:96]);\
+         Q_32.push_back(m_tmp[159:128]);\
+         Q_32.push_back(m_tmp[191:160]);\
+         Q_32.push_back(m_tmp[223:192]);\
+         Q_32.push_back(m_tmp[255:224]);\
+      end
+
+
 
 {% endhighlight %}
 
-
+---
+## My mistakes
+* Space between macro name and the open parentheses as below:
 {% highlight verilog %}
+`define print_arg    (ARG1, ARG2) $display(`"ARG2 signal, expected value is ARG1, current value: %0d `", ARG2);
+
+// space between print_arg and (ARG1, ARG2) will cause error
+// --> it should be print_arg(ARG1, ARG2)
+{% endhighlight %}
+
+* Using var `i` as index iterator inside macro, then call macro in another loop, which also use `i` as index iterator.
+{% highlight verilog %}
+`define ARRAY_TO_QUEUE(ARR,ARR_SIZE, QUEUE) \
+      QUEUE.delete(); \
+      for (int i=0; i<ARR_SIZE; i++) begin \
+         QUEUE.push_back(ARR[i]); \
+      end
+
+// Then use macro in another loop which also use `i` as index iterator
+foreach (m_obj[i]) begin
+   byte m_tmp_q[$];
+   m_tmp_q = m_obj[i].get_queue();
+   `ARRAY_TO_QUEUE(m_tmp_q, 14, m_out_q)
+end 
+
+// Generated code is as below, with the same var i used for 2 loops: outter loop and inner loop
+foreach (m_obj[i]) begin
+   byte m_tmp_q[$];
+   m_tmp_q = m_obj[i].get_queue();
+
+   m_out_q.delete();
+   for (int i=0; i<14; i++) begin
+      m_out_q.push_back(m_tmp_q[i]);
+   end 
+end 
+
+// --> use a unique index interator name
+`define ARRAY_TO_QUEUE(ARR,ARR_SIZE, QUEUE) \
+      QUEUE.delete(); \
+      for (int macro_idx=0; macro_idx<ARR_SIZE; macro_idx++) begin \
+         QUEUE.push_back(ARR[macro_idx]); \
+      end
 {% endhighlight %}
 
 ---
