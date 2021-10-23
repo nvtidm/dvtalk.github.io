@@ -134,8 +134,8 @@ Never write any code with no statement to control the process in forever loop li
     end
 {% endhighlight %}
 </div>
-* The above code will hang our simulator. Because we're using `fork/join`, and the 2 `$display` tasks will be executed right away, then move to the next interation of the forever loop.
-This loop will create infinite number of process and hang the simulator. We should at least have some control inside the `fork-join_none` like below:
+* The above code will hang our simulator. The 2 `$display` tasks will be executed right away, then move to the next interation of the forever loop.
+This loop will create infinite number of process and hang the simulator. We should at least have some control inside the `fork-join` like below:
 {% highlight verilog %}
     forever begin
       fork
@@ -152,7 +152,7 @@ This loop will create infinite number of process and hang the simulator. We shou
     end
 {% endhighlight %}
 
-Also, never use `fork/join_none` in forever loop as well. It will also hang our simulator.
+Also, never use `fork/join_none` in forever loop as well. It will also hang our simulator since infinite processes will be created.
 {% highlight verilog %}
     forever begin
       fork
