@@ -298,15 +298,13 @@ Let's take another example of using fine grain process control with forever loop
 {% highlight verilog %}
    std::process m_process_q[$];
    ...
-   forever begin
-      fork
-         begin
-            m_process_q.push_back(std::process::self());
-            @(posedge signal_a);
-            //... other statements
-         end 
-      join_none
-   end 
+   fork
+      forever begin
+         m_process_q.push_back(std::process::self());
+         @(posedge signal_a);
+         //... other statements
+      end 
+   join_none
 
    ...
    foreach (m_process_q[i]) begin
