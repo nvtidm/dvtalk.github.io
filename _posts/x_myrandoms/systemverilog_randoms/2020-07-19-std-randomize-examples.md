@@ -224,6 +224,35 @@ This post is to store some of Systemverilog std::randomize examples that I creat
       </td>
    </tr>
 
+   <tr>
+      <td> systemverilog std::randomize with associative array </td>
+      <td>
+      <div class="code">
+      {% highlight verilog %}
+
+  typedef enum {red=1, green, blue, pink, yellow} color_e;
+  int d_array[color_e] = '{red:10, green:20, blue:30, pink:40, yellow:50};
+  //must construct the array element before randomizing.
+  
+  function void display();
+    std::randomize(d_array) with {
+      unique{d_array};
+      foreach (d_array[i]) {
+        d_array[i] < 50;
+        d_array[i] > 0;
+      }
+    };
+
+
+      {% endhighlight %}
+      </div>
+      </td>
+      <td>
+      <a href="https://www.edaplayground.com/x/mPVS" title="std::randomize example with associative array">
+      <svg width="25" height="25" viewBox="0 -0.1 2 2" class="customsvg"> <use xlink:href="#svg-edaplay"></use></svg></a>
+      </td>
+   </tr>
+
 
 
 </table>
