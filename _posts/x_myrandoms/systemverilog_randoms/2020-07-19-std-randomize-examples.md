@@ -242,8 +242,6 @@ This post is to store some of Systemverilog std::randomize examples that I creat
         d_array[i] > 0;
       }
     };
-
-
       {% endhighlight %}
       </div>
       </td>
