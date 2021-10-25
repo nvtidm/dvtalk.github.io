@@ -223,21 +223,21 @@ Create a macro to define assertion with below requirements:
 
 `define DATA_128B_TO_8B_Q(DATA_128B, Q_8) \
       Q_8.delete(); \
-      for(int macro_idx=0; macro_idx<(128/8-1); macro_idx++) begin \
+      for(int macro_idx=0; macro_idx<(128/8); macro_idx++) begin \
          Q_8.push_back(DATA_128B[8*macro_idx +: 8]); \
       end \
       Q_8.reverse();
 
 `define DATA_192B_TO_8B_Q(DATA_192B, Q_8) \
       Q_8.delete(); \
-      for(int macro_idx=0; macro_idx<(192/8-1); macro_idx++) begin \
+      for(int macro_idx=0; macro_idx<(192/8); macro_idx++) begin \
          Q_8.push_back(DATA_192B[8*macro_idx +: 8]); \
       end \
       Q_8.reverse();
 
 `define DATA_256B_TO_8B_Q(DATA_256B, Q_8) \
       Q_8.delete(); \
-      for(int macro_idx=0; macro_idx<(256/8-1); macro_idx++) begin \
+      for(int macro_idx=0; macro_idx<(256/8); macro_idx++) begin \
          Q_8.push_back(DATA_256B[8*macro_idx +: 8]); \
       end \
       Q_8.reverse();
