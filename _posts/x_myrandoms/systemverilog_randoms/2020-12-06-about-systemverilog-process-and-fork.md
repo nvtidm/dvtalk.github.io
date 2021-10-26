@@ -152,7 +152,8 @@ This loop will create infinite number of process and hang the simulator. We shou
     end
 {% endhighlight %}
 
-Also, never use `fork/join_none` in forever loop as well. It will also hang our simulator since infinite processes will be created.
+Also, be careful when using `fork/join_none` in forever loop as well . 
+It will also hang our simulator since infinite processes will be created unless we have some process control inside the loop.
 {% highlight verilog %}
     forever begin
       fork
@@ -166,6 +167,10 @@ Also, never use `fork/join_none` in forever loop as well. It will also hang our 
           $display("%t ps, end of thread %d", $time,j);
         end
       join_none
+
+      wait fork; 
+      //--> if does not have process control such as this wait fork;
+      //    the forever loop will create infinite processes and hang simulator
     end
 {% endhighlight %}
 
@@ -300,9 +305,11 @@ Let's take another example of using fine grain process control with forever loop
    ...
    fork
       forever begin
-         m_process_q.push_back(std::process::self());
          @(posedge signal_a);
-         //... other statements
+         fork
+            m_process_q.push_back(std::process::self());
+            //... other statements
+         join_none
       end 
    join_none
 
