@@ -116,9 +116,8 @@ the next statement right after one of the 5 processes finished.
 * In the above example, by using `fork/join_none`, we have 5 processes executed concurrently. And by using `uvm_event`, the 
 ```$display("the NEXT Statement ... ");``` will be executed when one of the 5 processes finished.
 
-### fork join in a forever loop
+### fork-join in a forever loop
 We can also put the fork in side a forever loop.
-I sometimes do this when monitoring a signal.
 However, we should be careful about the content of the `fork-join` block, because it might hang our simulator.
 Never write any code with no statement to control the process in forever loop like below:
 <div class ="code" markdown="1" >
@@ -135,7 +134,7 @@ Never write any code with no statement to control the process in forever loop li
 {% endhighlight %}
 </div>
 * The above code will hang our simulator. The 2 `$display` tasks will be executed right away, then move to the next interation of the forever loop.
-This loop will create infinite number of process and hang the simulator. We should at least have some control inside the `fork-join` like below:
+This loop will create infinite number of processes and hang the simulator. We should at least have some control inside the `fork-join` like below:
 {% highlight verilog %}
     forever begin
       fork
@@ -173,6 +172,45 @@ It will also hang our simulator since infinite processes will be created unless 
       //    the forever loop will create infinite processes and hang simulator
     end
 {% endhighlight %}
+
+### forever loop inside fork-join_none
+By putting forever loop inside `fork`-`join_none` we need to aware that there will be a subprocess created for this forever loop.
+And if we do not have the control to break out of this forever loop, then the task `monitor_signal` in below example will never return the control.
+{% highlight verilog %}
+    task monitor_signal();
+       fork
+          forever begin
+             wait (mod_a_if.signal_a);
+             // other statements
+             // ...
+          end 
+       join_none
+
+    endtask: monitor_signal
+{% endhighlight %}
+
+This could cause an issue in some cases. Consider this case below, when using above task in a uvm task like `main_phase`:
+{% highlight verilog %}
+// inside uvm component
+   task main_phase(uvm_phase phase);
+      phase.raise_objection(this);
+      
+      //call above monitor task
+      monitor_signal();
+
+      phase.drop_objection(this);
+   endtask
+{% endhighlight %}
+* In uvm, objections are used to synchronized consumed-time phases of all uvm_component.
+`raise_objection` will increase objection counter by one, `drop_objection` will decrease objection counter by one.
+When the objection counter is zero, all uvm_component will move to next phase.
+* So to be able to move to next phase, in this example, we need to be able to drop the objection that has been raised at the start of this `main_phase`.
+* However, as mentioned in the example before, the `monitor_signal()` task contains a forever loop inside `fork`-`join_none`.
+And this task will not return the control since the forever will keep running forever. 
+Because of that, the control will not return to the `main_phase()` task, and the `phase.drop_objection()` will never be called to drop the objection.
+This cause the simulator to stuck at this `main_phase`.
+* To solve this issue, we can use the `disable` statement for this forever loop, or use `fine-grain process control` to kill this forever process. 
+Let's check below section.
 
 ---
 ## Process control
