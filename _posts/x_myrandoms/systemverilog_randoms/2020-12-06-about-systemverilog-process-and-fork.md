@@ -205,7 +205,7 @@ This could cause an issue in some cases. Consider this case below, when using ab
 `raise_objection` will increase objection counter by one, `drop_objection` will decrease objection counter by one.
 When the objection counter is zero, all uvm_component will move to next phase.
 * So to be able to move to next phase, in this example, we need to be able to drop the objection that has been raised at the start of this `main_phase`.
-* However, as mentioned in the example before, the `monitor_signal()` task contains a forever loop inside `fork`-`join_none`.
+* However, as mentioned in the previous example, the `monitor_signal()` task contains a forever loop inside `fork`-`join_none`.
 And this task will not return the control since the forever will keep running forever. 
 Because of that, the control will not return to the `main_phase()` task, and the `phase.drop_objection()` will never be called to drop the objection.
 This cause the simulator to stuck at this `main_phase`.
