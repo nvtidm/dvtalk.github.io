@@ -13,7 +13,8 @@ nav_order: 3
 ---
 
 # Systemverilog macro with examples
-Macro is a piece of code which enable the text substitution everywhere the macro name is called. Systemverilog macro can also have argument like a function and it is actually very similar to macro in C which you may familiar with.
+Macro is a piece of code which enables text substitution everywhere the macro name is called. 
+Systemverilog macro can also have argument like a function and it is actually very similar to macro in C which you may familiar with.
 {: .fs-5 .fw-500 }
 
 ---
@@ -99,8 +100,8 @@ then `undef` after use so we do not worry that it might be called by accident so
 
 ### Recommendation
 * If writing a function/task is possible, avoid writing macro =D.
-* Write all the macros in one file, and include that file in your sv package. Since redefine macro is allowed,
-write macros everywhere in your codes make debugging these macros become painful.
+* Write all macros in one file, and include that file in your sv package. 
+Since redefine macro is allowed, write macros everywhere in your codes make debugging these macros become painful.
 * Macro can call other macros or compiler directives, but be careful, should keep it simple.
 * When using argument, try to use default value (similar to default value in function/task).
 * Make sure your code run first, then turn it into a macro.
