@@ -263,8 +263,10 @@ This post is to store some of Systemverilog std::randomize examples that I creat
   function void display();
     std::randomize(m_2nd_color, m_color) with {
       m_color     inside {RED,GREEN, YELLOW};
-      m_2nd_color inside {m_2nd_color};   // redundant code, no need to declare this constraint
-                                          // the constraint solver only selects the value inside the set of enum labels
+
+      // redundant code, no need to declare this constraint
+      // the constraint solver only selects the value inside the set of enum labels
+      m_2nd_color inside {m_2nd_color};   
     };
               
       {% endhighlight %}
