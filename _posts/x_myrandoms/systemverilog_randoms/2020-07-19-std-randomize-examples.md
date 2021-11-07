@@ -225,7 +225,7 @@ This post is to store some of Systemverilog std::randomize examples that I creat
    </tr>
 
    <tr>
-      <td> systemverilog std::randomize with associative array </td>
+      <td> systemverilog std::randomize with associative array, using enum as index </td>
       <td>
       <div class="code">
       {% highlight verilog %}
@@ -246,7 +246,32 @@ This post is to store some of Systemverilog std::randomize examples that I creat
       </div>
       </td>
       <td>
-      <a href="https://www.edaplayground.com/x/mPVS" title="std::randomize example with associative array">
+      <a href="https://www.edaplayground.com/x/mPVS" title="std::randomize example with associative array, using enum as index">
+      <svg width="25" height="25" viewBox="0 -0.1 2 2" class="customsvg"> <use xlink:href="#svg-edaplay"></use></svg></a>
+      </td>
+   </tr>
+
+   <tr>
+      <td> systemverilog std::randomize with enum variable</td>
+      <td>
+      <div class="code">
+      {% highlight verilog %}
+  typedef enum {RED=11, GREEN=22, BLUE=33, PINK=44, YELLOW=55} color_e;
+  color_e m_color; 
+  color_e m_2nd_color;
+  
+  function void display();
+    std::randomize(m_2nd_color, m_color) with {
+      m_color     inside {RED,GREEN, YELLOW};
+      m_2nd_color inside {m_2nd_color};   // redundant code, no need to declare this constraint
+                                          // the constraint solver only selects the value inside the set of enum labels
+    };
+              
+      {% endhighlight %}
+      </div>
+      </td>
+      <td>
+      <a href="https://www.edaplayground.com/x/9SLg" title="std::randomize example with enum variable">
       <svg width="25" height="25" viewBox="0 -0.1 2 2" class="customsvg"> <use xlink:href="#svg-edaplay"></use></svg></a>
       </td>
    </tr>
