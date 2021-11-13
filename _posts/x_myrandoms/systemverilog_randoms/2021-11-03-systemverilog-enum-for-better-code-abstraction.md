@@ -146,7 +146,7 @@ endfunction
 For this example, let's assume that we're creating an uvm env with several different types of ip.
 Each of those ip instances will need a configuration object, and provided with a base address of that instance.
 * In this example, we will create an enum of base address directly.
-* We will use `iuvm_pkg::uvm_re_match()` to perform string pattern matching.
+* We will use `uvm_pkg::uvm_re_match()` to perform string pattern matching.
 * Assuming we already have these cfg class `uart_cfg`, `spi_cfg` and `i2c_cfg`.
 And these class are extended form `base_cfg` class.
 * Also this `base_cfg` will have `add_base_address()` method to add the base address of ip instance.
