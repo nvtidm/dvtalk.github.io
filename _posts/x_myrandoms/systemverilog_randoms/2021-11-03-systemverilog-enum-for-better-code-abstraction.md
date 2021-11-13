@@ -193,6 +193,11 @@ endfunction
 * The `uvm_re_match()` is actually a DPI-C function. It will return 0 if the input string matches the pattern.
 * Instead of using `base_cfg m_cfg_obj[$]`, we can create an associative array as the first example to store the configuration object.
 
+You can try this example here:
+<a href="https://www.edaplayground.com/x/btJN" title="Systemverilog enum example">
+<svg width="25" height="25" viewBox="0 -0.1 2 2" class="customsvg"> <use xlink:href="#svg-edaplay"></use></svg>
+</a></div>
+
 ### Benefit of using enumeration
 As those above examples, by using the enumeration, we can easily update the environment when the design specification updated.
 * In the first example, if the number of UART instances is changed, we just need to update the compiler directive `NUM_OF_UART`.
