@@ -69,12 +69,12 @@ endclass
 * The constructor function must follow below format:
 {% highlight verilog %}
 //for uvm component
-   function void new(string name="<class name>", uvm_component parent = null);
+   function new(string name="<class name>", uvm_component parent = null);
       super.new(name, parent);
    endfunction
 
 //for uvm object
-   function void new(string name="<class name>");
+   function new(string name="<class name>");
       super.new(name);
    endfunction
 {% endhighlight %}
