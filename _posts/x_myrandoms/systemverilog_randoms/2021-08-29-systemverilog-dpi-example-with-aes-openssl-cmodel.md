@@ -65,9 +65,9 @@ Read this post for [other type mapping correspondence](https://www.amiq.com/cons
 LDFLAGS    = -Wl,-rpath,$(OPENSSL_PATH)/lib  -lssl -lcrypto
 C_INCLUDE  = -I$(QUESTA_SIM_INS_DIR)/questasim/include
 
-all: msft_c_model.so aes
+all: aes_sv_c_dpi.so aes
 
-msft_c_model.so: aes_sv_c_dpi.c
+aes_sv_c_dpi.so: aes_sv_c_dpi.c
 	gcc -m64 -fPIC -g -W -shared -fdiagnostics-color=never -std=c99 $(C_INCLUDE) $(LDFLAGS) -o aes_sv_c_dpi.so aes_sv_c_dpi.c
 
 aes: aes.c
