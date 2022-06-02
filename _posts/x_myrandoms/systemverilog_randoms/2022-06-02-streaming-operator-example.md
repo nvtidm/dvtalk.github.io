@@ -224,7 +224,7 @@ Checkout this gist: [Systemverilog stream operator example](https://gist.github.
     end
     //
     // {>>8{q8}} --> pack q8 
-    // {>>32{ ...}} -->  unpack to q32
+    // {>>32{ ...}} -->  pack to q32
     //
     // output:
     // 0x1020304
