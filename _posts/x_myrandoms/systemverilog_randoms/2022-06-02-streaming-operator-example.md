@@ -99,7 +99,7 @@ Checkout this gist: [Systemverilog stream operator example](https://gist.github.
       <td>
       <div class="code">
       {% highlight verilog %}
-    byte q[$];
+    bit[3:0] p[$];
 
     p =  {>>4{24'h060708}};
     foreach (p[i]) begin
