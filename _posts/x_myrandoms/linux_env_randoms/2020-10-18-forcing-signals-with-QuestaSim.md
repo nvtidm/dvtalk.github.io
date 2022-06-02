@@ -35,7 +35,8 @@ For Questasim and VCS, these commands is the Tcl-based command, which means you 
 ## Some examples of forcing signals using Questasim
 ### First up
 * Make sure your signals have correct path, you can find signal path by using Questasim cli command in cli mode:`find nets -recursive -ports /top/*TOP*/*MODULE_A*/*RESET*`
-* Check your tcl syntax carefully
+* Check your tcl syntax carefully.
+* Careful with radix format. Tcl will understand this radix format `0b11`, but for Questasim, we need to write data value with this format: `'b11`, `'hfaab`, `'d1024`. So check the EDA user guide carefully.
 * If you use force file like this: `vsim -do <force_file.tcl>`, considering using below template
 <div class ="code" markdown="1" >
 {% highlight bash %}
@@ -65,8 +66,8 @@ For Questasim and VCS, these commands is the Tcl-based command, which means you 
       <div class="code">
       {% highlight tcl %}
   when { $now > 1000ns } {
-    force {/top/U_MODULE_A/I_SIGNAL_A[1:0]} 10#3           
-    force /top/U_MODULE_A/I_SIGNAL_B        1
+    force {/top/U_MODULE_A/I_SIGNAL_A[1:0]} 'h3           
+    force /top/U_MODULE_A/I_SIGNAL_B        'b1
   }
       {% endhighlight %}
 This means:
@@ -99,7 +100,7 @@ From 1000ns of simulation time, at every event of I_CLK (rising edge, falling ed
       <td>
       <div class="code">
       {% highlight tcl %}
-  when { top/U_MODULE_A/I_RESET_N'event and top/U_MODULE_A/I_RESET_N = 1  } {
+  when { top/U_MODULE_A/I_RESET_N'event and top/U_MODULE_A/I_RESET_N = 'b1  } {
      force top/U_MODULE_A/I_CLK_B 1 , 0 0.5 ns -r 1.0 ns
   }
       {% endhighlight %}

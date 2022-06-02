@@ -20,7 +20,7 @@ This post will share how to use this `fork`-`join` block and some of its practic
 
 ---
 ## join/join_none/join_any
-First up, let's look at the structure of the sequential block.
+First up, let's look at the structure of the parallel block.
 The block begin with the keywork `fork`, all procedure statements under this keywork will be started at the same time. When the parent process can resume its execution is depended on the closing keywork.
 We have `join`, `join_none` and `join_any`.
 
@@ -29,13 +29,13 @@ We have `join`, `join_none` and `join_any`.
 * For `fork`-`join_none`, the parent process will **continue at the same time** with all the processes spawned by the fork.
 
 Just simple as that, start your block with `fork`, then end your block with either `join`, `join_any` or `join_none`. 
-However, life is not that much easy. Let's consider some cases below, where using some other control methods alongside with fork is necessary.
+However, life is not that much easy. Let's consider some cases below, where using some other control methods alongside fork is necessary.
 
 ---
 ## fork join in a loop
 ### fork join_none in a loop
 Let consider this case, we have a list of item, and we want to start a single procedure statement for each item of that list,
-and we want all of those procedure statement start at the same time. Also, we need all of those processes to finish before executing
+and we want all of those procedure statements start at the same time. Also, we need all of those processes to finish before executing
 any other statement.
 We can easily achieve the requirement using `fork` and `join_none` as below.
 <div class ="code" markdown="1" >
@@ -116,10 +116,9 @@ the next statement right after one of the 5 processes finished.
 * In the above example, by using `fork/join_none`, we have 5 processes executed concurrently. And by using `uvm_event`, the 
 ```$display("the NEXT Statement ... ");``` will be executed when one of the 5 processes finished.
 
-### fork join_none in a forever loop
+### fork-join in a forever loop
 We can also put the fork in side a forever loop.
-I sometimes do this when creating uvm sequence.
-However, we should be careful about the content of the `fork-join_none` block, because it might hang our simulator.
+However, we should be careful about the content of the `fork-join` block, because it might hang our simulator.
 Never write any code with no statement to control the process in forever loop like below:
 <div class ="code" markdown="1" >
 {% highlight verilog %}
@@ -130,12 +129,30 @@ Never write any code with no statement to control the process in forever loop li
           #1;
           $display("%t ps, end of thread %d", $time,j);
         end
-      join_none
+      join
     end
 {% endhighlight %}
 </div>
-* The above code will hang our simulator. Because we're using `fork/join_none`, and the 2 `$display` tasks will be executed right away, then move to the next interation of the forever loop.
-This loop will create infinite number of process and hang the simulator. We should at least have some control inside the `fork-join_none` like below:
+* The above code will hang our simulator. The 2 `$display` tasks will be executed right away, then move to the next interation of the forever loop.
+This loop will create infinite number of processes and hang the simulator. We should at least have some control inside the `fork-join` like below:
+{% highlight verilog %}
+    forever begin
+      fork
+        begin
+          $display ("%t ps, start thread %d", $time, j);
+          #10;
+          //
+          // Wait for some signal to trigger.
+          ...
+          //
+          $display("%t ps, end of thread %d", $time,j);
+        end
+      join
+    end
+{% endhighlight %}
+
+Also, be careful when using `fork/join_none` in forever loop as well . 
+It will also hang our simulator since infinite processes will be created unless we have some process control inside the loop.
 {% highlight verilog %}
     forever begin
       fork
@@ -149,9 +166,51 @@ This loop will create infinite number of process and hang the simulator. We shou
           $display("%t ps, end of thread %d", $time,j);
         end
       join_none
+
+      wait fork; 
+      //--> if does not have process control such as this wait fork;
+      //    the forever loop will create infinite processes and hang simulator
     end
 {% endhighlight %}
 
+### forever loop inside fork-join_none
+By putting forever loop inside `fork`-`join_none` we need to aware that there will be a subprocess created for this forever loop.
+And if we do not have the control to break out of this forever loop, then the task `monitor_signal` in below example will never return the control.
+{% highlight verilog %}
+    task monitor_signal();
+       fork
+          forever begin
+             wait (mod_a_if.signal_a);
+             // other statements
+             // ...
+          end 
+       join_none
+
+    endtask: monitor_signal
+{% endhighlight %}
+
+This could cause an issue in some cases. Consider this case below, when using above task in a uvm task like `main_phase`:
+{% highlight verilog %}
+// inside uvm component
+   task main_phase(uvm_phase phase);
+      phase.raise_objection(this);
+      
+      //call above monitor task
+      monitor_signal();
+
+      phase.drop_objection(this);
+   endtask
+{% endhighlight %}
+* In uvm, objections are used to synchronized consumed-time phases of all uvm components.
+`raise_objection` will increase objection counter by one, `drop_objection` will decrease objection counter by one.
+When the objection counter is zero, all uvm_component will move to next phase at the same time.
+* So to be able to move to next phase, in this example, we need to be able to drop the objection that has been raised at the start of this `main_phase`.
+* However, as mentioned in the previous example, the `monitor_signal()` task contains a forever loop inside `fork`-`join_none`.
+And this task will not return the control since the forever will keep running forever. 
+Because of that, the control will not return to the `main_phase()` task, and the `phase.drop_objection()` will never be called to drop the objection.
+This causes the simulator to stuck at this `main_phase`.
+* To solve this issue, we can use the `disable` statement for this forever loop, or use `fine-grain process control` to kill this forever process. 
+Let's check below section.
 
 ---
 ## Process control
@@ -277,6 +336,30 @@ then we use the static function `self()` of the `process` class to get the handl
 <a href="https://www.edaplayground.com/x/fc2c" title="SystemVerilog fine grain control">
 <svg width="25" height="25" viewBox="0 -0.1 2 2" class="customsvg"> <use xlink:href="#svg-edaplay"></use></svg>
 </a></div>
+
+Let's take another example of using fine grain process control with forever loop:
+{% highlight verilog %}
+   std::process m_process_q[$];
+   ...
+   fork
+      forever begin
+         @(posedge signal_a);
+         fork
+            m_process_q.push_back(std::process::self());
+            //... other statements
+         join_none
+      end 
+   join_none
+
+   ...
+   foreach (m_process_q[i]) begin
+      m_process_q[i].kill();
+   end 
+
+   //
+{% endhighlight %}
+* In above example, we get all the handles of any process created in the forever loop and store in the queue `m_process_q[$]`.
+* Then later, when necessary, by iterating through that queue, we can kill all those processes.
 
 ---
 ## Finding more information

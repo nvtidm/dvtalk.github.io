@@ -13,7 +13,8 @@ nav_order: 3
 ---
 
 # Systemverilog macro with examples
-Macro is a piece of code which enable the text substitution everywhere the macro name is called. Systemverilog macro can also have argument like a function and it is actually very similar to macro in C which you may familiar with.
+Macro is a piece of code which enables text substitution everywhere the macro name is called. 
+Systemverilog macro can also have argument like a function and it is actually very similar to macro in C which you may familiar with.
 {: .fs-5 .fw-500 }
 
 ---
@@ -26,6 +27,7 @@ Macro is a piece of code which enable the text substitution everywhere the macro
    macro text2;
 {% endhighlight %}
 </div>
+
 ### Rules to follow
 * Avoid using the macro name which is similar to any compiler directives.
 * No space after the backslash `\` at the end of each line except for the last line of the macro.
@@ -98,11 +100,11 @@ then `undef` after use so we do not worry that it might be called by accident so
 
 ### Recommendation
 * If writing a function/task is possible, avoid writing macro =D.
-* Marco is usually used for coverage point definition, assertion definition.
-* Write all the macros in one file, and include that file in your sv package. Since redefine macro is allowed,
-write macros everywhere in your codes make debugging these macros become painful.
+* Write all macros in one file, and include that file in your sv package. 
+Since redefine macro is allowed, write macros everywhere in your codes make debugging these macros become painful.
 * Macro can call other macros or compiler directives, but be careful, should keep it simple.
 * When using argument, try to use default value (similar to default value in function/task).
+* Make sure your code run first, then turn it into a macro.
 
 ### Debugging
 Macro is annoying when it comes to debugging. When I need to write and debug a macro, I do this:
@@ -145,67 +147,147 @@ Create a macro to define assertion with below requirements:
 
 ### Macro for queue/array conversion
 {% highlight c %}
-`define ARRAY_APPEND_TO_QUEUE(ARR,ARR_SIZE, QUEUE) \
-   for (int i=0; i<ARR_SIZE; i++) begin \
-      QUEUE.push_back(ARR[i]); \
-   end
 
 //
 `define ARRAY_TO_QUEUE(ARR,ARR_SIZE, QUEUE) \
-   QUEUE.delete(); \
-   for (int i=0; i<ARR_SIZE; i++) begin \
-      QUEUE.push_back(ARR[i]); \
-   end
+      QUEUE.delete(); \
+      for (int macro_idx=0; macro_idx<ARR_SIZE; macro_idx++) begin \
+         QUEUE.push_back(ARR[macro_idx]); \
+      end
+
+`define ARRAY_APPEND_TO_QUEUE(ARR,ARR_SIZE, QUEUE) \
+      for (int macro_idx=0; macro_idx<ARR_SIZE; macro_idx++) begin \
+         QUEUE.push_back(ARR[macro_idx]); \
+      end
+
 
 //
 `define QUEUE_32_TO_8(Q_32, Q_8) \
-   Q_8.delete(); \
-   foreach (Q_32[i]) begin \
-      bit[31:0] m_tmp = Q_32[i]; \
-      Q_8.push_back(m_tmp[31:24]);\
-      Q_8.push_back(m_tmp[23:16]);\
-      Q_8.push_back(m_tmp[15:08]);\
-      Q_8.push_back(m_tmp[07:00]);\
-   end
+      Q_8.delete(); \
+      foreach (Q_32[macro_idx]) begin\
+         bit[31:0] m_tmp = Q_32[macro_idx];\
+         Q_8.push_back(m_tmp[07:00]);\
+         Q_8.push_back(m_tmp[15:08]);\
+         Q_8.push_back(m_tmp[23:16]);\
+         Q_8.push_back(m_tmp[31:24]);\
+      end
 
 //
 `define QUEUE_8_TO_32(Q_8, Q_32) \
-   Q_32.delete(); \
-   for(int i=0;i<Q_8.size();i +=4) begin \
-      Q_32.push_back({Q_8[i],  \
-      Q_8[i+1], \
-      Q_8[i+2], \
-      Q_8[i+3]});\
-   end
+      Q_32.delete(); \
+      for(int macro_idx=0;macro_idx<Q_8.size();macro_idx +=4) begin \
+         Q_32.push_back({\
+            Q_8[macro_idx+3], \
+            Q_8[macro_idx+2], \
+            Q_8[macro_idx+1], \
+            Q_8[macro_idx] });\
+      end
 
 //
 `define QUEUE_128_TO_32(Q_128, Q_32) \
-   Q_32.delete(); \
-   foreach (Q_128[i]) begin\
-      bit[127:0] m_tmp = Q_128[i];\
-      Q_32.push_back(m_tmp[127:96]);\
-      Q_32.push_back(m_tmp[95:64]);\
-      Q_32.push_back(m_tmp[63:32]);\
-      Q_32.push_back(m_tmp[31:00]);\
-   end
+      Q_32.delete(); \
+      foreach (Q_128[macro_idx]) begin\
+         bit[127:0] m_tmp = Q_128[macro_idx];\
+         Q_32.push_back(m_tmp[31:00]);\
+         Q_32.push_back(m_tmp[63:32]);\
+         Q_32.push_back(m_tmp[95:64]);\
+         Q_32.push_back(m_tmp[127:96]);\
+      end
 
 //
 `define QUEUE_192_TO_32(Q_192, Q_32) \
-   Q_32.delete(); \
-   foreach (Q_192[i]) begin\
-      bit[191:0] m_tmp = Q_192[i];\
-      Q_32.push_back(m_tmp[191:160]);\
-      Q_32.push_back(m_tmp[159:128]);\
-      Q_32.push_back(m_tmp[127:96]);\
-      Q_32.push_back(m_tmp[95:64]);\
-      Q_32.push_back(m_tmp[63:32]);\
-      Q_32.push_back(m_tmp[31:00]);\
-   end
+      Q_32.delete(); \
+      foreach (Q_192[macro_idx]) begin\
+         bit[191:0] m_tmp = Q_192[macro_idx];\
+         Q_32.push_back(m_tmp[31:00]);\
+         Q_32.push_back(m_tmp[63:32]);\
+         Q_32.push_back(m_tmp[95:64]);\
+         Q_32.push_back(m_tmp[127:96]);\
+         Q_32.push_back(m_tmp[159:128]);\
+         Q_32.push_back(m_tmp[191:160]);\
+      end
+
+//
+`define QUEUE_256_TO_32(Q_256, Q_32) \
+      Q_32.delete(); \
+      foreach (Q_256[macro_idx]) begin\
+         bit[255:0] m_tmp = Q_256[macro_idx];\
+         Q_32.push_back(m_tmp[31:00]);\
+         Q_32.push_back(m_tmp[63:32]);\
+         Q_32.push_back(m_tmp[95:64]);\
+         Q_32.push_back(m_tmp[127:96]);\
+         Q_32.push_back(m_tmp[159:128]);\
+         Q_32.push_back(m_tmp[191:160]);\
+         Q_32.push_back(m_tmp[223:192]);\
+         Q_32.push_back(m_tmp[255:224]);\
+      end
+
+`define DATA_128B_TO_8B_Q(DATA_128B, Q_8) \
+      Q_8.delete(); \
+      for(int macro_idx=0; macro_idx<(128/8); macro_idx++) begin \
+         Q_8.push_back(DATA_128B[8*macro_idx +: 8]); \
+      end \
+      Q_8.reverse();
+
+`define DATA_192B_TO_8B_Q(DATA_192B, Q_8) \
+      Q_8.delete(); \
+      for(int macro_idx=0; macro_idx<(192/8); macro_idx++) begin \
+         Q_8.push_back(DATA_192B[8*macro_idx +: 8]); \
+      end \
+      Q_8.reverse();
+
+`define DATA_256B_TO_8B_Q(DATA_256B, Q_8) \
+      Q_8.delete(); \
+      for(int macro_idx=0; macro_idx<(256/8); macro_idx++) begin \
+         Q_8.push_back(DATA_256B[8*macro_idx +: 8]); \
+      end \
+      Q_8.reverse();
 
 {% endhighlight %}
 
-
+---
+## My mistakes
+* Space between macro name and the open parentheses as below:
 {% highlight verilog %}
+`define print_arg    (ARG1, ARG2) $display(`"ARG2 signal, expected value is ARG1, current value: %0d `", ARG2);
+
+// space between print_arg and (ARG1, ARG2) will cause error
+// --> it should be print_arg(ARG1, ARG2)
+{% endhighlight %}
+
+* Using var `i` as index iterator inside macro, then call macro in another loop, which also use `i` as index iterator.
+{% highlight verilog %}
+`define ARRAY_TO_QUEUE(ARR,ARR_SIZE, QUEUE) \
+      QUEUE.delete(); \
+      for (int i=0; i<ARR_SIZE; i++) begin \
+         QUEUE.push_back(ARR[i]); \
+      end
+
+// Then use macro in another loop which also use `i` as index iterator
+foreach (m_obj[i]) begin
+   byte m_tmp_q[$];
+   m_tmp_q = m_obj[i].get_queue();
+   `ARRAY_TO_QUEUE(m_tmp_q, 14, m_out_q)
+end 
+
+// Generated code is as below, 
+// with the same var i used for 2 loops: outter loop and inner loop
+foreach (m_obj[i]) begin
+   byte m_tmp_q[$];
+   m_tmp_q = m_obj[i].get_queue();
+
+   m_out_q.delete();
+   for (int i=0; i<14; i++) begin
+      m_out_q.push_back(m_tmp_q[i]);
+   end 
+end 
+
+// --> Should use a unique index interator name
+`define ARRAY_TO_QUEUE(ARR,ARR_SIZE, QUEUE) \
+      QUEUE.delete(); \
+      for (int macro_idx=0; macro_idx<ARR_SIZE; macro_idx++) begin \
+         QUEUE.push_back(ARR[macro_idx]); \
+      end
 {% endhighlight %}
 
 ---
