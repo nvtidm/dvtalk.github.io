@@ -1,0 +1,301 @@
+---
+layout: default
+title: Systemverilog Streaming Operator Example
+parent: Systemverilog Randoms
+grand_parent: My Randoms
+description: Hands on examples of Systemverilog Streaming Operator
+tag: systemverilog
+comments: true
+toc_en: true
+nav_order: 1
+---
+# Systemverilog Streaming Operator Example
+A rarely used operator but very useful in many situations.
+{: .fs-5 .fw-500 }
+---
+
+Checkout this gist: [Systemverilog stream operator example](https://gist.github.com/dvtalk/da85498c0599fd10cca2117068b3bc55)
+
+<div>  
+<input type="text" class="tablefilterinput" id="FilterInput" onkeyup="tablefilter()" placeholder="Table filter input..." title="filter input">
+
+<table id="myTable" >
+   <tr>
+      <th> Description </th>
+      <th> Code </th>
+      <th> Link </th>
+   </tr>
+
+   <tr>
+      <td> Streaming Operator: pack an array to an integral</td>
+      <td>
+      <div class="code">
+      {% highlight verilog %}
+    int            m_pack_var;
+
+    m_pack_var = {>>byte{8'h06, 8'h07, 8'h08}};
+    $display ("array to var %h\n",  m_pack_var );
+    // output:
+    // queue to var 06070800
+
+      {% endhighlight %}
+      </div>
+      </td>
+      <td>
+      <a href="https://www.edaplayground.com/x/YpFJ" title="std::randomize example for array/queue">
+      <svg width="25" height="25" viewBox="0 -0.1 2 2" class="customsvg"> <use xlink:href="#svg-edaplay"></use></svg></a>
+      </td>
+   </tr>
+
+   <tr>
+      <td> Streaming Operator: pack a queue to an integral</td>
+      <td>
+      <div class="code">
+      {% highlight verilog %}
+    automatic byte q[$] = {8'h01, 8'h02, 8'h03};
+    int            m_pack_var;
+
+    m_pack_var = {>>byte{q}};
+    $display ("queue to var %h\n",  m_pack_var );
+    // output
+    // 01020300
+
+      {% endhighlight %}
+      </div>
+      </td>
+      <td>
+      <a href="https://www.edaplayground.com/x/YpFJ" title="Systemverilog Streaming Operator">
+      <svg width="25" height="25" viewBox="0 -0.1 2 2" class="customsvg"> <use xlink:href="#svg-edaplay"></use></svg></a>
+      </td>
+   </tr>
+
+   <tr>
+      <td> Streaming Operator: turn an integral to a queue</td>
+      <td>
+      <div class="code">
+      {% highlight verilog %}
+    byte q[$];
+
+    q =  {>>byte{24'h060708}};
+    foreach (q[i]) begin
+      $display("byte queue, byte-slice 0x%0x", q[i]);
+    end
+    // output:
+    // 0x6
+    // 0x7
+    // 0x8
+
+      {% endhighlight %}
+      </div>
+      </td>
+      <td>
+      <a href="https://www.edaplayground.com/x/YpFJ" title="Systemverilog Streaming Operator">
+      <svg width="25" height="25" viewBox="0 -0.1 2 2" class="customsvg"> <use xlink:href="#svg-edaplay"></use></svg></a>
+      </td>
+   </tr>
+
+   <tr>
+      <td> Streaming Operator: turn an integral to a queue, 8bit slice</td>
+      <td>
+      <div class="code">
+      {% highlight verilog %}
+    byte q[$];
+
+    q =  {>>byte{24'h060708}};
+    foreach (q[i]) begin
+      $display("byte queue, byte-slice 0x%0x", q[i]);
+    end
+    // output:
+    // 0x6
+    // 0x7
+    // 0x8
+
+      {% endhighlight %}
+      </div>
+      </td>
+      <td>
+      <a href="https://www.edaplayground.com/x/YpFJ" title="Systemverilog Streaming Operator">
+      <svg width="25" height="25" viewBox="0 -0.1 2 2" class="customsvg"> <use xlink:href="#svg-edaplay"></use></svg></a>
+      </td>
+   </tr>
+
+   <tr>
+      <td> Streaming Operator: turn an integral to a queue, 4bit slice</td>
+      <td>
+      <div class="code">
+      {% highlight verilog %}
+    byte q[$];
+
+    p =  {>>4{24'h060708}};
+    foreach (p[i]) begin
+      $display("4bit queue, 4bit-slice 0x%0x", p[i]);
+    end
+    // output:
+    // 0x0
+    // 0x6
+    // 0x0
+    // 0x7
+    // 0x0
+    // 0x8
+
+      {% endhighlight %}
+      </div>
+      </td>
+      <td>
+      <a href="https://www.edaplayground.com/x/YpFJ" title="Systemverilog Streaming Operator">
+      <svg width="25" height="25" viewBox="0 -0.1 2 2" class="customsvg"> <use xlink:href="#svg-edaplay"></use></svg></a>
+      </td>
+   </tr>
+
+
+   <tr>
+      <td> Streaming Operator: re-order, 8bit slice</td>
+      <td>
+      <div class="code">
+      {% highlight verilog %}
+    $display ("byte-slice  %h",  {>>byte{24'h060708}} );
+    $display ("byte-slice  %h",  {<<byte{24'h060708}} );
+    // output:
+    // byte-slice 060708
+    // byte-slice 080706
+
+      {% endhighlight %}
+      </div>
+      </td>
+      <td>
+      <a href="https://www.edaplayground.com/x/YpFJ" title="Systemverilog Streaming Operator">
+      <svg width="25" height="25" viewBox="0 -0.1 2 2" class="customsvg"> <use xlink:href="#svg-edaplay"></use></svg></a>
+      </td>
+   </tr>
+
+   <tr>
+      <td> Streaming Operator: reverse bit, 1bit slice</td>
+      <td>
+      <div class="code">
+      {% highlight verilog %}
+    $display ("1bit-slice %h",  {>>bit{24'h0a0a0a}} );
+    $display ("1bit-slice %h",  {<<bit{24'h0a0a0a}} );
+    // output:
+    // 1bit-slice 0a0a0a
+    // 1bit-slice 505050
+
+      {% endhighlight %}
+      </div>
+      </td>
+      <td>
+      <a href="https://www.edaplayground.com/x/YpFJ" title="Systemverilog Streaming Operator">
+      <svg width="25" height="25" viewBox="0 -0.1 2 2" class="customsvg"> <use xlink:href="#svg-edaplay"></use></svg></a>
+      </td>
+   </tr>
+
+   <tr>
+      <td> Streaming Operator: re-order, 4bit slice</td>
+      <td>
+      <div class="code">
+      {% highlight verilog %}
+    $display ("4bit-slice %h",  {>>4{24'h0a0a0a}} );
+    $display ("4bit-slice %h",  {<<4{24'h0a0a0a}} );
+    // output:
+    // 4bit-slice 0a0a0a
+    // 4bit-slice 505050
+
+      {% endhighlight %}
+      </div>
+      </td>
+      <td>
+      <a href="https://www.edaplayground.com/x/YpFJ" title="Systemverilog Streaming Operator">
+      <svg width="25" height="25" viewBox="0 -0.1 2 2" class="customsvg"> <use xlink:href="#svg-edaplay"></use></svg></a>
+      </td>
+   </tr>
+
+
+   <tr>
+      <td> Streaming Operator: Streaming operator at lhs, turn an integral to 3 different vars</td>
+      <td>
+      <div class="code">
+      {% highlight verilog %}
+    byte a, b, c;
+    
+    {<<byte{a,b,c}} = 24'h060708;
+    $display("unpack a 0x%0x", a);
+    $display("unpack b 0x%0x", b);
+    $display("unpack c 0x%0x\n", c);
+
+    {>>byte{a,b,c}} = 24'h060708;
+    $display("unpack a 0x%0x", a);
+    $display("unpack b 0x%0x", b);
+    $display("unpack c 0x%0x", c);
+
+      {% endhighlight %}
+      </div>
+      </td>
+      <td>
+      <a href="https://www.edaplayground.com/x/YpFJ" title="Systemverilog Streaming Operator">
+      <svg width="25" height="25" viewBox="0 -0.1 2 2" class="customsvg"> <use xlink:href="#svg-edaplay"></use></svg></a>
+      </td>
+   </tr>
+
+   <tr>
+      <td> Streaming Operator: use 2 Streaming Operator to turn a 32bit queue to 8bit queue and vice versa </td>
+      <td>
+      <div class="code">
+      {% highlight verilog %}
+    automatic byte      q8[$]  = {8'h01, 8'h02, 8'h03, 8'h04,    8'h05, 8'h06, 8'h07};
+    automatic bit[31:0] q32[$];
+    
+    q32 = {>>32{{>>8{q8}}}};
+    foreach (q32[i]) begin
+      $display ("q8 to q32  0x%0x",  q32[i] );
+    end 
+    //
+    // {>>8{q8}} --> pack q8 
+    // {>>32{ ...}} -->  unpack to q32
+    //
+    // output:
+    // 0x1020304
+    // 0x5060700
+    
+    q8.delete();
+    q8 = {>>8{{>>32{q32}}}};
+    $display ("q32 to q8  %p",  q8 );
+    // output
+    // '{1, 2, 3, 4, 5, 6, 7, 0}
+
+      {% endhighlight %}
+      </div>
+      </td>
+      <td>
+      <a href="https://www.edaplayground.com/x/YpFJ" title="Systemverilog Streaming Operator">
+      <svg width="25" height="25" viewBox="0 -0.1 2 2" class="customsvg"> <use xlink:href="#svg-edaplay"></use></svg></a>
+      </td>
+   </tr>
+
+
+</table>
+    <script>
+      function tablefilter() {
+        var input, filter, table, tr, td, i, txtValue;
+        input = document.getElementById("FilterInput");
+        filter = input.value.toUpperCase();
+        table = document.getElementById("myTable");
+        tr = table.getElementsByTagName("tr");
+        for (i = 0; i < tr.length; i++) {
+          td = tr[i].getElementsByTagName("td")[0];
+          if (td) {
+            txtValue = td.textContent || td.innerText;
+            if (txtValue.toUpperCase().indexOf(filter) > -1) {
+              tr[i].style.display = "";
+            } else {
+              tr[i].style.display = "none";
+            }
+          }
+        }
+      }
+    </script>
+</div>
+
+---
+## Finding more information
+To have more understanding as well as more examples, check below references:
+1. IEEE SV 2017: 11.4.14 Streaming operators (pack/unpack)
+1. [AMIQ: How to pack data using systemverilog streaming operators](https://www.amiq.com/consulting/2017/05/29/how-to-pack-data-using-systemverilog-streaming-operators/)
