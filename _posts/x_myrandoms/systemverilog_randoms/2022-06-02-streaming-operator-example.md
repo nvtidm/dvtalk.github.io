@@ -36,7 +36,7 @@ Checkout this gist: [Systemverilog stream operator example](https://gist.github.
     m_pack_var = {>>byte{8'h06, 8'h07, 8'h08}};
     $display ("array to var %h\n",  m_pack_var );
     // output:
-    // queue to var 06070800
+    // array to var 06070800
 
       {% endhighlight %}
       </div>
@@ -58,32 +58,7 @@ Checkout this gist: [Systemverilog stream operator example](https://gist.github.
     m_pack_var = {>>byte{q}};
     $display ("queue to var %h\n",  m_pack_var );
     // output
-    // 01020300
-
-      {% endhighlight %}
-      </div>
-      </td>
-      <td>
-      <a href="https://www.edaplayground.com/x/YpFJ" title="Systemverilog Streaming Operator">
-      <svg width="25" height="25" viewBox="0 -0.1 2 2" class="customsvg"> <use xlink:href="#svg-edaplay"></use></svg></a>
-      </td>
-   </tr>
-
-   <tr>
-      <td> Streaming Operator: turn an integral to a queue</td>
-      <td>
-      <div class="code">
-      {% highlight verilog %}
-    byte q[$];
-
-    q =  {>>byte{24'h060708}};
-    foreach (q[i]) begin
-      $display("byte queue, byte-slice 0x%0x", q[i]);
-    end
-    // output:
-    // 0x6
-    // 0x7
-    // 0x8
+    // queue to var 01020300
 
       {% endhighlight %}
       </div>
@@ -106,9 +81,9 @@ Checkout this gist: [Systemverilog stream operator example](https://gist.github.
       $display("byte queue, byte-slice 0x%0x", q[i]);
     end
     // output:
-    // 0x6
-    // 0x7
-    // 0x8
+    // byte queue, byte-slice 0x6
+    // byte queue, byte-slice 0x7
+    // byte queue, byte-slice 0x8
 
       {% endhighlight %}
       </div>
@@ -131,12 +106,12 @@ Checkout this gist: [Systemverilog stream operator example](https://gist.github.
       $display("4bit queue, 4bit-slice 0x%0x", p[i]);
     end
     // output:
-    // 0x0
-    // 0x6
-    // 0x0
-    // 0x7
-    // 0x0
-    // 0x8
+    // 4bit queue, 4bit-slice 0x0
+    // 4bit queue, 4bit-slice 0x6
+    // 4bit queue, 4bit-slice 0x0
+    // 4bit queue, 4bit-slice 0x7
+    // 4bit queue, 4bit-slice 0x0
+    // 4bit queue, 4bit-slice 0x8
 
       {% endhighlight %}
       </div>
@@ -210,12 +185,12 @@ Checkout this gist: [Systemverilog stream operator example](https://gist.github.
 
 
    <tr>
-      <td> Streaming Operator: Streaming operator at lhs, turn an integral to 3 different vars</td>
+      <td> Streaming operator at lhs, turn an integral to 3 different vars</td>
       <td>
       <div class="code">
       {% highlight verilog %}
     byte a, b, c;
-    
+
     {<<byte{a,b,c}} = 24'h060708;
     $display("unpack a 0x%0x", a);
     $display("unpack b 0x%0x", b);
@@ -236,7 +211,7 @@ Checkout this gist: [Systemverilog stream operator example](https://gist.github.
    </tr>
 
    <tr>
-      <td> Streaming Operator: use 2 Streaming Operator to turn a 32bit queue to 8bit queue and vice versa </td>
+      <td> Streaming Operator: use 2 Streaming Operator to turn a 32bit queue to a 8bit queue and vice versa </td>
       <td>
       <div class="code">
       {% highlight verilog %}
@@ -246,7 +221,7 @@ Checkout this gist: [Systemverilog stream operator example](https://gist.github.
     q32 = {>>32{{>>8{q8}}}};
     foreach (q32[i]) begin
       $display ("q8 to q32  0x%0x",  q32[i] );
-    end 
+    end
     //
     // {>>8{q8}} --> pack q8 
     // {>>32{ ...}} -->  unpack to q32
