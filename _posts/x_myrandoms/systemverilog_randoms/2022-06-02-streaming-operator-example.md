@@ -13,7 +13,7 @@ nav_order: 1
 A rarely used operator but very useful in many situations.
 {: .fs-5 .fw-500 }
 ---
-
+## Example
 Checkout this gist: [Systemverilog stream operator example](https://gist.github.com/dvtalk/da85498c0599fd10cca2117068b3bc55)
 
 <div>  
