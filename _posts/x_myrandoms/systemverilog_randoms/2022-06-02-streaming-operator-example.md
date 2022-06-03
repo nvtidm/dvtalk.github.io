@@ -8,6 +8,7 @@ tag: systemverilog
 comments: true
 toc_en: true
 nav_order: 1
+
 ---
 # Systemverilog Streaming Operator Example
 A rarely used operator but very useful in many situations.
@@ -23,6 +24,7 @@ types. A bit-stream type is a type consisting of the following:
 * Dynamically sized arrays (dynamic, associative, or queues) of any of the preceding types
 This definition is recursive so that, for example, a structure containing a queue of int is a bit-stream type
 
+---
 ## Streaming operator
 From IEEE SV 2017:
 
