@@ -26,13 +26,12 @@ This definition is recursive so that, for example, a structure containing a queu
 ## Streaming operator
 From IEEE SV 2017:
 
-The streaming operators perform packing of bit-stream types into a sequence of bits in a user-specified order
+The streaming operators perform packing of bit-stream types into a sequence of bits in a user-specified order.
 
-The slice_size determines the size of each block, measured in bits. If a slice_size is not specified, the default is 1.
+The `slice_size` determines the size of each block, measured in bits. If a slice_size is not specified, the default is 1.
 
-The stream_operator << or >> determines the order in which blocks of data are streamed: 
-* `>>` causes blocks of data to be streamed in left-to-right order, while `<<` causes blocks of data to be streamed in right-to-left
-order.
+The `stream_operator` `<<` or `>>` determines the order in which blocks of data are streamed:
+* `>>` causes blocks of data to be streamed in left-to-right order, while `<<` causes blocks of data to be streamed in right-to-left order.
 * Left-to-right streaming using `>>` shall cause the slice_size to be ignored and no re-ordering performed.
 * Right-to-left streaming using `<<` shall reverse the order of blocks in the stream, preserving the order of bits
 within each block. 
