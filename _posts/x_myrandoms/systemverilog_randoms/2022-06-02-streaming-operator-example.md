@@ -13,8 +13,33 @@ nav_order: 1
 A rarely used operator but very useful in many situations.
 {: .fs-5 .fw-500 }
 ---
+## What is bit-stream type
+From IEEE SV 2017:
+Types that can be packed into a stream of bits are called bit-stream
+types. A bit-stream type is a type consisting of the following: 
+* Any integral, packed, or string type
+* Unpacked arrays, structures, or classes of the preceding types
+* Dynamically sized arrays (dynamic, associative, or queues) of any of the preceding types
+This definition is recursive so that, for example, a structure containing a queue of int is a bit-stream type
+
+## Streaming operator
+From IEEE SV 2017:
+The streaming operators perform packing of bit-stream types into a sequence of bits in a user-specified order
+
+The slice_size determines the size of each block, measured in bits. If a slice_size is not specified, the default is 1.
+
+The stream_operator << or >> determines the order in which blocks of data are streamed: 
+* >> causes blocks of data to be streamed in left-to-right order, while << causes blocks of data to be streamed in right-to-left
+order.
+* Left-to-right streaming using >> shall cause the slice_size to be ignored and no re-ordering performed.
+* Right-to-left streaming using << shall reverse the order of blocks in the stream, preserving the order of bits
+within each block. 
+* For right-to-left streaming using <<, the stream is sliced into blocks with the specified
+number of bits, starting with the right-most bit. If as a result of slicing the last (left-most) block has fewer
+bits than the block size, the last block has the size of the remaining bits; there is no padding or truncation.
+
 ## Example
-Checkout this gist: [Systemverilog stream operator example](https://gist.github.com/dvtalk/da85498c0599fd10cca2117068b3bc55)
+Full code can be find in this gist: [Systemverilog stream operator example](https://gist.github.com/dvtalk/da85498c0599fd10cca2117068b3bc55)
 
 <div>  
 <input type="text" class="tablefilterinput" id="FilterInput" onkeyup="tablefilter()" placeholder="Table filter input..." title="filter input">
