@@ -15,6 +15,7 @@ A rarely used operator but very useful in many situations.
 ---
 ## What is bit-stream type
 From IEEE SV 2017:
+
 Types that can be packed into a stream of bits are called bit-stream
 types. A bit-stream type is a type consisting of the following: 
 * Any integral, packed, or string type
