@@ -28,7 +28,7 @@ From IEEE SV 2017:
 
 The streaming operators perform packing of bit-stream types into a sequence of bits in a user-specified order.
 
-The `slice_size` determines the size of each block, measured in bits. If a slice_size is not specified, the default is 1.
+The `slice_size` determines the size of each block, measured in bits. If a `slice_size` is not specified, the default is 1.
 
 The `stream_operator` `<<` or `>>` determines the order in which blocks of data are streamed:
 * `>>` causes blocks of data to be streamed in left-to-right order, while `<<` causes blocks of data to be streamed in right-to-left order.
