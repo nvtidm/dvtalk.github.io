@@ -32,7 +32,7 @@ if($test$plusargs(PLUSARGS_TEST)) begin
 end 
 {% endhighlight %}
 
-### $value$plusargs
+### $value$plusargs("<PLUSARGS>=<format string>", var)
 Similar to `$test$plusargs`, but the plusargs now comes with a value, and we can assign that value to a variable as below example.
 {% highlight verilog %}
 // Simulator command line argument: +PLUSARGS_TEST=20
