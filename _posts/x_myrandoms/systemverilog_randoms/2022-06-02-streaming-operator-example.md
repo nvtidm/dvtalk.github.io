@@ -243,7 +243,7 @@ Full code can be find in this gist: [Systemverilog stream operator example](http
       <td>
       <div class="code">
       {% highlight verilog %}
-    automatic byte      q8[$]  = {8'h01, 8'h02, 8'h03, 8'h04,    8'h05, 8'h06, 8'h07};
+    automatic byte      q8[$]  = {8'h01, 8'h02, 8'h03, 8'h04, 8'h05, 8'h06, 8'h07};
     automatic bit[31:0] q32[$];
     
     q32 = {>>32{{>>8{q8}}}};
