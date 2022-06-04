@@ -90,7 +90,7 @@ we can use `uvm_enum_wrapper#(<enum type>)::from_name()` function to cast the pl
 This uvm class supports many functions that handle the plusargs.
 Let's check some examples below.
 
-### plusarg containing a list of values
+#### plusarg containing a list of values
 {% highlight verilog %}
  //
  // Example simulator command line argument: +QUEUE_EN_LIST=0,5,10,15
@@ -109,7 +109,7 @@ Let's check some examples below.
 {% endhighlight %}
 
 
-### multiple plusargs with the same name, but different values
+#### multiple plusargs with the same name, but different values
 Assuming we need a plusarg with this format to configure one aes encryption operation : `+AES_OPR_CFG=<AES_MODE>,<KEY_LEN>`.
 
 We also need to have multiple aes encryption operations in 1 test, each receiving plusarg will corresponding to 1 operation.
