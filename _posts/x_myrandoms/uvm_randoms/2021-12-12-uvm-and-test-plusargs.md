@@ -62,7 +62,7 @@ We can use below format string when get the value from plusargs
 
 
 ---
-## UVM built-in functions that help
+## UVM built-in functions those help
 Some uvm functions those make handling test plusargs easier
 
 ### Plusargs for enum variable
@@ -71,6 +71,7 @@ Instead of using `switch-case` to match the string to each enum name constant,
 we can use `uvm_enum_wrapper#(<enum type>)::from_name()` function to cast the plusarg string to the enum variable.
 
 {% highlight verilog %}
+ //
  // Example simulator command line argument: +SHA_MODE=SHA_256
  //
 
@@ -85,9 +86,12 @@ we can use `uvm_enum_wrapper#(<enum type>)::from_name()` function to cast the pl
 {% endhighlight %}
 
 ### uvm_cmdline_processor sigleton class
+This uvm class supports many functions that handle the plusargs.
+Let's check some examples below.
 
 ### plusarg containing a list of values
 {% highlight verilog %}
+ //
  // Example simulator command line argument: +QUEUE_EN_LIST=0,5,10,15
  //
 
@@ -104,14 +108,37 @@ we can use `uvm_enum_wrapper#(<enum type>)::from_name()` function to cast the pl
 {% endhighlight %}
 
 
-### multiple plusargs with the same name 
+### multiple plusargs with the same name, but different values
+Assuming we need a plusarg with this format to configure one aes encryption operation : `+AES_OPR_CFG=<AES_MODE>,<KEY_LEN>`.
+
+We also need to have multiple aes encryption operations in 1 test, each receiving plusarg will corresponding to 1 operation.
+
+{% highlight verilog %}
+ //
+ // Example simulator command line argument: +AES_OBJ_CFG=AES_CBC,128 +AES_OBJ_CFG=AES_ECB,256
+ // Expect 2 aes operation:
+ //               1st aes operation: aes mode is AES_CBC, key length 128
+ //               2nd aes operation: aes mode is AES_ECB, key length 256
+ //
+
+ string aes_opr_lst;
+
+ if (uvm_cmdline_proc.get_arg_value("+AES_OPR_CFG=", aes_opr_lst)) begin
+    string queue_en_s[$];
+    int    queue_en[$]
+    uvm_split_string(upka_en_lst, "," , queue_en_s);
+    foreach (queue_en_s[i]) begin
+       queue_en[i] = queue_en_s[i].atoi();
+    end
+ end
+{% endhighlight %}
+
 ### some uvm useful default plusargs
 
 
 ---
 ## Finding more information
 1. Systemverilog LRM, section 21.6 Command line input
-1. Systemverilog LRM, Annex G Std package
-1. [ uvm_pool.svh ](https://verificationacademy.com/verification-methodology-reference/uvm/docs_1.2/html/files/base/uvm_pool-svh.html)
+1. [uvm_cmdline_processor](https://verificationacademy.com/verification-methodology-reference/uvm/docs_1.2/html/files/base/uvm_cmdline_processor-svh.html)
 
 
