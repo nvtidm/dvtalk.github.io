@@ -125,12 +125,9 @@ We also need to have multiple aes encryption operations in 1 test, each receivin
  string aes_opr_lst;
 
  if (uvm_cmdline_proc.get_arg_value("+AES_OPR_CFG=", aes_opr_lst)) begin
-    string queue_en_s[$];
-    int    queue_en[$]
-    uvm_split_string(upka_en_lst, "," , queue_en_s);
-    foreach (queue_en_s[i]) begin
-       queue_en[i] = queue_en_s[i].atoi();
-    end
+ ...
+ TBD
+ ...
  end
 {% endhighlight %}
 
