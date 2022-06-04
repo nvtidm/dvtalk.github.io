@@ -1,9 +1,9 @@
 ---
 layout: default
-title: Using plusargs in uvm test
+title: Using Plusargs in UVM Test
 parent: UVM Randoms
 grand_parent: My Randoms
-description: Using plusargs in uvm test
+description: Using Plusargs in UVM Test
 comments: true
 share: true
 tags: [uvm]
@@ -11,8 +11,8 @@ nav_order: 1
 toc_en: true
 ---
 
-# Using plusargs in uvm testbench
-Test plusargs. Does not include uvm built in plusargs
+# Using Plusargs in UVM Testbench
+Test plusargs.
 {: .fs-5 .fw-500 }
 
 ---
@@ -28,18 +28,30 @@ Usually, we will use this function as an expression in the consditional statemen
 // Simulator command line argument: +PLUSARGS_TEST
 
 if($test$plusargs(PLUSARGS_TEST)) begin 
-  `uvm_info([INFO], "Found plusargs +PLUSARGS_TEST", UVM_LOW )
+  `uvm_info([PLUSARGS], "Found plusargs +PLUSARGS_TEST", UVM_LOW )
 end 
 {% endhighlight %}
 
-
 ### $value$plusargs
+Similar to `$test$plusargs`, but the 
+
 #### string format for plusargs
+
+|      | |
+|:-----|:--------|
+|%d    |decimal conversion|
+|%o    |octal conversion|
+|%h,%x |hexadecimal conversion|
+|%b    |binary conversion|
+|%e    |real exponential conversion|
+|%f    |real decimal conversion|
+|%g    |real decimal or exponential conversion|
+|%s    |string (no conversion)|
 
 
 ---
 ## UVM built-in functions that help
-Some of the function that make handling test plusargs easier
+Some uvm functions those make handling test plusargs easier
 
 ### Plusargs for enum variable
 Assuming we have a enum type `sha_mode_e`, and the plusargs input value is stored in a string. 
@@ -55,7 +67,7 @@ we can use `uvm_enum_wrapper#(<enum type>)::from_name()` function to cast the pl
 
  if($value$plusargs("SHA_MODE=%s", m_tmp_str)) begin
     if (uvm_enum_wrapper#(sha_mode_e)::from_name(m_tmp_str, m_sha_mode)) begin
-    `uvm_info([INFO], $psprintf("Sha mode: %s", m_sha_mode.name()), UVM_LOW )
+       `uvm_info([PLUSARGS], $psprintf("Sha mode: %s", m_sha_mode.name()), UVM_LOW )
     end 
  end 
 {% endhighlight %}
@@ -70,10 +82,11 @@ we can use `uvm_enum_wrapper#(<enum type>)::from_name()` function to cast the pl
  string queue_en_lst;
 
  if (uvm_cmdline_proc.get_arg_value("+QUEUE_EN_LIST=", queue_en_lst)) begin
-    string queue_en_q[$];
-    uvm_split_string(upka_en_lst, "," , queue_en_q);
-    foreach (queue_en_q[i]) begin
-       m_env_cfg.set_queue_en(.queue_idx(queue_en_q[i].atoi()));
+    string queue_en_s[$];
+    int    queue_en[$]
+    uvm_split_string(upka_en_lst, "," , queue_en_s);
+    foreach (queue_en_s[i]) begin
+       queue_en[i] = queue_en_s[i].atoi();
     end
  end
 {% endhighlight %}
