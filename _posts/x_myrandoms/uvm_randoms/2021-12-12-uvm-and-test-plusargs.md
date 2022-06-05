@@ -154,9 +154,6 @@ We also need to have multiple aes encryption operations in 1 test, each receivin
  end
 {% endhighlight %}
 
-### some uvm useful default plusargs
-
-
 ---
 ## Finding more information
 1. Systemverilog LRM, section 21.6 Command line input
