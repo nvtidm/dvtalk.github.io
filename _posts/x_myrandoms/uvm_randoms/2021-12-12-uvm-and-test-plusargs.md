@@ -138,6 +138,11 @@ We also need to have multiple aes encryption operations in 1 test, each receivin
        string     tmp_q[$];
 
        uvm_split_string(aes_opr_lst[i], ",", tmp_q);
+       // tmp_q queue will have 2 entries, 
+       // 1st entry is the string of AES_MODE
+       // 2nd entry is the string of key length
+       // now we need to cast these entries to aes_mode_e and int type respectively
+       
 
        if (uvm_enum_wrapper#(aes_mode_e)::from_name(tmp_q[0], m_aes_mode)) begin
           $display("AES mode %s", m_aes_mode.name()));
