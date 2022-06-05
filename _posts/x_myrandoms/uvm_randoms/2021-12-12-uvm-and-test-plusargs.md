@@ -93,6 +93,9 @@ There is a global variable of uvm_cmdline_processor class called `uvm_cmdline_pr
 Let's check some examples below.
 
 #### plusarg containing a list of values
+In this example we will use the `uvm_cmdline_proc.get_arg_value()` function to get the argument as a string.
+Then use the `uvm_split_string()` to split this string to entries based on the sepapartor.
+
 {% highlight verilog %}
  //
  // Example simulator command line argument: +QUEUE_EN_LIST=0,5,10,15
@@ -116,6 +119,8 @@ Let's check some examples below.
 Assuming we need a plusarg with this format to configure one aes encryption operation : `+AES_OPR_CFG=<AES_MODE>,<KEY_LEN>`.
 
 We also need to have multiple aes encryption operations in 1 test, each receiving plusarg will corresponding to 1 operation.
+
+We will use the `uvm_cmdline_proc.get_arg_values()` function instead of `uvm_cmdline_proc.get_arg_value()`.
 
 {% highlight verilog %}
  //
