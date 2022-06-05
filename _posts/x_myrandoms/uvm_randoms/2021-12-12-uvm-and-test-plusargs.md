@@ -88,7 +88,7 @@ we can use `uvm_enum_wrapper#(<enum type>)::from_name()` function to cast the pl
 
 ### uvm_cmdline_processor sigleton class
 This uvm class supports many functions that handle the plusargs.
-There is a global variable of uvm_cmdline_processor class called uvm_cmdline_proc and can be used to access command line information.
+There is a global variable of uvm_cmdline_processor class called `uvm_cmdline_proc` and can be used to access command line information.
 
 Let's check some examples below.
 
@@ -102,7 +102,8 @@ Let's check some examples below.
 
  if (uvm_cmdline_proc.get_arg_value("+QUEUE_EN_LIST=", queue_en_lst)) begin
     string queue_en_s[$];
-    int    queue_en[$]
+    int    queue_en[$];  // list of queue id that will be enable
+
     uvm_split_string(upka_en_lst, "," , queue_en_s);
     foreach (queue_en_s[i]) begin
        queue_en[i] = queue_en_s[i].atoi();
@@ -124,12 +125,27 @@ We also need to have multiple aes encryption operations in 1 test, each receivin
  //               2nd aes operation: aes mode is AES_ECB, key length 256
  //
 
- string aes_opr_lst;
+ string aes_opr_lst[$];
 
- if (uvm_cmdline_proc.get_arg_value("+AES_OPR_CFG=", aes_opr_lst)) begin
- ...
- TBD
- ...
+ aes_cfg aes_cfg_q[$];
+
+ if (uvm_cmdline_proc.get_arg_values("+AES_OPR_CFG=", aes_opr_lst)) begin
+    // the aes_opr_lst will contain 2 entries:
+    //  "AES_CBC,1" and "AES_ECB,256"
+
+    foreach(aes_opr_lst[i]) begin
+       aes_mode_e m_aes_mode;
+       string     tmp_q[$];
+
+       uvm_split_string(aes_opr_lst[i], ",", tmp_q);
+
+       if (uvm_enum_wrapper#(aes_mode_e)::from_name(tmp_q[0], m_aes_mode)) begin
+          $display("AES mode %s", m_aes_mode.name()));
+       end 
+       $display("Key length %d", tmp_q[1].atoi());
+       
+    end 
+    
  end
 {% endhighlight %}
 
