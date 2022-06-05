@@ -120,7 +120,7 @@ Assuming we need a plusarg with this format to configure one aes encryption oper
 
 We also need to have multiple aes encryption operations in 1 test, each receiving plusarg will corresponding to 1 operation.
 
-We will use the `uvm_cmdline_proc.get_arg_values()` function instead of `uvm_cmdline_proc.get_arg_value()`.
+In this example, we will use the `uvm_cmdline_proc.get_arg_values()` function instead of `uvm_cmdline_proc.get_arg_value()`.
 
 {% highlight verilog %}
  //
