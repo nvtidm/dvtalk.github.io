@@ -88,6 +88,8 @@ we can use `uvm_enum_wrapper#(<enum type>)::from_name()` function to cast the pl
 
 ### uvm_cmdline_processor sigleton class
 This uvm class supports many functions that handle the plusargs.
+There is a global variable of uvm_cmdline_processor class called uvm_cmdline_proc and can be used to access command line information.
+
 Let's check some examples below.
 
 #### plusarg containing a list of values
