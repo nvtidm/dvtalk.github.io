@@ -127,8 +127,6 @@ We also need to have multiple aes encryption operations in 1 test, each receivin
 
  string aes_opr_lst[$];
 
- aes_cfg aes_cfg_q[$];
-
  if (uvm_cmdline_proc.get_arg_values("+AES_OPR_CFG=", aes_opr_lst)) begin
     // the aes_opr_lst will contain 2 entries:
     //  "AES_CBC,1" and "AES_ECB,256"
@@ -142,15 +140,12 @@ We also need to have multiple aes encryption operations in 1 test, each receivin
        // 1st entry is the string of AES_MODE
        // 2nd entry is the string of key length
        // now we need to cast these entries to aes_mode_e and int type respectively
-       
 
        if (uvm_enum_wrapper#(aes_mode_e)::from_name(tmp_q[0], m_aes_mode)) begin
           $display("AES mode %s", m_aes_mode.name()));
        end 
        $display("Key length %d", tmp_q[1].atoi());
-       
     end 
-    
  end
 {% endhighlight %}
 
