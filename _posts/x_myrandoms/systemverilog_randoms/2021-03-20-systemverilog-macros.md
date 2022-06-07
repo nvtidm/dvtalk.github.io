@@ -146,9 +146,11 @@ Create a macro to define assertion with below requirements:
 {% endhighlight %}
 
 ### Macro for queue/array conversion
+Note that these conversions below can be easily achieved by using streaming operator.
+
 {% highlight c %}
 
-// note that these conversion below can be easily achieved by using streaming operator.
+// 
 //
 `define ARRAY_TO_QUEUE(ARR,ARR_SIZE, QUEUE) \
       QUEUE.delete(); \
