@@ -17,7 +17,7 @@ Polymorphism is one of very crucial concepts of any OOP languages. Since SystemV
 {: .fs-5 .fw-500 }
 
 ---
-## Basic knowledge about variable
+## Basic knowledge about variables
 ### Three properties of a variable in Systemverilog
 A variable in general has several properties.
 However let's just focus on three important things below for this post.
