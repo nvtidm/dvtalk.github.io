@@ -275,6 +275,43 @@ Full code can be find in this gist: [Systemverilog stream operator example](http
       </td>
    </tr>
 
+   <tr>
+      <td> Streaming Operator: use 2 Streaming Operator to turn a 8bit queue to a 32bit queue with little endian </td>
+      <td>
+      <div class="code">
+      {% highlight verilog %}
+{% raw %}
+    // input:
+    // dd 19 df f2 83 e2 5c 4b-f3 a6 cd e0 99 7f 59 33
+
+    // expected output
+    // 0xf2df19dd -  0x4b5ce283 -  0xe0cda6f3 - 0x33597f99
+    automatic byte      q8[$]  = {  'hdd , 'h19 , 'hdf , 'hf2 ,
+                                    'h83 , 'he2 , 'h5c , 'h4b ,
+                                    'hf3 , 'ha6 , 'hcd , 'he0 ,
+                                    'h99 , 'h7f , 'h59 , 'h33};
+    automatic bit[31:0] q32[$];
+
+    q32 = {<<32{{<<8{q8}}}};
+    foreach (q32[i]) begin
+      $display ("q8 to q32 lit_endian  0x%0x",  q32[i] );
+    end
+  endfunction
+  // q8 to q32 lit_endian  0xf2df19dd
+  // q8 to q32 lit_endian  0x4b5ce283
+  // q8 to q32 lit_endian  0xe0cda6f3
+  // q8 to q32 lit_endian  0x33597f99
+
+{% endraw %}
+      {% endhighlight %}
+      </div>
+      </td>
+      <td>
+      <a href="https://www.edaplayground.com/x/YpFJ" title="Systemverilog Streaming Operator">
+      <svg width="25" height="25" viewBox="0 -0.1 2 2" class="customsvg"> <use xlink:href="#svg-edaplay"></use></svg></a>
+      </td>
+   </tr>
+
 
 </table>
     <script>
