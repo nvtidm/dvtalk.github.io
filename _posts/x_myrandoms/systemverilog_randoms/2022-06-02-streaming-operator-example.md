@@ -273,7 +273,7 @@ Full code can be find in this gist: [Systemverilog stream operator example](http
    </tr>
 
    <tr>
-      <td> Streaming Operator: use 2 Streaming Operator to turn a 8bit queue to a 32bit queue with little endian </td>
+      <td> Streaming Operator: use 2 Streaming Operator to turn a 8bit queue to a 32bit queue with reverse order </td>
       <td>
       <div class="code">
       {% highlight verilog %}
@@ -291,20 +291,20 @@ Full code can be find in this gist: [Systemverilog stream operator example](http
 
     q32 = {<<32{{<<8{q8}}}};
     foreach (q32[i]) begin
-      $display ("q8 to q32 lit_endian  0x%0x",  q32[i] );
+      $display ("q8 to q32 reverse order  0x%0x",  q32[i] );
     end
-    // q8 to q32 lit_endian  0xf2df19dd
-    // q8 to q32 lit_endian  0x4b5ce283
-    // q8 to q32 lit_endian  0xe0cda6f3
-    // q8 to q32 lit_endian  0x33597f99
+    // q8 to q32 reverse order  0xf2df19dd
+    // q8 to q32 reverse order  0x4b5ce283
+    // q8 to q32 reverse order  0xe0cda6f3
+    // q8 to q32 reverse order  0x33597f99
 
     q8.delete();
     q8 = {<<8{{<<32{q32}}}};
-    $displayh ("q32 to q8 little en %p",  q8 );
-    // q32 to q8 little en '{dd, 19, df, f2, 
-    //                       83, e2, 5c, 4b, 
-    //                       f3, a6, cd, e0, 
-    //                       99, 7f, 59, 33}
+    $displayh ("q32 to q8  %p",  q8 );
+    // q32 to q8  '{dd, 19, df, f2, 
+    //              83, e2, 5c, 4b, 
+    //              f3, a6, cd, e0, 
+    //              99, 7f, 59, 33}
 
 
 {% endraw %}
