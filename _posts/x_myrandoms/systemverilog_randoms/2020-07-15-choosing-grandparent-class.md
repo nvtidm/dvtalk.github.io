@@ -48,7 +48,7 @@ We can use `typedef` to create new class type with full control of which is pare
 {% endhighlight %}
 </div>
 
-This literally means that type class customized_component is component_a extends from component_b extends from component_c extends from uvm_component.
+This literally means that type class `customized_component` is `component_a` extends from `component_b` extends from `component_c` extends from `uvm_component`.
 
 ---
 ## Try it on my EDAplayground
