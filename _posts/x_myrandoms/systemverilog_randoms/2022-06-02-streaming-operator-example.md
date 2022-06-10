@@ -247,20 +247,17 @@ Full code can be find in this gist: [Systemverilog stream operator example](http
     automatic byte      q8[$]  = {8'h01, 8'h02, 8'h03, 8'h04, 8'h05, 8'h06, 8'h07};
     automatic bit[31:0] q32[$];
 
-    q32 = {>>32{{>>8{q8}}}}    ;
+    q32 = {>>32{q8}}    ;
     foreach (q32[i]) begin
       $display ("q8 to q32  0x%0x",  q32[i] );
     end
-    //
-    // {>>8{q8}} --> pack q8 
-    // {>>32{ ...}} -->  pack to q32
     //
     // output:
     // 0x1020304
     // 0x5060700
 
     q8.delete();
-    q8 = {>>8{{>>32{q32}}}} ;
+    q8 = {>>8{q32}} ;
     $display ("q32 to q8  %p",  q8 );
     // output
     // '{1, 2, 3, 4, 5, 6, 7, 0}
@@ -296,11 +293,16 @@ Full code can be find in this gist: [Systemverilog stream operator example](http
     foreach (q32[i]) begin
       $display ("q8 to q32 lit_endian  0x%0x",  q32[i] );
     end
-  endfunction
-  // q8 to q32 lit_endian  0xf2df19dd
-  // q8 to q32 lit_endian  0x4b5ce283
-  // q8 to q32 lit_endian  0xe0cda6f3
-  // q8 to q32 lit_endian  0x33597f99
+    // q8 to q32 lit_endian  0xf2df19dd
+    // q8 to q32 lit_endian  0x4b5ce283
+    // q8 to q32 lit_endian  0xe0cda6f3
+    // q8 to q32 lit_endian  0x33597f99
+
+    q8.delete();
+    q8 = {<<8{{<<32{q32}}}};
+    $displayh ("q32 to q8 little en %p",  q8 );
+    // q32 to q8 little en '{dd, 19, df, f2, 83, e2, 5c, 4b, f3, a6, cd, e0, 99, 7f, 59, 33}
+
 
 {% endraw %}
       {% endhighlight %}
