@@ -301,7 +301,10 @@ Full code can be find in this gist: [Systemverilog stream operator example](http
     q8.delete();
     q8 = {<<8{{<<32{q32}}}};
     $displayh ("q32 to q8 little en %p",  q8 );
-    // q32 to q8 little en '{dd, 19, df, f2, 83, e2, 5c, 4b, f3, a6, cd, e0, 99, 7f, 59, 33}
+    // q32 to q8 little en '{dd, 19, df, f2, 
+    //                       83, e2, 5c, 4b, 
+    //                       f3, a6, cd, e0, 
+    //                       99, 7f, 59, 33}
 
 
 {% endraw %}
