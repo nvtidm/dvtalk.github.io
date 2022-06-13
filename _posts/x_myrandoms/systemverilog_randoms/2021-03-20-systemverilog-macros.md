@@ -146,7 +146,7 @@ Create a macro to define assertion with below requirements:
 {% endhighlight %}
 
 ### Macro for queue/array conversion
-Note that these conversions below can be easily achieved by using [Streaming operator] ({{ site.baseurl }}{% link _posts/x_myrandoms/systemverilog_randoms/2022-06-02-streaming-operator-example.md %}) .
+Note that these conversions below can be easily achieved by using [Streaming operator]({{ site.baseurl }}{% link _posts/x_myrandoms/systemverilog_randoms/2022-06-02-streaming-operator-example.md %}) .
 
 {% highlight c %}
 
