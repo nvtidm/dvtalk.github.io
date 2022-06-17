@@ -74,6 +74,17 @@ Since this function is static, we can call it everywhere in our environment.
 ...
 {% endhighlight %}
 
+#### Eager initialization
+We can have the singleton class to construct itself by calling the `get_inst()` when initialize the m_self variable
+{% highlight verilog %}
+...
+   static protected example_singleton_class m_self = get_inst();
+...
+{% endhighlight %}
+
+When doing this, the singleton class will be constructed at the very beginning of the simulation.
+This way to constructing singleton object is called *eager initialization*.
+
 ---
 ## Is it any good?
 ### Which class can be singleton
