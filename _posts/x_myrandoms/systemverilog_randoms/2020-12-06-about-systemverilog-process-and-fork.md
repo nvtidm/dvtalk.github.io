@@ -117,8 +117,8 @@ the next statement right after one of the 5 processes finished.
 ```$display("the NEXT Statement ... ");``` will be executed when one of the 5 processes finished.
 
 ### fork-join in a forever loop
-We can also put the fork in side a forever loop.
-However, we should be careful about the content of the `fork-join` block, because it might hang our simulator.
+We can also put the `fork` block inside a forever loop.
+However, we should be careful about statements inside forever loop, because they might hang our simulator.
 Never write any code with no statement to control the process in forever loop like below:
 <div class ="code" markdown="1" >
 {% highlight verilog %}
@@ -126,7 +126,6 @@ Never write any code with no statement to control the process in forever loop li
       fork
         begin
           $display ("%t ps, start thread %d", $time, j);
-          #1;
           $display("%t ps, end of thread %d", $time,j);
         end
       join
@@ -134,17 +133,18 @@ Never write any code with no statement to control the process in forever loop li
 {% endhighlight %}
 </div>
 * The above code will hang our simulator. The 2 `$display` tasks will be executed right away, then move to the next interation of the forever loop.
-This loop will create infinite number of processes and hang the simulator. We should at least have some control inside the `fork-join` like below:
+This loop will run continuously and hang the simulator. We should at least have some control inside the `fork-join` like below:
 {% highlight verilog %}
     forever begin
       fork
         begin
           $display ("%t ps, start thread %d", $time, j);
           #10;
-          //
+
+          ////
           // Wait for some signal to trigger.
-          ...
-          //
+          ////
+          
           $display("%t ps, end of thread %d", $time,j);
         end
       join
