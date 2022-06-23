@@ -56,15 +56,34 @@ We can easily achieve the requirement using `fork` and `join_none` as below.
     $display("the NEXT Statement ... ");
 {% endhighlight %}
 </div>
-There are several things that we can notice here.
+There are several things that we can notice here:
 * Firstly it's the `automatic` keywork. We need to copy `i` to `j` automatic variable in each iteration of the for loop.
 Since we use `join_none` here, all of 5 processes will start at the same time, and we only have one `i` variable, and after 5 iterations, `i` will hold a value 4.
 This means that if we use `i` variable instead of creating local copy of it, these all 5 processes will run with the same value of `i` after 5 iterations, which is 4.
 Then we'll end up having 5 exactly the same processes instead of 5 processes with 5 different values of a list.
 * Secondly, it's the `wait fork` statement, this is for waiting all 5 processes to finish before executing the next statement.
-* Why don't we use `fork/join` here? It's simply because when using `join` instead of `join_none` inside a loop, 
-all the processes inside `fork/join` will have to finish before moving to the next iteration of the loop. In the example above, 
+* Why don't we use `fork/join` here? It's simply because when using `join` instead of `join_none` inside a loop,
+all the processes inside `fork/join` will have to finish before moving to the next iteration of the loop. In the example above,
 if the `fork/join` is used instead of `fork/join_none`, we'll have 5 thread executed sequentially, not concurrently.
+* Note that the `automatic int j = i;` statement must be after `fork` keywork. The `j` variable will be 4 in all processes:
+<div class ="code" markdown="1" >
+{% highlight verilog %}
+    ...
+    for(int i=0; i < 5; i++ )  begin
+      fork
+        begin
+          automatic int j = i;   // inside a begin-end
+                                 // the j is only assign value of i after the begin block start
+                                 // however this begin block only start after for loop finished,
+                                 // eventually j will hold the value 4 for all proccesses
+          ...
+        end
+      join_none
+    end
+    ...
+{% endhighlight %}
+</div>
+
 
 ### fork join_any in a loop
 Similar to the example above, but this time, we need to execute the next statement ```$display("the NEXT Statement ... ");``` right after *ONE of the 5 processes* finished.
