@@ -146,9 +146,11 @@ Create a macro to define assertion with below requirements:
 {% endhighlight %}
 
 ### Macro for queue/array conversion
+Note that these conversions below can be easily achieved by using [Streaming operator]({{ site.baseurl }}{% link _posts/x_myrandoms/systemverilog_randoms/2022-06-02-streaming-operator-example.md %}) .
+
 {% highlight c %}
 
-// note that these conversion below can be easily achieved by using streaming operator.
+// 
 //
 `define ARRAY_TO_QUEUE(ARR,ARR_SIZE, QUEUE) \
       QUEUE.delete(); \

@@ -76,7 +76,7 @@ This is actually called **eager initialization**, where the instance of singleto
 * Also, in the `get()` function, this singleton class `uvm_object_registry#(l2_layer, "l2_layer")` will be registered to uvm factory using this statement `factory.register(me)`
 
 * So, when define a class `l2_layer`, by using `uvm_object_utils(l2_layer)` macro, we actually will create a singleton object.
-In `l2_layer` class, the handle of this singleton object is stored in `type_id` variable.
+In `l2_layer` class, this singleton object `uvm_object_registry#(l2_layer, "l2_layer") has a type `type_id`.
 This `type_id` object is registered to the uvm factory automatically.
 Also, this singleton object will contain the class type `l2_layer` and the class name string as its parameters.
 Those are the information will be used by the uvm factory for searching and constructing class instance.

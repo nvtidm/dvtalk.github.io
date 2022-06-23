@@ -247,23 +247,65 @@ Full code can be find in this gist: [Systemverilog stream operator example](http
     automatic byte      q8[$]  = {8'h01, 8'h02, 8'h03, 8'h04, 8'h05, 8'h06, 8'h07};
     automatic bit[31:0] q32[$];
 
-    q32 = {>>32{{>>8{q8}}}}    ;
+    q32 = {>>32{q8}}    ;
     foreach (q32[i]) begin
       $display ("q8 to q32  0x%0x",  q32[i] );
     end
-    //
-    // {>>8{q8}} --> pack q8 
-    // {>>32{ ...}} -->  pack to q32
     //
     // output:
     // 0x1020304
     // 0x5060700
 
     q8.delete();
-    q8 = {>>8{{>>32{q32}}}} ;
+    q8 = {>>8{q32}} ;
     $display ("q32 to q8  %p",  q8 );
     // output
     // '{1, 2, 3, 4, 5, 6, 7, 0}
+
+{% endraw %}
+      {% endhighlight %}
+      </div>
+      </td>
+      <td>
+      <a href="https://www.edaplayground.com/x/YpFJ" title="Systemverilog Streaming Operator">
+      <svg width="25" height="25" viewBox="0 -0.1 2 2" class="customsvg"> <use xlink:href="#svg-edaplay"></use></svg></a>
+      </td>
+   </tr>
+
+   <tr>
+      <td> Streaming Operator: use 2 Streaming Operator to turn a 8bit queue to a 32bit queue with reverse order </td>
+      <td>
+      <div class="code">
+      {% highlight verilog %}
+{% raw %}
+    // input:
+    // dd 19 df f2 83 e2 5c 4b-f3 a6 cd e0 99 7f 59 33
+
+    // expected output
+    // 0xf2df19dd -  0x4b5ce283 -  0xe0cda6f3 - 0x33597f99
+    automatic byte      q8[$]  = {  'hdd , 'h19 , 'hdf , 'hf2 ,
+                                    'h83 , 'he2 , 'h5c , 'h4b ,
+                                    'hf3 , 'ha6 , 'hcd , 'he0 ,
+                                    'h99 , 'h7f , 'h59 , 'h33};
+    automatic bit[31:0] q32[$];
+
+    q32 = {<<32{{<<8{q8}}}};
+    foreach (q32[i]) begin
+      $display ("q8 to q32 reverse order  0x%0x",  q32[i] );
+    end
+    // q8 to q32 reverse order  0xf2df19dd
+    // q8 to q32 reverse order  0x4b5ce283
+    // q8 to q32 reverse order  0xe0cda6f3
+    // q8 to q32 reverse order  0x33597f99
+
+    q8.delete();
+    q8 = {<<8{{<<32{q32}}}};
+    $displayh ("q32 to q8  %p",  q8 );
+    // q32 to q8  '{dd, 19, df, f2, 
+    //              83, e2, 5c, 4b, 
+    //              f3, a6, cd, e0, 
+    //              99, 7f, 59, 33}
+
 
 {% endraw %}
       {% endhighlight %}

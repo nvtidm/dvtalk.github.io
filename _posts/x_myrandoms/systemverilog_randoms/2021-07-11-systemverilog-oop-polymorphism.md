@@ -17,7 +17,7 @@ Polymorphism is one of very crucial concepts of any OOP languages. Since SystemV
 {: .fs-5 .fw-500 }
 
 ---
-## Basic knowledge about variable
+## Basic knowledge about variables
 ### Three properties of a variable in Systemverilog
 A variable in general has several properties.
 However let's just focus on three important things below for this post.
@@ -123,7 +123,7 @@ As [wikipedia](https://en.wikipedia.org/wiki/Polymorphism_(computer_science)), p
 * Function overloading means we can define many functions with the same name, but different sets of arguments.
 This is **not supported** in Systemverilog. You may find this very common in other languages such as Java.
 1. Parametric polymorphism:
-* Simply understand as *Generic Programming*. Systemverilog supports this as *Parameterized classes*. 
+* Also known as *Generic Programming*. Systemverilog supports this as *Parameterized classes*. 
 * This is also considered as Compile-time polymorphism.
 1. Subtype polymorphism:
 * The most well known kind of polymorphism in Sytemverilog. This whole post including the variable type explanation and the example above are actually to explain this type.

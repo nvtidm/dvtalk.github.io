@@ -48,7 +48,7 @@ We can use `typedef` to create new class type with full control of which is pare
 {% endhighlight %}
 </div>
 
-This literally means that type class customized_component is component_a extends from component_b extends from component_c extends from uvm_component.
+This literally means that type class `customized_component` is `component_a` extends from `component_b` extends from `component_c` extends from `uvm_component`.
 
 ---
 ## Try it on my EDAplayground
@@ -62,20 +62,10 @@ This literally means that type class customized_component is component_a extends
 This is a very interesting method, but don't be greedy since it might be painful to debug.
 It is now come to our abstract thinking level to take the most advantages of this.
 
-In the [Paper](http://events.dvcon.org/2016/proceedings/papers/05_1.pdf), the author used this to have a based class which create all the methods of interfaces classes implemented.
+In the [Paper](http://events.dvcon.org/2016/proceedings/papers/05_1.pdf), the author used this method to implement all the required methods of an interface class.
 
-We can also use this to add another class between our class and legacy base class (sometimes we just don't feel like to modify the legacy class or use the uvm overrides).
-<div class ="code" markdown="1" >
-{% highlight verilog %}
-     typedef test_class #( new_class #( legacy_test_base_class )  )
-{% endhighlight %}
-</div>
-
-
-<div>If you think of any other ways to use this technique, please share with me and I will put it here (with your name, of course =D ).
-<a href="{{ '/emailme' | absolute_url }}" title="Email me">
-<svg width="25" height="25" viewBox="0 -0.1 1 1" class="customsvg"> <use xlink:href="#svg-email"></use></svg>
-</a> </div>
+In this blog [Do You Want Sprinkles with That? - Mixing in Constraints](https://blog.verificationgentleman.com/2015/03/28/mixing-in-constraints.html),
+this kind of class is used to add more constraints to an existing class.
 
 {: .fs-6 .fw-300 }
 
