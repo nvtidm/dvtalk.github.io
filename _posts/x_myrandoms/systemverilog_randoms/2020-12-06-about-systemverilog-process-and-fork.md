@@ -43,8 +43,8 @@ We can easily achieve the requirement using `fork` and `join_none` as below.
     int lst[5] = '{1,2,3,4,5};
     for(int i=0; i < 5; i++ )  begin
       fork
+        automatic int j = i;
         begin
-          automatic int j = i;
           $display ("%t ps, start thread %d", $time, j);
           #lst[j];
           $display("%t ps, end of thread %d", $time,j);
@@ -74,8 +74,8 @@ In this case, using `fork/join_any` will NOT solve the requirement.
     int lst[5] = '{1,2,3,4,5};
     for(int i=0; i < 5; i++ )  begin
       fork
+        automatic int j = i;
         begin
-          automatic int j = i;
           $display ("%t ps, start thread %d", $time, j);
           #lst[j];
           $display("%t ps, end of thread %d", $time,j);
@@ -98,8 +98,8 @@ the next statement right after one of the 5 processes finished.
     uvm_event finish_event;
     for(int i=0; i < 5; i++ )  begin
       fork
+        automatic int j = i;
         begin
-          automatic int j = i;
           $display ("%t ps, start thread %d", $time, j);
           #lst[j];
           $display("%t ps, end of thread %d", $time,j);
@@ -266,8 +266,8 @@ and we want all of those procedure statement start at the same time.
     uvm_event finish_event;
     for_loop_block_1: for(int i=0; i < 5; i++ )  begin
       fork
+        automatic int j = i;
         begin
-          automatic int j = i;
           $display ("%t ps, start thread %d", $time, j);
           #lst[j];
           $display("%t ps, end of thread %d", $time,j);
