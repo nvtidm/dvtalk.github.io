@@ -65,7 +65,7 @@ Then we'll end up having 5 exactly the same processes instead of 5 processes wit
 * Why don't we use `fork/join` here? It's simply because when using `join` instead of `join_none` inside a loop,
 all the processes inside `fork/join` will have to finish before moving to the next iteration of the loop. In the example above,
 if the `fork/join` is used instead of `fork/join_none`, we'll have 5 thread executed sequentially, not concurrently.
-* Note that the `automatic int j = i;` statement must be after `fork` keywork. The `j` variable will be 4 in all processes:
+* Note that the `automatic int j = i;` statement must be after `fork` keywork. Let's check below example, the `j` variable will be 4 in all processes:
 <div class ="code" markdown="1" >
 {% highlight verilog %}
     ...
