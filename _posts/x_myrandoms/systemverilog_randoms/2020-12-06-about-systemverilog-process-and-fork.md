@@ -297,8 +297,32 @@ and we want all of those procedure statement start at the same time.
       join_none
     end
 
-    finish_event.trigger();
+    finish_event.wait_trigger();
     disable for_loop_block_1; //
+    #1;
+    $display("the NEXT Statement ... ");
+{% endhighlight %}
+</div>
+
+The disable block statement can even disable itself:
+
+<div class ="code" markdown="1" >
+{% highlight verilog %}
+    for_loop_block_1: for(int i=0; i < 5; i++ )  begin
+      fork
+        automatic int j = i;
+        begin
+          $display ("%t ps, start thread %d", $time, j);
+          #lst[j];
+          $display("%t ps, end of thread %d", $time,j);
+
+          disable for_loop_block_1; // disable itself
+        end
+      join_none
+    end
+
+    wait fork; 
+
     #1;
     $display("the NEXT Statement ... ");
 {% endhighlight %}
