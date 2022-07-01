@@ -237,7 +237,9 @@ Systemverilog supplies us several ways to control processes, those methods are e
 Besides, we can also use other methods such as `uvm_event` as above to tackle the problem.
 
 ### wait fork statement
-`wait fork` might be the statement that is used the most when controlling processes in `fork join`. It's pretty simple, all the child subprocesses will have to finish before executing the next statement.
+`wait fork` might be the statement that is used the most when controlling processes in `fork join`. It's pretty simple, all the **child subprocesses**  will have to finish before executing the next statement.
+
+The **child subprocesses** are the processes started by the current process.
 <div class ="code" markdown="1" >
 {% highlight verilog %}
     fork
@@ -254,7 +256,7 @@ Besides, we can also use other methods such as `uvm_event` as above to tackle th
 </div>
 
 ### disable fork statement
-`disable fork`, in the other hand, will terminates all active descendants (subprocesses).
+`disable fork`, in the other hand, will terminates all active descendants (child subprocesses).
 <div class ="code" markdown="1" >
 {% highlight verilog %}
     fork
