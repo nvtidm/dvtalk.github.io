@@ -280,6 +280,35 @@ This post is to store some of Systemverilog std::randomize examples that I creat
 
 
 
+   <tr>
+      <td> systemverilog std::randomize with 2 variable of 2 difference objects </td>
+      <td>
+      <div class="code">
+      {% highlight verilog %}
+  Packet pkt1;
+  Packet pkt2;
+  
+  initial begin
+    pkt1 = new();
+    pkt2 = new();
+    
+    std::randomize(pkt1.count, pkt2.count) with {
+      pkt1.count >0;
+      pkt2.count >0;
+      (pkt1.count + pkt2.count) == 100;
+    };
+  end 
+
+      {% endhighlight %}
+      </div>
+      </td>
+      <td>
+      <a href="https://www.edaplayground.com/x/UPkP" title="std::randomize with variable of 2 different obj">
+      <svg width="25" height="25" viewBox="0 -0.1 2 2" class="customsvg"> <use xlink:href="#svg-edaplay"></use></svg></a>
+      </td>
+   </tr>
+
+
 </table>
     <script>
       function tablefilter() {
