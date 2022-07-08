@@ -12,7 +12,8 @@ search_exclude: false
 nav_order: 3
 ---
 
-# Example Usage of Systemverilog Interface Class 
+# Example Usage of Systemverilog Interface Class
+Interface class
 {: .fs-5 .fw-500 }
 
 ---
