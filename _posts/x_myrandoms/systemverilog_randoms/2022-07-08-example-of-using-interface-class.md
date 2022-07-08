@@ -24,6 +24,7 @@ nav_order: 3
 
 ### Define a Interface Class
 It's a good practice to use an adjective to name an interface class, and it's also should be named after what it's capable of.
+
 In this example, let's create an `memory_backdoorable` interface class.
 Since the object that implements this interface class can be backdoored by our memory manager.
 
