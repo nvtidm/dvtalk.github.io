@@ -91,6 +91,7 @@ it should not need to be aware of which class it supports, which is `aes_pkt` an
 So letting all of the verification engineers modifying 1 file is not a good idea.
 If just one of the programmer does not follow the rules above, such as using different variable name instead of `m_addr`,
 the whole simulation environment will be break. And other engineers will not be able to run simulation.
+* This implementation makes the `mem_mgr` become very messy later when more and more class type need to be suppported to backdoor to memory.
 
 ---
 ## Using an Interface Class
@@ -111,7 +112,7 @@ endclass
 In this interface, we define a `pure virtual function get_data_info`.
 This function will be called by our memory manager to get the data, and its address to backdoor to the SoC memory.
 
-Any object wishes to have data backdoored by the memory manager must implement this interface class and define this function.
+Any object wishes to have data backdoored by the memory manager must implement this interface class and create this function.
 
 ### Implement an Interface Class
 {% highlight verilog %}
@@ -130,6 +131,7 @@ endclass
 {% endhighlight %}
 
 ### Using Interface Class as Input Arguments
+Back to the implementation of `mem_mgr`, now we will use the `memory_backdoorable` as the input argument for `backdoor_obj_data()` function.
 {% highlight verilog %}
 class mem_mgr extends uvm_component;
 ...
@@ -145,7 +147,18 @@ class mem_mgr extends uvm_component;
 endclass
 {% endhighlight %}
 
+We can clearly see that:
+* The `mem_mgr` will not need to know which class type it is getting backdoor data from.
+Therefore, no need to casting and checking if the type is supported as another implementation.
+* We can also avoid any modification if new type of class is needed to be backdoor by `mem_mgr`.
+If new class type needs to be backdoor by `mem_mgr`, it need to implements the `memory_backdoorable`
+and create the `get_data_info` function.
+* Also, by using the interface class, we can elimiate the implicit coding conventions
+such as backdoorable class must have `m_addr` and `m_data` variable. All the requirements are defined explicit
+in the interface class. So it is easier for any verification engineer to follow.
 
+If we look at the `test_a` where the `backdoor_obj_data` action is triggered, it's still the same as the requirements,
+but the code of `mem_mgr` is much more simplier, and more importantly, the `mem_mgr` is totally independant from the `aes_pkt` and `uart_pkt`.
 {% highlight verilog %}
 class test_a extends uvm_test;
 ...
