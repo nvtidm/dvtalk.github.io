@@ -21,9 +21,9 @@ Interface class
 The first thing we need to address here is the confusion between **interface** and **interface class** in Systemverilog.
 These are two different concepts and serve different purposes.
 
-* The interface in Systemverilog is a group of signals, or methods,
+* The **interface** in Systemverilog is a group of signals, or methods,
 and is used for connecting the signals between the blocks (hardware module and software obj).
-* The Interface class in the other hand, is a very common term in Object Oriented Programming.
+* The **Interface class** in the other hand, is a very common term in Object Oriented Programming.
 It is used to define a set of methods that are used for a specific purpose.
 When a class implements an interface class, that class must construct all the methods required by that interface.
 To understand the interface class concept, please look at an example below.
