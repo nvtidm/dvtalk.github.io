@@ -29,12 +29,12 @@ When a class implements an interface class, that class must construct all the me
 To understand the interface class concept, please look at an example below.
 
 ---
-## Using an Interface Class
-### A Problem Needed to Be Solved
+## A Problem Needed to Be Solved
 Let's consider this case:
 * We have memory manager component `mem_mgr` in our simulation env.
 * This `mem_mgr` will have a function `backdoor_obj_data` to write data to the memory backdoor.
 * In the the test we will call this function to write a data from our obj to SoC memory.
+* Assuming in current env, we need to support 2 type of data packets: `aes_pkt` and `uart_pkt`.
 {% highlight verilog %}
 class test_a extends uvm_test;
 ...
@@ -46,8 +46,7 @@ class test_a extends uvm_test;
 endclass
 {% endhighlight %}
 
-So when designing the `mem_mgr` class, not using interface class,
-we must define as below:
+So when designing the `mem_mgr` class, not using interface class, we might implement it as below:
 {% highlight verilog %}
 class mem_mgr extends uvm_component;
 ...
@@ -56,27 +55,45 @@ class mem_mgr extends uvm_component;
       bit[31:0] m_data[$];
 
       aes_pkt  m_aes_obj;
-      uart_pkg m_uart_obj;
+      uart_pkt m_uart_obj;
 
       if($cast(m_aes_obj, m_obj)) begin
          m_addr = m_aes_obj.m_addr;
          m_data = m_aes_obj.m_data;
          //...
-         //some statements to backdoor
+         //some statements to backdoor data
       end
 
       if ($cast(m_uart_pkt, m_obj)) begin
          m_addr = m_uart_obj.m_addr;
          m_data = m_uart_obj.m_data;
          //...
-         //some statements to backdoor
+         //some statements to backdoor data
       end
    endfunction
 ...
 endclass
 {% endhighlight %}
 
+In the above implementation of the `backdoor_obj_data()` function, there are some rules that must be followed:
+* Firstly, the input argument of the function `backdoor_obj_data` need to be `uvm_object`.
+Since all transaction objects in the uvm env will be extends from this base class.
+We cannot let the argument as `backdoor_obj_data(aes_pkt m_obj)` because we also need to run this function with `uart_pkt` obj.
+* Secondly, each class `uart_pkt` and `aes_pkt` must have the `m_addr` variable and `m_data` queue.
+* Thirdly, we need to up-cast the `m_obj` from type `uvm_object` to either `uart_pkt` or `aes_pkt`.
+Otherwise we will meet an error since `uvm_object` type does not have `m_addr` and `m_data` in it.
 
+This implementation has several issues:
+* Even though the `mem_mgr` job is to backdoor data to memory,
+it now needs to be aware of which class it supports, which is `aes_pkt` and `uart_pkt`.
+* If we need to support more type of data, we must modify the function `backdoor_obj_data()` as we what we did for `aes_pkt` and `uart_pkt`.
+* The `aes_pkt` and `uart_pkt` are usually mantained by different programmers working in the same verification environment.
+So letting all of the verification engineers modifying 1 file is not a good idea.
+If just one of the programmer did not follow the rules above, such as using different variable name instead of `m_addr`,
+the whole simulation environment will be break. And other engineers will not be able to run simulation.
+
+---
+## Using an Interface Class
 ### Define a Interface Class
 It's a good practice to use an adjective to name an interface class, and it's also should be named after what it's capable of.
 
