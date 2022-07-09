@@ -55,11 +55,26 @@ class mem_mgr extends uvm_component;
       bit[31:0] m_addr;
       bit[31:0] m_data[$];
 
+      aes_pkt  m_aes_obj;
+      uart_pkg m_uart_obj;
+
+      if($cast(m_aes_obj, m_obj)) begin
+         m_addr = m_aes_obj.m_addr;
+         m_data = m_aes_obj.m_data;
+         //...
+         //some statements to backdoor
+      end
+
+      if ($cast(m_uart_pkt, m_obj)) begin
+         m_addr = m_uart_obj.m_addr;
+         m_data = m_uart_obj.m_data;
+         //...
+         //some statements to backdoor
+      end
    endfunction
 ...
 endclass
 {% endhighlight %}
-
 
 
 ### Define a Interface Class
