@@ -84,8 +84,8 @@ We cannot let the argument as `backdoor_obj_data(aes_pkt m_obj)` because we also
 Otherwise we will meet an error since `uvm_object` type does not have `m_addr` and `m_data` in it.
 
 This implementation has several issues:
-* Even though the `mem_mgr` job is to backdoor data to memory,
-it now needs to be aware of which class it supports, which is `aes_pkt` and `uart_pkt`.
+* The `mem_mgr` job is to backdoor data to memory,
+it should not needs to be aware of which class it supports, which is `aes_pkt` and `uart_pkt`.
 * If we need to support more type of data, we must modify the function `backdoor_obj_data()` as we what we did for `aes_pkt` and `uart_pkt`.
 * The `aes_pkt` and `uart_pkt` are usually mantained by different programmers working in the same verification environment.
 So letting all of the verification engineers modifying 1 file is not a good idea.
