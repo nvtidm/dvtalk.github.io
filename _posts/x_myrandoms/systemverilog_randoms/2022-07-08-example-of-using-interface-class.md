@@ -95,6 +95,7 @@ the whole simulation environment will be break. And other engineers will not be 
 ---
 ## Using an Interface Class
 ### Define a Interface Class
+Firstly, we need to define an interface class.
 It's a good practice to use an adjective to name an interface class, and it's also should be named after what it's capable of.
 
 In this example, let's create an `memory_backdoorable` interface class.
@@ -112,10 +113,49 @@ This function will be called by our memory manager to get the data, and its addr
 
 Any object wishes to have data backdoored by the memory manager must implement this interface class and define this function.
 
-
 ### Implement an Interface Class
+{% highlight verilog %}
+class aes_pkt extends uvm_object implements memory_backdoorable;
+...
+   virtual function get_data_info(output bit[31:0] addr, output bit[31:0] data[$]);
+      bit[31:0] addr;
+      bit[31:0] data[$];
 
-### Why Interface Class is Needed
+      addr = 32'hea00_0010;
+
+      data.push_back(32'habab_cdcd);
+      data.push_back(32'hffff_0000);
+   endfunction
+endclass
+{% endhighlight %}
+
+### Using Interface Class as Input Arguments
+{% highlight verilog %}
+class mem_mgr extends uvm_component;
+...
+   function void backdoor_obj_data(memory_backdoorable m_obj);
+      bit[31:0] m_addr;
+      bit[31:0] m_data[$];
+
+      m_obj.get_data_info(m_addr, m_data);
+
+      // some backdoor statements using m_addr and m_data
+   endfunction
+...
+endclass
+{% endhighlight %}
+
+
+{% highlight verilog %}
+class test_a extends uvm_test;
+...
+   mem_mgr m_mem;
+   ...
+   m_mem.backdoor_obj_data(aes_obj);
+   m_mem.backdoor_obj_data(uart_obj);
+...
+endclass
+{% endhighlight %}
 
 ---
 ## Further reading
