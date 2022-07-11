@@ -26,7 +26,8 @@ and is used for connecting the signals between the blocks (hardware module and s
 * The **Interface class** in the other hand, is a very common term in Object Oriented Programming.
 It is used to define a set of methods that are used for a specific purpose.
 When a class implements an interface class, that class must construct all the methods required by that interface.
-To understand the interface class concept, please look at an example below.
+To understand the interface class concept, please look at an example below, where interface is not used at first and
+how it helps the issue when coming into use with a later implementation.
 
 ---
 ## A Problem Needed to Be Solved
@@ -95,6 +96,8 @@ the whole simulation environment will be break. And other engineers will not be 
 
 ---
 ## Using an Interface Class
+Now, let's implement the `mem_mgr` using interface class and see how it solves this issue.
+
 ### Define a Interface Class
 Firstly, we need to define an interface class.
 It's a good practice to use an adjective to name an interface class, and it's also should be named after what it's capable of.
@@ -153,7 +156,7 @@ Therefore, no need to casting and checking if the type is supported as another i
 * We can also avoid any modification if new type of class is needed to be backdoor by `mem_mgr`.
 If new class type needs to be backdoor by `mem_mgr`, it need to implements the `memory_backdoorable`
 and create the `get_data_info` function.
-* Also, by using the interface class, we can elimiate the implicit coding conventions
+* Also, by using the interface class, we can eliminate the implicit coding conventions
 such as backdoorable class must have `m_addr` and `m_data` variable. All the requirements are defined explicit
 in the interface class. So it is easier for any verification engineer to follow.
 
