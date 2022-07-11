@@ -89,7 +89,7 @@ it should not need to be aware of which class it supports, which is `aes_pkt` an
 * If we need to support more type of data, we must modify the function `backdoor_obj_data()` as we what we do for `aes_pkt` and `uart_pkt`.
 * The `aes_pkt` and `uart_pkt` are usually mantained by different programmers working in the same verification environment.
 So letting all verification engineers modifying 1 file is not a good idea.
-If just one of the programmer does not follow the rules above, such as using different variable name instead of `m_addr`,
+If just one of the programmers does not follow the rules above, such as using different variable name instead of `m_addr`,
 the whole simulation environment will be break. And other engineers will not be able to run simulation.
 * This implementation makes the `mem_mgr` become very messy later when more and more class type need to be suppported to backdoor to memory.
 
