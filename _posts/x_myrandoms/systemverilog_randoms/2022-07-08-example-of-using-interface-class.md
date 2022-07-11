@@ -80,7 +80,7 @@ In the above implementation of the `backdoor_obj_data()` function, there are som
 Since all transaction objects in the uvm env will be extends from this base class.
 We cannot let the argument as `backdoor_obj_data(aes_pkt m_obj)` because we also need to run this function with `uart_pkt` obj.
 * Secondly, each class `uart_pkt` and `aes_pkt` must have the `m_addr` variable and `m_data` queue.
-* Thirdly, we need to up-cast the `m_obj` from type `uvm_object` to either `uart_pkt` or `aes_pkt`.
+* Thirdly, we need to cast the `m_obj` from type `uvm_object` to either `uart_pkt` or `aes_pkt`.
 Otherwise we will meet an error since `uvm_object` type does not have `m_addr` and `m_data` in it.
 
 This implementation has several issues:
@@ -88,7 +88,7 @@ This implementation has several issues:
 it should not need to be aware of which class it supports, which is `aes_pkt` and `uart_pkt`.
 * If we need to support more type of data, we must modify the function `backdoor_obj_data()` as we what we do for `aes_pkt` and `uart_pkt`.
 * The `aes_pkt` and `uart_pkt` are usually mantained by different programmers working in the same verification environment.
-So letting all of the verification engineers modifying 1 file is not a good idea.
+So letting all verification engineers modifying 1 file is not a good idea.
 If just one of the programmer does not follow the rules above, such as using different variable name instead of `m_addr`,
 the whole simulation environment will be break. And other engineers will not be able to run simulation.
 * This implementation makes the `mem_mgr` become very messy later when more and more class type need to be suppported to backdoor to memory.
