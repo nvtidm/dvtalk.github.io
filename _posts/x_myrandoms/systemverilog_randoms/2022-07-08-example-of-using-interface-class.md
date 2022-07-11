@@ -30,7 +30,7 @@ and construct all the required methods.
 
 To understand the interface class concept, let's look at an example below,
 where interface class is not used at first and
-how it helps the issue when coming into use with a later implementation.
+how it helps the issue when coming into use in the later implementation.
 
 ---
 ## A Problem Needed to Be Solved
