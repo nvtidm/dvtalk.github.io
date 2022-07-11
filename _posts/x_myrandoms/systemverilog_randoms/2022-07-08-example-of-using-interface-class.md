@@ -26,7 +26,7 @@ and is used for connecting the signals between the blocks (hardware module and s
 * The **interface class** in the other hand, is a very common term in Object Oriented Programming.
 It is used to define a set of methods that are used for a specific purpose.
 Think of it as a template, when a class implements an interface class, that class must follow this template
-and construct all the methods required by this interface class.
+and construct all the required methods.
 
 To understand the interface class concept, let's look at an example below,
 where interface class is not used at first and
