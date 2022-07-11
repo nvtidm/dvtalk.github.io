@@ -90,7 +90,7 @@ Otherwise we will meet an error since `uvm_object` type does not have `m_addr` a
 This implementation has several issues:
 * The `mem_mgr` job is to backdoor data to memory,
 it should not need to be aware of which class it supports, which is `aes_pkt` and `uart_pkt`.
-* If we need to support more type of data, we must modify the function `backdoor_obj_data()` as we what we do for `aes_pkt` and `uart_pkt`.
+* If we need to support more type of data, we must modify the function `backdoor_obj_data()` as what we do for `aes_pkt` and `uart_pkt`.
 * The `aes_pkt` and `uart_pkt` are usually mantained by different programmers working in the same verification environment.
 So letting all verification engineers modifying 1 file is not a good idea.
 If just one of the programmers does not follow the rules above, such as using different variable name instead of `m_addr`,
@@ -175,6 +175,8 @@ class test_a extends uvm_test;
 ...
 endclass
 {% endhighlight %}
+Later, when other class , let's say `spi_pkt`, needs to be backdoored by `mem_mgr`, we just need to make sure
+that new class `spi_pkt` implements `memory_backdoorable` and its required method `get_data_info`.
 
 ---
 ## Further reading
