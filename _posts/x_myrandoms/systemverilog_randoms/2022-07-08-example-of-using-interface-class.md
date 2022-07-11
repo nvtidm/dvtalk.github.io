@@ -175,7 +175,7 @@ class test_a extends uvm_test;
 ...
 endclass
 {% endhighlight %}
-Later, when other class , let's say `spi_pkt`, needs to be backdoored by `mem_mgr`, we just need to make sure
+Later, when another class , let's say `spi_pkt`, needs to be backdoored by `mem_mgr`, we just need to make sure
 that new class `spi_pkt` implements `memory_backdoorable` and its required method `get_data_info`.
 
 ---
