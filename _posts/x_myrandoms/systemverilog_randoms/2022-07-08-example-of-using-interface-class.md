@@ -164,7 +164,7 @@ such as backdoorable class must have `m_addr` and `m_data` variable. All the req
 in the interface class. So it is easier for any verification engineer to follow.
 
 If we look at the `test_a` where the `backdoor_obj_data` action is triggered, it's still the same as the requirements,
-but the code of `mem_mgr` is much more simplier, and more importantly, the `mem_mgr` is totally independant from the `aes_pkt` and `uart_pkt`.
+but the code of `mem_mgr` is much more simplier, and more important, the `mem_mgr` is totally independant from the `aes_pkt` and `uart_pkt`.
 {% highlight verilog %}
 class test_a extends uvm_test;
 ...
