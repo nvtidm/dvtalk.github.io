@@ -36,9 +36,9 @@ how it helps the issue when coming into use in the later implementation.
 ---
 ## A Problem Needed to Be Solved
 Let's consider this case:
-* We have memory manager component `mem_mgr` in our simulation env.
+* We have memory manager component `mem_mgr` in our verification env.
 * This `mem_mgr` will have a function `backdoor_obj_data` to write data to the memory backdoor.
-* In the the test we will call this function to write a data from our obj to SoC memory.
+* In the the test we will call this function to write a data of our objs to SoC memory.
 * Assuming in current env, we need to support 2 type of data packets: `aes_pkt` and `uart_pkt`.
 {% highlight verilog %}
 class test_a extends uvm_test;
@@ -93,14 +93,14 @@ This implementation has several issues:
 it should not need to be aware of which class it supports, which is `aes_pkt` and `uart_pkt`.
 * If we need to support more type of data, we must modify the function `backdoor_obj_data()` as what we do for `aes_pkt` and `uart_pkt`.
 * The `aes_pkt` and `uart_pkt` are usually mantained by different programmers working in the same verification environment.
-So letting all verification engineers modifying 1 file is not a good idea.
+Basically, letting all verification engineers modifying 1 file is not a good idea.
 If just one of the programmers does not follow the rules above, such as using different variable name instead of `m_addr`,
-the whole simulation environment will be break. And other engineers will not be able to run simulation.
+the whole verification environment will be break. And other engineers will not be able to run simulation.
 * This implementation makes the `mem_mgr` become very messy later when more and more class type need to be suppported to backdoor to memory.
 
 ---
 ## Using an Interface Class
-Now, let's implement the `mem_mgr` using interface class and see how it solves this issue.
+Now, let's implement the `mem_mgr` using interface class and see how it helps in this case.
 
 ### Define a Interface Class
 Firstly, we need to define an interface class.
@@ -122,6 +122,11 @@ This function will be called by our memory manager to get the data, and its addr
 Any object wishes to have data backdoored by the memory manager must implement this interface class and create this function.
 
 ### Implement an Interface Class
+Now, since the `aes_pkt` needs to be backdoored to SoC memory, we will `implements` the `memory_backdoorable` interface.
+
+As this interface has a *pure function* `get_data_info`, it is required to be defined in the `aes_pkt`.
+
+This function will output the `addr`, and the `data` queue which are later used by `mem_mgr` to write data to SoC memory.
 {% highlight verilog %}
 class aes_pkt extends uvm_object implements memory_backdoorable;
 ...
