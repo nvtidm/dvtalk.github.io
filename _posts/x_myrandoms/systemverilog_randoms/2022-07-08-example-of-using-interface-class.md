@@ -13,7 +13,8 @@ nav_order: 3
 ---
 
 # Example Usage of Systemverilog Interface Class
-Interface class
+Interface class is a very common concept in many object-oriented programming languages.
+In Systemverilog, it was introduced since 2012 version, but still rarely seen in verification environment.
 {: .fs-5 .fw-500 }
 
 ---
