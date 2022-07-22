@@ -182,6 +182,7 @@ class test_a extends uvm_test;
 ...
 endclass
 {% endhighlight %}
+
 Later, when another class, let's say `spi_pkt`, needs to be backdoored by `mem_mgr`, we just need to make sure
 that the new class `spi_pkt` implements `memory_backdoorable` and its required method `get_data_info`.
 The `mem_mgr` will remain untouch.
@@ -190,8 +191,8 @@ The `mem_mgr` will remain untouch.
 ## Further reading
 1. Interface class is a basic concept in other oop languages, if you're insterested, get to know the **SOLID Principles** to understand why we should use the interface class.
 1. There are several DVCon papers that share other application of interface class such as:
-   * **SystemVerilog Interface Classes - More Useful Than You Thought** 
-   * **Design Patterns by Example for SystemVerilog Verification Environments Enabled by SystemVerilog 1800-2012**
+   * SystemVerilog Interface Classes - More Useful Than You Thought
+   * Design Patterns by Example for SystemVerilog Verification Environments Enabled by SystemVerilog 1800-2012
 
 
 
