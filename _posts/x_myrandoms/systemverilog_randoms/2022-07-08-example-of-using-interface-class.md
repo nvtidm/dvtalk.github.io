@@ -187,6 +187,13 @@ Later, when another class, let's say `spi_pkt`, needs to be backdoored by `mem_m
 that the new class `spi_pkt` implements `memory_backdoorable` and its required method `get_data_info`.
 The `mem_mgr` will remain untouch.
 
+### Some side notes
+Should clarify these three places and the action of each one:
+* **Where the related data for the targeted operation come from**: In this example the object of `aes_pkt` and `uart_pkt` will provide data for backdoor operation.
+* **Where the action is performed**: The `mem_mgr` is where the data backdoor action is actually performed.
+* **Where the action is triggered**: The test is where the backdoor action is triggered, by calling the `mem_mgr.backdoor_obj_data()` function
+with the input argument is any object implementing the `memory_backdoorable` interface class.
+
 ---
 ## Further reading
 1. Interface class is a basic concept in other oop languages, if you're insterested, get to know the **SOLID Principles** to understand why we should use the interface class.
