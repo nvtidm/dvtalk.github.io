@@ -200,6 +200,40 @@ This post is to store some of Systemverilog std::randomize examples that I creat
 
 
    <tr>
+      <td> systemverilog std::randomize with multi-dimensional array 2nd example</td>
+      <td>
+      <div class="code">
+      {% highlight verilog %}
+  int d_array [][]; 
+
+  function void display();
+    std::randomize(d_array) with {
+      d_array.size() == 10; 
+
+      foreach (d_array[i]) {
+        d_array[i].size() inside {[2:10]};
+      }
+
+      foreach (d_array[i,j]) {
+        d_array[i][j] inside {[0:100]};
+      }
+
+    };
+
+    foreach (d_array[i])
+      $display ("d_array[%0d] = %p", i, d_array[i]); 
+  endfunction
+      {% endhighlight %}
+      </div>
+      </td>
+      <td>
+      <a href="https://www.edaplayground.com/x/7XLu" title="std::randomize example with multi-dimensional array">
+      <svg width="25" height="25" viewBox="0 -0.1 2 2" class="customsvg"> <use xlink:href="#svg-edaplay"></use></svg></a>
+      </td>
+   </tr>
+
+
+   <tr>
       <td> systemverilog std::randomize with multi-dimensional array </td>
       <td>
       <div class="code">
@@ -223,6 +257,7 @@ This post is to store some of Systemverilog std::randomize examples that I creat
       <svg width="25" height="25" viewBox="0 -0.1 2 2" class="customsvg"> <use xlink:href="#svg-edaplay"></use></svg></a>
       </td>
    </tr>
+
 
    <tr>
       <td> systemverilog std::randomize with associative array, using enum as index </td>
