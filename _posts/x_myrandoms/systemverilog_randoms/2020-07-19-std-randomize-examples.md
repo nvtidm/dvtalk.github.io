@@ -206,23 +206,18 @@ This post is to store some of Systemverilog std::randomize examples that I creat
       {% highlight verilog %}
   int d_array [][]; 
 
-  function void display();
-    std::randomize(d_array) with {
-      d_array.size() == 10; 
+  std::randomize(d_array) with {
+    d_array.size() == 10; 
 
-      foreach (d_array[i]) {
-        d_array[i].size() inside {[2:10]};
-      }
+    foreach (d_array[i]) {
+      d_array[i].size() inside {[2:10]};
+    }
 
-      foreach (d_array[i,j]) {
-        d_array[i][j] inside {[0:100]};
-      }
+    foreach (d_array[i,j]) {
+      d_array[i][j] inside {[0:100]};
+    }
 
-    };
-
-    foreach (d_array[i])
-      $display ("d_array[%0d] = %p", i, d_array[i]); 
-  endfunction
+  };
       {% endhighlight %}
       </div>
       </td>
