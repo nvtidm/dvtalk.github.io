@@ -200,13 +200,15 @@ This post is to store some of Systemverilog std::randomize examples that I creat
 
 
    <tr>
-      <td> systemverilog std::randomize with multi-dimensional array 2nd example</td>
+      <td> systemverilog std::randomize with multi-dimensional array, constraint sum of all element, size for each dimension </td>
       <td>
       <div class="code">
       {% highlight verilog %}
   int d_array [][]; 
 
   std::randomize(d_array) with {
+    d_array.sum() with (item.sum() with (item)) == 1000;  // total value of the array
+
     d_array.size() == 10; 
 
     foreach (d_array[i]) {
@@ -229,7 +231,7 @@ This post is to store some of Systemverilog std::randomize examples that I creat
 
 
    <tr>
-      <td> systemverilog std::randomize with multi-dimensional array </td>
+      <td> systemverilog std::randomize with multi-dimensional array, 2nd example </td>
       <td>
       <div class="code">
       {% highlight verilog %}
