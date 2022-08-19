@@ -60,8 +60,8 @@ The `--prefix=$HOME/local ` is commonly used when installing a tool without root
 ### Finally install tmux
 <div class ="code" markdown="1" >
 {% highlight bash %}
-   tar xvzf tmux-3.2-rc.tar.gz
-   cd tmux-3.2-rc.tar
+   tar xvzf tmux-3.3a.tar.gz
+   cd tmux-3.3a
 {% endhighlight %}
 </div>
 Copy this code below to a bash script (not tcsh or csh script), for example `compiletmux.sh`
