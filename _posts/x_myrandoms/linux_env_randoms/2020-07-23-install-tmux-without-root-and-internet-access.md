@@ -20,7 +20,7 @@ You should download these source files below to your local laptop and then copy 
 <div class="code-example" markdown="1" >
    * libevent: [https://github.com/libevent/libevent/releases/download/release-2.1.12-stable/libevent-2.1.12-stable.tar.gz](https://github.com/libevent/libevent/releases/download/release-2.1.12-stable/libevent-2.1.12-stable.tar.gz)
    * ncurses: [ftp://ftp.gnu.org/gnu/ncurses/ncurses-5.9.tar.gz](ftp://ftp.gnu.org/gnu/ncurses/ncurses-5.9.tar.gz)
-   * tmux: [https://github.com/tmux/tmux/releases/download/3.2-rc/tmux-3.2-rc.tar.gz](https://github.com/tmux/tmux/releases/download/3.2-rc/tmux-3.2-rc.tar.gz)
+   * tmux: [https://github.com/tmux/tmux/releases/download/3.3a/tmux-3.3a.tar.gz](https://github.com/tmux/tmux/releases/download/3.3a/tmux-3.3a.tar.gz)
 </div>
 libevent and ncurses are two libraries that required for tmux. Your linux env might has these 2 libraries already, but there is high possibility that those libs are too old and incompatible.
 
