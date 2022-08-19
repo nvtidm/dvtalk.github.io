@@ -64,7 +64,7 @@ The `--prefix=$HOME/local ` is commonly used when installing a tool without root
    cd tmux-3.3a
 {% endhighlight %}
 </div>
-Copy this code below to a bash script (not tcsh or csh script), for example `compiletmux.sh`
+Create a bash script, then copy this code below to that bash script (not tcsh or csh script), for example `compiletmux.sh`
 
 <div class ="code" markdown="1" >
 {% highlight bash %}
