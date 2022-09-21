@@ -100,7 +100,7 @@ From 1000ns of simulation time, at every event of I_CLK (rising edge, falling ed
       <td>
       <div class="code">
       {% highlight tcl %}
-  when { top/U_MODULE_A/I_RESET_N'event and top/U_MODULE_A/I_RESET_N = 'b1  } {
+  when { top/U_MODULE_A/I_RESET_N'event and top/U_MODULE_A/I_RESET_N == 'b1  } {
      force top/U_MODULE_A/I_CLK_B 1 , 0 0.5 ns -r 1.0 ns
   }
       {% endhighlight %}
@@ -119,7 +119,7 @@ After 1ns from the moment I_CLK_B first forced to be 1, repeat the same sequence
       <div class="code">
       {% highlight tcl %}
   set flag_m 1
-  when { /top/U_MODULE_A/I_SIGNAL_E'event and /top/U_MODULE_A/I_SIGNAL_E = 1} {
+  when { /top/U_MODULE_A/I_SIGNAL_E'event and /top/U_MODULE_A/I_SIGNAL_E == 1} {
     if { $flag == 1  } {
       force /top/U_MODULE_A/I_SIGNAL_D 1
       set flag_m 0
