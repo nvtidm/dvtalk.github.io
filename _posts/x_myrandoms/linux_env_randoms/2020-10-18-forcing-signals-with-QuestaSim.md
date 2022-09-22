@@ -93,6 +93,27 @@ From 1000ns of simulation time, at every event of I_CLK (rising edge, falling ed
       </td>
    </tr>
 
+
+   <tr>
+      <td>
+      forcing signal when another signal got x value
+      </td>
+      <td>
+      <div class="code">
+      {% highlight tcl %}
+  when { /top/U_MODULE_A/I_SIGNAL_A'event and $now > 1000ns } {
+    set signal_value [ examine /top/U_MODULE_A/I_SIGNAL_A ]
+    if { $signal_value eq ""  } {
+       force /top/U_MODULE_A/I_SIGNAL_C 0
+    }
+  }
+      {% endhighlight %}
+This means:
+From 1000ns of simulation time, when I_SIGNAL_A has X value, force the I_SIGNAL_C to be 0
+      </div>
+      </td>
+   </tr>
+
    <tr>
       <td>
       forcing signal to be a clock
