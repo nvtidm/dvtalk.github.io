@@ -103,7 +103,7 @@ From 1000ns of simulation time, at every event of I_CLK (rising edge, falling ed
       {% highlight tcl %}
   when { /top/U_MODULE_A/I_SIGNAL_A'event and $now > 1000ns } {
     set signal_value [ examine /top/U_MODULE_A/I_SIGNAL_A ]
-    if { $signal_value eq ""  } {
+    if { [ string compare $signal_value "1'hx" ] } {
        force /top/U_MODULE_A/I_SIGNAL_C 0
     }
   }
