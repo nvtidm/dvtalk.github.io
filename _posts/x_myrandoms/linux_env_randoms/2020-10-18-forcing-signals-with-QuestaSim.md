@@ -110,7 +110,7 @@ From 1000ns of simulation time, at every event of I_CLK (rising edge, falling ed
   }
       {% endhighlight %}
 This means:
-From 1000ns of simulation time, when I_SIGNAL_A has X value, force the I_SIGNAL_C to be 0
+From 1000ns of simulation time, when I_SIGNAL_A change to X value, force the I_SIGNAL_C to be 0
       </div>
       </td>
    </tr>
