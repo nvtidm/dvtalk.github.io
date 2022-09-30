@@ -17,10 +17,10 @@ Test plusargs.
 
 ---
 ## Systemverilog system function for plusargs
-Systemverilog has two system functions for retrived the arguments (aka plusargs) from the command line, these are `$test$plusargs` and `$value$plusargs`.
+Systemverilog has two system functions for retriving the arguments (aka plusargs) from the command line, these are `$test$plusargs` and `$value$plusargs`.
 
 ### $test$plusargs(string)
-This system function receive a string as it input argument, then search through the plusargs in the command line. 
+This system function receives a string as input argument, then search through the plusargs in the command line.
 If the **prefix** of any of the plusargs is matched with the provided string of the system function, this function return **non-zero** value.
 Usually, we will use this function as an expression in the consditional statement `if`-`else` as below example:
 
@@ -39,11 +39,11 @@ Similar to `$test$plusargs`, but the plusargs now comes with a value, and we can
 
 int m_plusargs;
 
-if($value$plusargs("PLUSARGS_TEST=%d", m_plusargs )) begin 
-  $display ("Found plusargs +PLUSARGS_TEST = %d", m_plusargs);
+if($value$plusargs("PLUSARGS_TEST=%d", m_var )) begin 
+  $display ("Found plusargs +PLUSARGS_TEST = %d", m_var);
 end 
 
-// m_plusargs now has a value of 20
+// m_var now has a value of 20
 
 {% endhighlight %}
 
@@ -67,7 +67,7 @@ We can use below format string when get the value from plusargs
 Some uvm functions those make handling test plusargs easier
 
 ### Plusargs for enum variable
-Assuming we have a enum type `sha_mode_e`, and the plusargs input value is stored in a string. 
+Assuming we have a enum type `sha_mode_e`, and the plusargs input value is stored in a string.
 Instead of using `switch-case` to match the string to each enum name constant,
 we can use `uvm_enum_wrapper#(<enum type>)::from_name()` function to cast the plusarg string to the enum variable.
 
@@ -81,9 +81,9 @@ we can use `uvm_enum_wrapper#(<enum type>)::from_name()` function to cast the pl
 
  if($value$plusargs("SHA_MODE=%s", m_tmp_str)) begin
     if (uvm_enum_wrapper#(sha_mode_e)::from_name(m_tmp_str, m_sha_mode)) begin
-       `uvm_info([PLUSARGS], $psprintf("Sha mode: %s", m_sha_mode.name()), UVM_LOW )
-    end 
- end 
+       `uvm_info("[PLUSARGS]", $psprintf("Sha mode: %s", m_sha_mode.name()), UVM_LOW )
+    end
+ end
 {% endhighlight %}
 
 ### uvm_cmdline_processor sigleton class
@@ -107,9 +107,9 @@ Then use the `uvm_split_string()` to split this string to entries based on the s
     string queue_en_s[$];
     int    queue_en[$];  // list of queue id that will be enable
 
-    uvm_split_string(upka_en_lst, "," , queue_en_s);
+    uvm_split_string(queue_en, "," , queue_en_s);  // split the list with "," as separator
     foreach (queue_en_s[i]) begin
-       queue_en[i] = queue_en_s[i].atoi();
+       queue_en[i] = queue_en_s[i].atoi();  // string to int
     end
  end
 {% endhighlight %}
