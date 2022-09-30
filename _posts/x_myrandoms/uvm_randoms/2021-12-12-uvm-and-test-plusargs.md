@@ -125,7 +125,7 @@ In this example, we will use the `uvm_cmdline_proc.get_arg_values()` function in
 {% highlight verilog %}
  //
  // Example simulator command line argument: +AES_OBJ_CFG=AES_CBC,128 +AES_OBJ_CFG=AES_ECB,256
- // Expect 2 aes operation:
+ // Expect 2 aes operations:
  //               1st aes operation: aes mode is AES_CBC, key length 128
  //               2nd aes operation: aes mode is AES_ECB, key length 256
  //
