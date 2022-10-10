@@ -105,14 +105,20 @@ This post is to store some of Systemverilog std::randomize examples that I creat
 
     std::randomize(d_array) with {
       d_array.size() == 3;
+      d_array[0] inside {[0:15]};
       if (d_array[0] > 10) {
         d_array[1] inside {0,1,2};
+        d_array[2] inside {10,11,12};
       }
-      else {
+      else if (d_array[0] > 5) {
         d_array[1] inside {3,4,5};
         d_array[2] inside {6,7,8};
       }
-    };     
+      else {
+        d_array[1] inside {13,14,15};
+        d_array[2] inside {16,17,18};
+      }
+    };
       {% endhighlight %}
       </div>
       </td>
