@@ -177,7 +177,7 @@ Full code can be find in this gist: [Systemverilog stream operator example](http
       <div class="code">
       {% highlight verilog %}
     $display ("1bit-slice %h",  {>>bit{24'h0a0a0a}} );
-    $display ("1bit-slice %h",  {<<bit{24'h0a0a0a}} );
+    $display ("1bit-slice %h",  {<<bit{24'h050505}} );
     // output:
     // 1bit-slice 0a0a0a
     // 1bit-slice 505050
@@ -197,7 +197,7 @@ Full code can be find in this gist: [Systemverilog stream operator example](http
       <div class="code">
       {% highlight verilog %}
     $display ("4bit-slice %h",  {>>4{24'h0a0a0a}} );
-    $display ("4bit-slice %h",  {<<4{24'h0a0a0a}} );
+    $display ("4bit-slice %h",  {<<4{24'h050505}} );
     // output:
     // 4bit-slice 0a0a0a
     // 4bit-slice 505050
