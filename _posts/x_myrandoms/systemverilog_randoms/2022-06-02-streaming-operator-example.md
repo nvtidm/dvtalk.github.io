@@ -65,6 +65,11 @@ Full code can be find in this gist: [Systemverilog stream operator example](http
     $display ("array to var %h\n",  m_pack_var );
     // output:
     // array to var 06070800
+    
+    m_pack_var = {<<byte{8'h06, 8'h07, 8'h08}};
+    $display ("array to var %h\n",  m_pack_var );
+    // output:
+    // array to var 08070600
 
       {% endhighlight %}
       </div>
