@@ -322,6 +322,47 @@ Full code can be find in this gist: [Systemverilog stream operator example](http
       </td>
    </tr>
 
+  <tr>
+      <td> Streaming Operator: Remove offset and pack to different size </td>
+      <td>
+      <div class="code">
+      {% highlight verilog %}
+{% raw %}
+    // 32bit data queue, offset 16 bit, need to pack to 28bit data queue
+    // input:           --> expected data:
+    // [ 0] 0xa5dc_751c      [ 0] 0x135_a5dc
+    // [ 1] 0x23ff_4135      [ 1] 0xc12_3ff4
+    // [ 2] 0x56c8_29c1      [ 2] 0x056_c829
+
+    automatic bit[31:0]   q32[$]  = {32'ha5dc_751c, 32'h23ff_4135, 32'h56c8_29c1};
+    automatic bit         q1[$];
+    automatic bit[27:0]   q28[$];
+
+    int offset = 16
+
+    // pack to 1 bit queue
+    q1 = {<<1{ {<<32{q32}}  }};
+
+    // remove unnecessary bit in the offset
+    for(int i =0; i<offset;i++) q1.pop_front();
+
+    // pack to 28bit queue
+    q28 = {<<28{ {<<1{q1}} }};
+ 
+
+{% endraw %}
+      {% endhighlight %}
+      </div>
+      </td>
+      <td>
+      <a href="https://www.edaplayground.com/x/YpFJ" title="Systemverilog Streaming Operator">
+      <svg width="25" height="25" viewBox="0 -0.1 2 2" class="customsvg"> <use xlink:href="#svg-edaplay"></use></svg></a>
+      </td>
+   </tr>
+
+
+
+
 
 </table>
     <script>
