@@ -345,10 +345,14 @@ Full code can be find in this gist: [Systemverilog stream operator example](http
 
     // remove unnecessary bit in the offset
     for(int i =0; i<offset;i++) q1.pop_front();
+    for(int i =0; i<offset;i++) q1.push_back(0);
+
 
     // pack to 28bit queue
     q28 = {<<28{ {<<1{q1}} }};
- 
+    
+    $displayh ("q28  %p",  q28 );
+    // q28  '{135a5dc, c123ff4, 056c829, 0000000}
 
 {% endraw %}
       {% endhighlight %}
