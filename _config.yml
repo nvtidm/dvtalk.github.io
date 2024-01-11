@@ -18,7 +18,7 @@
 title: dvtalk
 tagline: dvtalk
 description: "I'm a design verification engineer and this is where I keep my notes, my thoughts, my experiences or anything interesting that I think should belong here."
-url: "https://dvtalk.me" # the base hostname & protocol for your site, e.g. http://example.com
+url: "https://nvtidm.github.io/dvtalk.github.io" # the base hostname & protocol for your site, e.g. http://example.com
 
 permalink: pretty
 exclude: ["node_modules/", "*.gemspec", "*.gem", "Gemfile", "Gemfile.lock", "package.json", "package-lock.json",  "script/", "LICENSE.txt", "lib/", "bin/", "README.md", "Rakefile"]
